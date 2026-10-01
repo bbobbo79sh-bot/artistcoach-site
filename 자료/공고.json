@@ -15,12 +15,12 @@
  {
   "id": "47164c9c",
   "cat": "예술 공모전·모집",
-  "org": "모모365",
+  "org": "충남콘텐츠진흥원",
   "region": "모음사이트",
   "title": "[공고] 2026 충남 곡창작 공모전 모집공고",
   "deadline": "2026-10-01",
   "target": "",
-  "link": "https://www.momo365.net/Support?cd=contest&ViewType=detail&seq=176966",
+  "link": "https://ccon.kr/bbs/board.php?bo_table=bsnt&wr_id=2096",
   "posted": "2026-09-11",
   "summary": "충청남도의 지역·문화·자연을 소재로 한 창작곡을 모집하는 공모전. 연령·거주지 제한 없이 개인 또는 팀 참가 가능",
   "benefit": "총상금 500만 원 · 대상·금상은 음반 발매, 음원 유통, 뮤직비디오 제작 제공"
@@ -72,7 +72,7 @@
   "title": "2026년 서울무용창작센터 국제교류프로그램",
   "deadline": "2026-10-01",
   "target": "개인",
-  "link": "https://artnuri.or.kr/crawler/info/view.do?key=2301170002&docid=SFAC_NOTICE_20260922044208001&seNo=001",
+  "link": "https://www.sfac.or.kr/artspace/artspace/eunpyong_notice.do?cbIdx=1051&bcIdx=138725",
   "posted": "",
   "summary": "서울문화재단 서울무용창작센터가 일본 안무가 우메다 히로아키의 '도타이 메소드' 즉흥 워크숍에 참여할 무용 개인 참가자를 받는 국제교류 프로그램.",
   "benefit": "일본 안무가와 함께하는 즉흥 워크숍 참여"
@@ -111,7 +111,7 @@
   "title": "2027년 서울 커넥트 스테이지(연극·무용·음악·전통) 통합공모 안내",
   "deadline": "2026-10-02",
   "target": "개인",
-  "link": "https://artnuri.or.kr/crawler/info/view.do?key=2301170002&docid=SFAC_NOTICE_20260825044202001&seNo=001",
+  "link": "https://www.sfac.or.kr/opensquare/notice/notice_list.do?cbIdx=955&bcIdx=138576",
   "posted": "",
   "summary": "공모자격: 대학 졸업 후 예술현장에서 작품발표를 통해 예술가로서 현장과의 접점을 확대하고자 하는 예비 청년예술가(대학 예술분야 전공 26년 8월 졸업 및 졸업 예정자 또는 27년 2월 졸업 예정자)",
   "benefit": ""
@@ -215,7 +215,7 @@
   "title": "2026년 국제문화교류 컨설팅(경상권)> 참가자 모집",
   "deadline": "2026-10-03",
   "target": "전체",
-  "link": "https://artnuri.or.kr/crawler/info/view.do?key=2301170002&docid=KOFICE_BIZ_20260924080012001&seNo=001",
+  "link": "https://kofice.or.kr/www/bbs/view.do?mnucd=169&scBbsMngSn=7&bbsSn=54945",
   "posted": "",
   "summary": "공연예술 해외진출에 관심 있는 경상권 예술가·기획자를 대상으로, 기획자 강연과 컨설턴트별 라운드테이블을 여는 K-Arts 컨설팅 참가자 모집.",
   "benefit": "10월 3일 14시 · 실전 강연 3편 + 컨설턴트 3인 라운드테이블"
@@ -410,7 +410,7 @@
   "title": "2026년 예술지원사업 <정산 워크숍> 참여자 모집",
   "deadline": "2026-10-07",
   "target": "전체",
-  "link": "https://artnuri.or.kr/crawler/info/view.do?key=2301170002&docid=JFAC_NOTICE_20260915044245001&seNo=001",
+  "link": "https://www.jfac.kr/notification/notice/20459",
   "posted": "",
   "summary": "",
   "benefit": ""
@@ -780,6 +780,19 @@
   "benefit": ""
  },
  {
+  "id": "133c299f",
+  "cat": "예술인 지원·공모",
+  "org": "예술경영지원센터",
+  "region": "전국",
+  "title": "2026년 예술산업보증 공모",
+  "deadline": "2026-10-12",
+  "target": "단체",
+  "link": "https://www.gokams.or.kr/01_news/notice_view.aspx?Idx=4573&page=1&txtKeyword=&ddlKeyfield=T",
+  "posted": "",
+  "summary": "",
+  "benefit": ""
+ },
+ {
   "id": "b0017f94",
   "cat": "예술 공모전·모집",
   "org": "아트허브",
@@ -891,7 +904,7 @@
   "title": "대한민국 AI 콘텐츠 어워즈",
   "deadline": "2026-10-15",
   "target": "전체",
-  "link": "https://artnuri.or.kr/crawler/info/view.do?key=2301170002&docid=2609220001&seNo=002",
+  "link": "https://www.gcon.or.kr/KAICA2026/index.html",
   "posted": "",
   "summary": "",
   "benefit": ""
@@ -956,7 +969,7 @@
   "title": "2026년 천안문화재단 예술창작 집중지원 <공연작품 제작지원사업> 모집 공고",
   "deadline": "2026-10-16",
   "target": "-",
-  "link": "https://artnuri.or.kr/crawler/info/view.do?key=2301170002&docid=S64922&seNo=001",
+  "link": "https://www.cfac.or.kr/bbs/board.php?bo_table=biz&wr_id=881&page=1",
   "posted": "",
   "summary": "",
   "benefit": ""
@@ -995,7 +1008,7 @@
   "title": "대구 청년 음악가 인큐베이팅을 위한 <2026 DCH 앙상블 아카데미-금관> 참가자 모집",
   "deadline": "2026-10-16",
   "target": "개인",
-  "link": "https://artnuri.or.kr/crawler/info/view.do?key=2301170002&docid=S65034&seNo=001",
+  "link": "https://www.dgfca.or.kr/article/NOTICE/detail/19620",
   "posted": "",
   "summary": "",
   "benefit": ""
@@ -1073,7 +1086,7 @@
   "title": "2026년 크라우드펀딩 확산사업 <크라우드펀딩 챌린지> 2차 공모",
   "deadline": "2026-10-18",
   "target": "전체",
-  "link": "https://artnuri.or.kr/crawler/info/view.do?key=2301170002&docid=CRL3575&seNo=001",
+  "link": "https://www.arko.or.kr/supp/content/4091",
   "posted": "",
   "summary": "",
   "benefit": ""
@@ -1268,7 +1281,7 @@
   "title": "2027년 인천문화재단 청년예술활동지원 공모",
   "deadline": "2026-10-21",
   "target": "개인",
-  "link": "https://artnuri.or.kr/crawler/info/view.do?key=2301170002&docid=IFAC_MENU_20260923010806001&seNo=001",
+  "link": "https://ifac.or.kr/artsSupProjects/supProjects/view.do?bbsSn=236090&key=m2501143953255",
   "posted": "",
   "summary": "",
   "benefit": ""
@@ -1450,7 +1463,7 @@
   "title": "2026년 개인 심리상담 신청 안내",
   "deadline": "2026-10-30",
   "target": "개인",
-  "link": "https://artnuri.or.kr/crawler/info/view.do?key=2301170002&docid=S59633&seNo=001",
+  "link": "https://www.kawf.kr/notice/sub02View.do?selIdx=19305",
   "posted": "",
   "summary": "",
   "benefit": ""
@@ -1567,7 +1580,7 @@
   "title": "문화인력 양성 및 활용사업예술활동증명 발급 신청 행정지원 안내",
   "deadline": "2026-10-31",
   "target": "개인",
-  "link": "https://artnuri.or.kr/crawler/info/view.do?key=2301170002&docid=GCTF_NOTICE_20260825095005001&seNo=001",
+  "link": "https://www.gctf.or.kr/web/board/1/4431",
   "posted": "",
   "summary": "",
   "benefit": ""
@@ -1885,19 +1898,6 @@
   "benefit": ""
  },
  {
-  "id": "133c299f",
-  "cat": "예술인 지원·공모",
-  "org": "예술경영지원센터",
-  "region": "전국",
-  "title": "2026년 예술산업보증 공모",
-  "deadline": "2026-11-10",
-  "target": "단체",
-  "link": "https://artnuri.or.kr/crawler/info/view.do?key=2301170002&docid=CRL3531&seNo=001",
-  "posted": "",
-  "summary": "",
-  "benefit": ""
- },
- {
   "id": "483f5c71",
   "cat": "예술 공모전·모집",
   "org": "포천문화관광재단",
@@ -1937,19 +1937,6 @@
   "benefit": ""
  },
  {
-  "id": "e8a6123c",
-  "cat": "예술인 지원·공모",
-  "org": "남동문화재단",
-  "region": "인천",
-  "title": "2026년 예술활동증명 신청 행정지원 서비스 2차 참여자 모집 공고",
-  "deadline": "2026-11-13",
-  "target": "전체",
-  "link": "https://artnuri.or.kr/crawler/info/view.do?key=2301170002&docid=S64949&seNo=001",
-  "posted": "",
-  "summary": "",
-  "benefit": ""
- },
- {
   "id": "116adf45",
   "cat": "예술인 지원·공모",
   "org": "광주문화재단",
@@ -1957,7 +1944,7 @@
   "title": "2026년 광주예술인복지지원 - 예술인 전문 컨설팅 「예술인 심리상담」 참여자 모집 공고",
   "deadline": "2026-11-13",
   "target": "개인",
-  "link": "https://artnuri.or.kr/crawler/info/view.do?key=2301170002&docid=S65119&seNo=001",
+  "link": "https://www.gjcf.or.kr/cf/Board/87328/detailView.do",
   "posted": "",
   "summary": "",
   "benefit": ""
@@ -2022,7 +2009,7 @@
   "title": "2026년 문화예술후원매개전문가 양성과정 아트너스클럽 시즌7",
   "deadline": "2026-11-16",
   "target": "전체",
-  "link": "https://artnuri.or.kr/crawler/info/view.do?key=2301170002&docid=ARKO_BOARD_20260922044055001&seNo=001",
+  "link": "https://www.arko.or.kr/board/view/4053?bid=&page=&cid=1811175",
   "posted": "",
   "summary": "",
   "benefit": ""
@@ -2030,12 +2017,12 @@
  {
   "id": "ee81b51d",
   "cat": "예술 공모전·모집",
-  "org": "모모365",
+  "org": "부산광역시 공원도시과",
   "region": "모음사이트",
   "title": "[회원등록공고] 을숙도 대지·생태예술 국제공모 찰나의 우리, 오래 흐르는 대지",
   "deadline": "2026-11-22",
   "target": "",
-  "link": "https://www.momo365.net/Support?cd=support&ViewType=detail&seq=177266",
+  "link": "https://eulsukdo-ecoart.com/",
   "posted": "2026-09-21",
   "summary": "",
   "benefit": ""
@@ -2061,7 +2048,7 @@
   "title": "예술기부활성화 대전예술가치26 공모",
   "deadline": "2026-11-23",
   "target": "전체",
-  "link": "https://artnuri.or.kr/crawler/info/view.do?key=2301170002&docid=S62304&seNo=001",
+  "link": "https://www.dcaf.or.kr/web/board.do?menuIdx=375&bbsIdx=18948",
   "posted": "",
   "summary": "",
   "benefit": ""
@@ -2113,7 +2100,7 @@
   "title": "서울문화재단 대학로센터 <제철공연> 참여단체 모집",
   "deadline": "2026-11-24",
   "target": "단체",
-  "link": "https://artnuri.or.kr/crawler/info/view.do?key=2301170002&docid=SFAC_NOTICE_20260808044603001&seNo=001",
+  "link": "https://www.sfac.or.kr/opensquare/notice/notice_list.do?cbIdx=955&bcIdx=138522",
   "posted": "",
   "summary": "",
   "benefit": ""
@@ -2139,7 +2126,7 @@
   "title": "2026년 대전 예술인 검진비 지원",
   "deadline": "2026-11-25",
   "target": "개인",
-  "link": "https://artnuri.or.kr/crawler/info/view.do?key=2301170002&docid=S60459&seNo=001",
+  "link": "https://www.dcaf.or.kr/web/board.do?menuIdx=375&bbsIdx=18854",
   "posted": "",
   "summary": "",
   "benefit": ""
@@ -2158,6 +2145,19 @@
   "benefit": ""
  },
  {
+  "id": "e8a6123c",
+  "cat": "예술인 지원·공모",
+  "org": "남동문화재단",
+  "region": "인천",
+  "title": "2026년 예술활동증명 신청 행정지원 서비스 2차 참여자 모집 공고",
+  "deadline": "2026-11-30",
+  "target": "전체",
+  "link": "https://www.namdongcf.or.kr/user/board/view.php?sq=2708&board_code=announcement",
+  "posted": "",
+  "summary": "",
+  "benefit": ""
+ },
+ {
   "id": "f36bed6f",
   "cat": "예술인 지원·공모",
   "org": "충남문화관광재단",
@@ -2165,7 +2165,7 @@
   "title": "2026년 충남문화관광재단 예술지원사업 일대일 정산 지원서비스",
   "deadline": "2026-11-30",
   "target": "전체",
-  "link": "https://artnuri.or.kr/crawler/info/view.do?key=2301170002&docid=S62975&seNo=001",
+  "link": "https://www.cacf.or.kr/site/board/?table_nm=tbl_notice&fn=view&no=2026062415020196355&page=1",
   "posted": "",
   "summary": "",
   "benefit": ""
@@ -2178,7 +2178,7 @@
   "title": "2026년 B·아티스테이(Busan+Artist+Stay) 참여자 모집",
   "deadline": "2026-11-30",
   "target": "개인",
-  "link": "https://artnuri.or.kr/crawler/info/view.do?key=2301170002&docid=BSCF_NOTICE_20260527152100001&seNo=001",
+  "link": "https://www.bscf.or.kr/view.do?pgMode=show&no=1010&pbancSn=2256",
   "posted": "",
   "summary": "",
   "benefit": ""
@@ -2191,7 +2191,7 @@
   "title": "2026년 장애예술 육성 지원사업(아름누리)",
   "deadline": "2026-11-30",
   "target": "개인",
-  "link": "https://artnuri.or.kr/crawler/info/view.do?key=2301170002&docid=S60789&seNo=001",
+  "link": "https://cnaw.or.kr/site/notice/index.php?fn=view&no=2026032710572636665",
   "posted": "",
   "summary": "",
   "benefit": ""
@@ -2204,7 +2204,7 @@
   "title": "2026년 찾아가는 예술인 권리보호 교육 참여자 모집",
   "deadline": "2026-11-30",
   "target": "전체",
-  "link": "https://artnuri.or.kr/crawler/info/view.do?key=2301170002&docid=S59278&seNo=001",
+  "link": "https://www.kawf.kr/notice/sub02View.do?selIdx=19293",
   "posted": "",
   "summary": "",
   "benefit": ""
@@ -2373,7 +2373,7 @@
   "title": "2026년 세종음악창작소 버스킹 음향 장비 지원사업 공고",
   "deadline": "2026-12-16",
   "target": "전체",
-  "link": "https://artnuri.or.kr/crawler/info/view.do?key=2301170002&docid=S60723&seNo=001",
+  "link": "https://www.sjcf.or.kr/bbsctt/view.do?bbscttSn=2603310002&key=2111060075",
   "posted": "",
   "summary": "",
   "benefit": ""
@@ -2399,7 +2399,7 @@
   "title": "2026년 은평구 지역예술인 DB구축 <ㅇㅍ아트태그> 참여자 모집 공고",
   "deadline": "2026-12-31",
   "target": "전체",
-  "link": "https://artnuri.or.kr/crawler/info/view.do?key=2301170002&docid=S64261&seNo=001",
+  "link": "https://www.efac.or.kr/page08/sub01.php?type=view&uid=5247",
   "posted": "",
   "summary": "2026 은평구 지역예술인 DB구축 <ㅇㅍ아트태그> 참여자 모집 공고",
   "benefit": ""
@@ -2425,7 +2425,7 @@
   "title": "2026년 제주예술인복지센터 제주·서귀포 행정 지원 서비스 안내",
   "deadline": "2026-12-31",
   "target": "전체",
-  "link": "https://artnuri.or.kr/crawler/info/view.do?key=2301170002&docid=JFAC_NOTICE_20260710053004001&seNo=001",
+  "link": "https://www.jfac.kr/notification/notice/20302",
   "posted": "",
   "summary": "",
   "benefit": ""
@@ -2438,7 +2438,7 @@
   "title": "2026년 중랑청소년문화예술창작센터 예술강사풀 모집",
   "deadline": "2026-12-31",
   "target": "개인",
-  "link": "https://artnuri.or.kr/crawler/info/view.do?key=2301170002&docid=2604210006&seNo=002",
+  "link": "https://www.jnfac.or.kr/board/8/14187",
   "posted": "",
   "summary": "",
   "benefit": ""
@@ -2451,7 +2451,7 @@
   "title": "2026년 경남 예술인 창작자금 대출 지원(이차보전) 사업 공모",
   "deadline": "2026-12-31",
   "target": "개인",
-  "link": "https://artnuri.or.kr/crawler/info/view.do?key=2301170002&docid=S60484&seNo=001",
+  "link": "https://www.gcaf.or.kr/bbs/board.php?bo_table=sub3_7&wr_id=2075&page=1",
   "posted": "",
   "summary": "",
   "benefit": ""
@@ -2464,7 +2464,7 @@
   "title": "2026년 생활안정자금 융자 사업 안내(상시 운영)",
   "deadline": "2026-12-31",
   "target": "전체",
-  "link": "https://artnuri.or.kr/crawler/info/view.do?key=2301170002&docid=S64276&seNo=001",
+  "link": "https://www.kawf.kr/notice/sub02View.do?selIdx=19627",
   "posted": "",
   "summary": "한도: 최고 700만원 이내 (긴급 생활자금 최고 500만원 이내)",
   "benefit": ""
@@ -2529,7 +2529,7 @@
   "title": "문화예술사업자를 위한 전자계약 서비스 지원",
   "deadline": "2026-12-31",
   "target": "전체",
-  "link": "https://artnuri.or.kr/crawler/info/view.do?key=2301170002&docid=S62596&seNo=001",
+  "link": "https://www.kawf.kr/notice/sub02View.do?selIdx=19462",
   "posted": "",
   "summary": "",
   "benefit": ""
@@ -2542,7 +2542,7 @@
   "title": "<제5회 서울예술상> 스팍 포커스상 후보작 공모 안내",
   "deadline": "2027-01-05",
   "target": "전체",
-  "link": "https://artnuri.or.kr/crawler/info/view.do?key=2301170002&docid=SFAC_NOTICE_20260901044205002&seNo=001",
+  "link": "https://www.sfac.or.kr/opensquare/notice/notice_list.do?cbIdx=955&bcIdx=138611",
   "posted": "",
   "summary": "시상금 1천만원 / 서울에서 진행된 지원금을 받지 않은 프로젝트",
   "benefit": ""
@@ -2594,7 +2594,7 @@
   "title": "2026년 갤러리카페 아크 초대전 작가 공모",
   "deadline": "2027-04-30",
   "target": "전체",
-  "link": "https://artnuri.or.kr/crawler/info/view.do?key=2301170002&docid=2511280001&seNo=002",
+  "link": "https://forms.gle/EXES7Ak3WShACzeH7",
   "posted": "",
   "summary": "",
   "benefit": ""
