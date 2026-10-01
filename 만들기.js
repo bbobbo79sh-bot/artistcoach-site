@@ -160,11 +160,6 @@ i{font-style:normal}
 .맨위{position:fixed;right:16px;bottom:18px;z-index:40;width:46px;height:46px;border-radius:50%;border:0;background:var(--ink);color:var(--bg);font-size:20px;line-height:1;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.25);opacity:0;pointer-events:none;transition:opacity .2s}
 .맨위.보임{opacity:1;pointer-events:auto}
 
-.진열{margin:40px 0 10px;padding:22px;border-radius:22px;background:var(--ink);color:var(--bg)}
-.진열 .윗글{background:var(--연함);color:var(--깊음)}
-.진열 h2{font-size:21px;margin:0 0 6px;letter-spacing:-.03em}
-.진열 p{margin:0 0 14px;font-size:14.5px;opacity:.82}
-.진열 .줄{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
 .단추{display:inline-block;font:inherit;font-size:15px;font-weight:800;padding:13px 22px;border-radius:14px;text-decoration:none;border:0;cursor:pointer}
 .단추.주{background:var(--브랜드);color:var(--브랜드글)}
 .단추.준비{background:rgba(255,255,255,.14);color:inherit;cursor:default}
@@ -243,13 +238,6 @@ const 카드 = (x) => `<a class="카드" href="${길(`/notice/${x.id}/`)}" data-
   <div class="본"><h3>${막기(x.title)}</h3><div class="곳">${곳글(x)}</div>${혜택줄(x)}</div>
 </a>`;
 const 미니 = (x) => `<a class="미니" href="${길(`/notice/${x.id}/`)}" data-deadline="${x.deadline}"><span class="디${급함(x.deadline) ? ' 급' : ''}" style="align-self:flex-start" data-d="${x.deadline}">${딱지글(x.deadline)}</span><b>${막기(x.title)}</b><small>${막기(x.org)}${x.region ? ' · ' + 막기(x.region) : ''}</small>${혜택줄(x)}</a>`;
-
-const 진열 = `<section class="진열">
-  <span class="윗글">기획서 진단서</span>
-  <h2>떨어지는 데에는 이유가 있어요</h2>
-  <p>지원서를 내기 전에, 어디를 고치면 좋을지 코치가 먼저 짚어 드려요.</p>
-  <div class="줄"><span class="단추 준비">신청 준비 중이에요</span></div>
-</section>`;
 
 // ───────── 첫 화면 ─────────
 const 분류목록 = [...new Set(공고.map((x) => x.cat).filter(Boolean))];
@@ -343,8 +331,7 @@ ${공고.map(카드).join('\n')}
 </div>
 <p class="없음" id="없음" hidden>조건에 맞는 공고가 없어요.</p>
 <button class="더보기" id="더보기" hidden>더 보기</button>
-<button class="맨위" id="맨위" type="button" aria-label="맨 위로">↑</button>
-${진열}`;
+<button class="맨위" id="맨위" type="button" aria-label="맨 위로">↑</button>`;
 
 쓰기('index.html', 틀({
   제목: '아티스트 코치 · 예술인을 위한 지원사업 공고',
@@ -371,7 +358,6 @@ ${진열}`;
   ${x.summary ? `<p class="요약">${막기(x.summary)}</p>` : `<p class="요약 없음글">요약을 준비하고 있어요. 자세한 내용은 원문에서 확인해 주세요.</p>`}
   <a class="단추 주 원문단추" href="${막기(x.link)}" target="_blank" rel="noopener noreferrer">원문 보러 가기 <span aria-hidden="true">→</span></a>
   <p class="안내">지원 조건, 금액, 마감 시각은 바뀔 수 있어요. 지원 전에 꼭 원문 공고에서 다시 확인해 주세요.</p>
-  ${진열}
 </article>
 <script>(function(){var b=document.getElementById('딱지'),d=b.dataset.d;if(d==='상시')return;var o=new Date();o.setHours(0,0,0,0);var n=Math.round((new Date(d+'T00:00:00')-o)/86400000);b.textContent=n<0?'마감됨':n===0?'오늘 마감':'D-'+n;b.classList.toggle('급',n<=3)})();</script>`;
   쓰기(`notice/${x.id}/index.html`, 틀({
