@@ -1,7 +1,7 @@
 @echo off
 chcp 65001 >nul
 rem 조사 봇이 export_site.py 로 자료/공고.json 을 새로 만든 뒤에 부른다.
-rem 공고.json 하나만 올리고, 달라진 것이 없으면 아무것도 올리지 않는다.
+rem 공고.json 과 추천 배너 자료(추천.json, 추천 이미지)만 올리고, 달라진 것이 없으면 아무것도 올리지 않는다.
 rem 올리면 GitHub 가 알아서 사이트를 다시 만들어 인터넷에 반영한다 (1~2분).
 cd /d "%~dp0.."
 node 도구\점검.js
@@ -10,6 +10,8 @@ if errorlevel 1 (
   exit /b 1
 )
 git add 자료/공고.json
+if exist 자료\추천.json git add 자료/추천.json
+if exist 자료\추천 git add 자료/추천
 git diff --cached --quiet
 if %errorlevel%==0 (
   echo 공고 자료가 달라진 것이 없어 올리지 않습니다.

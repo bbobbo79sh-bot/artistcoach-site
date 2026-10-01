@@ -54,7 +54,22 @@ const 호스트 = (u) => { try { return new URL(u).host.toLowerCase(); } catch (
 const 모음건 = 새.filter((x) => 모음.호스트.some((h) => 호스트(x.link).includes(h)) || 모음.이름.some((n) => (x.org || '').includes(n))).length;
 if (모음건) console.log(`※ 모음 사이트 링크·기관명인 공고 ${모음건}건은 홈페이지에서 가려집니다. 진짜 원문 링크로 바꿔 주세요.`);
 
-console.log(`공고 ${새.length}건 · 요약 ${요약}건 · 지원내용 ${혜택}건` + (이전 ? ` (지금 올라가 있는 것: ${이전.length}건)` : ''));
+// 4) 추천 배너 자료: id 가 공고.json 에 있어야 하고 이미지 파일이 실제로 있어야 한다
+const 추천파일 = path.join(뿌리, '자료', '추천.json');
+let 추천수 = 0;
+if (fs.existsSync(추천파일)) {
+  let 추천;
+  try { 추천 = JSON.parse(fs.readFileSync(추천파일, 'utf8')); if (!Array.isArray(추천)) throw new Error('목록이 아님'); }
+  catch (e) { 문제.push('추천.json 을 읽을 수 없습니다: ' + e.message); 추천 = []; }
+  const 아이디 = new Set(새.map((x) => x.id));
+  for (const r of 추천) {
+    if (!r.id || !아이디.has(r.id)) 문제.push(`추천.json 의 ${r.id} 는 공고.json 에 없습니다`);
+    else if (!r.image || !/^[\w.\-가-힣 ]+$/.test(r.image) || !fs.existsSync(path.join(뿌리, '자료', '추천', r.image))) 문제.push(`추천.json 의 ${r.id} 이미지 파일이 없거나 이름이 이상합니다 (${r.image})`);
+  }
+  추천수 = 추천.length;
+}
+
+console.log(`공고 ${새.length}건 · 요약 ${요약}건 · 지원내용 ${혜택}건 · 추천 배너 ${추천수}건` + (이전 ? ` (지금 올라가 있는 것: ${이전.length}건)` : ''));
 if (문제.length) {
   console.log('올리지 않습니다. 이유:');
   문제.forEach((m) => console.log('  - ' + m));
