@@ -18,6 +18,7 @@ if %errorlevel%==0 (
   exit /b 0
 )
 git commit -q -m "공고 자료 갱신 (조사 봇)"
+git pull -q --rebase origin main
 git push -q origin main
 if %errorlevel%==0 (
   echo 올렸습니다. 1~2분 뒤 사이트에 반영됩니다.
