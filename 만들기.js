@@ -74,6 +74,18 @@ const 가림 = 살아있는.filter(모음인가);
 const 공고 = 살아있는.filter((x) => !모음인가(x))
   .sort((a, b) => (a.deadline === '상시') - (b.deadline === '상시') || a.deadline.localeCompare(b.deadline));
 const 상시수 = 공고.filter((x) => x.deadline === '상시').length;
+// 인스타 카드뉴스 중 인기 있는 것 (조사 봇이 자료/추천.json 과 자료/추천/ 이미지를 내보낸다. 없으면 배너를 그리지 않는다)
+const 추천경로 = process.env.SITE_REC || path.join(뿌리, '자료', '추천.json');
+const 추천폴더 = process.env.SITE_RECIMG || path.join(뿌리, '자료', '추천');
+const 추천 = (() => {
+  if (!fs.existsSync(추천경로)) return [];
+  try {
+    return JSON.parse(fs.readFileSync(추천경로, 'utf8'))
+      .map((r) => ({ ...r, 공고: 공고.find((x) => x.id === r.id) }))
+      .filter((r) => r.공고 && r.image && /^[\w.\-가-힣 ]+$/.test(r.image) && fs.existsSync(path.join(추천폴더, r.image)))
+      .sort((a, b) => (b.score || 0) - (a.score || 0)).slice(0, 8);
+  } catch (e) { console.log('추천.json 을 읽지 못해 배너를 건너뜁니다: ' + e.message); return []; }
+})();
 const 곧마감 = 공고.filter((x) => x.deadline !== '상시' && 남은날(x.deadline) <= 7);
 
 // ───────── 스타일 ─────────
@@ -108,6 +120,22 @@ i{font-style:normal}
 .수치{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;font-size:13px;color:var(--sub)}
 .수치 span{background:var(--면);border:1px solid var(--선);border-radius:999px;padding:4px 12px}
 .수치 b{color:var(--ink);font-weight:800}
+
+.추천{margin:18px 0 8px}
+.추천 .칸{position:relative;border-radius:22px;overflow:hidden;background:var(--면);border:1px solid var(--선)}
+.추천 .줄{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+.추천 .줄::-webkit-scrollbar{display:none}
+.추천 .장{flex:0 0 100%;scroll-snap-align:start;display:grid;grid-template-columns:minmax(0,260px) 1fr;gap:22px;align-items:center;padding:16px;text-decoration:none;color:inherit}
+.추천 .장 img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;border-radius:14px;display:block;background:var(--연함)}
+.추천 .장 .글{min-width:0;display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+.추천 .장 h3{margin:0;font-size:19px;line-height:1.35;letter-spacing:-.03em;font-weight:900;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.추천 .장 .곳{font-size:13px;color:var(--sub)}
+.추천 .장 .가기{margin-top:2px;font-weight:800;color:var(--깊음);font-size:14.5px}
+.추천 .점줄{display:flex;gap:7px;justify-content:center;padding:0 0 12px}
+.추천 .점{width:8px;height:8px;border-radius:999px;border:0;padding:0;background:var(--선);cursor:pointer}
+.추천 .점[aria-current="true"]{background:var(--브랜드);width:22px}
+.추천 .인스타{display:inline-block;font-size:12px;font-weight:800;color:var(--깊음);background:var(--연함);border-radius:999px;padding:3px 10px}
+@media (max-width:560px){.추천 .장{grid-template-columns:minmax(0,40%) 1fr;gap:12px;padding:12px}.추천 .장 h3{font-size:16px;-webkit-line-clamp:4}}
 
 .곧마감{margin:14px 0 6px}
 .제목줄{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:8px}
@@ -318,6 +346,27 @@ const 첫화면본문 = `
   <div class="검색줄"><input id="검색" type="search" placeholder="사업명이나 기관으로 찾기" autocomplete="off" aria-label="공고 검색"></div>
   <div class="수치"><span><b>${공고.length}</b>건의 공고</span><span><b>${상시수}</b>건 상시 접수</span><span>${오늘.getMonth() + 1}월 ${오늘.getDate()}일 기준</span></div>
 </section>
+${추천.length ? `<section class="추천" aria-label="인기 카드뉴스" aria-roledescription="carousel">
+  <div class="제목줄"><h2>카드뉴스로 먼저 보기</h2></div>
+  <div class="칸"><div class="줄" id="추천줄" tabindex="0">${추천.map((r, i) => `<a class="장" href="${길(`/notice/${r.공고.id}/`)}" aria-label="${i + 1} / ${추천.length}">
+    <img src="${길('/추천/' + encodeURI(r.image))}" alt="${막기(r.공고.title)} 카드뉴스" width="540" height="540" ${i ? 'loading="lazy"' : ''}>
+    <div class="글"><span class="인스타">인스타 인기 카드뉴스</span><span class="디${급함(r.공고.deadline) ? ' 급' : ''}">${딱지글(r.공고.deadline)}</span><h3>${막기(r.공고.title)}</h3><div class="곳">${곳글(r.공고)}</div><span class="가기">공고 보러 가기 →</span></div>
+  </a>`).join('')}</div>
+  ${추천.length > 1 ? `<div class="점줄">${추천.map((_, i) => `<button class="점" type="button" aria-label="${i + 1}번째 카드뉴스" aria-current="${i === 0}"></button>`).join('')}</div>` : ''}</div>
+</section>
+<script>
+(function(){
+  var 줄=document.getElementById('추천줄');if(!줄)return;
+  var 점=[].slice.call(document.querySelectorAll('.추천 .점')),n=점.length,i=0,멈춤=false,움직임줄임=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function 표시(k){i=k;점.forEach(function(d,j){d.setAttribute('aria-current',String(j===k))})}
+  function 가기(k){줄.scrollTo({left:줄.clientWidth*k,behavior:움직임줄임?"auto":"smooth"});표시(k)}
+  줄.addEventListener('scroll',function(){var k=Math.round(줄.scrollLeft/Math.max(1,줄.clientWidth));if(k!==i)표시(k)},{passive:true});
+  점.forEach(function(d,j){d.onclick=function(){가기(j)}});
+  ['mouseenter','focusin','touchstart','pointerdown'].forEach(function(e){줄.parentNode.addEventListener(e,function(){멈춤=true},{passive:true})});
+  ['mouseleave','focusout'].forEach(function(e){줄.parentNode.addEventListener(e,function(){멈춤=false})});
+  if(n>1&&!움직임줄임)setInterval(function(){if(멈춤||document.hidden)return;가기((i+1)%n)},5000);
+})();
+</script>` : ''}
 ${곧마감.length ? `<section class="곧마감" aria-label="곧 마감되는 공고">
   <div class="제목줄"><h2>곧 마감돼요</h2><button class="글단추" id="곧전체" type="button">7일 이내 ${곧마감.length}건 모두 보기 →</button></div>
   <div class="띠목록">${곧마감.slice(0, 12).map(미니).join('')}</div>
@@ -398,6 +447,10 @@ ${공고.map(카드).join('\n')}
 쓰기('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
   ['/', '/about/', ...공고.map((x) => `/notice/${x.id}/`)].map((u) => `  <url><loc>${주소}${u}</loc><lastmod>${오늘글}</lastmod></url>`).join('\n') + `\n</urlset>\n`);
 
+if (추천.length) {
+  추천.forEach((r) => { fs.mkdirSync(path.join(결과, '추천'), { recursive: true }); fs.copyFileSync(path.join(추천폴더, r.image), path.join(결과, '추천', r.image)); });
+  console.log(`  추천 배너  ${추천.length}장`);
+}
 const 원본 = path.join(뿌리, '원본');
 if (fs.existsSync(원본)) fs.readdirSync(원본).forEach((f) => fs.copyFileSync(path.join(원본, f), path.join(결과, f)));
 
