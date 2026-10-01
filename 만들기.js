@@ -108,7 +108,7 @@ i{font-style:normal}
 .미니:hover{border-color:var(--연함);box-shadow:0 5px 0 var(--아주연함)}
 .미니 b{font-size:14.5px;line-height:1.42;font-weight:800;letter-spacing:-.02em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .미니 small{font-size:12.5px;color:var(--sub)}
-.미니 .혜택{margin:0}
+.미니 .혜택{margin:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 
 .도구{position:sticky;top:56px;z-index:20;background:var(--바탕투명);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:10px 0 9px;border-bottom:1px solid var(--선)}
 .칩줄{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}

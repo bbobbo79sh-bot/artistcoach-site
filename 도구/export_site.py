@@ -36,9 +36,13 @@ import sys
 def 글(v):
     if v is None:
         return ""
+    if isinstance(v, bool):                  # 시트의 체크박스 칸(엑셀로 내리면 True/False)
+        return ""
     if isinstance(v, (dt.datetime, dt.date)):
         return v.strftime("%Y-%m-%d")
-    return str(v).strip()
+    s = str(v).strip()
+    # 체크박스 서식이 글 칸으로 번지면 TRUE/FALSE 가 들어온다. 빈 칸으로 본다 (조사 봇이 겪은 문제)
+    return "" if s.upper() in ("TRUE", "FALSE") else s
 
 
 def 표에서_공고만(값들, 기준일=None):
