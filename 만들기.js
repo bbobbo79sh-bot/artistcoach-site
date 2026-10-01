@@ -69,6 +69,8 @@ const 모음인가 = (x) => 모음.호스트.some((h) => 호스트(x.link).inclu
 const 살아있는 = JSON.parse(fs.readFileSync(자료경로, 'utf8'))
   .filter((x) => x.deadline === '상시' || 남은날(x.deadline) >= 0);
 const 가림 = 살아있는.filter(모음인가);
+// 지역 칸에 모음 사이트 이름이 잘못 들어온 경우는 지역 없음으로 본다
+살아있는.forEach((x) => { if (모음.이름.some((n) => (x.region || '').includes(n)) || /^모음/.test(x.region || '')) x.region = ''; });
 const 공고 = 살아있는.filter((x) => !모음인가(x))
   .sort((a, b) => (a.deadline === '상시') - (b.deadline === '상시') || a.deadline.localeCompare(b.deadline));
 const 상시수 = 공고.filter((x) => x.deadline === '상시').length;

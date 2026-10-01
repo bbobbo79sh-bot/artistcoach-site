@@ -7,7 +7,7 @@
   "title": "2026년 미술저작권 기초ㆍ실무 교육 2차 수강생 모집",
   "deadline": "2026-10-01",
   "target": "전체",
-  "link": "https://www.gokams.or.kr/01_news/notice_view.aspx?Idx=4555&txtKeyword=&ddlKeyfield=T",
+  "link": "https://www.gokams.or.kr/01_news/notice_view.aspx?Idx=4555",
   "posted": "",
   "summary": "예비·현직 시장 관계자와 예술가를 대상으로 시각미술 저작권의 기본 개념과 현장 사례를 알려 주는 온라인 교육 수강생 모집",
   "benefit": "무료 온라인 교육 · 10월 5일~11월 5일 기간 내 자율수강"
@@ -59,7 +59,7 @@
   "title": "2026년 예술산업아카데미 <예술기업 자금전략 로드맵> 수강생 모집",
   "deadline": "2026-10-01",
   "target": "전체",
-  "link": "https://www.gokams.or.kr:443/01_news/notice_view.aspx?Idx=4561&page=1&txtKeyword=&ddlKeyfield=T",
+  "link": "https://www.gokams.or.kr/01_news/notice_view.aspx?Idx=4558",
   "posted": "",
   "summary": "",
   "benefit": ""
@@ -124,7 +124,7 @@
   "title": "예술산업 금융지원 시범사업(융자) 5차 공모(~10.2.(금) 16:00)",
   "deadline": "2026-10-02",
   "target": "",
-  "link": "https://www.gokams.or.kr:443/01_news/notice_view.aspx?Idx=4564&page=1&txtKeyword=&ddlKeyfield=T",
+  "link": "https://www.gokams.or.kr/01_news/notice_view.aspx?Idx=4564",
   "posted": "2026-09-11",
   "summary": "예술 분야 사업자(민간예술시설업체·예술서비스업체)에게 시설자금·운전자금을 융자하는 5차 공모로, 접수는 10월 2일 16시까지다.",
   "benefit": "시설자금·운전자금 융자"
@@ -132,12 +132,12 @@
  {
   "id": "4c2e460b",
   "cat": "예술 공모전·모집",
-  "org": "예술경영지원센터",
+  "org": "한국잡월드",
   "region": "전국",
   "title": "2027년 한국잡월드 나래울극장 공동공연 공모",
   "deadline": "2026-10-02",
   "target": "",
-  "link": "https://www.gokams.or.kr:443/01_news/event_view.aspx?Idx=50918&flag=0&page=1&txtKeyword=&ddlKeyfield=T",
+  "link": "https://www.koreajobworld.or.kr/boardView.do?bid=1&mid=42&idx=55815&rnum=593&pageNo=&pageType=&site=",
   "posted": "2026-09-04",
   "summary": "한국잡월드 나래울극장에서 2027년 공연을 함께할 우수 공연 작품을 보유한 공연 단체를 모집하는 공모",
   "benefit": "나래울극장(354석) 공연 기회 제공 · 공연기간 2027년 1월~2028년 2월"
@@ -223,12 +223,12 @@
  {
   "id": "b06f385f",
   "cat": "예술 공모전·모집",
-  "org": "예술경영지원센터",
+  "org": "플러스마이너스일도씨",
   "region": "전국",
   "title": "[참여작가모집] 기억을 일상으로 이어줄 예술가를 모집합니다!",
   "deadline": "2026-10-04",
   "target": "",
-  "link": "https://www.gokams.or.kr:443/01_news/event_view.aspx?Idx=50976&flag=0&page=1&txtKeyword=&ddlKeyfield=T",
+  "link": "https://blog.naver.com/plusminus1c/224416121661",
   "posted": "2026-09-23",
   "summary": "기억과 삶, 연결의 가치를 깃발 작품으로 표현할 장르 제한 없는 예술가 8명을 모집하는 참여작가 공모",
   "benefit": "아티스트피 80만 원 · 기본 천 제공 · 60×180cm 작품 1인 1점"
@@ -717,12 +717,12 @@
  {
   "id": "71f36d26",
   "cat": "예술 공모전·모집",
-  "org": "아트허브",
+  "org": "강남장애인복지관",
   "region": "전국",
   "title": "2026년 제3회 아트 프리즘 아트페어 작품 공모전",
   "deadline": "2026-10-12",
   "target": "",
-  "link": "https://www.arthub.co.kr/sub04/board01_view.htm?No=27307&page=1&sType1=1&sType2=2&sType3=3&sType4=&sort=new",
+  "link": "https://www.gangnam.go.kr/office/activeart/board/activeart3/15092/view.do?mid=activeart_data03",
   "posted": "2026-09-17",
   "summary": "",
   "benefit": ""
@@ -730,12 +730,12 @@
  {
   "id": "d0d230f5",
   "cat": "예술 공모전·모집",
-  "org": "아트허브",
+  "org": "무지개마을4단지리모델링주택조합",
   "region": "전국",
   "title": "더샵 분당센트로 미술작품 제작 및 설치 공모",
   "deadline": "2026-10-12",
   "target": "",
-  "link": "https://www.arthub.co.kr/sub066/board01_view.htm?No=613&page=1&sType1=1&sType2=2&sType3=3&sType4=4",
+  "link": "https://www.gg.go.kr/publicart/bbs/boardView.do?bsIdx=825&bIdx=110905913&page=1&menuId=3865&bcIdx=0&searchCondition=SUBJECT&searchKeyword=",
   "posted": "2026-09-28",
   "summary": "",
   "benefit": ""
@@ -774,7 +774,7 @@
   "title": "예술산업보증 10월(7차) 공모 안내(10.1.(목)~10.12.(월), 16:00)",
   "deadline": "2026-10-12",
   "target": "",
-  "link": "https://www.gokams.or.kr:443/01_news/notice_view.aspx?Idx=4573&page=1&txtKeyword=&ddlKeyfield=T",
+  "link": "https://www.gokams.or.kr/01_news/notice_view.aspx?Idx=4573",
   "posted": "2026-09-29",
   "summary": "",
   "benefit": ""
@@ -795,12 +795,12 @@
  {
   "id": "b0017f94",
   "cat": "예술 공모전·모집",
-  "org": "아트허브",
+  "org": "㈜호반산업",
   "region": "전국",
   "title": "김포풍무역세권B4 현장 미술작품 제작 및 설치공사 공모 공고",
   "deadline": "2026-10-13",
   "target": "",
-  "link": "https://www.arthub.co.kr/sub066/board01_view.htm?No=611&page=1&sType1=1&sType2=2&sType3=3&sType4=4",
+  "link": "https://www.gg.go.kr/publicart/bbs/boardView.do?bsIdx=825&bIdx=110905785&page=1&menuId=3865&bcIdx=0&searchCondition=SUBJECT&searchKeyword=",
   "posted": "2026-09-15",
   "summary": "",
   "benefit": ""
@@ -808,12 +808,12 @@
  {
   "id": "d4a6143e",
   "cat": "예술 공모전·모집",
-  "org": "아트허브",
+  "org": "㈜호반건설",
   "region": "전국",
   "title": "김포풍무역세권C5 현장 미술작품 제작 및 설치 공모 공고",
   "deadline": "2026-10-13",
   "target": "",
-  "link": "https://www.arthub.co.kr/sub066/board01_view.htm?No=610&page=1&sType1=1&sType2=2&sType3=3&sType4=4",
+  "link": "https://www.gg.go.kr/publicart/bbs/boardView.do?bsIdx=825&bIdx=110905784&page=1&menuId=3865&bcIdx=0&searchCondition=SUBJECT&searchKeyword=",
   "posted": "2026-09-15",
   "summary": "",
   "benefit": ""
@@ -1588,12 +1588,12 @@
  {
   "id": "7b6685e7",
   "cat": "예술 공모전·모집",
-  "org": "예술경영지원센터",
+  "org": "부산비엔날레조직위원회",
   "region": "전국",
   "title": "[부산비엔날레조직위원회] 2027바다미술제 전시감독 공개모집",
   "deadline": "2026-10-31",
   "target": "",
-  "link": "https://www.gokams.or.kr:443/01_news/event_view.aspx?Idx=50995&flag=0&page=1&txtKeyword=&ddlKeyfield=T",
+  "link": "http://www.busanbiennale.org/BBOCkr/?pCode=notice&mode=view&idx=12553",
   "posted": "2026-09-22",
   "summary": "",
   "benefit": ""
@@ -1874,12 +1874,12 @@
  {
   "id": "f223fe7f",
   "cat": "예술인 지원·공모",
-  "org": "예술경영지원센터",
+  "org": "아르플래닛",
   "region": "전국",
   "title": "[모집공고] 2027 아르플래닛 소속 아티스트 4기 모집",
   "deadline": "2026-11-09",
   "target": "",
-  "link": "https://www.gokams.or.kr:443/01_news/event_view.aspx?Idx=50903&flag=0&page=1&txtKeyword=&ddlKeyfield=T",
+  "link": "https://www.arplanet.kr/",
   "posted": "2026-09-14",
   "summary": "",
   "benefit": ""
@@ -2238,12 +2238,12 @@
  {
   "id": "a18ceddc",
   "cat": "예술 공모전·모집",
-  "org": "아트허브",
+  "org": "한국문화예술위원회",
   "region": "전국",
   "title": "청년문화예술패스 지원 공고",
   "deadline": "2026-11-30",
   "target": "",
-  "link": "https://www.arthub.co.kr/sub044/board01_view.htm?No=6041&page=1&sType1=1&sType2=2&sType3=3&sType4=4",
+  "link": "https://youthculturepass.or.kr/",
   "posted": "2026-08-10",
   "summary": "",
   "benefit": ""
