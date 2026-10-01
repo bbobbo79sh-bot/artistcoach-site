@@ -48,6 +48,12 @@ if (칸없음) 문제.push(`꼭 있어야 하는 칸(번호·제목·기관·원
 if (중복) 문제.push(`같은 번호가 겹치는 공고가 ${중복}건`);
 if (이상한값) 문제.push(`TRUE/FALSE/None 같은 이상한 값이 ${이상한값}군데`);
 
+// 3) 모음 사이트(위아츠·모모365·아트누리) 링크·기관명: 올리지는 못 막지만 사이트에서는 가려진다. 몇 건인지 알려 준다.
+const 모음 = JSON.parse(fs.readFileSync(path.join(뿌리, '자료', '모음사이트.json'), 'utf8'));
+const 호스트 = (u) => { try { return new URL(u).host.toLowerCase(); } catch (e) { return ''; } };
+const 모음건 = 새.filter((x) => 모음.호스트.some((h) => 호스트(x.link).includes(h)) || 모음.이름.some((n) => (x.org || '').includes(n))).length;
+if (모음건) console.log(`※ 모음 사이트 링크·기관명인 공고 ${모음건}건은 홈페이지에서 가려집니다. 진짜 원문 링크로 바꿔 주세요.`);
+
 console.log(`공고 ${새.length}건 · 요약 ${요약}건 · 지원내용 ${혜택}건` + (이전 ? ` (지금 올라가 있는 것: ${이전.length}건)` : ''));
 if (문제.length) {
   console.log('올리지 않습니다. 이유:');

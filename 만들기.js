@@ -13,6 +13,7 @@ const path = require('path');
 
 const 뿌리 = __dirname;
 const 결과 = process.env.SITE_OUT || path.join(뿌리, '결과');
+fs.rmSync(결과, { recursive: true, force: true });   // 예전에 만든 페이지(내려간 공고)가 남지 않게 매번 비우고 시작
 const 자료경로 = process.env.SITE_DATA || path.join(뿌리, '자료', '공고.json');
 const 주소 = 'https://artistcoach.kr';
 const 인스타 = 'https://instagram.com/artistcoach_0gam';
@@ -60,8 +61,15 @@ const 딱지글 = (d) => (d === '상시' ? '상시 접수' : 남은날(d) === 0 
 const 급함 = (d) => d !== '상시' && 남은날(d) <= 3;
 
 // ───────── 자료 ─────────
-const 공고 = JSON.parse(fs.readFileSync(자료경로, 'utf8'))
-  .filter((x) => x.deadline === '상시' || 남은날(x.deadline) >= 0)
+const 모음 = JSON.parse(fs.readFileSync(path.join(뿌리, '자료', '모음사이트.json'), 'utf8'));
+const 호스트 = (u) => { try { return new URL(u).host.toLowerCase(); } catch (e) { return ''; } };
+// 영감 규칙(2026-10-01): 위아츠·모모365·아트누리 같은 모음 사이트로 연결하거나 그 이름을 출처로 보이면 안 된다.
+// 진짜 원문(기관 공고 페이지) 링크가 있는 공고만 올린다.
+const 모음인가 = (x) => 모음.호스트.some((h) => 호스트(x.link).includes(h)) || 모음.이름.some((n) => (x.org || '').includes(n));
+const 살아있는 = JSON.parse(fs.readFileSync(자료경로, 'utf8'))
+  .filter((x) => x.deadline === '상시' || 남은날(x.deadline) >= 0);
+const 가림 = 살아있는.filter(모음인가);
+const 공고 = 살아있는.filter((x) => !모음인가(x))
   .sort((a, b) => (a.deadline === '상시') - (b.deadline === '상시') || a.deadline.localeCompare(b.deadline));
 const 상시수 = 공고.filter((x) => x.deadline === '상시').length;
 const 곧마감 = 공고.filter((x) => x.deadline !== '상시' && 남은날(x.deadline) <= 7);
@@ -171,6 +179,8 @@ i{font-style:normal}
 .정보 dt{flex:none;width:76px;font-size:13.5px;color:var(--sub);font-weight:600}
 .정보 dd{margin:0;font-size:15px;font-weight:600}
 .정보 .혜택행 dd{color:var(--깊음);font-weight:800;font-size:16px}
+.출처줄{font-size:13.5px;color:var(--sub);margin:-6px 2px 18px;line-height:1.7}
+.출처줄 b{color:var(--ink)}
 .요약{font-size:16px;line-height:1.75;margin:0 0 24px;padding:16px 18px;border-left:4px solid var(--브랜드);background:var(--아주연함);border-radius:0 14px 14px 0}
 .요약.없음글{color:var(--sub);background:transparent;border-left-color:var(--선)}
 .원문단추{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;font-size:17px;padding:17px 20px;border-radius:16px}
@@ -314,7 +324,7 @@ const 첫화면본문 = `
 <section class="영웅">
   <span class="윗글">오늘의 지원사업</span>
   <h1>오늘 마감 공고,<br><mark>코치가 먼저</mark> 챙겼어요.</h1>
-  <p class="설명">전국 기관의 지원사업 공고를 마감이 가까운 순서로 모았어요. 모든 공고에는 원문 링크가 달려 있어요.</p>
+  <p class="설명">전국 기관의 지원사업 공고를 마감이 가까운 순서로 모았어요. 공고마다 기관의 원문 링크로 연결돼요.</p>
   <div class="검색줄"><input id="검색" type="search" placeholder="사업명이나 기관으로 찾기" autocomplete="off" aria-label="공고 검색"></div>
   <div class="수치"><span><b>${공고.length}</b>건의 공고</span><span><b>${상시수}</b>건 상시 접수</span><span>${오늘.getMonth() + 1}월 ${오늘.getDate()}일 기준</span></div>
 </section>
@@ -357,6 +367,7 @@ ${진열}`;
   <div class="위"><span class="디${급함(x.deadline) ? ' 급' : ''}" data-d="${x.deadline}" id="딱지">${딱지글(x.deadline)}</span></div>
   <h1>${막기(x.title)}</h1>
   <dl class="정보">${정보.map(([이름, 값, 클래스]) => `<div${클래스 ? ` class="${클래스}"` : ''}><dt>${이름}</dt><dd>${값}</dd></div>`).join('')}</dl>
+  <p class="출처줄"><span class="라벨">원문</span><b>${막기(x.org)}</b>의 공고 · ${막기(호스트(x.link))}<br>${x.summary || x.benefit ? '요약과 지원내용은 이 원문을 읽고 정리했어요.' : '이 공고의 요약은 원문을 읽고 정리하는 중이에요.'}</p>
   ${x.summary ? `<p class="요약">${막기(x.summary)}</p>` : `<p class="요약 없음글">요약을 준비하고 있어요. 자세한 내용은 원문에서 확인해 주세요.</p>`}
   <a class="단추 주 원문단추" href="${막기(x.link)}" target="_blank" rel="noopener noreferrer">원문 보러 가기 <span aria-hidden="true">→</span></a>
   <p class="안내">지원 조건, 금액, 마감 시각은 바뀔 수 있어요. 지원 전에 꼭 원문 공고에서 다시 확인해 주세요.</p>
@@ -405,4 +416,5 @@ if (fs.existsSync(원본)) fs.readdirSync(원본).forEach((f) => fs.copyFileSync
 const 요약수 = 공고.filter((x) => x.summary).length, 혜택수 = 공고.filter((x) => x.benefit).length;
 console.log(`\n  사이트를 만들었습니다 → ${결과}`);
 console.log(`  색       ${색설정.이름}  (브랜드 ${brand}, 단추 글씨 ${브랜드글 === ink ? '갈색' : '흰색'} ${대비(브랜드글, brand).toFixed(1)}, 링크 ${깊음} ${대비(깊음, 흰).toFixed(1)})`);
+console.log(`  원문이 아니라 뺀 공고  ${가림.length}건 (모음 사이트 링크·기관명). 원문 링크로 바뀌면 저절로 올라간다`);
 console.log(`  공고     ${공고.length}건 (상시 ${상시수}건, 7일 이내 ${곧마감.length}건)  ·  요약 ${요약수}건  ·  지원내용 ${혜택수}건  ·  기준일 ${오늘글}\n`);
