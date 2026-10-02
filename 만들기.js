@@ -89,7 +89,16 @@ const 추천 = (() => {
 const 곧마감 = 공고.filter((x) => x.deadline !== '상시' && 남은날(x.deadline) <= 7);
 
 const 사업자 = JSON.parse(fs.readFileSync(path.join(뿌리, '자료', '사업자정보.json'), 'utf8'));
-const 법 = require('./법률문서.js')(사업자);
+const 광고설정 = JSON.parse(fs.readFileSync(path.join(뿌리, '자료', '광고.json'), 'utf8'));
+const 광고사용 = !!광고설정.사용 && Object.values(광고설정.자리).some((v) => v.unit);
+const 법 = require('./법률문서.js')(사업자, { 광고사용 });
+// 카카오 애드핏 광고 칸. 켜져 있고 광고단위 번호가 있을 때만 그린다. 가림막(광고 표시)을 함께 둬서 광고임을 알린다.
+const 광고칸 = (자리) => {
+  const v = 광고사용 && 광고설정.자리[자리];
+  if (!v || !v.unit || !/^DAN-[A-Za-z0-9]+$/.test(v.unit)) return '';
+  return `<aside class="광고칸" aria-label="광고"><small>광고</small><ins class="kakao_ad_area" style="display:none;" data-ad-unit="${v.unit}" data-ad-width="${v.width}" data-ad-height="${v.height}"></ins></aside>`;
+};
+const 광고스크립트 = 광고사용 ? '<script async type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js"></script>' : '';
 
 // ───────── 스타일 ─────────
 const 스타일 = `
@@ -219,6 +228,8 @@ i{font-style:normal}
 .바닥 .법링크{margin:10px 0 6px}
 .바닥 .법링크 a{margin-right:14px;font-weight:700}
 .바닥 .사업자{margin-top:8px;font-size:12px;opacity:.9}
+.광고칸{margin:30px auto;text-align:center;min-height:0}
+.광고칸 small{display:block;font-size:11px;color:var(--sub);margin-bottom:4px;letter-spacing:.05em}
 .바닥{margin-top:52px;border-top:1px solid var(--선);padding:26px 0 40px;font-size:13px;color:var(--sub);line-height:1.8}
 .바닥 a{color:var(--sub)}
 `;
@@ -264,6 +275,7 @@ ${본문}
   <div class="사업자">${법.바닥정보}</div>
 </footer>
 ${스크립트}
+${광고스크립트}
 </body>
 </html>
 `;
@@ -400,6 +412,7 @@ ${곧마감.length ? `<section class="곧마감" aria-label="곧 마감되는 �
   <div class="제목줄"><h2>곧 마감돼요</h2><button class="글단추" id="곧전체" type="button">7일 이내 ${곧마감.length}건 모두 보기 →</button></div>
   <div class="띠목록">${곧마감.slice(0, 12).map(미니).join('')}</div>
 </section>` : ''}
+${광고칸('첫화면')}
 <div class="도구"><div class="칩줄" id="기간줄">${기간목록.map(([v, 이름], i) => `<button class="칩" data-v="${v}" aria-pressed="${i === 0}">${이름}</button>`).join('')}</div></div>
 <div class="거름">
   <div class="칩줄" id="분류줄"><button class="칩" data-v="" aria-pressed="true">모든 종류</button>${분류목록.map((c) => `<button class="칩" data-v="${막기(c)}" aria-pressed="false">${막기(c)}</button>`).join('')}</div>
@@ -439,6 +452,7 @@ ${공고.map(카드).join('\n')}
   <a class="단추 주 원문단추" href="${막기(x.link)}" target="_blank" rel="noopener noreferrer">원문 보러 가기 <span aria-hidden="true">→</span></a>
   <p class="안내">지원 조건, 금액, 마감 시각은 바뀔 수 있어요. 지원 전에 꼭 원문 공고에서 다시 확인해 주세요.</p>
 </article>
+${광고칸('공고상세')}
 <script>(function(){var b=document.getElementById('딱지'),d=b.dataset.d;if(d==='상시')return;var o=new Date();o.setHours(0,0,0,0);var n=Math.round((new Date(d+'T00:00:00')-o)/86400000);b.textContent=n<0?'마감됨':n===0?'오늘 마감':'D-'+n;b.classList.toggle('급',n<=3)})();</script>`;
   쓰기(`notice/${x.id}/index.html`, 틀({
     제목: `${x.title} · 아티스트 코치`,
