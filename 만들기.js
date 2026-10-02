@@ -88,6 +88,9 @@ const 추천 = (() => {
 })();
 const 곧마감 = 공고.filter((x) => x.deadline !== '상시' && 남은날(x.deadline) <= 7);
 
+const 사업자 = JSON.parse(fs.readFileSync(path.join(뿌리, '자료', '사업자정보.json'), 'utf8'));
+const 법 = require('./법률문서.js')(사업자);
+
 // ───────── 스타일 ─────────
 const 스타일 = `
 :root{--bg:${bg};--면:${면};--ink:${ink};--sub:${sub};--브랜드:${brand};--브랜드글:${브랜드글};--깊음:${깊음};--연함:${연함};--아주연함:${아주연함};--선:${선};--바탕투명:${바탕투명}}
@@ -215,6 +218,14 @@ i{font-style:normal}
 .일반글 p{font-size:16px;line-height:1.8}
 .일반글 .단추{margin-top:10px}
 
+.법문서 h1{font-size:30px;margin:10px 0 4px}
+.법문서 h2{font-size:18px;margin:26px 0 6px;letter-spacing:-.02em}
+.법문서 p,.법문서 li{font-size:15px;line-height:1.75}
+.법문서 ul{margin:6px 0 0;padding-left:20px}
+.법문서 .작은{font-size:13px;color:var(--sub)}
+.바닥 .법링크{margin:10px 0 6px}
+.바닥 .법링크 a{margin-right:14px;font-weight:700}
+.바닥 .사업자{margin-top:8px;font-size:12px;opacity:.9}
 .바닥{margin-top:52px;border-top:1px solid var(--선);padding:26px 0 40px;font-size:13px;color:var(--sub);line-height:1.8}
 .바닥 a{color:var(--sub)}
 `;
@@ -254,6 +265,8 @@ ${본문}
 <footer class="틀 바닥">
   <div><b>아티스트 코치</b> · artistcoach.kr · <a href="${인스타}" target="_blank" rel="noopener">인스타그램 @artistcoach_0gam</a></div>
   <div>공고 정보는 각 기관의 원문을 기준으로 정리합니다. 지원 전에는 꼭 원문 공고에서 조건과 마감을 다시 확인해 주세요.</div>
+  <div class="법링크"><a href="${길('/terms/')}">이용약관</a><a href="${길('/privacy/')}">개인정보처리방침</a><a href="${길('/refund/')}">환불 규정</a></div>
+  <div class="사업자">${법.바닥정보}</div>
 </footer>
 ${스크립트}
 </body>
@@ -429,6 +442,10 @@ ${공고.map(카드).join('\n')}
   <a class="단추 주" href="${인스타}" target="_blank" rel="noopener">인스타그램에서 매일 소식 보기</a>
 </section>`,
 }));
+const 고침 = (html) => html.replace(/href="\/(terms|privacy|refund)\/"/g, (m, k) => `href="${길('/' + k + '/')}"`);
+[['terms', '이용약관', 법.약관], ['privacy', '개인정보처리방침', 법.방침], ['refund', '환불 규정', 법.환불]].forEach(([경로, 이름, 본문]) => {
+  쓰기(`${경로}/index.html`, 틀({ 제목: `${이름} · 아티스트 코치`, 설명: `아티스트 코치 ${이름}`, 경로: `/${경로}/`, 본문: 고침(본문) }));
+});
 쓰기('404.html', 틀({
   제목: '페이지를 찾을 수 없어요 · 아티스트 코치', 설명: '페이지를 찾을 수 없어요.', 경로: '/404.html', 색인: false,
   본문: `<section class="일반글"><h1>찾는 페이지가 없어요.</h1><p>공고가 마감돼 내려갔거나 주소가 바뀌었을 수 있어요.</p><a class="단추 주" href="${길('/')}">공고 목록으로 가기</a></section>`,
@@ -445,7 +462,7 @@ ${공고.map(카드).join('\n')}
 }, null, 2));
 쓰기('robots.txt', `User-agent: *\nAllow: /\nSitemap: ${주소}/sitemap.xml\n`);
 쓰기('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
-  ['/', '/about/', ...공고.map((x) => `/notice/${x.id}/`)].map((u) => `  <url><loc>${주소}${u}</loc><lastmod>${오늘글}</lastmod></url>`).join('\n') + `\n</urlset>\n`);
+  ['/', '/about/', '/terms/', '/privacy/', '/refund/', ...공고.map((x) => `/notice/${x.id}/`)].map((u) => `  <url><loc>${주소}${u}</loc><lastmod>${오늘글}</lastmod></url>`).join('\n') + `\n</urlset>\n`);
 
 if (추천.length) {
   추천.forEach((r) => { fs.mkdirSync(path.join(결과, '추천'), { recursive: true }); fs.copyFileSync(path.join(추천폴더, r.image), path.join(결과, '추천', r.image)); });
