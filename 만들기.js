@@ -90,8 +90,9 @@ const 곧마감 = 공고.filter((x) => x.deadline !== '상시' && 남은날(x.de
 
 const 사업자 = JSON.parse(fs.readFileSync(path.join(뿌리, '자료', '사업자정보.json'), 'utf8'));
 const 광고설정 = JSON.parse(fs.readFileSync(path.join(뿌리, '자료', '광고.json'), 'utf8'));
+const 애드센스 = (광고설정.애드센스 && 광고설정.애드센스.사용 && /^ca-pub-\d+$/.test(광고설정.애드센스.client)) ? 광고설정.애드센스.client : '';
 const 광고사용 = !!광고설정.사용 && Object.values(광고설정.자리).some((v) => v.unit);
-const 법 = require('./법률문서.js')(사업자, { 광고사용 });
+const 법 = require('./법률문서.js')(사업자, { 광고사용, 애드센스: !!애드센스 });
 // 카카오 애드핏 광고 칸. 켜져 있고 광고단위 번호가 있을 때만 그린다. 가림막(광고 표시)을 함께 둬서 광고임을 알린다.
 const 광고칸 = (자리) => {
   const v = 광고사용 && 광고설정.자리[자리];
@@ -259,6 +260,7 @@ ${색인 ? '' : '<meta name="robots" content="noindex">'}
 <meta property="og:image" content="${주소}/icon-512.png">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <link rel="stylesheet" href="${길('/style.css')}?v=${스타일버전}">
+${애드센스 ? `<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${애드센스}" crossorigin="anonymous"></script>` : ''}
 </head>
 <body>
 <header class="머리"><div class="틀">
@@ -490,6 +492,8 @@ const 고침 = (html) => html.replace(/href="\/(terms|privacy|refund)\/"/g, (m, 
   background_color: bg, theme_color: brand,
   icons: [{ src: 길('/icon-192.png'), sizes: '192x192', type: 'image/png' }, { src: 길('/icon-512.png'), sizes: '512x512', type: 'image/png' }],
 }, null, 2));
+if (애드센스) 쓰기('ads.txt', `google.com, pub-${애드센스.replace('ca-pub-', '')}, DIRECT, f08c47fec0942fa0
+`);
 쓰기('robots.txt', `User-agent: *\nAllow: /\nSitemap: ${주소}/sitemap.xml\n`);
 쓰기('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
   ['/', '/about/', '/terms/', '/privacy/', '/refund/', ...공고.map((x) => `/notice/${x.id}/`)].map((u) => `  <url><loc>${주소}${u}</loc><lastmod>${오늘글}</lastmod></url>`).join('\n') + `\n</urlset>\n`);
