@@ -129,7 +129,7 @@ i{font-style:normal}
 .추천 .줄{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
 .추천 .줄::-webkit-scrollbar{display:none}
 .추천 .장{flex:0 0 100%;scroll-snap-align:start;display:grid;grid-template-columns:minmax(0,260px) 1fr;gap:22px;align-items:center;padding:16px;text-decoration:none;color:inherit}
-.추천 .장 img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;border-radius:14px;display:block;background:var(--연함)}
+.추천 .장 img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:14px;display:block;background:var(--연함)}
 .추천 .장 .글{min-width:0;display:flex;flex-direction:column;gap:8px;align-items:flex-start}
 .추천 .장 h3{margin:0;font-size:19px;line-height:1.35;letter-spacing:-.03em;font-weight:900;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .추천 .장 .곳{font-size:13px;color:var(--sub)}
@@ -362,7 +362,7 @@ const 첫화면본문 = `
 ${추천.length ? `<section class="추천" aria-label="인기 카드뉴스" aria-roledescription="carousel">
   <div class="제목줄"><h2>카드뉴스로 먼저 보기</h2></div>
   <div class="칸"><div class="줄" id="추천줄" tabindex="0">${추천.map((r, i) => `<a class="장" href="${길(`/notice/${r.공고.id}/`)}" aria-label="${i + 1} / ${추천.length}">
-    <img src="${길('/추천/' + encodeURI(r.image))}" alt="${막기(r.공고.title)} 카드뉴스" width="540" height="540" ${i ? 'loading="lazy"' : ''}>
+    <img src="${길('/추천/' + encodeURI(r.image))}" alt="${막기(r.공고.title)} 카드뉴스" width="1080" height="1350" ${i ? 'loading="lazy"' : ''}>
     <div class="글"><span class="인스타">인스타 인기 카드뉴스</span><span class="디${급함(r.공고.deadline) ? ' 급' : ''}">${딱지글(r.공고.deadline)}</span><h3>${막기(r.공고.title)}</h3><div class="곳">${곳글(r.공고)}</div><span class="가기">공고 보러 가기 →</span></div>
   </a>`).join('')}</div>
   ${추천.length > 1 ? `<div class="점줄">${추천.map((_, i) => `<button class="점" type="button" aria-label="${i + 1}번째 카드뉴스" aria-current="${i === 0}"></button>`).join('')}</div>` : ''}</div>
