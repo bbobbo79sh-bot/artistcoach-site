@@ -224,6 +224,8 @@ i{font-style:normal}
 `;
 
 // ───────── 공통 틀 ─────────
+// 스타일 파일이 바뀌면 주소가 달라지게 해서, 예전 스타일이 브라우저에 남아 화면이 깨지는 일을 막는다
+const 스타일버전 = require('crypto').createHash('sha1').update(스타일).digest('hex').slice(0, 8);
 const 틀 = ({ 제목, 설명, 경로, 본문, 현재 = '', 스크립트 = '', 색인 = true }) => `<!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -245,7 +247,7 @@ ${색인 ? '' : '<meta name="robots" content="noindex">'}
 <meta property="og:url" content="${주소}${경로}">
 <meta property="og:image" content="${주소}/icon-512.png">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="${길('/style.css')}">
+<link rel="stylesheet" href="${길('/style.css')}?v=${스타일버전}">
 </head>
 <body>
 <header class="머리"><div class="틀">
