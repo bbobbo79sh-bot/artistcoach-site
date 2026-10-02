@@ -125,20 +125,13 @@ i{font-style:normal}
 .수치 b{color:var(--ink);font-weight:800}
 
 .추천{margin:18px 0 8px}
-.추천 .칸{position:relative;border-radius:22px;overflow:hidden;background:var(--면);border:1px solid var(--선)}
-.추천 .줄{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+.추천 .줄{display:flex;gap:12px;overflow-x:auto;scrollbar-width:none;padding:2px 0 4px;-webkit-overflow-scrolling:touch}
 .추천 .줄::-webkit-scrollbar{display:none}
-.추천 .장{flex:0 0 100%;scroll-snap-align:start;display:grid;grid-template-columns:minmax(0,260px) 1fr;gap:22px;align-items:center;padding:16px;text-decoration:none;color:inherit}
-.추천 .장 img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:14px;display:block;background:var(--연함)}
-.추천 .장 .글{min-width:0;display:flex;flex-direction:column;gap:8px;align-items:flex-start}
-.추천 .장 h3{margin:0;font-size:19px;line-height:1.35;letter-spacing:-.03em;font-weight:900;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-.추천 .장 .곳{font-size:13px;color:var(--sub)}
-.추천 .장 .가기{margin-top:2px;font-weight:800;color:var(--깊음);font-size:14.5px}
-.추천 .점줄{display:flex;gap:7px;justify-content:center;padding:0 0 12px}
-.추천 .점{width:8px;height:8px;border-radius:999px;border:0;padding:0;background:var(--선);cursor:pointer}
-.추천 .점[aria-current="true"]{background:var(--브랜드);width:22px}
-.추천 .인스타{display:inline-block;font-size:12px;font-weight:800;color:var(--깊음);background:var(--연함);border-radius:999px;padding:3px 10px}
-@media (max-width:560px){.추천 .장{grid-template-columns:minmax(0,40%) 1fr;gap:12px;padding:12px}.추천 .장 h3{font-size:16px;-webkit-line-clamp:4}}
+.추천 .장{flex:0 0 calc((100% - 36px) / 4);display:block;border-radius:16px;overflow:hidden;background:var(--연함);box-shadow:0 2px 10px rgba(0,0,0,.08);transition:transform .15s}
+.추천 .장:hover{transform:translateY(-3px)}
+.추천 .장 img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover}
+@media (max-width:900px){.추천 .장{flex-basis:calc((100% - 24px) / 3)}}
+@media (max-width:560px){.추천 .줄{margin:0 -18px;padding-left:18px;padding-right:18px}.추천 .장{flex-basis:46%}}
 
 .곧마감{margin:14px 0 6px}
 .제목줄{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:8px}
@@ -361,23 +354,44 @@ const 첫화면본문 = `
 </section>
 ${추천.length ? `<section class="추천" aria-label="인기 카드뉴스" aria-roledescription="carousel">
   <div class="제목줄"><h2>카드뉴스로 먼저 보기</h2></div>
-  <div class="칸"><div class="줄" id="추천줄" tabindex="0">${추천.map((r, i) => `<a class="장" href="${길(`/notice/${r.공고.id}/`)}" aria-label="${i + 1} / ${추천.length}">
-    <img src="${길('/추천/' + encodeURI(r.image))}" alt="${막기(r.공고.title)} 카드뉴스" width="1080" height="1350" ${i ? 'loading="lazy"' : ''}>
-    <div class="글"><span class="인스타">인스타 인기 카드뉴스</span><span class="디${급함(r.공고.deadline) ? ' 급' : ''}">${딱지글(r.공고.deadline)}</span><h3>${막기(r.공고.title)}</h3><div class="곳">${곳글(r.공고)}</div><span class="가기">공고 보러 가기 →</span></div>
-  </a>`).join('')}</div>
-  ${추천.length > 1 ? `<div class="점줄">${추천.map((_, i) => `<button class="점" type="button" aria-label="${i + 1}번째 카드뉴스" aria-current="${i === 0}"></button>`).join('')}</div>` : ''}</div>
+  <div class="줄" id="추천줄">${[0, 1, 2].map((k) => 추천.map((r) => `<a class="장" href="${길(`/notice/${r.공고.id}/`)}"${k !== 1 ? ' tabindex="-1"' : ''}${k !== 1 ? ' aria-hidden="true"' : ''}>
+    <img src="${길('/추천/' + encodeURI(r.image))}" alt="${k === 1 ? 막기(r.공고.title) + ' 카드뉴스' : ''}" width="1080" height="1350" loading="lazy">
+  </a>`).join('')).join('')}</div>
 </section>
 <script>
 (function(){
   var 줄=document.getElementById('추천줄');if(!줄)return;
-  var 점=[].slice.call(document.querySelectorAll('.추천 .점')),n=점.length,i=0,멈춤=false,움직임줄임=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function 표시(k){i=k;점.forEach(function(d,j){d.setAttribute('aria-current',String(j===k))})}
-  function 가기(k){줄.scrollTo({left:줄.clientWidth*k,behavior:움직임줄임?"auto":"smooth"});표시(k)}
-  줄.addEventListener('scroll',function(){var k=Math.round(줄.scrollLeft/Math.max(1,줄.clientWidth));if(k!==i)표시(k)},{passive:true});
-  점.forEach(function(d,j){d.onclick=function(){가기(j)}});
-  ['mouseenter','focusin','touchstart','pointerdown'].forEach(function(e){줄.parentNode.addEventListener(e,function(){멈춤=true},{passive:true})});
-  ['mouseleave','focusout'].forEach(function(e){줄.parentNode.addEventListener(e,function(){멈춤=false})});
-  if(n>1&&!움직임줄임)setInterval(function(){if(멈춤||document.hidden)return;가기((i+1)%n)},5000);
+  var n=${추천.length};if(n<2)return;
+  var 줄임=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var 한벌=0,위치=0,멈춤=false,마지막=0,쉬는타이머=null;
+  function 재기(){var a=줄.children[0],b=줄.children[n];if(a&&b)한벌=b.offsetLeft-a.offsetLeft}
+  function 맞추기(){
+    if(!한벌)return;
+    if(위치>=한벌*2){위치-=한벌}else if(위치<한벌*0.5){위치+=한벌}
+    줄.scrollLeft=위치;
+  }
+  재기();위치=한벌;줄.scrollLeft=위치;
+  addEventListener('resize',function(){var 비율=한벌?위치/한벌:1;재기();위치=한벌*비율;줄.scrollLeft=위치},{passive:true});
+  function 멈추기(){멈춤=true;clearTimeout(쉬는타이머)}
+  function 이어가기(늦게){clearTimeout(쉬는타이머);쉬는타이머=setTimeout(function(){위치=줄.scrollLeft;멈춤=false},늦게||0)}
+  줄.addEventListener('mouseenter',멈추기);
+  줄.addEventListener('mouseleave',function(){이어가기(300)});
+  줄.addEventListener('touchstart',멈추기,{passive:true});
+  줄.addEventListener('touchend',function(){이어가기(2500)},{passive:true});
+  줄.addEventListener('focusin',멈추기);
+  줄.addEventListener('focusout',function(){이어가기(300)});
+  줄.addEventListener('wheel',function(){멈추기();이어가기(2500)},{passive:true});
+  줄.addEventListener('scroll',function(){
+    if(!멈춤)return;
+    위치=줄.scrollLeft;
+    if(위치>=한벌*2){위치-=한벌;줄.scrollLeft=위치}else if(위치<한벌*0.5){위치+=한벌;줄.scrollLeft=위치}
+  },{passive:true});
+  function 한프레임(t){
+    if(!마지막)마지막=t;var 간격=Math.min(t-마지막,64);마지막=t;
+    if(!멈춤&&!document.hidden){위치+=간격*0.035;맞추기()}
+    requestAnimationFrame(한프레임);
+  }
+  if(!줄임)requestAnimationFrame(한프레임);
 })();
 </script>` : ''}
 ${곧마감.length ? `<section class="곧마감" aria-label="곧 마감되는 공고">
