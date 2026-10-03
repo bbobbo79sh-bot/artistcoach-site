@@ -403,19 +403,6 @@
   "benefit": ""
  },
  {
-  "id": "eb9119cb",
-  "cat": "예술 공모전·모집",
-  "org": "서울연극협회",
-  "region": "전국",
-  "title": "[접수] 2026년 제21차 서울공연전단마케팅사업 접수 공고",
-  "deadline": "2026-10-08",
-  "target": "",
-  "link": "https://stheater.or.kr/community-notice/?q=YToxOntzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&bmode=view&idx=174843982&t=board",
-  "posted": "2026-09-28",
-  "summary": "",
-  "benefit": ""
- },
- {
   "id": "5d0fc4c3",
   "cat": "예술 공모전·모집",
   "org": "설미재미술관",
@@ -501,7 +488,7 @@
   "title": "지역문화예술전문인력 양성 사업(인제 기획실행학교) 참여자 모집 공고",
   "deadline": "2026-10-09",
   "target": "개인",
-  "link": "https://artnuri.or.kr/crawler/info/view.do?key=2301170002&docid=S65155&seNo=001",
+  "link": "https://injeart.or.kr/?p=19&page=1&viewMode=view&reqIdx=202609231536452977",
   "posted": "",
   "summary": "",
   "benefit": ""
@@ -1209,6 +1196,19 @@
   "benefit": ""
  },
  {
+  "id": "7aab8b31",
+  "cat": "예술 공모전·모집",
+  "org": "금산군청",
+  "region": "충남",
+  "title": "2026년 '제1회 금산군 청바지 축제' 공연 동아리 모집",
+  "deadline": "2026-10-19",
+  "target": "",
+  "link": "https://www.geumsan.go.kr/kr/html/sub03/030101.html?mode=V&site_dvs_cd=kr&menu_dvs_cd=030101&code=youthcenter_0401&no=87d18354f06ead9c8322eb341f4e2ee9&GotoPage=1&group_at=kr_030101",
+  "posted": "2026-10-01",
+  "summary": "",
+  "benefit": ""
+ },
+ {
   "id": "c492c886",
   "cat": "예술 공모전·모집",
   "org": "인천미술협회",
@@ -1437,7 +1437,7 @@
   "title": "2026년 고양문화재단 고양시립 아람미술관 소장품 구입 공고",
   "deadline": "2026-10-23",
   "target": "전체",
-  "link": "https://artnuri.or.kr/crawler/info/view.do?key=2301170002&docid=S65327&seNo=001",
+  "link": "https://www.artgy.or.kr/CU/CU0101M.aspx?mode=V&boardid=cs_notice&code=3123&depth=a",
   "posted": "",
   "summary": "",
   "benefit": ""
@@ -2765,19 +2765,6 @@
   "target": "전체",
   "link": "https://www.kawf.kr/notice/sub02View.do?selIdx=19462",
   "posted": "",
-  "summary": "",
-  "benefit": ""
- },
- {
-  "id": "7aab8b31",
-  "cat": "예술 공모전·모집",
-  "org": "금산군청",
-  "region": "충남",
-  "title": "2026년 '제1회 금산군 청바지 축제' 공연 동아리 모집",
-  "deadline": "2026-12-31",
-  "target": "",
-  "link": "https://www.geumsan.go.kr/kr/html/sub03/030101.html?mode=V&site_dvs_cd=kr&menu_dvs_cd=030101&code=youthcenter_0401&no=87d18354f06ead9c8322eb341f4e2ee9&GotoPage=1&group_at=kr_030101",
-  "posted": "2026-10-01",
   "summary": "",
   "benefit": ""
  },
