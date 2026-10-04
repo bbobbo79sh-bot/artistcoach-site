@@ -1,31 +1,5 @@
 [
  {
-  "id": "eeb16a15",
-  "cat": "예술인 지원·공모",
-  "org": "설미재미술관",
-  "region": "전국",
-  "title": "[작가공모] 잔상의 궤적 : Sequence of Memory",
-  "deadline": "2026-10-03",
-  "target": "",
-  "link": "http://www.mu-um.com/?mid=0602&act=dtl&idx=4792&cateTP=&keyword=&page=1",
-  "posted": "2026-09-22",
-  "summary": "",
-  "benefit": ""
- },
- {
-  "id": "bdf29a80",
-  "cat": "예술인 지원·공모",
-  "org": "한국국제문화교류진흥원",
-  "region": "전국",
-  "title": "2026년 국제문화교류 컨설팅(경상권)> 참가자 모집",
-  "deadline": "2026-10-03",
-  "target": "전체",
-  "link": "https://kofice.or.kr/www/bbs/view.do?mnucd=169&scBbsMngSn=7&bbsSn=54945",
-  "posted": "",
-  "summary": "공연예술 해외진출에 관심 있는 경상권 예술가·기획자를 대상으로, 기획자 강연과 컨설턴트별 라운드테이블을 여는 K-Arts 컨설팅 참가자 모집.",
-  "benefit": "10월 3일 14시 · 실전 강연 3편 + 컨설턴트 3인 라운드테이블"
- },
- {
   "id": "b06f385f",
   "cat": "예술 공모전·모집",
   "org": "플러스마이너스일도씨",
@@ -2764,6 +2738,19 @@
   "deadline": "2026-12-31",
   "target": "전체",
   "link": "https://www.kawf.kr/notice/sub02View.do?selIdx=19462",
+  "posted": "",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "486f767f",
+  "cat": "예술인 지원·공모",
+  "org": "한국예술인복지재단",
+  "region": "전국",
+  "title": "예술인복지 안내 22 예술활동증명 있으면 지금 신청 가능한 지원 5가지 지원사업 안내",
+  "deadline": "2026-12-31",
+  "target": "",
+  "link": "https://www.kawf.kr/",
   "posted": "",
   "summary": "",
   "benefit": ""
