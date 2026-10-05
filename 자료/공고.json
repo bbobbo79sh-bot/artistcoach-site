@@ -1,31 +1,5 @@
 [
  {
-  "id": "b06f385f",
-  "cat": "예술 공모전·모집",
-  "org": "플러스마이너스일도씨",
-  "region": "전국",
-  "title": "[참여작가모집] 기억을 일상으로 이어줄 예술가를 모집합니다!",
-  "deadline": "2026-10-04",
-  "target": "",
-  "link": "https://blog.naver.com/plusminus1c/224416121661",
-  "posted": "2026-09-23",
-  "summary": "기억과 삶, 연결의 가치를 깃발 작품으로 표현할 장르 제한 없는 예술가 8명을 모집하는 참여작가 공모",
-  "benefit": "아티스트피 80만 원 · 기본 천 제공 · 60×180cm 작품 1인 1점"
- },
- {
-  "id": "a0dea1f5",
-  "cat": "예술인 지원·공모",
-  "org": "부산문화재단",
-  "region": "부산",
-  "title": "K-Arts 컨설팅 참가자 모집 - 공연예술 해외진출, 현장 기획자에게 묻다",
-  "deadline": "2026-10-04",
-  "target": "",
-  "link": "https://www.bscf.or.kr/view.do?no=1010&pgMode=show&pbancSn=2432",
-  "posted": "",
-  "summary": "해외진출에 관심 있는 공연예술 분야 예술가·기획자를 대상으로 실무 강연과 컨설턴트별 라운드테이블을 여는 컨설팅 참가자 모집",
-  "benefit": "10월 3일 14~17시 · 기획자 강연 3회 · 컨설턴트 3인 라운드테이블"
- },
- {
   "id": "d58a32d2",
   "cat": "예술인 지원·공모",
   "org": "제천문화재단",
@@ -87,6 +61,19 @@
   "target": "",
   "link": "https://www.culture.go.kr/portal/cltBnf/cltSup/view.do?viewTp=2&rcrtSn=232485&menuNo=200104&sSort=2&pageIndex=3",
   "posted": "2026-09-21",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "719d9b82",
+  "cat": "예술 공모전·모집",
+  "org": "한국사진작가협회",
+  "region": "전국",
+  "title": "제8회 어도사진·숏폼 공모전",
+  "deadline": "2026-10-05",
+  "target": "",
+  "link": "https://www.pask.net/bbs/board.php?bo_table=contest&wr_id=9874",
+  "posted": "2026-10-05",
   "summary": "",
   "benefit": ""
  },
@@ -373,6 +360,19 @@
   "target": "전체",
   "link": "https://artnuri.or.kr/crawler/info/view.do?key=2301170002&docid=S65227&seNo=001",
   "posted": "",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "eb9119cb",
+  "cat": "예술 공모전·모집",
+  "org": "서울연극협회",
+  "region": "전국",
+  "title": "[접수] 2026년 제21차 서울공연전단마케팅사업 접수 공고",
+  "deadline": "2026-10-08",
+  "target": "",
+  "link": "https://stheater.or.kr/community-notice/?q=YToxOntzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&bmode=view&idx=174843982&t=board",
+  "posted": "2026-09-28",
   "summary": "",
   "benefit": ""
  },
@@ -684,6 +684,19 @@
   "deadline": "2026-10-12",
   "target": "",
   "link": "https://www.kocca.kr/kocca/bbs/view/B0000204/1967953.do?searchCnd=&searchWrd=&cateTp1=&cateTp2=&useYn=&menuNo=204897&categorys=2&subcate=50&cateCode=0&type=&instNo=0&questionTp=&ufSetting=&recovery=&option1=&option2=&year=&morePage=&qtp=&searchGenre=&domainId=&sortCode=&pageIndex=1",
+  "posted": "2026-09-30",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "2d292505",
+  "cat": "예술인 지원·공모",
+  "org": "서울연극협회",
+  "region": "전국",
+  "title": "[예술경영지원센터] 2026 예술경영지원센터 예술산업보증 10월(7차) 공모",
+  "deadline": "2026-10-12",
+  "target": "",
+  "link": "https://stheater.or.kr/community-latest/?q=YToxOntzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&bmode=view&idx=174908556&t=board",
   "posted": "2026-09-30",
   "summary": "",
   "benefit": ""
@@ -1352,6 +1365,19 @@
   "benefit": ""
  },
  {
+  "id": "3289d415",
+  "cat": "예술 공모전·모집",
+  "org": "칠곡군청",
+  "region": "경북",
+  "title": "「칠곡호이영화관」수탁운영자 제안 공개 모집 공고",
+  "deadline": "2026-10-21",
+  "target": "",
+  "link": "https://eminwon.chilgok.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=34357&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_se_code=01,02,03,04,05",
+  "posted": "2026-10-05",
+  "summary": "",
+  "benefit": ""
+ },
+ {
   "id": "8fd3645c",
   "cat": "예술 공모전·모집",
   "org": "종로문화재단",
@@ -1699,6 +1725,19 @@
   "target": "",
   "link": "https://www.arthub.co.kr/sub04/board01_view.htm?No=27315&page=1&sType1=1&sType2=2&sType3=3&sType4=&sort=new",
   "posted": "2026-10-01",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "c8456e09",
+  "cat": "예술 공모전·모집",
+  "org": "순창군청",
+  "region": "전북",
+  "title": "2027년 순창공립미술관(본관·섬진강갤러리) 전시 참여 작가 모집공고",
+  "deadline": "2026-10-30",
+  "target": "",
+  "link": "http://eminwon.sunchang.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=32767&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_se_code=01,02,03,04,05",
+  "posted": "2026-10-05",
   "summary": "",
   "benefit": ""
  },
