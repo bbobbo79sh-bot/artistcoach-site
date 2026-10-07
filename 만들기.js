@@ -94,6 +94,8 @@ const 상품설정 = JSON.parse(fs.readFileSync(path.join(뿌리, '자료', '상
 // 상품 페이지를 켜고, 모든 페이지를 검색에서 숨기고(noindex·robots 차단), 광고 코드는 넣지 않는다.
 const 검수용 = process.env.SITE_STAGING === '1';
 if (검수용) 상품설정.사용 = true;
+const 자료실설정 = JSON.parse(fs.readFileSync(path.join(뿌리, '자료', '자료실.json'), 'utf8'));
+const 자료실켜짐 = !!(자료실설정.사용 || 검수용);
 const 검색등록 = JSON.parse(fs.readFileSync(path.join(뿌리, '자료', '검색등록.json'), 'utf8'));
 const 구글확인 = (!검수용 && /^[A-Za-z0-9_-]{20,80}$/.test(검색등록.구글서치콘솔 || '')) ? 검색등록.구글서치콘솔 : '';
 const 광고설정 = JSON.parse(fs.readFileSync(path.join(뿌리, '자료', '광고.json'), 'utf8'));
@@ -129,6 +131,7 @@ i{font-style:normal}
 .머리 nav{display:flex;gap:20px}
 .머리 nav a{text-decoration:none;font-size:14.5px;font-weight:600;color:var(--sub)}
 .머리 nav a:hover,.머리 nav a[aria-current]{color:var(--ink)}
+@media (max-width:560px){.머리 .틀{gap:8px}.로고줄{gap:6px}.로고줄 img{width:30px;height:30px}.글자로고{font-size:15.5px}.글자로고 mark{padding:0 5px}.머리 nav{gap:11px}.머리 nav a{font-size:13.5px}}
 
 .영웅{padding:26px 0 14px}
 .윗글{display:inline-block;font-size:12.5px;font-weight:800;padding:5px 12px;border-radius:999px;background:var(--브랜드);color:var(--브랜드글);margin:0 0 12px}
@@ -240,6 +243,15 @@ i{font-style:normal}
 .광고칸{margin:30px auto;text-align:center;min-height:0}
 .광고칸 small{display:block;font-size:11px;color:var(--sub);margin-bottom:4px;letter-spacing:.05em}
 .상품목록{display:grid;gap:12px;margin:14px 0}
+.자료띠{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin:26px 0 8px;padding:16px 18px;background:var(--연함);border-radius:16px}
+.자료띠 b{display:block;font-size:16px}.자료띠 span{font-size:13.5px;color:var(--sub)}
+.자료목록{display:grid;gap:12px;margin:16px 0}
+.자료카드{display:flex;align-items:center;justify-content:space-between;gap:14px;background:var(--면);border:1px solid var(--선);border-radius:16px;padding:14px 16px;margin:10px 0}
+.자료몸{display:flex;flex-direction:column;gap:3px;min-width:0}.자료몸 b{font-size:16px}.자료몸 span{font-size:14px;color:var(--sub);line-height:1.5}.자료몸 small{font-size:12px;color:var(--sub)}
+.단추.준비{background:var(--선);color:var(--sub);cursor:default}.작은단추{padding:8px 14px;font-size:13.5px}
+.관련자료{margin:30px 0 8px;padding:18px;border:1px solid var(--선);border-radius:18px;background:var(--면)}
+.관련자료 h2{font-size:18px;margin:0 0 4px}.관련자료>p{margin:0 0 6px;font-size:14px;color:var(--sub)}.관련자료 .자료카드{background:var(--bg)}
+.더자료{display:inline-block;margin-top:6px;font-size:14px;font-weight:700;color:var(--깊음)}
 .가이드목록{display:grid;gap:12px;margin:16px 0}
 .가이드카드{display:flex;flex-direction:column;gap:4px;background:var(--면);border:1px solid var(--선);border-radius:16px;padding:16px 18px;text-decoration:none;color:var(--ink)}
 .가이드카드 b{font-size:17px;line-height:1.4}.가이드카드 span{font-size:14px;color:var(--sub);line-height:1.55}
@@ -291,7 +303,7 @@ ${애드센스 ? `<script async src="https://pagead2.googlesyndication.com/pagea
 <body>
 <header class="머리"><div class="틀">
   <a class="로고줄" href="${길('/')}"><img src="${길('/logo.svg')}" alt="" width="36" height="36"><span class="글자로고">아티스트<mark>코치</mark></span></a>
-  <nav><a href="${길('/')}"${현재 === '공고' ? ' aria-current="page"' : ''}>공고</a><a href="${길('/about/')}"${현재 === '소개' ? ' aria-current="page"' : ''}>소개</a><a href="${길('/guide/')}"${현재 === '가이드' ? ' aria-current="page"' : ''}>가이드</a>${검수용 ? `<a href="${길('/products/')}">상품</a>` : ''}</nav>
+  <nav><a href="${길('/')}"${현재 === '공고' ? ' aria-current="page"' : ''}>공고</a><a href="${길('/about/')}"${현재 === '소개' ? ' aria-current="page"' : ''}>소개</a><a href="${길('/guide/')}"${현재 === '가이드' ? ' aria-current="page"' : ''}>가이드</a>${자료실켜짐 ? `<a href="${길('/resources/')}"${현재 === '자료실' ? ' aria-current="page"' : ''}>자료실</a>` : ''}${검수용 ? `<a href="${길('/products/')}">상품</a>` : ''}</nav>
 </div></header>
 <main class="틀">
 ${본문}
@@ -386,6 +398,7 @@ const 첫화면스크립트 = `<script>
 })();
 </script>`;
 
+const 자료실 = require('./자료실페이지.js')({ 설정: 자료실설정, 검수용, 뿌리, 결과, 틀, 길, 막기, 쓰기 });
 const 첫화면본문 = `
 <section class="영웅">
   <span class="윗글">오늘의 지원사업</span>
@@ -453,6 +466,7 @@ ${공고.map(카드).join('\n')}
 </div>
 <p class="없음" id="없음" hidden>조건에 맞는 공고가 없어요.</p>
 <button class="더보기" id="더보기" hidden>더 보기</button>
+${자료실.띠}
 <button class="맨위" id="맨위" type="button" aria-label="맨 위로">↑</button>`;
 
 쓰기('index.html', 틀({
@@ -483,6 +497,7 @@ const 충실한가 = (x) => !!(x.summary && x.summary.trim());
   <a class="단추 주 원문단추" href="${막기(x.link)}" target="_blank" rel="noopener noreferrer">원문 보러 가기 <span aria-hidden="true">→</span></a>
   <p class="안내">지원 조건, 금액, 마감 시각은 바뀔 수 있어요. 지원 전에 꼭 원문 공고에서 다시 확인해 주세요.</p>
 </article>
+${자료실.관련(자료실설정['공고상세에_넣을_자료'] || [])}
 ${광고칸('공고상세')}
 <script>(function(){var b=document.getElementById('딱지'),d=b.dataset.d;if(d==='상시')return;var o=new Date();o.setHours(0,0,0,0);var n=Math.round((new Date(d+'T00:00:00')-o)/86400000);b.textContent=n<0?'마감됨':n===0?'오늘 마감':'D-'+n;b.classList.toggle('급',n<=3)})();</script>`;
   쓰기(`notice/${x.id}/index.html`, 틀({
@@ -546,7 +561,7 @@ if (애드센스) 쓰기('ads.txt', `google.com, pub-${애드센스.replace('ca-
 쓰기('robots.txt', 검수용 ? 'User-agent: *\nDisallow: /\n' : `User-agent: *\nAllow: /\nSitemap: ${주소}/sitemap.xml\n`);
 if (검수용 && process.env.SITE_CNAME) 쓰기('CNAME', process.env.SITE_CNAME.trim() + '\n');
 쓰기('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
-  ['/', '/about/', '/terms/', '/privacy/', '/refund/', ...가이드결과.경로목록, ...상품결과.경로목록, ...공고.filter(충실한가).map((x) => `/notice/${x.id}/`)].map((u) => `  <url><loc>${주소}${u}</loc><lastmod>${오늘글}</lastmod></url>`).join('\n') + `\n</urlset>\n`);
+  ['/', '/about/', '/terms/', '/privacy/', '/refund/', ...가이드결과.경로목록, ...자료실.경로목록, ...상품결과.경로목록, ...공고.filter(충실한가).map((x) => `/notice/${x.id}/`)].map((u) => `  <url><loc>${주소}${u}</loc><lastmod>${오늘글}</lastmod></url>`).join('\n') + `\n</urlset>\n`);
 
 if (추천.length) {
   추천.forEach((r) => { fs.mkdirSync(path.join(결과, '추천'), { recursive: true }); fs.copyFileSync(path.join(추천폴더, r.image), path.join(결과, '추천', r.image)); });
