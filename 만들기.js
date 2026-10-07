@@ -228,6 +228,7 @@ i{font-style:normal}
 
 .법문서 h1{font-size:30px;margin:10px 0 4px}
 .법문서 h2{font-size:18px;margin:26px 0 6px;letter-spacing:-.02em}
+.법문서 h3{font-size:15.5px;margin:16px 0 4px}
 .법문서 p,.법문서 li{font-size:15px;line-height:1.75}
 .법문서 ul{margin:6px 0 0;padding-left:20px}
 .법문서 .작은{font-size:13px;color:var(--sub)}

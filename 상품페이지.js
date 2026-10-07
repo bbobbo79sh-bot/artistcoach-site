@@ -68,7 +68,7 @@ module.exports = ({ 설정: 원설정, 틀, 길, 막기, 쓰기, 사업자 }) =>
     <label>이메일<input id="구매자메일" type="email" autocomplete="email"></label>
     <label>연락처<input id="구매자전화" type="tel" autocomplete="tel" placeholder="휴대전화 번호"></label>
     <label class="동의"><input id="동의약관" type="checkbox"> <a href="${길('/terms/')}" target="_blank">이용약관</a>에 동의합니다.</label>
-    <label class="동의"><input id="동의환불" type="checkbox"> <a href="${길('/refund/')}" target="_blank">환불 규정</a>을 확인했습니다.</label>
+    <label class="동의"><input id="동의환불" type="checkbox"> <a href="${길('/refund/')}" target="_blank">환불 규정</a>을 확인했고, 디지털 콘텐츠는 내려받은 뒤에는 청약철회가 제한될 수 있음을 확인했습니다.</label>
     <p id="결제알림" class="결제알림" role="alert" hidden></p>
     <button id="결제버튼" class="단추 주" type="button">${원(p.가격)} 결제하기</button>
   </form>
