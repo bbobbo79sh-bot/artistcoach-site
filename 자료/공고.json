@@ -2808,19 +2808,6 @@
   "benefit": ""
  },
  {
-  "id": "91eb4ca3",
-  "cat": "예술인 지원·공모",
-  "org": "한국예술인복지재단",
-  "region": "전국",
-  "title": "예술인복지 안내 28 예술인 권리 보호 지원 지원사업 안내",
-  "deadline": "2026-12-31",
-  "target": "",
-  "link": "https://www.kawf.kr/welfare/sub01.do",
-  "posted": "",
-  "summary": "",
-  "benefit": ""
- },
- {
   "id": "d1a57706",
   "cat": "예술인 지원·공모",
   "org": "서울문화재단",
@@ -2895,6 +2882,19 @@
   "target": "",
   "link": "https://www.daljin.com/?WS=15&BC=214bv|&BNO=390084&PHPSESSID=b883e9d64932ba60c9dd9fbfefec4f52",
   "posted": "2025-03-24",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "91eb4ca3",
+  "cat": "예술인 지원·공모",
+  "org": "한국예술인복지재단",
+  "region": "전국",
+  "title": "예술인복지 안내 28 예술인 권리 보호 지원 지원사업 안내",
+  "deadline": "상시",
+  "target": "",
+  "link": "https://www.kawf.kr/welfare/sub01.do",
+  "posted": "",
   "summary": "",
   "benefit": ""
  },
