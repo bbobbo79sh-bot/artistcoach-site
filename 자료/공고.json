@@ -1101,7 +1101,7 @@
   "target": "전체",
   "link": "https://artnuri.or.kr/crawler/info/view.do?key=2301170002&docid=S65302&seNo=001",
   "posted": "",
-  "summary": "",
+  "summary": "용인문화재단이 용인어린이상상의숲에서 열리는 '상상 아트마켓'에 참여할 예술가를 모집하는 공고입니다. 경기도 지역 행사이며 전체 예술가가 대상입니다.",
   "benefit": ""
  },
  {
@@ -1114,8 +1114,8 @@
   "target": "",
   "link": "http://www.mu-um.com/?mid=0602&act=dtl&idx=4797&cateTP=&keyword=&page=1",
   "posted": "2026-09-30",
-  "summary": "",
-  "benefit": ""
+  "summary": "CICA 미술관이 추상화·추상주의와 추상적 개념을 탐구하는 작품을 선보이는 제12회 추상미술 국제전 'Abstract Mind 2027'에 참여할 전 세계 아티스트를 공모합니다. 회화·드로잉·판화, 조각·설치, 사진·2D 디지털 아트, 영상·인터랙티브 아트 분야입니다.",
+  "benefit": "선정작 CICA 미술관 전시(2027년 5월 19일~6월 13일) · 사진·2D 디지털 작품은 출력·액자·설치 제공 · 선정 시 작품당 110,000원(78달러) 참가비 부담"
  },
  {
   "id": "b4a76e04",
@@ -1127,8 +1127,8 @@
   "target": "",
   "link": "http://www.mu-um.com/?mid=0602&act=dtl&idx=4798&cateTP=&keyword=&page=1",
   "posted": "2026-09-30",
-  "summary": "",
-  "benefit": ""
+  "summary": "CICA 미술관이 'Art in Action 2027'에 참여할 아티스트·퍼포머·디자이너 등 창작 분야 전문가를 모집합니다. 1일 YouTube 라이브 행사와 CICA 미술관 국제 그룹전으로 구성됩니다.",
+  "benefit": "CICA 미술관 국제 그룹전 전시(2026년 12월 23일~2027년 1월 10일, 작가당 최대 2점) · 10분 영상 발표 YouTube 라이브(2027년 1월 10일) · 영문 도서 New Media Art 2028 수록 · 선정 시 등록비 30달러+작품당 110,000원 부담"
  },
  {
   "id": "a1aa0a5b",
@@ -1153,8 +1153,8 @@
   "target": "",
   "link": "https://www.kawf.kr/notice/sub01View.do?selIdx=19677",
   "posted": "",
-  "summary": "",
-  "benefit": ""
+  "summary": "한국예술인복지재단이 문화예술 분야 표준계약서 활용 확산을 위해 여는 예술 계약 특강입니다. 현업 예술인(창작자·실연자·기획자), 예술대학 학생, 예술사업자, 유관기관 종사자가 수강할 수 있습니다.",
+  "benefit": "무료 실시간 비대면(Zoom) 강의 · 10월 26~30일 매일 14:00~17:00(총 5회차) · 이수·설문 완료 시 수료증 발급"
  },
  {
   "id": "358c3333",
@@ -1166,8 +1166,8 @@
   "target": "",
   "link": "https://www.gokams.or.kr/01_news/event_view.aspx?Idx=50993&flag=34&page=1&txtKeyword=&ddlKeyfield=T",
   "posted": "",
-  "summary": "",
-  "benefit": ""
+  "summary": "신한갤러리가 젊고 역량 있는 신진 작가를 발굴·지원하는 'Shinhan Young Artist Festa' 그룹전 공모입니다. 주제·형식·표현기법이 서로 연관되는 2인 이상 작가 그룹이 대상이며 시각예술 전 분야, 기획자 참여도 가능합니다.",
+  "benefit": "전시 공간 제공(신한은행 강남별관 B1) · 작품 운송·설치/철수, 제작비 일부, 포스터·리플렛 제작, 영상제작·광고홍보, 작품 보험 지원"
  },
  {
   "id": "09ab017d",
@@ -1179,8 +1179,8 @@
   "target": "",
   "link": "https://www.acc.go.kr/main/board/board.do?PID=0701&boardID=NOTICE&action=Read&idx=2865&searchType=all&searchText=&pageIndex=1",
   "posted": "2026-09-14",
-  "summary": "",
-  "benefit": ""
+  "summary": "국립아시아문화전당이 '프로토타입'을 주제로 아트&테크놀로지 분야의 아시아 신진 작가를 발굴하고 전시를 지원하는 국제공모입니다. 아시아 국적의 1987년 1월 1일 이후 출생(만 40세 미만) 작가로 개인전·국공립미술관 전시·단체전 참여 이력이 있어야 합니다.",
+  "benefit": "10팀 내외 선정 · 작품창작대가 300만 원, 설치재료비 최대 200만 원, 초청비(교통비 또는 항공권)·숙소·아시아창작스튜디오 제공"
  },
  {
   "id": "485d1837",
@@ -1192,21 +1192,8 @@
   "target": "",
   "link": "https://www.arthub.co.kr/sub04/board01_view.htm?No=27281&page=1&sType1=1&sType2=2&sType3=3&sType4=&sort=new",
   "posted": "2026-08-26",
-  "summary": "",
-  "benefit": ""
- },
- {
-  "id": "78e5bdcb",
-  "cat": "예술인 지원·공모",
-  "org": "국립아시아문화전당",
-  "region": "전국",
-  "title": "2027년 ACC NEXT 아시아신진작가전 국제공모",
-  "deadline": "2026-10-25",
-  "target": "",
-  "link": "https://www.acc.go.kr/main/board/board.do?PID=0701&boardID=NOTICE&action=Read&idx=2865",
-  "posted": "",
-  "summary": "",
-  "benefit": ""
+  "summary": "갤러리손(서울 종로구 부남빌딩 B1)이 운영하는 2026-27 부남미술 선정작가 분기별 공모입니다. 대학원작가·신진작가·일반기성작가 세 부문으로 구분해 모집합니다.",
+  "benefit": "선정작가 전시 기회 제공"
  },
  {
   "id": "09ef124b",
@@ -1218,8 +1205,8 @@
   "target": "",
   "link": "https://kncdc.kr/ko/news/noticeDetail?boardMasterSeq=5&boardSeq=2452&pgm=notice",
   "posted": "",
-  "summary": "",
-  "benefit": ""
+  "summary": "국립현대무용단이 경력 3년 이상의 전문 무용수를 대상으로 운영하는 댄스하우스 오픈 클래스(하반기 PART 2, 10월 클래스) 참가자 모집입니다. 발레 테크닉부터 현대무용 클래스까지 다양한 프로그램으로 신체 트레이닝과 움직임 확장 경험을 제공합니다.",
+  "benefit": "강좌별 참가비 1만 원 · 프로그램별 최대 20명 · 10월 6일~30일 · 국립현대무용단 댄스하우스(서울 강남구)"
  },
  {
   "id": "6b4163d4",
@@ -1231,7 +1218,7 @@
   "target": "",
   "link": "https://www.gugak.go.kr/site/program/board/basicboard/view?menuid=001005006001&pagesize=10&boardtypeid=58&boardid=49017&lang=ko",
   "posted": "2026-09-29",
-  "summary": "",
+  "summary": "국립남도국악원이 국악 상설공연 운영을 통해 국민 문화 향유 공간을 활성화하고 국악 생활화를 도모하고자 '2027 토요상설공연 국악이 좋다' 출연 단체 및 예술인을 공개 모집합니다.",
   "benefit": ""
  },
  {
@@ -1244,20 +1231,7 @@
   "target": "",
   "link": "https://www.kocca.kr/kocca/bbs/view/B0000204/1967975.do?searchCnd=&searchWrd=&cateTp1=&cateTp2=&useYn=&menuNo=204897&categorys=2&subcate=50&cateCode=0&type=&instNo=0&questionTp=&ufSetting=&recovery=&option1=&option2=&year=&morePage=&qtp=&searchGenre=&domainId=&sortCode=&pageIndex=1",
   "posted": "2026-09-30",
-  "summary": "",
-  "benefit": ""
- },
- {
-  "id": "c560660e",
-  "cat": "예술 공모전·모집",
-  "org": "익산시청",
-  "region": "전북",
-  "title": "익산시 가람시조문학상 운영조례 일부개정조례안 입법예고",
-  "deadline": "2026-10-26",
-  "target": "",
-  "link": "http://eminwon.iksan.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=76922&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_se_code=01,02,03,04,05",
-  "posted": "2026-10-06",
-  "summary": "",
+  "summary": "한국콘텐츠진흥원이 2026 문화다양성 증진을 위한 '작은 영화제' 지원 대상을 공모하는 사업입니다(분야: 일반).",
   "benefit": ""
  },
  {
@@ -1270,7 +1244,7 @@
   "target": "",
   "link": "https://litt.ly/ocean_literary_awards",
   "posted": "",
-  "summary": "",
+  "summary": "한국해양진흥공사·부산일보 주최 2026 부산 해양문학 공모전으로, 일반부·대학부를 대상으로 해양소설·해양수필·해양시시조 3개 부문 작품을 모집합니다.",
   "benefit": ""
  },
  {
@@ -1283,8 +1257,8 @@
   "target": "개인",
   "link": "https://www.kawf.kr/notice/sub02View.do?selIdx=19305",
   "posted": "",
-  "summary": "",
-  "benefit": ""
+  "summary": "한국예술인복지재단이 예술활동 중 겪는 정서적 어려움을 예방하도록 예술활동증명을 완료한 예술인에게 심리상담 서비스를 지원하는 사업입니다.",
+  "benefit": "최대 12회 심리상담(대면·비대면) + 심리검사 지원 · 상담비는 지정기관에 지급 · 상담 시작일~2026년 12월 31일"
  },
  {
   "id": "04ec792e",
@@ -1296,21 +1270,8 @@
   "target": "",
   "link": "https://www.geojeart.or.kr/bbs/bbs_view.asp?idx=1106&bd_code=D110",
   "posted": "2026-09-14",
-  "summary": "",
-  "benefit": ""
- },
- {
-  "id": "5771ef89",
-  "cat": "예술강사·심사위원 모집",
-  "org": "대전문화재단",
-  "region": "대전",
-  "title": "대전문화재단 예술지원사업 심의위원 후보 추가 공모 공고",
-  "deadline": "2026-10-30",
-  "target": "",
-  "link": "https://dcaf.or.kr/web/board.do?menuIdx=375&bbsIdx=18974",
-  "posted": "2026-07-01",
-  "summary": "",
-  "benefit": ""
+  "summary": "거제시문화예술재단이 2027년 지역작가 초대전(주제 '사라져가는 것들')에 참여할 지역 시각예술 작가를 공모합니다. 소멸해가는 지역의 일상·정서·문화·역사적 자산을 예술적으로 기록하는 작품을 다룹니다.",
+  "benefit": "선정 작가 최대 2명 · 작가비 지급, 인쇄물 제작, 작품 운송·설치 및 행정 지원 · 전시 2027년 4월~9월(2회)"
  },
  {
   "id": "1fabc85a",
@@ -1335,8 +1296,8 @@
   "target": "",
   "link": "https://www.gugak.go.kr/site/program/board/basicboard/view?menuid=001005006001&pagesize=10&boardtypeid=58&boardid=48993&lang=ko",
   "posted": "2026-09-18",
-  "summary": "",
-  "benefit": ""
+  "summary": "국립국악원이 2027년 발간 문화잡지 '국악누리'의 표지 그림 작가를 공개 모집한다. 국악 소재(전통 춤·음악·악기 등)를 주제로 누구나 1인 1작품 제출할 수 있다.",
+  "benefit": "선정작 1점 작품료 200만 원 · 접수 10월 28일~30일 · 발표 11월 20일"
  },
  {
   "id": "83c1341e",
@@ -1348,7 +1309,7 @@
   "target": "",
   "link": "https://www.yanggu.go.kr/user_sub?gfnc=www&pg=1&bk=CTWOL260917094002058&mu_idx=226&bt=rd&pgsize=10&bcd=announcement",
   "posted": "2026-09-17",
-  "summary": "",
+  "summary": "양구군이 조선백자의 시원인 양구백자·백토의 전통을 바탕으로 운영하는 양구공예창작스튜디오의 국외 입주작가를 모집한다. 대상은 젊고 유망한 국외 작가다.",
   "benefit": ""
  },
  {
@@ -1361,20 +1322,7 @@
   "target": "",
   "link": "https://eminwon.dongnae.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=45338&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_se_code=01,02,03,04,05",
   "posted": "2026-09-22",
-  "summary": "",
-  "benefit": ""
- },
- {
-  "id": "3bb411fb",
-  "cat": "예술 공모전·모집",
-  "org": "아산시청",
-  "region": "충남",
-  "title": "외암마을 짚풀문화제 사진 공모전 공고",
-  "deadline": "2026-10-30",
-  "target": "",
-  "link": "https://eminwon.asan.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=80744&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_se_code=01,02,03,04,05",
-  "posted": "2026-09-22",
-  "summary": "",
+  "summary": "부산 동래구가 동래 문인 향파 이주홍 선생의 문학정신을 기리고 아동문학을 진흥하기 위해 제46회 이주홍아동문학상 수상 작품의 추천을 공모한다.",
   "benefit": ""
  },
  {
@@ -1387,8 +1335,8 @@
   "target": "",
   "link": "https://www.nfm.go.kr/user/museumbbs/home/1/1243/selectMuseumBbsView.do?museumBbsIdx=14483",
   "posted": "",
-  "summary": "",
-  "benefit": ""
+  "summary": "국립민속박물관이 2027년 상반기 토요상설공연·금요열린민속무대에 올릴 한국민속 기반 전통·창작 공연 단체·개인을 공개 모집한다. 기악·성악·무용·연희 등 60분 공연이 가능해야 한다.",
+  "benefit": "회당 공연비 200만 원 · 공연장 무료 · 리플릿 제작 · 사진·영상 기록 보관"
  },
  {
   "id": "d9598f8d",
@@ -1400,7 +1348,7 @@
   "target": "",
   "link": "https://www.arthub.co.kr/sub04/board01_view.htm?No=27315&page=1&sType1=1&sType2=2&sType3=3&sType4=&sort=new",
   "posted": "2026-10-01",
-  "summary": "",
+  "summary": "호반문화재단의 창작공간 지원사업으로 광주 H아트랩에 입주할 작가와 이론가를 모집한다.",
   "benefit": ""
  },
  {
@@ -1413,8 +1361,8 @@
   "target": "",
   "link": "http://eminwon.sunchang.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=32767&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_se_code=01,02,03,04,05",
   "posted": "2026-10-05",
-  "summary": "",
-  "benefit": ""
+  "summary": "순창군이 순창공립미술관(본관·섬진강갤러리)에서 2027년 전시할 시각예술 작가를 모집해 전시공간을 제공한다. 섬진강갤러리 개인전은 순창 지역 작가로 한정된다.",
+  "benefit": "전시공간 제공 · 개인 2팀·단체 3팀 선정 · 2027년 1~12월 총 5회 전시"
  },
  {
   "id": "74c4d385",
@@ -1426,8 +1374,8 @@
   "target": "개인",
   "link": "https://www.gctf.or.kr/web/board/1/4431",
   "posted": "",
-  "summary": "",
-  "benefit": ""
+  "summary": "고창문화관광재단이 지역 내 문화예술인을 대상으로 예술활동증명 발급 신청 시 서류 준비와 온라인 신청 절차를 지원하는 행정지원 사업입니다. 문화인력 양성 및 활용사업의 일환입니다.",
+  "benefit": "예술활동증명 발급 신청 서류 준비·온라인 신청 절차 행정지원"
  },
  {
   "id": "7b6685e7",
@@ -1439,8 +1387,8 @@
   "target": "",
   "link": "http://www.busanbiennale.org/BBOCkr/?pCode=notice&mode=view&idx=12553",
   "posted": "2026-09-22",
-  "summary": "",
-  "benefit": ""
+  "summary": "부산비엔날레조직위원회가 2027바다미술제를 이끌 전시감독 1명을 국제공모로 모집합니다. 동시대미술 전시·프로젝트 기획 경험이 있는 국내외 기획자가 대상입니다.",
+  "benefit": "모집 1명(비상근) · 사업예산 약 8억 원(전시감독 보상금·작품제작비 등 포함) · 참여작가 20명(팀) 내외 · 전시 2027년 9~11월 37일간"
  },
  {
   "id": "5144b384",
@@ -1452,8 +1400,8 @@
   "target": "",
   "link": "https://www.arthub.co.kr/sub04/board01_view.htm?No=27269&page=1&sType1=1&sType2=2&sType3=3&sType4=&sort=new",
   "posted": "2026-08-12",
-  "summary": "",
-  "benefit": ""
+  "summary": "콘테로쏘코리아·소로다노이·로마 와이너리가 여는 '붉은 동백의 순간 MOMENTO' 와인라벨 아트웍 콜라보 공모전입니다. 만 20세 이상 누구나 지원할 수 있으며 당선작은 화이트 와인 라벨로 제작됩니다.",
+  "benefit": "최우수상 1명 당선작 구매 300만 원·와인 라벨 제작·2027년 3월 로마 전시(항공권 제공) · 우수상 구매 100만 원"
  },
  {
   "id": "f67a0bfa",
@@ -1465,8 +1413,8 @@
   "target": "",
   "link": "https://www.ansanart.com/lay1/bbs/S1T84C86/A/15/view.do?article_seq=565&cpage=1&rows=10&condition=&keyword=",
   "posted": "2026-09-23",
-  "summary": "",
-  "benefit": ""
+  "summary": "안산문화재단이 제23회 안산거리극축제에서 선보일 거리예술 신작 제작을 지원하는 '안산리서치' 사업 공모입니다. 최근 2년 이상 활동 실적이 있는 안산 소재 전문 공연예술단체가 대상입니다.",
+  "benefit": "작품개발비 작품당 700만 원 내외 · 사업기간 2026년 10월~2027년 5월 · 2027년 5월 1~3일 축제에서 시연"
  },
  {
   "id": "33bb7c85",
@@ -1478,8 +1426,8 @@
   "target": "",
   "link": "https://www.ansanart.com/lay1/bbs/S1T84C86/A/15/view.do?article_seq=564&cpage=1&rows=10&condition=&keyword=",
   "posted": "",
-  "summary": "",
-  "benefit": ""
+  "summary": "안산문화재단이 2027년 5월 1~3일 열리는 제23회 안산거리극축제의 국내공식참가작을 공모합니다. 거리예술 작품을 가진 국내 단체가 대상이며 소재지 확인 서류를 제출해야 합니다.",
+  "benefit": "선정 작품 공연 장소·기술 지원(협의) · 공연료는 희망공연료·작품 규모 등 고려해 책정 · 선정 규모 00개 내외(원문 미확정)"
  },
  {
   "id": "2efd45e0",
@@ -1491,8 +1439,8 @@
   "target": "",
   "link": "https://www.mediajeju.com/news/articleView.html?idxno=365783",
   "posted": "",
-  "summary": "",
-  "benefit": ""
+  "summary": "제주특별자치도문인협회가 주관하는 제32회 제주신인문학상 공모로, 제주도민이거나 제주가 고향인 미등단자가 대상입니다. 시·시조·동시·소설·희곡·평론·동화·수필 부문입니다.",
+  "benefit": "부문별 당선자 상장 및 상금 100만 원 · 수상작 『제주문학』 게재 · 제주도문인협회 입회 자격 부여"
  },
  {
   "id": "c5882343",
@@ -1504,8 +1452,8 @@
   "target": "",
   "link": "https://www.arthub.co.kr/sub04/board01_view.htm?No=27328&page=1&sType1=1&sType2=2&sType3=3&sType4=&sort=new",
   "posted": "2026-10-01",
-  "summary": "",
-  "benefit": ""
+  "summary": "Regina Gallery가 2027년 전시를 선보일 독립 기획자(1인 또는 1팀)를 모집하는 기획자 전시지원 공모입니다.",
+  "benefit": "전시 공간 제공 · 홍보물 제작 지원 · 소정의 기획지원금 · 2027년 2월 중 2주간 전시"
  },
  {
   "id": "8f13e875",
@@ -1517,8 +1465,8 @@
   "target": "",
   "link": "https://www.arthub.co.kr/sub04/board01_view.htm?No=27317&page=1&sType1=1&sType2=2&sType3=3&sType4=&sort=new",
   "posted": "2026-10-01",
-  "summary": "",
-  "benefit": ""
+  "summary": "서울특별시 도시경관담당관이 '서울, 추억'을 주제로 한 서울로미디어캔버스 단편 애니메이션 작품을 공모합니다. 대한민국 국민 누구나 응모할 수 있습니다.",
+  "benefit": "6명 선정(작가별 1점) · 창작비 1인당 150만 원 · 서울미디어아트 매거진 수록"
  },
  {
   "id": "19115eee",
@@ -1530,8 +1478,8 @@
   "target": "",
   "link": "https://www.arthub.co.kr/sub04/board01_view.htm?No=27332&page=1&sType1=1&sType2=2&sType3=3&sType4=&sort=new",
   "posted": "2026-10-01",
-  "summary": "",
-  "benefit": ""
+  "summary": "스페이스 나무 뮤지엄·갤러리 오로라가 만 22~39세 신진작가(국적 제한 없음, 해외 거주 가능)를 대상으로 여는 공모전입니다. 선정작가는 2027년 상반기 중 초대전을 열고, 접수는 이메일로 받습니다.",
+  "benefit": "선정 5인 이내 · 초대전 개최 · 국내외 아트페어 참가 기회 · 작품 설치·홍보 지원"
  },
  {
   "id": "112aa7cc",
@@ -1543,7 +1491,7 @@
   "target": "",
   "link": "https://www.guroartsvalley.or.kr/user/board/boardDefaultView.do?page=1&pageST=&pageSV=&itemCd1=&itemCd2=&menuCode=mn011801&boardId=13043&index=0",
   "posted": "2026-09-28",
-  "summary": "",
+  "summary": "구로문화재단이 구로구 문화예술 발전에 기여한 사람을 시상하는 '구로문화예술상'의 수상 후보자 추천을 받는 공고입니다(2026.9.28 게시).",
   "benefit": ""
  },
  {
@@ -1556,7 +1504,7 @@
   "target": "전체",
   "link": "https://artnuri.or.kr/crawler/info/view.do?key=2301170002&docid=2609290001&seNo=002",
   "posted": "",
-  "summary": "",
+  "summary": "서초구립양재도서관이 시각예술 분야 지역예술가를 대상으로 하는 2027년 전시지원사업 공모전입니다.",
   "benefit": ""
  },
  {
@@ -1569,21 +1517,8 @@
   "target": "개인",
   "link": "https://www.ypcf.or.kr/business-notice/?q=YToxOntzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&bmode=view&idx=173181025&t=board",
   "posted": "",
-  "summary": "",
-  "benefit": ""
- },
- {
-  "id": "ff42fd34",
-  "cat": "예술 공모전·모집",
-  "org": "한국사진작가협회",
-  "region": "전국",
-  "title": "제8회 장수군 축제 관련행사 전국 사진공모전",
-  "deadline": "2026-11-03",
-  "target": "",
-  "link": "https://www.pask.net/bbs/board.php?bo_table=contest&wr_id=9879",
-  "posted": "",
-  "summary": "",
-  "benefit": ""
+  "summary": "양평문화재단이 양평의 자연·역사·문화예술 등 지역 문화자원을 소재로 한 연극 또는 창작뮤지컬 대본(60분 이상, 미발표 순수 창작물)을 공모하는 재공고입니다.",
+  "benefit": "연극·창작뮤지컬 각 1개 작품 선정 · 작품별 시상금 900만~1천만 원 · 이메일 접수"
  },
  {
   "id": "4308e481",
@@ -1595,8 +1530,8 @@
   "target": "",
   "link": "https://www.arthub.co.kr/sub04/board01_view.htm?No=27261&page=1&sType1=1&sType2=2&sType3=3&sType4=&sort=new",
   "posted": "2026-08-06",
-  "summary": "",
-  "benefit": ""
+  "summary": "천안 갤러리 수평이 2026년 9월~2027년 2월 일주일 단위 전시에 함께할 시각예술 작가를 모집합니다. 개인전·단체전을 계획 중인 작가, 대학생·대학원생, 소규모 단체가 대상입니다.",
+  "benefit": "개인전 45%·단체전 35% 지원 · 전시활동 증명서 발급 · 배너 2종 제작 지원 · 작품 판매 시 작가 7:갤러리 3"
  },
  {
   "id": "c5536bae",
@@ -1608,8 +1543,8 @@
   "target": "",
   "link": "https://www.arko.or.kr/board/list/4013?bid=463&sf_icon_category=cw00000019",
   "posted": "",
-  "summary": "",
-  "benefit": ""
+  "summary": "한국문화예술위원회(아르코)가 2027년 문화예술진흥기금 지원사업 공모 일정을 미리 안내한 공지 중 '공고일 예고' 편입니다. 사업별 상세 공고문은 10월 8일에 게시됩니다.",
+  "benefit": "주요사업 지원신청 10.8~11.5 15:00까지 · 별도 공모(공연예술창작산실 대본공모 2027.1.5~1.28 15:00까지 등)"
  },
  {
   "id": "7cb7b15a",
@@ -1621,8 +1556,8 @@
   "target": "",
   "link": "https://www.arko.or.kr/board/list/4013?bid=463&sf_icon_category=cw00000019",
   "posted": "",
-  "summary": "",
-  "benefit": ""
+  "summary": "한국문화예술위원회(아르코)가 2027년 문화예술진흥기금 지원사업 사전 안내에서 분야별 예산 변화를 알린 편입니다. 기초예술 생태계 지원 예산이 전년 대비 확대됩니다.",
+  "benefit": "기초예술 지원 예산 60,253백만 원→93,939백만 원(1.6배) · 문학 97%·시각예술 106%·공연예술 35% 증가"
  },
  {
   "id": "f3479c7f",
@@ -1703,19 +1638,6 @@
   "benefit": ""
  },
  {
-  "id": "58f57364",
-  "cat": "예술 공모전·모집",
-  "org": "부안군청",
-  "region": "전북",
-  "title": "부안 지방정원 제2회 가을 사진공모전 공고",
-  "deadline": "2026-11-05",
-  "target": "",
-  "link": "https://eminwon.buan.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=41312&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_se_code=01,02,03,04,05",
-  "posted": "2026-10-02",
-  "summary": "",
-  "benefit": ""
- },
- {
   "id": "07932897",
   "cat": "예술인 지원·공모",
   "org": "아트허브",
@@ -1725,8 +1647,8 @@
   "target": "",
   "link": "https://www.arthub.co.kr/sub04/board01_view.htm?No=27296&page=1&sType1=1&sType2=2&sType3=3&sType4=&sort=new",
   "posted": "2026-09-07",
-  "summary": "",
-  "benefit": ""
+  "summary": "사이아트센터(서울 종로구 안국동)가 2027년 개인전 발표 예정 작가를 대상으로 초대전(개인전 경력 있는 등단 작가)과 기획전(개인전 경력 없는 등단 희망 작가) 작가를 공모합니다. 포트폴리오를 메일로 접수하고 서류심사 후 면담으로 최종 선정합니다.",
+  "benefit": "초대전 선정자 전시비용 무료 · 전시공간·작가홈페이지·리플렛·홍보메일·현수막·포스터 지원"
  },
  {
   "id": "4f2092c6",
