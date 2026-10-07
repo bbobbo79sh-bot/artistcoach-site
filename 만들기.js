@@ -457,6 +457,7 @@ ${곧마감.length ? `<section class="곧마감" aria-label="곧 마감되는 �
   <div class="제목줄"><h2>곧 마감돼요</h2><button class="글단추" id="곧전체" type="button">7일 이내 ${곧마감.length}건 모두 보기 →</button></div>
   <div class="띠목록">${곧마감.slice(0, 12).map(미니).join('')}</div>
 </section>` : ''}
+${자료실.띠}
 ${광고칸('첫화면')}
 ${검수용 ? `<section class="추천" aria-label="상품"><div class="제목줄"><h2>상품</h2></div><div class="상품목록">${(상품설정.상품 || []).filter((p) => Number(p.가격) > 0).map((p) => `<a class="상품카드" href="${길(`/products/${p.id}/`)}">${p.이미지 ? `<img src="${길('/products/img/' + encodeURI(p.이미지))}" alt="${막기(p.이름)} 표지" width="800" height="1000">` : ''}<b>${막기(p.이름)}</b><span>${막기(p.한줄)}</span><em>${Number(p.가격).toLocaleString('ko-KR')}원</em></a>`).join('')}</div></section>` : ''}
 <div class="도구"><div class="칩줄" id="기간줄">${기간목록.map(([v, 이름], i) => `<button class="칩" data-v="${v}" aria-pressed="${i === 0}">${이름}</button>`).join('')}</div></div>
@@ -470,7 +471,6 @@ ${공고.map(카드).join('\n')}
 </div>
 <p class="없음" id="없음" hidden>조건에 맞는 공고가 없어요.</p>
 <button class="더보기" id="더보기" hidden>더 보기</button>
-${자료실.띠}
 <button class="맨위" id="맨위" type="button" aria-label="맨 위로">↑</button>`;
 
 쓰기('index.html', 틀({
