@@ -90,9 +90,13 @@ const 곧마감 = 공고.filter((x) => x.deadline !== '상시' && 남은날(x.de
 
 const 사업자 = JSON.parse(fs.readFileSync(path.join(뿌리, '자료', '사업자정보.json'), 'utf8'));
 const 상품설정 = JSON.parse(fs.readFileSync(path.join(뿌리, '자료', '상품.json'), 'utf8'));
+// 검수용(staging) 빌드: SITE_STAGING=1. 일반 사람에게 열지 않고 토스·카드사 심사에만 보여 줄 때 쓴다.
+// 상품 페이지를 켜고, 모든 페이지를 검색에서 숨기고(noindex·robots 차단), 광고 코드는 넣지 않는다.
+const 검수용 = process.env.SITE_STAGING === '1';
+if (검수용) 상품설정.사용 = true;
 const 광고설정 = JSON.parse(fs.readFileSync(path.join(뿌리, '자료', '광고.json'), 'utf8'));
-const 애드센스 = (광고설정.애드센스 && 광고설정.애드센스.사용 && /^ca-pub-\d+$/.test(광고설정.애드센스.client)) ? 광고설정.애드센스.client : '';
-const 광고사용 = !!광고설정.사용 && Object.values(광고설정.자리).some((v) => v.unit);
+const 애드센스 = (!검수용 && 광고설정.애드센스 && 광고설정.애드센스.사용 && /^ca-pub-\d+$/.test(광고설정.애드센스.client)) ? 광고설정.애드센스.client : '';
+const 광고사용 = !검수용 && !!광고설정.사용 && Object.values(광고설정.자리).some((v) => v.unit);
 const 법 = require('./법률문서.js')(사업자, { 광고사용, 애드센스: !!애드센스 });
 // 카카오 애드핏 광고 칸. 켜져 있고 광고단위 번호가 있을 때만 그린다. 가림막(광고 표시)을 함께 둬서 광고임을 알린다.
 const 광고칸 = (자리) => {
@@ -255,7 +259,7 @@ const 틀 = ({ 제목, 설명, 경로, 본문, 현재 = '', 스크립트 = '', �
 <title>${막기(제목)}</title>
 <meta name="description" content="${막기(설명)}">
 <meta name="theme-color" content="${brand}">
-${색인 ? '' : '<meta name="robots" content="noindex">'}
+${색인 && !검수용 ? '' : '<meta name="robots" content="noindex, nofollow">'}
 <link rel="canonical" href="${주소}${경로}">
 <link rel="icon" href="${길('/logo.svg')}" type="image/svg+xml">
 <link rel="apple-touch-icon" href="${길('/icon-180.png')}">
@@ -504,7 +508,8 @@ const 상품결과 = require('./상품페이지.js')({ 설정: 상품설정, 틀
 }, null, 2));
 if (애드센스) 쓰기('ads.txt', `google.com, pub-${애드센스.replace('ca-pub-', '')}, DIRECT, f08c47fec0942fa0
 `);
-쓰기('robots.txt', `User-agent: *\nAllow: /\nSitemap: ${주소}/sitemap.xml\n`);
+쓰기('robots.txt', 검수용 ? 'User-agent: *\nDisallow: /\n' : `User-agent: *\nAllow: /\nSitemap: ${주소}/sitemap.xml\n`);
+if (검수용 && process.env.SITE_CNAME) 쓰기('CNAME', process.env.SITE_CNAME.trim() + '\n');
 쓰기('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
   ['/', '/about/', '/terms/', '/privacy/', '/refund/', ...상품결과.경로목록, ...공고.map((x) => `/notice/${x.id}/`)].map((u) => `  <url><loc>${주소}${u}</loc><lastmod>${오늘글}</lastmod></url>`).join('\n') + `\n</urlset>\n`);
 
