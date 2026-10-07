@@ -238,6 +238,13 @@ i{font-style:normal}
 .광고칸{margin:30px auto;text-align:center;min-height:0}
 .광고칸 small{display:block;font-size:11px;color:var(--sub);margin-bottom:4px;letter-spacing:.05em}
 .상품목록{display:grid;gap:12px;margin:14px 0}
+.가이드목록{display:grid;gap:12px;margin:16px 0}
+.가이드카드{display:flex;flex-direction:column;gap:4px;background:var(--면);border:1px solid var(--선);border-radius:16px;padding:16px 18px;text-decoration:none;color:var(--ink)}
+.가이드카드 b{font-size:17px;line-height:1.4}.가이드카드 span{font-size:14px;color:var(--sub);line-height:1.55}
+.글본문 h1{font-size:28px;line-height:1.35;margin:10px 0 6px}.글본문 .리드{font-size:17px;color:var(--sub);margin:0 0 8px}
+.글본문 h2{font-size:20px;margin:30px 0 8px;letter-spacing:-.02em}.글본문 h3{font-size:17px;margin:20px 0 6px}
+.글본문 p,.글본문 li{font-size:16px;line-height:1.85}.글본문 ul,.글본문 ol{padding-left:22px;margin:8px 0}
+.글본문 blockquote{margin:12px 0;padding:12px 16px;background:var(--연함);border-left:4px solid var(--브랜드);border-radius:8px;font-size:16px;line-height:1.8}
 .상품카드{display:flex;flex-direction:column;gap:4px;background:var(--면);border:1px solid var(--선);border-radius:16px;padding:16px 18px;text-decoration:none;color:var(--ink)}
 .상품카드 img{width:120px;height:auto;border-radius:10px;margin-bottom:6px}
 .상품이미지{display:block;width:min(320px,100%);height:auto;border-radius:14px;margin:12px 0 4px;box-shadow:0 2px 12px rgba(0,0,0,.12)}
@@ -281,7 +288,7 @@ ${애드센스 ? `<script async src="https://pagead2.googlesyndication.com/pagea
 <body>
 <header class="머리"><div class="틀">
   <a class="로고줄" href="${길('/')}"><img src="${길('/logo.svg')}" alt="" width="36" height="36"><span class="글자로고">아티스트<mark>코치</mark></span></a>
-  <nav><a href="${길('/')}"${현재 === '공고' ? ' aria-current="page"' : ''}>공고</a><a href="${길('/about/')}"${현재 === '소개' ? ' aria-current="page"' : ''}>소개</a>${검수용 ? `<a href="${길('/products/')}">상품</a>` : ''}</nav>
+  <nav><a href="${길('/')}"${현재 === '공고' ? ' aria-current="page"' : ''}>공고</a><a href="${길('/about/')}"${현재 === '소개' ? ' aria-current="page"' : ''}>소개</a><a href="${길('/guide/')}"${현재 === '가이드' ? ' aria-current="page"' : ''}>가이드</a>${검수용 ? `<a href="${길('/products/')}">상품</a>` : ''}</nav>
 </div></header>
 <main class="틀">
 ${본문}
@@ -515,6 +522,7 @@ const 고침 = (html) => html.replace(/href="\/(terms|privacy|refund)\/"/g, (m, 
 [['terms', '이용약관', 법.약관], ['privacy', '개인정보처리방침', 법.방침], ['refund', '환불 규정', 법.환불]].forEach(([경로, 이름, 본문]) => {
   쓰기(`${경로}/index.html`, 틀({ 제목: `${이름} · 아티스트 코치`, 설명: `아티스트 코치 ${이름}`, 경로: `/${경로}/`, 본문: 고침(본문) }));
 });
+const 가이드결과 = require('./가이드페이지.js')({ 뿌리, 틀, 길, 막기, 쓰기 });
 const 상품결과 = require('./상품페이지.js')({ 설정: 상품설정, 뿌리, 결과, 틀, 길, 막기, 쓰기, 사업자 });
 쓰기('404.html', 틀({
   제목: '페이지를 찾을 수 없어요 · 아티스트 코치', 설명: '페이지를 찾을 수 없어요.', 경로: '/404.html', 색인: false,
@@ -535,7 +543,7 @@ if (애드센스) 쓰기('ads.txt', `google.com, pub-${애드센스.replace('ca-
 쓰기('robots.txt', 검수용 ? 'User-agent: *\nDisallow: /\n' : `User-agent: *\nAllow: /\nSitemap: ${주소}/sitemap.xml\n`);
 if (검수용 && process.env.SITE_CNAME) 쓰기('CNAME', process.env.SITE_CNAME.trim() + '\n');
 쓰기('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
-  ['/', '/about/', '/terms/', '/privacy/', '/refund/', ...상품결과.경로목록, ...공고.filter(충실한가).map((x) => `/notice/${x.id}/`)].map((u) => `  <url><loc>${주소}${u}</loc><lastmod>${오늘글}</lastmod></url>`).join('\n') + `\n</urlset>\n`);
+  ['/', '/about/', '/terms/', '/privacy/', '/refund/', ...가이드결과.경로목록, ...상품결과.경로목록, ...공고.filter(충실한가).map((x) => `/notice/${x.id}/`)].map((u) => `  <url><loc>${주소}${u}</loc><lastmod>${오늘글}</lastmod></url>`).join('\n') + `\n</urlset>\n`);
 
 if (추천.length) {
   추천.forEach((r) => { fs.mkdirSync(path.join(결과, '추천'), { recursive: true }); fs.copyFileSync(path.join(추천폴더, r.image), path.join(결과, '추천', r.image)); });
