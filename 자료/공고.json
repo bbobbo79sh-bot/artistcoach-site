@@ -1651,45 +1651,6 @@
   "benefit": "초대전 선정자 전시비용 무료 · 전시공간·작가홈페이지·리플렛·홍보메일·현수막·포스터 지원"
  },
  {
-  "id": "4f2092c6",
-  "cat": "예술 공모전·모집",
-  "org": "광양시청",
-  "region": "전남",
-  "title": "광양시 매돌이 AI 영상 공모전 개최 공고",
-  "deadline": "2026-11-06",
-  "target": "",
-  "link": "https://eminwon.gwangyang.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=62191&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_se_code=01,02,03,04,05",
-  "posted": "2026-09-28",
-  "summary": "",
-  "benefit": ""
- },
- {
-  "id": "9a9c9be8",
-  "cat": "예술 공모전·모집",
-  "org": "대전광역시",
-  "region": "",
-  "title": "2026년 대전관광사진 전국공모전",
-  "deadline": "2026-11-06",
-  "target": "",
-  "link": "https://www.pask.net/bbs/board.php?bo_table=contest&wr_id=9867",
-  "posted": "",
-  "summary": "",
-  "benefit": ""
- },
- {
-  "id": "511f6d0e",
-  "cat": "예술 공모전·모집",
-  "org": "대산문화재단",
-  "region": "",
-  "title": "제25회 대산대학문학상 공모",
-  "deadline": "2026-11-06",
-  "target": "",
-  "link": "https://www.daesan.or.kr/daesan-award/2026/university/index.html",
-  "posted": "",
-  "summary": "",
-  "benefit": ""
- },
- {
   "id": "8f84469d",
   "cat": "예술인 지원·공모",
   "org": "제주문화예술재단",
@@ -1699,8 +1660,8 @@
   "target": "",
   "link": "https://www.jfac.kr/notification/notice/20128",
   "posted": "",
-  "summary": "",
-  "benefit": ""
+  "summary": "제주문화예술재단이 제주 예술인의 도외 예술활동을 지원해 창작활동 기회를 넓히기 위한 교통비 지원사업입니다. 5차 접수 공고입니다.",
+  "benefit": "5차 신청 11월 2일 10:00~11월 6일 17:59 · 국가문화예술지원시스템(NCAS) 접수 · 회차별 선착순 50명 이내"
  },
  {
   "id": "1a8c8e2a",
@@ -1712,21 +1673,8 @@
   "target": "개인",
   "link": "https://artnuri.or.kr/crawler/info/view.do?key=2301170002&docid=2610020001&seNo=002",
   "posted": "",
-  "summary": "",
-  "benefit": ""
- },
- {
-  "id": "ab698279",
-  "cat": "예술 공모전·모집",
-  "org": "가평군청",
-  "region": "경기",
-  "title": "「2026 가평관광 전국사진공모전」 개최 안내",
-  "deadline": "2026-11-06",
-  "target": "",
-  "link": "https://www.gp.go.kr/portal/selectBbsNttView.do?key=501&bbsNo=150&nttNo=289566&searchCtgry=&searchCnd=all&searchKrwd=&pageIndex=1&integrDeptCode=",
-  "posted": "2026-09-30",
-  "summary": "",
-  "benefit": ""
+  "summary": "이천시 갈산동 공동주택 신축공사에 설치할 조형예술물(조각)과 공공조형물(분수대 등) 미술작품을 공개 모집하는 공모입니다. 만 19세 이상 개인만 응모할 수 있고 법인·사업자는 불가합니다.",
+  "benefit": "사업비 1억 5천만 원(제작·설치, 공과금 포함) · 접수 10월 13일~11월 6일 17:00 · 이메일 접수"
  },
  {
   "id": "f223fe7f",
@@ -1738,8 +1686,8 @@
   "target": "",
   "link": "https://www.arplanet.kr/",
   "posted": "2026-09-14",
-  "summary": "",
-  "benefit": ""
+  "summary": "광주·전남 기반 공연기획사 아르플래닛이 2027년 한 해 함께할 소속 아티스트 4기를 모집합니다. 광주·전남 출신이거나 활동 가능한 만 39세 이하 청년 클래식 음악 전공자(피아노·관현악·성악)가 대상입니다.",
+  "benefit": "회비 없음 · 정기연주회 1회 연주(국립아시아문화전당 예술극장 극장2) · 예술활동증명 발급 지원 · 포스터·홍보물 제작 및 언론·SNS 홍보 지원"
  },
  {
   "id": "cfd698ce",
@@ -1751,34 +1699,8 @@
   "target": "",
   "link": "https://www.arthub.co.kr/sub04/board01_view.htm?No=27266&page=1&sType1=1&sType2=2&sType3=3&sType4=&sort=new",
   "posted": "2026-08-10",
-  "summary": "",
-  "benefit": ""
- },
- {
-  "id": "483f5c71",
-  "cat": "예술 공모전·모집",
-  "org": "포천문화관광재단",
-  "region": "경기",
-  "title": "제2회 포천관광 전국사진 공모전",
-  "deadline": "2026-11-10",
-  "target": "",
-  "link": "https://www.pask.net/bbs/board.php?bo_table=contest&wr_id=9891",
-  "posted": "",
-  "summary": "",
-  "benefit": ""
- },
- {
-  "id": "fb26b26e",
-  "cat": "예술 공모전·모집",
-  "org": "설미재미술관",
-  "region": "전국",
-  "title": "MPED X KORUS 국제 아트앤디자인 공모전",
-  "deadline": "2026-11-11",
-  "target": "",
-  "link": "http://www.mu-um.com/?mid=0602&act=dtl&idx=4769&cateTP=&keyword=&page=1",
-  "posted": "2026-07-01",
-  "summary": "",
-  "benefit": ""
+  "summary": "서울 강남 갤러리 비브가 2026년 하반기 월별 그룹전(9~12월, 각 1주일)에 참여할 시각예술 작가를 모집합니다. 회화·사진·판화·조형·공예·섬유·설치·미디어아트 등 전 분야, 장르·연령 제한이 없습니다.",
+  "benefit": "출품료 10호 기준 25만 원(작품 면적에 따라 산정) · 전시 기획·설치·캡션 제작·홍보 지원 · 접수 8월 10일~11월 9일"
  },
  {
   "id": "14686466",
@@ -1790,8 +1712,8 @@
   "target": "",
   "link": "https://www.guroartsvalley.or.kr/user/board/boardDefaultView.do?page=1&pageST=&pageSV=&itemCd1=&itemCd2=&menuCode=mn011801&boardId=13037&index=1",
   "posted": "2026-09-03",
-  "summary": "",
-  "benefit": ""
+  "summary": "구로문화재단이 2027년 문화철도959 입주작가를 모집하는 공고로, 미술·음악·공연·창작 등 문화예술 전 분야 예술가가 대상이다.",
+  "benefit": "창작 공간 제공"
  },
  {
   "id": "116adf45",
@@ -1803,59 +1725,7 @@
   "target": "개인",
   "link": "https://www.gjcf.or.kr/cf/Board/87328/detailView.do",
   "posted": "",
-  "summary": "",
-  "benefit": ""
- },
- {
-  "id": "b367f3c8",
-  "cat": "예술 공모전·모집",
-  "org": "함안군청",
-  "region": "경남",
-  "title": "함안복합문학관 디카시 공모전 공고",
-  "deadline": "2026-11-13",
-  "target": "",
-  "link": "https://eminwon.haman.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=43112&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_se_code=01,02,03,04,05",
-  "posted": "2026-09-22",
-  "summary": "",
-  "benefit": ""
- },
- {
-  "id": "f21d8f61",
-  "cat": "예술 공모전·모집",
-  "org": "한국사진작가협회",
-  "region": "전국",
-  "title": "제8회 부안관광 전국사진공모전",
-  "deadline": "2026-11-14",
-  "target": "",
-  "link": "https://www.pask.net/bbs/board.php?bo_table=contest&wr_id=9865",
-  "posted": "",
-  "summary": "",
-  "benefit": ""
- },
- {
-  "id": "2c818d1f",
-  "cat": "예술 공모전·모집",
-  "org": "유원대학교",
-  "region": "",
-  "title": "제1회 AI 국제사진대전",
-  "deadline": "2026-11-14",
-  "target": "",
-  "link": "https://www.pask.net/bbs/board.php?bo_table=contest&wr_id=9892",
-  "posted": "",
-  "summary": "",
-  "benefit": ""
- },
- {
-  "id": "79c86b97",
-  "cat": "예술 공모전·모집",
-  "org": "정선아리랑문화재단",
-  "region": "강원",
-  "title": "정선 국가문화유산 전국 디카시 공모전",
-  "deadline": "2026-11-15",
-  "target": "",
-  "link": "https://www.jacf.or.kr/jacf/bbsNew_view.php?bbs_data=aWR4PTEzOTUmc3RhcnRQYWdlPTAmbGlzdE5vPTI0NSZ0YWJsZT1jc19iYnNfZGF0YV9uZXcmY29kZT1zdWIwNWEmc2VhcmNoX2l0ZW09JnNlYXJjaF9vcmRlcj0mdXJsPXN1YjA1YSZrZXl2YWx1ZT1zdWIwNSZiYnNfbWFsbmFtZT0=||",
-  "posted": "2026-09-03",
-  "summary": "",
+  "summary": "광주문화재단이 2026 광주예술인복지지원의 예술인 전문 컨설팅으로 예술인 심리상담 참여자를 모집하는 공고이다.",
   "benefit": ""
  },
  {
@@ -1868,8 +1738,8 @@
   "target": "전체",
   "link": "https://www.arko.or.kr/board/view/4053?bid=&page=&cid=1811175",
   "posted": "",
-  "summary": "",
-  "benefit": ""
+  "summary": "한국문화예술위원회가 예술과 후원을 연결하는 문화예술후원매개전문가를 양성하는 교육과정(아트너스클럽 시즌7)입니다. 문화예술후원에 관심 있는 일반인, 예술단체 실무자·기획자, 지역재단 후원 담당자, 기업 CSR·사회공헌 담당자가 참여할 수 있습니다.",
+  "benefit": "무료 교육(입문·심화·특화교육, 네트워킹 데이) · 수료증 발급 · 선착순 모집"
  },
  {
   "id": "666aefda",
@@ -1881,7 +1751,7 @@
   "target": "",
   "link": "https://www.momo365.net/Support?cd=contest&ViewType=detail&seq=177595",
   "posted": "2026-10-06",
-  "summary": "",
+  "summary": "광주정보문화산업진흥원 광주콘텐츠코리아랩이 웹소설 원천 스토리를 발굴하는 공모전입니다.",
   "benefit": ""
  },
  {
@@ -1894,21 +1764,8 @@
   "target": "",
   "link": "https://eulsukdo-ecoart.com/",
   "posted": "2026-09-21",
-  "summary": "",
-  "benefit": ""
- },
- {
-  "id": "94bcc964",
-  "cat": "예술 공모전·모집",
-  "org": "부산광역시청",
-  "region": "부산",
-  "title": "울숙도 대지예술 국제공모 알림",
-  "deadline": "2026-11-22",
-  "target": "",
-  "link": "https://www.busan.go.kr/nbnews/1755394?curPage=&srchBeginDt=2025-09-22&srchEndDt=2026-09-22&srchKey=&srchText=",
-  "posted": "2026-09-21",
-  "summary": "",
-  "benefit": ""
+  "summary": "부산광역시가 을숙도의 생태·역사적 맥락을 바탕으로 예술을 통해 환경에 대한 새로운 인식과 실천을 이끄는 대지·생태예술 작품을 국제 공모합니다. 국내외 예술·조경·건축·디자인 분야 전문가 또는 전문가팀(다학제 구성 가능, 인원 제한 없음)이 대상입니다.",
+  "benefit": "제작·설치·체류 등 제반비용 3억 8천만 원 · 아티스트피 2천만 원 · 1팀 선정 · 접수 11월 2일~11월 22일"
  },
  {
   "id": "fa92b600",
@@ -1920,8 +1777,8 @@
   "target": "전체",
   "link": "https://www.dcaf.or.kr/web/board.do?menuIdx=375&bbsIdx=18948",
   "posted": "",
-  "summary": "",
-  "benefit": ""
+  "summary": "대전문화재단이 예술인·예술단체가 유치한 기업 지정기부금에 대해 매칭 지원하는 예술기부활성화 사업(대전예술가치26)입니다. 대전 소재 예술단체와, 예술활동증명을 보유했거나 최근 5년 내 재단 지원사업 선정 이력이 있는 대전 지역 예술인이 대상입니다.",
+  "benefit": "유치한 지정기부금의 최대 1:2 매칭 · 최대 2,000만 원 한도 · 매월 23일까지 접수(예산 소진 시 종료)"
  },
  {
   "id": "9d7d5360",
@@ -1933,34 +1790,8 @@
   "target": "",
   "link": "https://stheater.or.kr/community-latest/?q=YToxOntzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&bmode=view&idx=174236130&t=board",
   "posted": "2026-09-16",
-  "summary": "",
-  "benefit": ""
- },
- {
-  "id": "d8720071",
-  "cat": "예술 공모전·모집",
-  "org": "한국연극협회",
-  "region": "전국",
-  "title": "[홍보](4·16재단) 2027년 '4월 연극제' 참가작 공모",
-  "deadline": "2026-11-23",
-  "target": "",
-  "link": "http://ktheater.bravod.co.kr/notice_view.html?pid=13460&page=&search_type=&search_txt=",
-  "posted": "2026-09-16",
-  "summary": "",
-  "benefit": ""
- },
- {
-  "id": "561b0b86",
-  "cat": "예술 공모전·모집",
-  "org": "남원시청",
-  "region": "전북",
-  "title": "남원시 유튜브 영상 공모전 공고",
-  "deadline": "2026-11-23",
-  "target": "",
-  "link": "https://eminwon.namwon.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=64131&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_se_code=01,02,03,04,05",
-  "posted": "2026-09-23",
-  "summary": "",
-  "benefit": ""
+  "summary": "4·16재단이 세월호참사 13주기를 맞아 2027년 4월 안산 일대에서 열리는 '4월 연극제'에 참가할 연극·뮤지컬 작품을 공모합니다. 극단·공연예술단체·개인이 60분 이상 공연 가능한 완성도 높은 창작·번역·재창작 작품으로 지원할 수 있습니다.",
+  "benefit": "5작품 선정 · 2027년 4월 공연 · 공연료·기술지원은 선정 후 협의 · 접수 9월 14일~11월 23일(이메일) · 12월 중 개별 통보"
  },
  {
   "id": "307df320",
@@ -1972,21 +1803,8 @@
   "target": "단체",
   "link": "https://www.sfac.or.kr/opensquare/notice/notice_list.do?cbIdx=955&bcIdx=138522",
   "posted": "",
-  "summary": "",
-  "benefit": ""
- },
- {
-  "id": "6e8401ca",
-  "cat": "예술 공모전·모집",
-  "org": "한국사진작가협회",
-  "region": "전국",
-  "title": "제41회 남원 전국사진공모전",
-  "deadline": "2026-11-24",
-  "target": "",
-  "link": "https://www.pask.net/bbs/board.php?bo_table=contest&wr_id=9880",
-  "posted": "",
-  "summary": "",
-  "benefit": ""
+  "summary": "서울문화재단 대학로센터 1층 야외라운지에서 개막을 앞둔 공연을 미리 선보이는 전 장르 쇼케이스 프리뷰 프로그램 '제철공연'의 참여단체 모집입니다. 대학로센터 야외공연이 가능한 모든 예술활동이 대상이며, 올 하반기 본공연을 앞둔 팀과 대학로 인근 공연장 진행 팀을 우대합니다.",
+  "benefit": "야외라운지 공간·전기·이동식 스피커와 앰프 제공 · SNS 카드뉴스 등 공연 사전 홍보 지원 · 모객 플랫폼(네이버 예약 등) 개설 협조"
  },
  {
   "id": "5921f6f9",
@@ -1998,21 +1816,8 @@
   "target": "개인",
   "link": "https://www.dcaf.or.kr/web/board.do?menuIdx=375&bbsIdx=18854",
   "posted": "",
-  "summary": "",
-  "benefit": ""
- },
- {
-  "id": "5407a31d",
-  "cat": "예술인 지원·공모",
-  "org": "대전문화재단",
-  "region": "대전",
-  "title": "예술인 검진비 지원 사업",
-  "deadline": "2026-11-25",
-  "target": "",
-  "link": "https://dcaf.or.kr/web/board.do?menuIdx=375&bbsIdx=18854",
-  "posted": "",
-  "summary": "",
-  "benefit": ""
+  "summary": "대전문화재단이 예술인의 안정적인 창작환경 조성과 직업 역량 회복을 돕기 위해 종합건강검진 비용을 지원하는 사업입니다. 대전광역시 거주 예술활동증명 유효 예술인 중 2026년 건강검진 대상자이며 가구 소득이 중위소득 160% 이하인 분이 대상입니다.",
+  "benefit": "60명 선정 · 1인당 30만 원 이내 종합건강검진 프로그램 지원 · 매월 25일까지 접수"
  },
  {
   "id": "e8a6123c",
@@ -2024,8 +1829,8 @@
   "target": "전체",
   "link": "https://www.namdongcf.or.kr/user/board/view.php?sq=2708&board_code=announcement",
   "posted": "",
-  "summary": "",
-  "benefit": ""
+  "summary": "남동문화재단이 예술활동증명 신청 과정에서 어려움을 겪는 남동구 예술인을 위해 대면 상담으로 온라인 신청 전 과정을 1:1 지원하는 행정지원 서비스(2차)입니다. 디지털 기기나 행정 절차에 익숙하지 않은 예술활동증명 미신청자 또는 유효기간 만료자가 대상입니다.",
+  "benefit": "대면 1:1 상담 기반 예술활동증명 온라인 신청 지원 · 9월 15일~11월 30일 · 평일 10~12시, 14~16시 중 회당 2시간 이내(네이버 예약)"
  },
  {
   "id": "f36bed6f",
@@ -2037,8 +1842,8 @@
   "target": "전체",
   "link": "https://www.cacf.or.kr/site/board/?table_nm=tbl_notice&fn=view&no=2026062415020196355&page=1",
   "posted": "",
-  "summary": "",
-  "benefit": ""
+  "summary": "충남문화관광재단 예술지원사업 참여 예술인과 단체가 보조금 정산을 직접 진행할 수 있도록 안내와 상담, 정산 교육을 지원하는 일대일 정산 지원 서비스입니다. 증빙서류 준비와 NCAS 입력이 어렵거나 보조금 정산이 처음인 예술인·단체, 고령자 등이 대상입니다.",
+  "benefit": "맞춤형 1:1 정산 상담·교육 · 운영 6월 24일~11월 30일(접수 11월 27일까지) · 구글폼·전화 예약"
  },
  {
   "id": "844f88a8",
@@ -2050,8 +1855,8 @@
   "target": "개인",
   "link": "https://www.bscf.or.kr/view.do?pgMode=show&no=1010&pbancSn=2256",
   "posted": "",
-  "summary": "",
-  "benefit": ""
+  "summary": "부산문화재단이 지역 예술인의 활동 기반을 만들고 활동 범위를 넓히기 위해 숙박비를 지원하는 B·아티스테이 사업입니다. 예술활동증명을 완료한 부산 예술인(타 지역 활동 시)과 2026년 부산에서 활동할 타 지역·해외 예술인이 대상입니다.",
+  "benefit": "숙박비 1박 10만 원 한도 지원 · 4월 1일~11월 30일 접수(예산 소진 시 조기 종료) · 이메일 접수"
  },
  {
   "id": "e233b95a",
@@ -2063,8 +1868,8 @@
   "target": "개인",
   "link": "https://cnaw.or.kr/site/notice/index.php?fn=view&no=2026032710572636665",
   "posted": "",
-  "summary": "",
-  "benefit": ""
+  "summary": "충청남도에 거주하는 장애인 예술인·예비 장애예술인과 장애인 지원 개인·단체를 위한 장애예술 육성 지원사업입니다. 창작지원형·전시공연형·기타 유형으로 나뉘며 예술복지 사각지대 해소와 예술 역량 강화를 목표로 합니다.",
+  "benefit": "창작·전시·공연 등 장애예술인의 창작지평과 예술역량 확대에 드는 비용 지원 · 사업기간 3월~11월 · 비용은 전시공간·활동 실 소요처로 지급, 재단 협의로 결정"
  },
  {
   "id": "537b9141",
@@ -2076,8 +1881,8 @@
   "target": "전체",
   "link": "https://www.kawf.kr/notice/sub02View.do?selIdx=19293",
   "posted": "",
-  "summary": "",
-  "benefit": ""
+  "summary": "한국예술인복지재단이 문화체육관광부와 함께 현업·예비 예술인, 예술사업자, 문화예술 유관기관·단체 종사자를 대상으로 찾아가서 하는 예술계약·성희롱·성폭력 예방 권리보호 교육입니다. 개인 신청은 불가하고 단체 신청만 가능합니다.",
+  "benefit": "무료 교육 · 대면 또는 실시간 비대면 90~180분 · 운영 2월 9일~11월 30일(예산 소진 시 조기 종료) · 최소 인원 예술계약 20인·성희롱성폭력 예방 15인"
  },
  {
   "id": "c923a65b",
@@ -2089,7 +1894,7 @@
   "target": "",
   "link": "https://cjcf.or.kr/new/bbs/board.php?bo_table=offering&wr_id=47",
   "posted": "2026-03-23",
-  "summary": "",
+  "summary": "충주문화관광재단이 충주 미술작가의 외부활동 참여를 독려하기 위해 아트페어 참가를 지원하는 사업으로, 소속형(미술단체·기관 소속 작가)과 개인형(개인 미술작가)으로 참여 작가를 모집합니다.",
   "benefit": ""
  },
  {
@@ -2102,47 +1907,8 @@
   "target": "",
   "link": "https://cjcf.or.kr/new/bbs/board.php?bo_table=offering&wr_id=44",
   "posted": "2026-03-13",
-  "summary": "",
-  "benefit": ""
- },
- {
-  "id": "a18ceddc",
-  "cat": "예술 공모전·모집",
-  "org": "한국문화예술위원회",
-  "region": "전국",
-  "title": "청년문화예술패스 지원 공고",
-  "deadline": "2026-11-30",
-  "target": "",
-  "link": "https://youthculturepass.or.kr/",
-  "posted": "2026-08-10",
-  "summary": "",
-  "benefit": ""
- },
- {
-  "id": "53f0d37e",
-  "cat": "예술 공모전·모집",
-  "org": "한국사진작가협회",
-  "region": "전국",
-  "title": "제21회 군산관광 전국사진공모전",
-  "deadline": "2026-11-30",
-  "target": "",
-  "link": "https://www.pask.net/bbs/board.php?bo_table=contest&wr_id=9890",
-  "posted": "",
-  "summary": "",
-  "benefit": ""
- },
- {
-  "id": "dc825ffc",
-  "cat": "예술인 지원·공모",
-  "org": "충남문화관광재단",
-  "region": "충남",
-  "title": "장애예술 육성 지원사업 아름누리",
-  "deadline": "2026-11-30",
-  "target": "",
-  "link": "https://www.cnctf.or.kr/site/board/index.php?fn=view&no=2026033016270442787&table_nm=tbl_culture",
-  "posted": "",
-  "summary": "",
-  "benefit": ""
+  "summary": "충주문화관광재단의 충주문화예술지원사업으로, 충주시에 6개월 이상 거주하는 예술인(개인) 및 시 소재 단체가 문학·시각예술·공연예술·다원 분야 공모전·대회·콩쿠르 등에 수상 목적으로 참가할 때 참가비를 지원합니다.",
+  "benefit": "참가비 최대 5만 원(연간 합계 5만 원 한도) · 2025.11.30~2026.11.29 완료 활동 · 예산 소진 시 조기 종료"
  },
  {
   "id": "32b094a5",
@@ -2154,7 +1920,7 @@
   "target": "",
   "link": "https://www.gongjucf.or.kr/gongjucf/board/read?boardManagementNo=72&boardNo=17066&menuLevel=2&menuNo=226",
   "posted": "",
-  "summary": "",
+  "summary": "공주문화관광재단이 문화예술 창작스튜디오 지원사업의 일환으로 월송갤러리에 입주·참여할 단체를 모집하는 공고입니다.",
   "benefit": ""
  },
  {
@@ -2167,8 +1933,8 @@
   "target": "",
   "link": "https://cjcf.or.kr/new/bbs/board.php?bo_table=offering&wr_id=44",
   "posted": "",
-  "summary": "",
-  "benefit": ""
+  "summary": "충주시 예술가의 대외활동(공모전·대회·콩쿠르 등)을 지원해 예술 활동 문화를 조성하는 사업으로, 공고일 이전 6개월 이상 충주시에 거주하는 예술인 개인과 충주시 소재 단체가 대상이다.",
+  "benefit": "대외활동 참가비 실비 지원, 개인·단체 연간 최대 5만 원 · 2025.11.30~2026.11.29 실시·완료 활동 · 예산 소진 시 종료"
  },
  {
   "id": "e5dbfe54",
@@ -2180,8 +1946,8 @@
   "target": "",
   "link": "https://www.bscf.or.kr/view.do?no=1010&pgMode=show&pbancSn=2256",
   "posted": "",
-  "summary": "",
-  "benefit": ""
+  "summary": "부산문화재단이 지역 예술인의 활동기반 조성을 위해 운영하는 숙박비 지원사업으로, 부산 예술인의 타 지역 출장과 타 지역·해외 예술인의 부산 방문 활동이 대상이다. 예술활동증명을 완료한 대한민국 국적 예술인이 신청할 수 있다.",
+  "benefit": "출장 숙박비 1박 10만 원 한도 내 사후 지급 · 운영 2026.4.1~11.30 (예산 소진 시 조기 마감)"
  },
  {
   "id": "5291a104",
@@ -2197,19 +1963,6 @@
   "benefit": ""
  },
  {
-  "id": "c2725f7e",
-  "cat": "예술인 지원·공모",
-  "org": "부산영상위원회",
-  "region": "",
-  "title": "부산 프리프로덕션 스카우팅 지원사업",
-  "deadline": "2026-12-01",
-  "target": "",
-  "link": "https://www.bfc.or.kr/NcPageLink?link=ko/rqe/RQE010300&_menuNo=27",
-  "posted": "",
-  "summary": "",
-  "benefit": ""
- },
- {
   "id": "6640ecff",
   "cat": "예술인 지원·공모",
   "org": "CJ문화재단",
@@ -2220,7 +1973,7 @@
   "link": "https://www.cjazit.org/about/news/notice/2273?from=&p=0",
   "posted": "",
   "summary": "2026년 하반기(7월~12월) CJ아지트 공간 지원 신청 안내",
-  "benefit": ""
+  "benefit": "공연장 무료 대관·시설 및 장비 무료 사용 · 기술감독·하우스매니저 지원 · 홈페이지·SNS 홍보 마케팅 지원"
  },
  {
   "id": "09204126",
@@ -2232,8 +1985,8 @@
   "target": "",
   "link": "https://artist.ggcf.kr/boards/news/articles/1721",
   "posted": "2026-09-21",
-  "summary": "",
-  "benefit": ""
+  "summary": "경기문화재단 경기예술인의 집이 운영하는 예술창작공유회 〈창작의 순간〉에서 창작자의 작업 과정과 창작 방식을 함께 나누는 프로그램의 참여 예술인 모집이다. 경기도에 거주하거나 경기 지역을 기반으로 활동하는 예술인이 대상이다.",
+  "benefit": "무료 참여 · 2026.10.8~12.8 · 보증금 1만 원(참석 시 전액 환급) · 회차별 선정"
  },
  {
   "id": "8bc9c0b8",
@@ -2245,8 +1998,8 @@
   "target": "전체",
   "link": "https://www.sjcf.or.kr/bbsctt/view.do?bbscttSn=2603310002&key=2111060075",
   "posted": "",
-  "summary": "",
-  "benefit": ""
+  "summary": "세종시문화관광재단 세종음악창작소가 버스킹 공연을 위한 음향 장비를 지원하는 사업이다. 세부 지원대상은 첨부 공고문에 명시되어 있다.",
+  "benefit": "버스킹 공연용 음향 장비 대여 지원"
  },
  {
   "id": "e777fcf6",
@@ -2258,7 +2011,7 @@
   "target": "",
   "link": "https://eminwon.jindo.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=26241&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_se_code=01,02,03,04,05",
   "posted": "2026-10-06",
-  "summary": "",
+  "summary": "진도군이 관내 예술인과 예술교육생의 복지를 지원하기 위한 문화진흥기금 지원사업이다. 접수는 진도군청 문화예술과에서 받는다.",
   "benefit": ""
  },
  {
@@ -3024,19 +2777,6 @@
   "deadline": "상시",
   "target": "",
   "link": "https://www.kawf.kr/social/sub01_1.do",
-  "posted": "",
-  "summary": "",
-  "benefit": ""
- },
- {
-  "id": "8df022c4",
-  "cat": "예술인 지원·공모",
-  "org": "아티스트 코치 영감",
-  "region": "",
-  "title": "영감 모음 X01 예술인 지원 미술 작가 기회 3곳 뮤지엄남해·순창·CICA 지원사업 안내",
-  "deadline": "상시",
-  "target": "",
-  "link": "https://artistcoach.kr",
   "posted": "",
   "summary": "",
   "benefit": ""
