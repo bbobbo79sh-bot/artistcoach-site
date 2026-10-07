@@ -28,6 +28,9 @@ module.exports = ({ 설정, 검수용, 뿌리, 결과, 틀, 길, 막기, 쓰기,
     }
   });
   const 글주소 = (g) => 길(`/resources/${g.id}/`);
+  // 정식 사이트에서는 글이나 PDF 가 준비된 자료만 보인다(준비 중인 자료는 검수용에서만 '곧 올라와요'로 보임)
+  const 자료목록 = 검수용 ? 설정.자료 : 설정.자료.filter((g) => 글[g.id] || 파일주소(g));
+  if (!자료목록.length) return { 켜짐: false, 경로목록: [], 띠: '', 관련: () => '' };
 
   const 단추들 = (g, 작게) => {
     const 작 = 작게 ? ' 작은단추' : '';
@@ -46,14 +49,14 @@ module.exports = ({ 설정, 검수용, 뿌리, 결과, 틀, 길, 막기, 쓰기,
   <span class="윗글">무료 자료실</span>
   <h1>지원서 쓸 때 바로 쓰는 무료 자료</h1>
   <p>가입이나 이메일 없이 바로 보세요. 인쇄하거나 칸을 채워 쓰는 자료는 PDF로도 받을 수 있어요. 공고를 읽는 것부터 지원서를 다듬는 것까지, 쓰는 순서대로 모았어요.</p>
-  <div class="자료목록">${설정.자료.map(카드).join('')}</div>
+  <div class="자료목록">${자료목록.map(카드).join('')}</div>
   <p class="작은">자료는 일반 안내입니다. 지원 조건과 기준은 각 공고 원문에서 꼭 확인해 주세요.</p>
 </section>`,
   }));
 
   // 웹으로 보는 자료 페이지
   const 경로목록 = ['/resources/'];
-  설정.자료.forEach((g) => {
+  자료목록.forEach((g) => {
     const r = 글[g.id]; if (!r) return;
     경로목록.push(`/resources/${g.id}/`);
     쓰기(`resources/${g.id}/index.html`, 틀({
@@ -74,13 +77,13 @@ module.exports = ({ 설정, 검수용, 뿌리, 결과, 틀, 길, 막기, 쓰기,
 
   // 메인 화면 아래 띠: 한 줄 + 단추 하나
   const 띠 = `<section class="자료띠" aria-label="무료 자료">
-  <div><b>지원서 쓸 때 쓰는 무료 자료</b><span>${설정.자료.length}가지, 가입 없이 바로 보기</span></div>
+  <div><b>지원서 쓸 때 쓰는 무료 자료</b><span>${자료목록.length}가지, 가입 없이 바로 보기</span></div>
   <a class="단추 주" href="${길('/resources/')}">자료실 가기 →</a>
 </section>`;
 
   // 공고 상세 아래: 관련 자료 1~2개
   const 관련 = (ids) => {
-    const 목록 = ids.map((id) => 설정.자료.find((g) => g.id === id)).filter(Boolean);
+    const 목록 = ids.map((id) => 자료목록.find((g) => g.id === id)).filter(Boolean);
     if (!목록.length) return '';
     return `<aside class="관련자료" aria-label="관련 무료 자료"><h2>이 공고에 지원하려면</h2><p>지원서를 쓸 때 도움이 되는 무료 자료예요.</p>${목록.map((g) => 카드(g).replace('class="자료카드"', 'class="자료카드"')).join('')}<a class="더자료" href="${길('/resources/')}">자료 더 보기 →</a></aside>`;
   };
