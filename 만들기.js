@@ -89,6 +89,7 @@ const 추천 = (() => {
 const 곧마감 = 공고.filter((x) => x.deadline !== '상시' && 남은날(x.deadline) <= 7);
 
 const 사업자 = JSON.parse(fs.readFileSync(path.join(뿌리, '자료', '사업자정보.json'), 'utf8'));
+const 상품설정 = JSON.parse(fs.readFileSync(path.join(뿌리, '자료', '상품.json'), 'utf8'));
 const 광고설정 = JSON.parse(fs.readFileSync(path.join(뿌리, '자료', '광고.json'), 'utf8'));
 const 애드센스 = (광고설정.애드센스 && 광고설정.애드센스.사용 && /^ca-pub-\d+$/.test(광고설정.애드센스.client)) ? 광고설정.애드센스.client : '';
 const 광고사용 = !!광고설정.사용 && Object.values(광고설정.자리).some((v) => v.unit);
@@ -231,6 +232,14 @@ i{font-style:normal}
 .바닥 .사업자{margin-top:8px;font-size:12px;opacity:.9}
 .광고칸{margin:30px auto;text-align:center;min-height:0}
 .광고칸 small{display:block;font-size:11px;color:var(--sub);margin-bottom:4px;letter-spacing:.05em}
+.상품목록{display:grid;gap:12px;margin:14px 0}
+.상품카드{display:flex;flex-direction:column;gap:4px;background:var(--면);border:1px solid var(--선);border-radius:16px;padding:16px 18px;text-decoration:none;color:var(--ink)}
+.상품카드 b{font-size:18px}.상품카드 span{font-size:14px;color:var(--sub)}.상품카드 em{font-style:normal;font-weight:900;color:var(--깊음)}
+.상품상세 .가격{font-size:26px;font-weight:900;margin:6px 0}.상품상세 .가격 small{font-size:12px;font-weight:400;color:var(--sub)}
+.구매폼{display:grid;gap:12px;margin:12px 0}.구매폼 label{display:grid;gap:4px;font-size:14px;font-weight:700}
+.구매폼 input:not([type=checkbox]){font:inherit;padding:11px 12px;border:1px solid var(--선);border-radius:10px;background:var(--면)}
+.구매폼 .동의{display:flex;align-items:center;gap:8px;font-weight:400}
+.구매폼 .결제알림{color:#b00020;font-size:14px;margin:0}
 .바닥{margin-top:52px;border-top:1px solid var(--선);padding:26px 0 40px;font-size:13px;color:var(--sub);line-height:1.8}
 .바닥 a{color:var(--sub)}
 `;
@@ -478,6 +487,7 @@ const 고침 = (html) => html.replace(/href="\/(terms|privacy|refund)\/"/g, (m, 
 [['terms', '이용약관', 법.약관], ['privacy', '개인정보처리방침', 법.방침], ['refund', '환불 규정', 법.환불]].forEach(([경로, 이름, 본문]) => {
   쓰기(`${경로}/index.html`, 틀({ 제목: `${이름} · 아티스트 코치`, 설명: `아티스트 코치 ${이름}`, 경로: `/${경로}/`, 본문: 고침(본문) }));
 });
+const 상품결과 = require('./상품페이지.js')({ 설정: 상품설정, 틀, 길, 막기, 쓰기, 사업자 });
 쓰기('404.html', 틀({
   제목: '페이지를 찾을 수 없어요 · 아티스트 코치', 설명: '페이지를 찾을 수 없어요.', 경로: '/404.html', 색인: false,
   본문: `<section class="일반글"><h1>찾는 페이지가 없어요.</h1><p>공고가 마감돼 내려갔거나 주소가 바뀌었을 수 있어요.</p><a class="단추 주" href="${길('/')}">공고 목록으로 가기</a></section>`,
@@ -496,7 +506,7 @@ if (애드센스) 쓰기('ads.txt', `google.com, pub-${애드센스.replace('ca-
 `);
 쓰기('robots.txt', `User-agent: *\nAllow: /\nSitemap: ${주소}/sitemap.xml\n`);
 쓰기('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
-  ['/', '/about/', '/terms/', '/privacy/', '/refund/', ...공고.map((x) => `/notice/${x.id}/`)].map((u) => `  <url><loc>${주소}${u}</loc><lastmod>${오늘글}</lastmod></url>`).join('\n') + `\n</urlset>\n`);
+  ['/', '/about/', '/terms/', '/privacy/', '/refund/', ...상품결과.경로목록, ...공고.map((x) => `/notice/${x.id}/`)].map((u) => `  <url><loc>${주소}${u}</loc><lastmod>${오늘글}</lastmod></url>`).join('\n') + `\n</urlset>\n`);
 
 if (추천.length) {
   추천.forEach((r) => { fs.mkdirSync(path.join(결과, '추천'), { recursive: true }); fs.copyFileSync(path.join(추천폴더, r.image), path.join(결과, '추천', r.image)); });
