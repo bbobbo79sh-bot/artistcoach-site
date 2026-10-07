@@ -94,6 +94,8 @@ const 상품설정 = JSON.parse(fs.readFileSync(path.join(뿌리, '자료', '상
 // 상품 페이지를 켜고, 모든 페이지를 검색에서 숨기고(noindex·robots 차단), 광고 코드는 넣지 않는다.
 const 검수용 = process.env.SITE_STAGING === '1';
 if (검수용) 상품설정.사용 = true;
+const 검색등록 = JSON.parse(fs.readFileSync(path.join(뿌리, '자료', '검색등록.json'), 'utf8'));
+const 구글확인 = (!검수용 && /^[A-Za-z0-9_-]{20,80}$/.test(검색등록.구글서치콘솔 || '')) ? 검색등록.구글서치콘솔 : '';
 const 광고설정 = JSON.parse(fs.readFileSync(path.join(뿌리, '자료', '광고.json'), 'utf8'));
 const 애드센스 = (!검수용 && 광고설정.애드센스 && 광고설정.애드센스.사용 && /^ca-pub-\d+$/.test(광고설정.애드센스.client)) ? 광고설정.애드센스.client : '';
 const 광고사용 = !검수용 && !!광고설정.사용 && Object.values(광고설정.자리).some((v) => v.unit);
@@ -269,6 +271,7 @@ const 틀 = ({ 제목, 설명, 경로, 본문, 현재 = '', 스크립트 = '', �
 <title>${막기(제목)}</title>
 <meta name="description" content="${막기(설명)}">
 <meta name="theme-color" content="${brand}">
+${구글확인 ? `<meta name="google-site-verification" content="${구글확인}">` : ''}
 ${색인 && !검수용 ? '' : '<meta name="robots" content="noindex, nofollow">'}
 <link rel="canonical" href="${주소}${경로}">
 <link rel="icon" href="${길('/logo.svg')}" type="image/svg+xml">
