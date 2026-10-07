@@ -452,6 +452,8 @@ ${공고.map(카드).join('\n')}
 }));
 
 // ───────── 공고 한 건마다 한 페이지 ─────────
+// 요약이 한 줄이라도 있는 공고만 '충실한 페이지'로 본다. 요약이 없는 페이지는 사이트 안에서는 보이지만 검색 노출(색인)과 사이트맵에서는 뺀다.
+const 충실한가 = (x) => !!(x.summary && x.summary.trim());
 공고.forEach((x) => {
   const 정보 = [
     x.benefit && ['지원 내용', 막기(x.benefit), '혜택행'],
@@ -477,17 +479,35 @@ ${광고칸('공고상세')}
     제목: `${x.title} · 아티스트 코치`,
     설명: `${x.org} · ${x.deadline === '상시' ? '상시 접수' : 날짜짧게(x.deadline) + ' 마감'} · ${x.benefit || x.summary || x.title}`.slice(0, 150),
     경로: `/notice/${x.id}/`, 본문,
+    색인: 충실한가(x),   // 요약이 있어야 검색에 노출한다. 요약이 없으면 noindex
   }));
 });
 
 // ───────── 소개 · 404 ─────────
 쓰기('about/index.html', 틀({
-  제목: '소개 · 아티스트 코치', 설명: '예술인을 위한 지원사업 공고를 한곳에 모읍니다.', 경로: '/about/', 현재: '소개',
+  제목: '소개 · 아티스트 코치', 설명: '아티스트 코치는 예술인을 위한 지원사업 공고를 기관 원문 기준으로 모아 정리합니다.', 경로: '/about/', 현재: '소개',
   본문: `<section class="일반글">
   <span class="윗글">아티스트 코치</span>
   <h1>예술인을 위한 지원사업,<br><mark>놓치지 않게</mark>.</h1>
   <p>전국 기관에 흩어진 지원사업 공고를 한곳에 모읍니다. 마감이 가까운 순서로 보여 드리고, 모든 공고에는 기관의 원문 링크를 함께 답니다.</p>
   <p>조건이나 금액은 바뀔 수 있어서, 지원하기 전에는 꼭 원문을 다시 확인해 주세요.</p>
+
+  <h2>이 사이트가 하는 일</h2>
+  <ul>
+    <li>문화재단, 지자체, 문화예술 기관이 낸 지원사업·공모 공고를 모아 마감일 순서로 보여 드립니다.</li>
+    <li>마감일과 기관 원문 링크가 확인된 공고만 올립니다. 마감이 지난 공고는 자동으로 내려갑니다.</li>
+    <li>공고마다 기관 원문을 읽고 요약과 지원 내용을 정리합니다. 원문에서 확인한 사실만 적고, 확인하지 못한 금액은 비워 둡니다.</li>
+    <li>다른 사이트의 요약을 옮기지 않으며, 링크는 항상 기관이 올린 원문으로 연결합니다.</li>
+  </ul>
+
+  <h2>누가 운영하나요</h2>
+  <p>예술지원사업 정보를 전하는 <b>아티스트 코치</b>가 ${막기(사업자.상호)}의 이름으로 운영합니다. 인스타그램 <a href="${인스타}" target="_blank" rel="noopener">@artistcoach_0gam</a>에서도 매일 공고를 카드뉴스로 소개합니다.</p>
+
+  <h2>정보가 틀렸다면</h2>
+  <p>마감일이나 링크가 틀린 곳을 발견하시면 ${막기(사업자.이메일)}로 알려 주세요. 확인해서 고칩니다. 공고는 매일 아침 다시 정리됩니다.</p>
+
+  <h2>이용 안내</h2>
+  <p>사이트 이용에 관한 내용은 <a href="${길('/terms/')}">이용약관</a>과 <a href="${길('/privacy/')}">개인정보처리방침</a>을 참고해 주세요.</p>
   <a class="단추 주" href="${인스타}" target="_blank" rel="noopener">인스타그램에서 매일 소식 보기</a>
 </section>`,
 }));
@@ -515,7 +535,7 @@ if (애드센스) 쓰기('ads.txt', `google.com, pub-${애드센스.replace('ca-
 쓰기('robots.txt', 검수용 ? 'User-agent: *\nDisallow: /\n' : `User-agent: *\nAllow: /\nSitemap: ${주소}/sitemap.xml\n`);
 if (검수용 && process.env.SITE_CNAME) 쓰기('CNAME', process.env.SITE_CNAME.trim() + '\n');
 쓰기('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
-  ['/', '/about/', '/terms/', '/privacy/', '/refund/', ...상품결과.경로목록, ...공고.map((x) => `/notice/${x.id}/`)].map((u) => `  <url><loc>${주소}${u}</loc><lastmod>${오늘글}</lastmod></url>`).join('\n') + `\n</urlset>\n`);
+  ['/', '/about/', '/terms/', '/privacy/', '/refund/', ...상품결과.경로목록, ...공고.filter(충실한가).map((x) => `/notice/${x.id}/`)].map((u) => `  <url><loc>${주소}${u}</loc><lastmod>${오늘글}</lastmod></url>`).join('\n') + `\n</urlset>\n`);
 
 if (추천.length) {
   추천.forEach((r) => { fs.mkdirSync(path.join(결과, '추천'), { recursive: true }); fs.copyFileSync(path.join(추천폴더, r.image), path.join(결과, '추천', r.image)); });
