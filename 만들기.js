@@ -239,6 +239,8 @@ i{font-style:normal}
 .광고칸 small{display:block;font-size:11px;color:var(--sub);margin-bottom:4px;letter-spacing:.05em}
 .상품목록{display:grid;gap:12px;margin:14px 0}
 .상품카드{display:flex;flex-direction:column;gap:4px;background:var(--면);border:1px solid var(--선);border-radius:16px;padding:16px 18px;text-decoration:none;color:var(--ink)}
+.상품카드 img{width:120px;height:auto;border-radius:10px;margin-bottom:6px}
+.상품이미지{display:block;width:min(320px,100%);height:auto;border-radius:14px;margin:12px 0 4px;box-shadow:0 2px 12px rgba(0,0,0,.12)}
 .상품카드 b{font-size:18px}.상품카드 span{font-size:14px;color:var(--sub)}.상품카드 em{font-style:normal;font-weight:900;color:var(--깊음)}
 .상품상세 .가격{font-size:26px;font-weight:900;margin:6px 0}.상품상세 .가격 small{font-size:12px;font-weight:400;color:var(--sub)}
 .구매폼{display:grid;gap:12px;margin:12px 0}.구매폼 label{display:grid;gap:4px;font-size:14px;font-weight:700}
@@ -429,7 +431,7 @@ ${곧마감.length ? `<section class="곧마감" aria-label="곧 마감되는 �
   <div class="띠목록">${곧마감.slice(0, 12).map(미니).join('')}</div>
 </section>` : ''}
 ${광고칸('첫화면')}
-${검수용 ? `<section class="추천" aria-label="상품"><div class="제목줄"><h2>상품</h2></div><div class="상품목록">${(상품설정.상품 || []).filter((p) => Number(p.가격) > 0).map((p) => `<a class="상품카드" href="${길(`/products/${p.id}/`)}"><b>${막기(p.이름)}</b><span>${막기(p.한줄)}</span><em>${Number(p.가격).toLocaleString('ko-KR')}원</em></a>`).join('')}</div></section>` : ''}
+${검수용 ? `<section class="추천" aria-label="상품"><div class="제목줄"><h2>상품</h2></div><div class="상품목록">${(상품설정.상품 || []).filter((p) => Number(p.가격) > 0).map((p) => `<a class="상품카드" href="${길(`/products/${p.id}/`)}">${p.이미지 ? `<img src="${길('/products/img/' + encodeURI(p.이미지))}" alt="${막기(p.이름)} 표지" width="800" height="1000">` : ''}<b>${막기(p.이름)}</b><span>${막기(p.한줄)}</span><em>${Number(p.가격).toLocaleString('ko-KR')}원</em></a>`).join('')}</div></section>` : ''}
 <div class="도구"><div class="칩줄" id="기간줄">${기간목록.map(([v, 이름], i) => `<button class="칩" data-v="${v}" aria-pressed="${i === 0}">${이름}</button>`).join('')}</div></div>
 <div class="거름">
   <div class="칩줄" id="분류줄"><button class="칩" data-v="" aria-pressed="true">모든 종류</button>${분류목록.map((c) => `<button class="칩" data-v="${막기(c)}" aria-pressed="false">${막기(c)}</button>`).join('')}</div>
@@ -493,7 +495,7 @@ const 고침 = (html) => html.replace(/href="\/(terms|privacy|refund)\/"/g, (m, 
 [['terms', '이용약관', 법.약관], ['privacy', '개인정보처리방침', 법.방침], ['refund', '환불 규정', 법.환불]].forEach(([경로, 이름, 본문]) => {
   쓰기(`${경로}/index.html`, 틀({ 제목: `${이름} · 아티스트 코치`, 설명: `아티스트 코치 ${이름}`, 경로: `/${경로}/`, 본문: 고침(본문) }));
 });
-const 상품결과 = require('./상품페이지.js')({ 설정: 상품설정, 틀, 길, 막기, 쓰기, 사업자 });
+const 상품결과 = require('./상품페이지.js')({ 설정: 상품설정, 뿌리, 결과, 틀, 길, 막기, 쓰기, 사업자 });
 쓰기('404.html', 틀({
   제목: '페이지를 찾을 수 없어요 · 아티스트 코치', 설명: '페이지를 찾을 수 없어요.', 경로: '/404.html', 색인: false,
   본문: `<section class="일반글"><h1>찾는 페이지가 없어요.</h1><p>공고가 마감돼 내려갔거나 주소가 바뀌었을 수 있어요.</p><a class="단추 주" href="${길('/')}">공고 목록으로 가기</a></section>`,

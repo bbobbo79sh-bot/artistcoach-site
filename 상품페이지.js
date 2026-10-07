@@ -3,7 +3,10 @@
 // '승인확인서버' 주소가 있을 때만 결제 결과 페이지가 그 서버로 확인을 요청한다.
 // ※ 비밀 키는 이 사이트 어디에도 두지 않는다 (공개 저장소).
 
-module.exports = ({ 설정: 원설정, 틀, 길, 막기, 쓰기, 사업자 }) => {
+const fs = require('fs');
+const path = require('path');
+
+module.exports = ({ 설정: 원설정, 뿌리, 결과, 틀, 길, 막기, 쓰기, 사업자 }) => {
   let 설정 = 원설정;
   const 팔것 = (설정.상품 || []).filter((p) => Number(p.가격) > 0);   // 가격이 정해지지 않은 상품은 만들지 않는다
   if (!설정.사용 || !팔것.length) return { 경로목록: [] };
@@ -13,13 +16,22 @@ module.exports = ({ 설정: 원설정, 틀, 길, 막기, 쓰기, 사업자 }) =>
   const 서버 = /^https:\/\/[\w.\-/]+$/.test(설정.승인확인서버 || '') ? 설정.승인확인서버 : '';
   const 경로목록 = ['/products/'];
 
+  // 상품 이미지(표지)는 자료/상품/ 에서 결과 폴더로 복사한다. 파일 이름은 영문·숫자·한글·점·하이픈만 허용.
+  const 이미지주소 = (p) => (p.이미지 && /^[A-Za-z0-9_.\-가-힣]+$/.test(p.이미지) && fs.existsSync(path.join(뿌리, '자료', '상품', p.이미지)))
+    ? 길('/products/img/' + encodeURI(p.이미지)) : '';
+  설정.상품.forEach((p) => {
+    if (!이미지주소(p)) return;
+    fs.mkdirSync(path.join(결과, 'products', 'img'), { recursive: true });
+    fs.copyFileSync(path.join(뿌리, '자료', '상품', p.이미지), path.join(결과, 'products', 'img', p.이미지));
+  });
+
   // ── 상품 목록
   쓰기('products/index.html', 틀({
     제목: '상품 · 아티스트 코치', 설명: '아티스트 코치의 유료 서비스', 경로: '/products/',
     본문: `<section class="일반글">
   <span class="윗글">상품</span>
   <h1>아티스트 코치 서비스</h1>
-  <div class="상품목록">${설정.상품.map((p) => `<a class="상품카드" href="${길(`/products/${p.id}/`)}"><b>${막기(p.이름)}</b><span>${막기(p.한줄)}</span><em>${원(p.가격)}</em></a>`).join('')}</div>
+  <div class="상품목록">${설정.상품.map((p) => `<a class="상품카드" href="${길(`/products/${p.id}/`)}">${이미지주소(p) ? `<img src="${이미지주소(p)}" alt="${막기(p.이름)} 표지" width="800" height="1000">` : ''}<b>${막기(p.이름)}</b><span>${막기(p.한줄)}</span><em>${원(p.가격)}</em></a>`).join('')}</div>
   <p class="작은">결제 전에 <a href="${길('/refund/')}">환불 규정</a>과 <a href="${길('/terms/')}">이용약관</a>을 확인해 주세요.</p>
 </section>`,
   }));
@@ -54,6 +66,7 @@ module.exports = ({ 설정: 원설정, 틀, 길, 막기, 쓰기, 사업자 }) =>
       본문: `<article class="일반글 상품상세">
   <span class="윗글">상품</span>
   <h1>${막기(p.이름)}</h1>
+  ${이미지주소(p) ? `<img class="상품이미지" src="${이미지주소(p)}" alt="${막기(p.이름)} 표지" width="800" height="1000">` : ''}
   <p class="가격">${원(p.가격)}</p>
   <p>${막기(p.한줄)}</p>
   ${p.설명.map((t) => `<p>${막기(t)}</p>`).join('')}
