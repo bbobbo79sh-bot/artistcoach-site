@@ -243,6 +243,10 @@ i{font-style:normal}
 .광고칸{margin:30px auto;text-align:center;min-height:0}
 .광고칸 small{display:block;font-size:11px;color:var(--sub);margin-bottom:4px;letter-spacing:.05em}
 .상품목록{display:grid;gap:12px;margin:14px 0}
+.자료단추{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.복사칸{position:relative;margin:12px 0;background:var(--면);border:1px solid var(--선);border-radius:12px;padding:14px 76px 14px 16px}
+.복사칸 pre{margin:0;white-space:pre-wrap;word-break:break-word;font:inherit;font-size:15px;line-height:1.75}
+.복사칸 .복사{position:absolute;top:10px;right:10px;border:1px solid var(--선);background:var(--bg);border-radius:999px;padding:5px 12px;font:inherit;font-size:13px;font-weight:700;color:var(--깊음);cursor:pointer}
 .자료띠{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin:26px 0 8px;padding:16px 18px;background:var(--연함);border-radius:16px}
 .자료띠 b{display:block;font-size:16px}.자료띠 span{font-size:13.5px;color:var(--sub)}
 .자료목록{display:grid;gap:12px;margin:16px 0}
@@ -398,7 +402,7 @@ const 첫화면스크립트 = `<script>
 })();
 </script>`;
 
-const 자료실 = require('./자료실페이지.js')({ 설정: 자료실설정, 검수용, 뿌리, 결과, 틀, 길, 막기, 쓰기 });
+const 자료실 = require('./자료실페이지.js')({ 설정: 자료실설정, 검수용, 뿌리, 결과, 틀, 길, 막기, 쓰기, 광고칸 });
 const 첫화면본문 = `
 <section class="영웅">
   <span class="윗글">오늘의 지원사업</span>
@@ -540,7 +544,7 @@ const 고침 = (html) => html.replace(/href="\/(terms|privacy|refund)\/"/g, (m, 
 [['terms', '이용약관', 법.약관], ['privacy', '개인정보처리방침', 법.방침], ['refund', '환불 규정', 법.환불]].forEach(([경로, 이름, 본문]) => {
   쓰기(`${경로}/index.html`, 틀({ 제목: `${이름} · 아티스트 코치`, 설명: `아티스트 코치 ${이름}`, 경로: `/${경로}/`, 본문: 고침(본문) }));
 });
-const 가이드결과 = require('./가이드페이지.js')({ 뿌리, 틀, 길, 막기, 쓰기 });
+const 가이드결과 = require('./가이드페이지.js')({ 뿌리, 틀, 길, 막기, 쓰기, 광고칸 });
 const 상품결과 = require('./상품페이지.js')({ 설정: 상품설정, 뿌리, 결과, 틀, 길, 막기, 쓰기, 사업자 });
 쓰기('404.html', 틀({
   제목: '페이지를 찾을 수 없어요 · 아티스트 코치', 설명: '페이지를 찾을 수 없어요.', 경로: '/404.html', 색인: false,
