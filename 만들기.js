@@ -252,8 +252,18 @@ i{font-style:normal}
 .표칸 th,.표칸 td{border:1px solid var(--선);padding:9px 11px;text-align:left;vertical-align:top;line-height:1.6}
 .표칸 th{background:var(--연함);font-weight:700}
 .표칸 td:empty{height:38px}
-.자료띠{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin:26px 0 8px;padding:16px 18px;background:var(--연함);border-radius:16px}
-.자료띠 b{display:block;font-size:16px}.자료띠 span{font-size:13.5px;color:var(--sub)}
+.자료띠{margin:26px 0 8px;padding:16px 0 16px 16px;background:var(--연함);border-radius:16px;overflow:hidden}
+.띠머리{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-right:16px}
+.띠머리 b{display:block;font-size:17px}.띠머리 span{font-size:13px;color:var(--sub)}
+.띠줄{display:flex;gap:10px;margin-top:14px;padding:2px 16px 4px 0;overflow-x:auto;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.띠줄::-webkit-scrollbar{display:none}
+.띠카드{flex:0 0 190px;scroll-snap-align:start;display:flex;flex-direction:column;gap:5px;background:var(--면);border:1px solid var(--선);border-radius:14px;padding:13px 14px;text-decoration:none;color:inherit}
+.띠카드:hover{border-color:var(--브랜드)}
+.띠카드 em{align-self:flex-start;font-style:normal;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px}
+.띠카드 em.종자료{background:var(--브랜드);color:#fff}.띠카드 em.종가이드{border:1px solid var(--브랜드);color:var(--깊음)}
+.띠카드 b{font-size:14.5px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.띠카드 span{font-size:12.5px;color:var(--sub);line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.띠카드.준비중{opacity:.55}
 .자료목록{display:grid;gap:12px;margin:16px 0}
 .자료카드{display:flex;align-items:center;justify-content:space-between;gap:14px;background:var(--면);border:1px solid var(--선);border-radius:16px;padding:14px 16px;margin:10px 0}
 .자료몸{display:flex;flex-direction:column;gap:3px;min-width:0}.자료몸 b{font-size:16px}.자료몸 span{font-size:14px;color:var(--sub);line-height:1.5}.자료몸 small{font-size:12px;color:var(--sub)}
@@ -407,7 +417,8 @@ const 첫화면스크립트 = `<script>
 })();
 </script>`;
 
-const 자료실 = require('./자료실페이지.js')({ 설정: 자료실설정, 검수용, 뿌리, 결과, 틀, 길, 막기, 쓰기, 광고칸 });
+const 가이드결과 = require('./가이드페이지.js')({ 뿌리, 틀, 길, 막기, 쓰기, 광고칸 });
+const 자료실 = require('./자료실페이지.js')({ 설정: 자료실설정, 검수용, 뿌리, 결과, 틀, 길, 막기, 쓰기, 광고칸, 가이드: 가이드결과.목록 });
 const 첫화면본문 = `
 <section class="영웅">
   <span class="윗글">오늘의 지원사업</span>
@@ -549,7 +560,6 @@ const 고침 = (html) => html.replace(/href="\/(terms|privacy|refund)\/"/g, (m, 
 [['terms', '이용약관', 법.약관], ['privacy', '개인정보처리방침', 법.방침], ['refund', '환불 규정', 법.환불]].forEach(([경로, 이름, 본문]) => {
   쓰기(`${경로}/index.html`, 틀({ 제목: `${이름} · 아티스트 코치`, 설명: `아티스트 코치 ${이름}`, 경로: `/${경로}/`, 본문: 고침(본문) }));
 });
-const 가이드결과 = require('./가이드페이지.js')({ 뿌리, 틀, 길, 막기, 쓰기, 광고칸 });
 const 상품결과 = require('./상품페이지.js')({ 설정: 상품설정, 뿌리, 결과, 틀, 길, 막기, 쓰기, 사업자 });
 쓰기('404.html', 틀({
   제목: '페이지를 찾을 수 없어요 · 아티스트 코치', 설명: '페이지를 찾을 수 없어요.', 경로: '/404.html', 색인: false,

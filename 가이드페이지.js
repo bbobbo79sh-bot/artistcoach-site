@@ -6,14 +6,14 @@ const path = require('path');
 
 module.exports = ({ 뿌리, 틀, 길, 막기, 쓰기, 광고칸 = () => '' }) => {
   const 폴더 = path.join(뿌리, '자료', '가이드');
-  if (!fs.existsSync(폴더)) return { 경로목록: [], 글수: 0 };
+  if (!fs.existsSync(폴더)) return { 경로목록: [], 글수: 0, 목록: [] };
   const { 변환, 광고넣기, 복사스크립트 } = require('./마크다운.js')({ 막기 });
 
   const 글들 = fs.readdirSync(폴더).filter((f) => /^\d+_.+\.md$/.test(f)).sort().map((f) => {
     const 번호 = f.match(/^(\d+)_/)[1];
     return { 번호, ...변환(fs.readFileSync(path.join(폴더, f), 'utf8')) };
   }).filter((g) => g.제목 && g.본문.length > 400);   // 제목이 없거나 너무 짧은 글은 올리지 않는다
-  if (!글들.length) return { 경로목록: [], 글수: 0 };
+  if (!글들.length) return { 경로목록: [], 글수: 0, 목록: [] };
   const 경로목록 = ['/guide/'];
 
   쓰기('guide/index.html', 틀({
@@ -43,5 +43,5 @@ module.exports = ({ 뿌리, 틀, 길, 막기, 쓰기, 광고칸 = () => '' }) =>
 </article>`,
     }));
   });
-  return { 경로목록, 글수: 글들.length };
+  return { 경로목록, 글수: 글들.length, 목록: 글들.map((g) => ({ 번호: g.번호, 제목: g.제목, 요약: g.요약 })) };
 };
