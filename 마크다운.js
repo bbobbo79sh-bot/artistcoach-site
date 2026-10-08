@@ -5,7 +5,7 @@
 
 const NL = String.fromCharCode(10), CRLF = String.fromCharCode(13, 10);
 
-module.exports = ({ 막기 }) => {
+module.exports = ({ 막기, 길 = (x) => x }) => {
   const 인라인 = (t) => 막기(t).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').replace(/\*(.+?)\*/g, '<i>$1</i>');
 
   // | 칸 | 칸 | 표: 첫 줄은 제목 줄, 둘째 줄(---)은 건너뛴다. 좁은 화면에서는 옆으로 밀어 볼 수 있다.
@@ -23,9 +23,15 @@ module.exports = ({ 막기 }) => {
     let 제목 = '', 요약 = '', 본문 = '', 목록 = null, 인용 = [], 문단 = [], 코드 = null, 표 = [];
     const 닫기 = () => {
       if (문단.length) { 본문 += `<p>${인라인(문단.join(' '))}</p>\n`; 문단 = []; }
-      if (인용.length) { 본문 += `<blockquote>${인용.map(인라인).join('<br>')}</blockquote>\n`; 인용 = []; }
+      if (인용.length) {
+        const 종류 = /^\*\*영감의 한마디\*\*/.test(인용[0]) ? ' class="영감말"' : /^예\)/.test(인용[0]) ? ' class="예시"' : '';
+        본문 += `<blockquote${종류}>${인용.map(인라인).join('<br>')}</blockquote>\n`; 인용 = [];
+      }
       if (표.length) { 본문 += 표만들기(표); 표 = []; }
-      if (목록) { 본문 += `<${목록.태그}>${목록.항목.map((x) => `<li>${인라인(x)}</li>`).join('')}</${목록.태그}>\n`; 목록 = null; }
+      if (목록) {
+        const 체크 = (x) => /^\[[ xX]?\]\s/.test(x);
+        본문 += `<${목록.태그}${목록.항목.every(체크) ? ' class="체크목록"' : ''}>${목록.항목.map((x) => 체크(x) ? `<li class="체크">${인라인(x.replace(/^\[[ xX]?\]\s/, ''))}</li>` : `<li>${인라인(x)}</li>`).join('')}</${목록.태그}>\n`; 목록 = null;
+      }
     };
     for (const 원 of 줄) {
       const l = 원.trim();
@@ -40,7 +46,14 @@ module.exports = ({ 막기 }) => {
       if (/^# /.test(l)) { 닫기(); 제목 = l.slice(2).trim(); continue; }
       if (/^한 줄 요약\s*:/.test(l)) { 닫기(); 요약 = l.replace(/^한 줄 요약\s*:\s*/, ''); continue; }
       if (/^## /.test(l)) { 닫기(); 본문 += `<h2>${인라인(l.slice(3).trim())}</h2>\n`; continue; }
-      if (/^### /.test(l)) { 닫기(); 본문 += `<h3>${인라인(l.slice(4).trim())}</h3>\n`; continue; }
+      if (/^### /.test(l)) {
+        닫기();
+        const 번 = l.slice(4).trim().match(/^(\d+)\.\s*(.+)$/);       // '### 1. 제목' → 번호 동그라미가 붙은 소제목
+        본문 += 번 ? `<h3 class="번호"><span>${번[1]}</span>${인라인(번[2])}</h3>\n` : `<h3>${인라인(l.slice(4).trim())}</h3>\n`;
+        continue;
+      }
+      const 그림 = l.match(/^!\[(.*?)\]\(([A-Za-z0-9_.\-가-힣]+)\)$/);   // ![설명](파일이름) → 자료/자료실/그림/ 안의 이미지
+      if (그림) { 닫기(); 본문 += `<figure class="글그림"><img src="${길('/resources/img/' + encodeURI(그림[2]))}" alt="${막기(그림[1])}" loading="lazy"></figure>\n`; continue; }
       if (/^> ?/.test(l)) { if (문단.length || 목록) 닫기(); 인용.push(l.replace(/^> ?/, '')); continue; }
       const 불릿 = l.match(/^[-•]\s+(.*)$/), 번호 = l.match(/^\d+\.\s+(.*)$/);
       if (불릿 || 번호) {

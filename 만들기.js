@@ -247,6 +247,14 @@ i{font-style:normal}
 .복사칸{position:relative;margin:12px 0;background:var(--면);border:1px solid var(--선);border-radius:12px;padding:14px 76px 14px 16px}
 .복사칸 pre{margin:0;white-space:pre-wrap;word-break:break-word;font:inherit;font-size:15px;line-height:1.75}
 .복사칸 .복사{position:absolute;top:10px;right:10px;border:1px solid var(--선);background:var(--bg);border-radius:999px;padding:5px 12px;font:inherit;font-size:13px;font-weight:700;color:var(--깊음);cursor:pointer}
+.글그림{margin:18px 0;text-align:center}.글그림 img{max-width:100%;height:auto;border-radius:14px}
+.글본문 h3.번호{display:flex;align-items:center;gap:10px;margin:22px 0 6px;font-size:17px}
+.글본문 h3.번호 span{flex:0 0 auto;width:30px;height:30px;border-radius:50%;background:var(--브랜드);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:15px}
+.글본문 blockquote.예시{margin:8px 0;padding:9px 14px;background:var(--연함);border:0;border-radius:12px;font-size:14.5px}
+.글본문 blockquote.영감말{margin:18px 0;padding:14px 18px;background:var(--연함);border:0;border-left:5px solid var(--브랜드);border-radius:14px}
+.글본문 ul.체크목록{list-style:none;padding-left:0}
+.글본문 li.체크{position:relative;padding:8px 10px 8px 38px;margin:6px 0;background:var(--면);border:1px solid var(--선);border-radius:10px}
+.글본문 li.체크::before{content:"";position:absolute;left:12px;top:11px;width:16px;height:16px;border:2px solid var(--브랜드);border-radius:4px}
 .표칸{overflow-x:auto;margin:14px 0;-webkit-overflow-scrolling:touch}
 .표칸 table{border-collapse:collapse;width:100%;min-width:460px;font-size:14.5px}
 .표칸 th,.표칸 td{border:1px solid var(--선);padding:9px 11px;text-align:left;vertical-align:top;line-height:1.6}

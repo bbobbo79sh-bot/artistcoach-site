@@ -9,7 +9,15 @@ const path = require('path');
 module.exports = ({ 설정, 검수용, 뿌리, 결과, 틀, 길, 막기, 쓰기, 광고칸 = () => '', 가이드 = [] }) => {
   const 켜짐 = !!(설정.사용 || 검수용) && Array.isArray(설정.자료) && 설정.자료.length > 0;
   if (!켜짐) return { 켜짐: false, 경로목록: [], 띠: '', 관련: () => '' };
-  const { 변환, 광고넣기, 복사스크립트 } = require('./마크다운.js')({ 막기 });
+  const { 변환, 광고넣기, 복사스크립트 } = require('./마크다운.js')({ 막기, 길 });
+
+  // 글 안에 넣는 그림: 자료/자료실/그림/ 의 이미지를 /resources/img/ 로 옮긴다 (글에서는 ![설명](파일이름))
+  const 그림폴더 = path.join(뿌리, '자료', '자료실', '그림');
+  if (fs.existsSync(그림폴더)) {
+    fs.mkdirSync(path.join(결과, 'resources', 'img'), { recursive: true });
+    fs.readdirSync(그림폴더).filter((f) => /\.(png|jpe?g|webp|gif|svg)$/i.test(f))
+      .forEach((f) => fs.copyFileSync(path.join(그림폴더, f), path.join(결과, 'resources', 'img', f)));
+  }
 
   const 글경로 = (g) => path.join(뿌리, '자료', '자료실', '글', `${g.id}.md`);
   const 글 = {};   // id → { 제목, 요약, 본문 }
