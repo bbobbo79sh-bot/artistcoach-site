@@ -1140,8 +1140,8 @@
   "target": "",
   "link": "https://www.scas.kr/biz/detail/504",
   "posted": "",
-  "summary": "",
-  "benefit": ""
+  "summary": "데뷔 경험이 없는 청년예술인(개인·단체)의 첫 작품 발표를 돕는 서울문화재단 지원 사업. 서울문화예술지원시스템(SCAS)에서 10/23(금) 18시까지 접수.",
+  "benefit": "첫 작품 발표 지원금 · 선정 발표 2027년 1월 예정"
  },
  {
   "id": "a2c5f53d",
@@ -1153,8 +1153,8 @@
   "target": "",
   "link": "https://www.scas.kr/biz/detail/505",
   "posted": "",
-  "summary": "",
-  "benefit": ""
+  "summary": "서울문화재단이 신진·유망·중견 문학 작가 개인의 첫 책·창작집 발간을 지원하는 사업. 서울문화예술지원시스템(SCAS)에서 10/23(금) 18시까지 접수.",
+  "benefit": "첫 책 발간지원·창작집 발간지원 · 선정 발표 2027년 2월 예정"
  },
  {
   "id": "23767f96",
@@ -1673,8 +1673,8 @@
   "target": "",
   "link": "https://www.arko.or.kr/content/6220",
   "posted": "",
-  "summary": "",
-  "benefit": ""
+  "summary": "아르코 2027 문화예술진흥기금 공모 전체 안내. 기초예술 지원 예산이 939억 원(전년 대비 1.6배)으로 늘었고 주요 사업은 11/5(목) 15시까지 ncas.or.kr에서 접수.",
+  "benefit": "사업별 지원 · 기초예술 생태계 예산 603억 → 939억 원"
  },
  {
   "id": "9a5d49c6",
@@ -1686,8 +1686,8 @@
   "target": "",
   "link": "https://www.arko.or.kr/content/6220",
   "posted": "",
-  "summary": "",
-  "benefit": ""
+  "summary": "34세 이하 공연예술 분야 예술가 개인의 창작·발표 활동을 지원하는 아르코 공연예술청년예술가지원(작년 청년예술가도약지원 개편). 11/5(목) 15시까지 ncas.or.kr 접수.",
+  "benefit": "단년 2천만~5천만 원 · 창작 및 발표 활동 지원"
  },
  {
   "id": "9a537b7e",
@@ -1699,8 +1699,8 @@
   "target": "",
   "link": "https://www.arko.or.kr/content/6220",
   "posted": "",
-  "summary": "",
-  "benefit": ""
+  "summary": "시각예술 분야 작가의 리서치·창작·발표 경비를 지원하는 아르코 시각예술 우수작가창작지원. 11/5(목) 15시까지 ncas.or.kr 접수.",
+  "benefit": "신진 연 1천만~3천만 원 · 유망·중견 연 3천만~6천만 원 · 다년 3년 최대 1억 8천만 원"
  },
  {
   "id": "1b05e5d6",
@@ -1712,8 +1712,8 @@
   "target": "",
   "link": "https://www.arko.or.kr/board/view/4053?cid=1811182",
   "posted": "",
-  "summary": "",
-  "benefit": ""
+  "summary": "공연예술 분야 단체·개인의 우수 신작 창·제작을 지원하는 아르코 공연예술창작산실 올해의신작. 11/5(목) 15시까지 ncas.or.kr에서 접수.",
+  "benefit": "본공연 최대: 창작오페라 3억·창작뮤지컬 2억 5천만·연극 2억·무용·음악·전통예술 1억 원"
  },
  {
   "id": "07932897",
@@ -2063,8 +2063,8 @@
   "target": "",
   "link": "https://www.arko.or.kr/content/6220",
   "posted": "",
-  "summary": "",
-  "benefit": ""
+  "summary": "아르코 2027 문학 분야 지원(예산 약 22.5억 → 44.2억 원). 장편소설창작지원·문학펠로우십은 11/2~12/7, 문학심층비평·문예지원고료·문학레지던시는 11/5(목) 15시까지 접수.",
+  "benefit": "장편소설창작지원 1인 연 1,500만 원 · 문학심층비평 1,500만 원 이내 · 문예지 호당 600만 원 이내"
  },
  {
   "id": "09204126",
@@ -2855,19 +2855,6 @@
   "deadline": "상시",
   "target": "",
   "link": "https://www.kawf.kr/",
-  "posted": "",
-  "summary": "",
-  "benefit": ""
- },
- {
-  "id": "b6ed299d",
-  "cat": "예술인 지원·공모",
-  "org": "아티스트 코치 영감",
-  "region": "",
-  "title": "영감 팁 07 예술활동증명 왜 떨어졌나 장소가 안 됩니다 지원사업 안내",
-  "deadline": "상시",
-  "target": "",
-  "link": "https://www.kawf.kr/social/sub01_1.do",
   "posted": "",
   "summary": "",
   "benefit": ""
