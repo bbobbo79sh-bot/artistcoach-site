@@ -247,6 +247,11 @@ i{font-style:normal}
 .복사칸{position:relative;margin:12px 0;background:var(--면);border:1px solid var(--선);border-radius:12px;padding:14px 76px 14px 16px}
 .복사칸 pre{margin:0;white-space:pre-wrap;word-break:break-word;font:inherit;font-size:15px;line-height:1.75}
 .복사칸 .복사{position:absolute;top:10px;right:10px;border:1px solid var(--선);background:var(--bg);border-radius:999px;padding:5px 12px;font:inherit;font-size:13px;font-weight:700;color:var(--깊음);cursor:pointer}
+.표칸{overflow-x:auto;margin:14px 0;-webkit-overflow-scrolling:touch}
+.표칸 table{border-collapse:collapse;width:100%;min-width:460px;font-size:14.5px}
+.표칸 th,.표칸 td{border:1px solid var(--선);padding:9px 11px;text-align:left;vertical-align:top;line-height:1.6}
+.표칸 th{background:var(--연함);font-weight:700}
+.표칸 td:empty{height:38px}
 .자료띠{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin:26px 0 8px;padding:16px 18px;background:var(--연함);border-radius:16px}
 .자료띠 b{display:block;font-size:16px}.자료띠 span{font-size:13.5px;color:var(--sub)}
 .자료목록{display:grid;gap:12px;margin:16px 0}

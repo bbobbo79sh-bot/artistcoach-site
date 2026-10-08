@@ -8,12 +8,23 @@ const NL = String.fromCharCode(10), CRLF = String.fromCharCode(13, 10);
 module.exports = ({ 막기 }) => {
   const 인라인 = (t) => 막기(t).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').replace(/\*(.+?)\*/g, '<i>$1</i>');
 
+  // | 칸 | 칸 | 표: 첫 줄은 제목 줄, 둘째 줄(---)은 건너뛴다. 좁은 화면에서는 옆으로 밀어 볼 수 있다.
+  const 표만들기 = (줄들) => {
+    const 칸 = (l) => l.replace(/^\|/, '').replace(/\|\s*$/, '').split('|').map((c) => c.trim());
+    const 행 = 줄들.map(칸).filter((r) => !r.every((c) => /^:?-{2,}:?$/.test(c)));
+    if (!행.length) return '';
+    const [머리, ...몸] = 행;
+    return '<div class="표칸"><table><thead><tr>' + 머리.map((c) => '<th>' + 인라인(c) + '</th>').join('') + '</tr></thead><tbody>'
+      + 몸.map((r) => '<tr>' + r.map((c) => '<td>' + 인라인(c) + '</td>').join('') + '</tr>').join('') + '</tbody></table></div>' + NL;
+  };
+
   const 변환 = (원문) => {
     const 줄 = 원문.split(CRLF).join(NL).split(NL);
-    let 제목 = '', 요약 = '', 본문 = '', 목록 = null, 인용 = [], 문단 = [], 코드 = null;
+    let 제목 = '', 요약 = '', 본문 = '', 목록 = null, 인용 = [], 문단 = [], 코드 = null, 표 = [];
     const 닫기 = () => {
       if (문단.length) { 본문 += `<p>${인라인(문단.join(' '))}</p>\n`; 문단 = []; }
       if (인용.length) { 본문 += `<blockquote>${인용.map(인라인).join('<br>')}</blockquote>\n`; 인용 = []; }
+      if (표.length) { 본문 += 표만들기(표); 표 = []; }
       if (목록) { 본문 += `<${목록.태그}>${목록.항목.map((x) => `<li>${인라인(x)}</li>`).join('')}</${목록.태그}>\n`; 목록 = null; }
     };
     for (const 원 of 줄) {
@@ -24,6 +35,7 @@ module.exports = ({ 막기 }) => {
         continue;
       }
       if (코드 !== null) { 코드.push(원.replace(/\s+$/, '')); continue; }
+      if (/^\|/.test(l)) { if (문단.length || 목록 || 인용.length) 닫기(); 표.push(l); continue; }
       if (!l) { 닫기(); continue; }
       if (/^# /.test(l)) { 닫기(); 제목 = l.slice(2).trim(); continue; }
       if (/^한 줄 요약\s*:/.test(l)) { 닫기(); 요약 = l.replace(/^한 줄 요약\s*:\s*/, ''); continue; }
