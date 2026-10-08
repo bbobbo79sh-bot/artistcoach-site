@@ -247,6 +247,17 @@ i{font-style:normal}
 .복사칸{position:relative;margin:12px 0;background:var(--면);border:1px solid var(--선);border-radius:12px;padding:14px 76px 14px 16px}
 .복사칸 pre{margin:0;white-space:pre-wrap;word-break:break-word;font:inherit;font-size:15px;line-height:1.75}
 .복사칸 .복사{position:absolute;top:10px;right:10px;border:1px solid var(--선);background:var(--bg);border-radius:999px;padding:5px 12px;font:inherit;font-size:13px;font-weight:700;color:var(--깊음);cursor:pointer}
+.자료영웅{display:flex;align-items:flex-end;gap:12px;background:var(--아주연함);border:1px solid var(--선);border-radius:22px;padding:24px 20px 0 24px;overflow:hidden;margin:0 0 6px}
+.자료영웅 .영웅글{flex:1;min-width:0;padding-bottom:24px}
+.자료영웅 h1{margin:10px 0 8px;font-size:clamp(26px,5vw,34px);line-height:1.25}
+.자료영웅 .리드{margin:0;font-size:15.5px}
+.자료영웅 img{flex:0 0 auto;width:150px;height:auto;display:block}
+@media (max-width:560px){.자료영웅{padding:18px 12px 0 18px}.자료영웅 img{width:96px}}
+.자료글{counter-reset:카드}
+.글카드{background:var(--면);border:1px solid var(--선);border-radius:20px;padding:18px 20px 12px;margin:14px 0}
+.글카드 h2{display:flex;align-items:center;gap:10px;margin:0 0 10px;font-size:19px;line-height:1.35}
+.글카드 h2::before{counter-increment:카드;content:counter(카드);flex:0 0 auto;width:30px;height:30px;border-radius:50%;background:var(--브랜드);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:15px;font-weight:800}
+.글카드 .표칸{margin:12px 0}
 .글그림{margin:18px 0;text-align:center}.글그림 img{max-width:100%;height:auto;border-radius:14px}
 .글본문 h3.번호{display:flex;align-items:center;gap:10px;margin:22px 0 6px;font-size:17px}
 .글본문 h3.번호 span{flex:0 0 auto;width:30px;height:30px;border-radius:50%;background:var(--브랜드);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:15px}

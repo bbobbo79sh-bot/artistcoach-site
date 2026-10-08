@@ -23,7 +23,7 @@ module.exports = ({ 설정, 검수용, 뿌리, 결과, 틀, 길, 막기, 쓰기,
   const 글 = {};   // id → { 제목, 요약, 본문 }
   설정.자료.forEach((g) => {
     if (/^[A-Za-z0-9_-]+$/.test(g.id) && fs.existsSync(글경로(g))) {
-      const r = 변환(fs.readFileSync(글경로(g), 'utf8'));
+      const r = 변환(fs.readFileSync(글경로(g), 'utf8'), { 카드: true });
       if (r.제목 && r.본문.length > 300) 글[g.id] = r;   // 너무 짧은 글은 웹 페이지로 올리지 않는다
     }
   });
@@ -58,10 +58,11 @@ module.exports = ({ 설정, 검수용, 뿌리, 결과, 틀, 길, 막기, 쓰기,
     쓰기(`resources/${g.id}/index.html`, 틀({
       제목: `${r.제목 || g.이름} · 아티스트 코치`, 현재: '자료실', 경로: `/resources/${g.id}/`, 설명: (r.요약 || g.한줄).slice(0, 150),
       스크립트: r.본문.includes('class="복사칸"') ? 복사스크립트 : '',
-      본문: `<article class="일반글 글본문">
-  <span class="윗글">무료 자료</span>
-  <h1>${막기(r.제목 || g.이름)}</h1>
-  ${r.요약 ? `<p class="리드">${막기(r.요약)}</p>` : ''}
+      본문: `<article class="일반글 글본문 자료글">
+  <header class="자료영웅">
+    <div class="영웅글"><span class="윗글">영감의 무료 자료</span><h1>${막기(r.제목 || g.이름)}</h1>${r.요약 ? `<p class="리드">${막기(r.요약)}</p>` : ''}</div>
+    ${fs.existsSync(path.join(그림폴더, 'mascot.png')) ? `<img src="${길('/resources/img/mascot.png')}" alt="" width="150" height="196">` : ''}
+  </header>
   ${광고넣기(r.본문, 광고칸('글중간'))}
   ${광고칸('글끝')}
   <p class="작은">이 자료는 아티스트 코치가 정리한 일반 안내입니다. 지원 조건과 기준은 각 공고 원문에서 꼭 확인해 주세요.</p>

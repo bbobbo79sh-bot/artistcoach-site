@@ -18,9 +18,10 @@ module.exports = ({ 막기, 길 = (x) => x }) => {
       + 몸.map((r) => '<tr>' + r.map((c) => '<td>' + 인라인(c) + '</td>').join('') + '</tr>').join('') + '</tbody></table></div>' + NL;
   };
 
-  const 변환 = (원문) => {
+  // 두번째 값 { 카드: true } 이면 '## 소제목' 마다 한 장의 카드(<section class="글카드">)로 묶는다 (무료 자료용)
+  const 변환 = (원문, { 카드 = false } = {}) => {
     const 줄 = 원문.split(CRLF).join(NL).split(NL);
-    let 제목 = '', 요약 = '', 본문 = '', 목록 = null, 인용 = [], 문단 = [], 코드 = null, 표 = [];
+    let 제목 = '', 요약 = '', 본문 = '', 목록 = null, 인용 = [], 문단 = [], 코드 = null, 표 = [], 카드열림 = false;
     const 닫기 = () => {
       if (문단.length) { 본문 += `<p>${인라인(문단.join(' '))}</p>\n`; 문단 = []; }
       if (인용.length) {
@@ -45,7 +46,11 @@ module.exports = ({ 막기, 길 = (x) => x }) => {
       if (!l) { 닫기(); continue; }
       if (/^# /.test(l)) { 닫기(); 제목 = l.slice(2).trim(); continue; }
       if (/^한 줄 요약\s*:/.test(l)) { 닫기(); 요약 = l.replace(/^한 줄 요약\s*:\s*/, ''); continue; }
-      if (/^## /.test(l)) { 닫기(); 본문 += `<h2>${인라인(l.slice(3).trim())}</h2>\n`; continue; }
+      if (/^## /.test(l)) {
+        닫기();
+        if (카드) { 본문 += (카드열림 ? '</section>\n' : '') + '<section class="글카드">'; 카드열림 = true; }
+        본문 += `<h2>${인라인(l.slice(3).trim())}</h2>\n`; continue;
+      }
       if (/^### /.test(l)) {
         닫기();
         const 번 = l.slice(4).trim().match(/^(\d+)\.\s*(.+)$/);       // '### 1. 제목' → 번호 동그라미가 붙은 소제목
@@ -66,6 +71,7 @@ module.exports = ({ 막기, 길 = (x) => x }) => {
       문단.push(l);
     }
     닫기();
+    if (카드열림) 본문 += '</section>\n';
     return { 제목, 요약, 본문 };
   };
 
@@ -73,8 +79,9 @@ module.exports = ({ 막기, 길 = (x) => x }) => {
   const 광고넣기 = (본문, 중간광고) => {
     if (!중간광고) return 본문;
     const 자리 = [];
+    const 표식 = 본문.includes('<section class="글카드">') ? '<section class="글카드">' : '<h2>';
     let i = -1;
-    while ((i = 본문.indexOf('<h2>', i + 1)) !== -1) 자리.push(i);
+    while ((i = 본문.indexOf(표식, i + 1)) !== -1) 자리.push(i);
     if (자리.length < 4) return 본문;
     return 본문.slice(0, 자리[2]) + 중간광고 + '\n' + 본문.slice(자리[2]);
   };
