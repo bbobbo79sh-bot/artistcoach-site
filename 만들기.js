@@ -258,7 +258,7 @@ i{font-style:normal}
 .글카드 h2{display:flex;align-items:center;gap:10px;margin:0 0 10px;font-size:19px;line-height:1.35}
 .글카드 h2::before{counter-increment:카드;content:counter(카드);flex:0 0 auto;width:30px;height:30px;border-radius:50%;background:var(--브랜드);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:15px;font-weight:800}
 .글카드 .표칸{margin:12px 0}
-.글그림{margin:18px 0;text-align:center}.글그림 img{max-width:100%;height:auto;border-radius:14px}
+.글그림{margin:18px 0;text-align:center}.글그림 img{max-width:min(100%,380px);height:auto;border-radius:14px;box-shadow:0 2px 12px rgba(0,0,0,.08)}
 .글본문 h3.번호{display:flex;align-items:center;gap:10px;margin:22px 0 6px;font-size:17px}
 .글본문 h3.번호 span{flex:0 0 auto;width:30px;height:30px;border-radius:50%;background:var(--브랜드);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:15px}
 .글본문 blockquote.예시{margin:8px 0;padding:9px 14px;background:var(--연함);border:0;border-radius:12px;font-size:14.5px}

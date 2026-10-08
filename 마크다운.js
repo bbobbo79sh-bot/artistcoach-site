@@ -58,6 +58,7 @@ module.exports = ({ 막기, 길 = (x) => x }) => {
         continue;
       }
       const 그림 = l.match(/^!\[(.*?)\]\(([A-Za-z0-9_.\-가-힣]+)\)$/);   // ![설명](파일이름) → 자료/자료실/그림/ 안의 이미지
+      if (그림 && 그림[1] === '표지') continue;   // 표지 그림은 자료 읽기 화면 맨 위 표지 영역이 대신한다
       if (그림) { 닫기(); 본문 += `<figure class="글그림"><img src="${길('/resources/img/' + encodeURI(그림[2]))}" alt="${막기(그림[1])}" loading="lazy"></figure>\n`; continue; }
       if (/^> ?/.test(l)) { if (문단.length || 목록) 닫기(); 인용.push(l.replace(/^> ?/, '')); continue; }
       const 불릿 = l.match(/^[-•]\s+(.*)$/), 번호 = l.match(/^\d+\.\s+(.*)$/);
