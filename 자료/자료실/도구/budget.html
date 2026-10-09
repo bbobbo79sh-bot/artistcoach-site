@@ -1,0 +1,241 @@
+<div id="bud-root">
+<div id="bud-sum" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:8px;margin:0 0 14px"></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin:0 0 10px">
+<button type="button" id="bud-ex">봄결 트리오 예시 불러오기</button>
+<button type="button" id="bud-reset">초기화</button>
+<button type="button" id="bud-print">인쇄</button>
+<button type="button" id="bud-xls" style="font-weight:900">엑셀로 내려받기</button>
+</div>
+<div id="bud-msg" style="color:var(--깊음);font-size:13px;font-weight:700;min-height:20px;margin:0 0 8px"></div>
+<div id="bud-sections"></div>
+<p style="font-size:12.5px;color:var(--sub);margin:12px 0 0">흰 칸에만 쓰세요. 칸을 비워 두면 그 줄은 계산에서 빠져요. 돈을 받는 분이 사업소득인지 기타소득인지는 그분께 직접 물어보세요. 세율은 일반적인 경우예요(사업소득 3.3%, 기타소득 8.8%).</p>
+<script>
+(function () {
+  var SECTIONS = [['사례비', 4], ['제작비', 3], ['홍보비', 3], ['임차료', 2], ['기타운영비', 2]];
+  var EXAMPLE = {
+    '사례비': [['출연료 (노래·기타·첼로)', 150000, 3, 8, 0, '사업소득']],
+    '제작비': [['사진·영상 기록, 설문지 제작', 300000, 1, 1, 300000, '']],
+    '임차료': [['음향장비 대여 (휴대용)', 100000, 1, 8, 0, '']],
+    '기타운영비': [['이동·운반비 (악기·장비 차량)', 50000, 1, 8, 0, '']]
+  };
+  var RATES = { '사업소득': 0.033, '기타소득': 0.088 };
+  var root = document.getElementById('bud-sections');
+  var sumBox = document.getElementById('bud-sum');
+  var msgBox = document.getElementById('bud-msg');
+  var secs = [];
+
+  function fmt(n) { return Number(n).toLocaleString('ko-KR'); }
+  function num(v) {
+    if (v === '' || v === null || v === undefined) return null;
+    var n = Number(v);
+    return isFinite(n) ? n : NaN;
+  }
+  function mk(tag, text, css) {
+    var e = document.createElement(tag);
+    if (text) e.textContent = text;
+    if (css) e.style.cssText = css;
+    return e;
+  }
+  function input(type, ph, w) {
+    var i = document.createElement('input');
+    i.type = type; i.placeholder = ph || '';
+    i.style.cssText = 'width:' + w + 'px;min-width:' + w + 'px;padding:6px 6px;font-size:14px;margin:0';
+    if (type === 'number') { i.min = '0'; i.inputMode = 'numeric'; i.step = 'any'; }
+    return i;
+  }
+  var CELL = 'padding:5px 4px;border-bottom:1px solid var(--선);vertical-align:middle';
+  var AUTO = 'padding:5px 8px;border-bottom:1px solid var(--선);text-align:right;background:var(--아주연함);font-weight:700;white-space:nowrap;min-width:80px';
+
+  function addRow(sec, vals) {
+    var tr = document.createElement('tr');
+    var r = { tr: tr };
+    function td(css, child) { var c = document.createElement('td'); c.style.cssText = css || CELL; if (child) c.appendChild(child); tr.appendChild(c); return c; }
+    r.name = input('text', '내역', 120); td(CELL, r.name);
+    r.price = input('number', '단가', 84); td(CELL, r.price);
+    r.qty = input('number', '수량', 60); td(CELL, r.qty);
+    r.times = input('number', '횟수', 60); td(CELL, r.times);
+    r.amt = td(AUTO, null);
+    r.own = input('number', '자부담', 84); td(CELL, r.own);
+    r.grant = td(AUTO, null);
+    r.inc = document.createElement('select');
+    r.inc.style.cssText = 'padding:6px 4px;font-size:13.5px;margin:0;width:92px';
+    ['', '사업소득', '기타소득'].forEach(function (v) { var o = document.createElement('option'); o.value = v; o.textContent = v || '선택 안 함'; r.inc.appendChild(o); });
+    td(CELL, r.inc);
+    r.ded = td(AUTO, null);
+    r.net = td(AUTO, null);
+    [r.name, r.price, r.qty, r.times, r.own, r.inc].forEach(function (el) { el.addEventListener('input', recalc); el.addEventListener('change', recalc); });
+    if (vals) { r.name.value = vals[0]; r.price.value = vals[1]; r.qty.value = vals[2]; r.times.value = vals[3]; r.own.value = vals[4] || ''; r.inc.value = vals[5] || ''; }
+    sec.rows.push(r); sec.body.appendChild(tr);
+    return r;
+  }
+
+  function build() {
+    root.textContent = ''; secs = [];
+    SECTIONS.forEach(function (s) {
+      var sec = { name: s[0], rows: [] };
+      var card = mk('div', '', 'background:var(--면);border:1px solid var(--선);border-radius:14px;padding:12px 12px 10px;margin:0 0 12px');
+      card.appendChild(mk('div', s[0], 'font-weight:900;font-size:16px;color:var(--깊음);margin:0 0 8px'));
+      var wrap = mk('div', '', 'overflow-x:auto');
+      var table = mk('table', '', 'border-collapse:collapse;min-width:840px;width:100%;font-size:13.5px');
+      var head = document.createElement('thead');
+      var hr = document.createElement('tr');
+      ['내역', '단가(원)', '수량', '횟수', '금액(원)', '자부담(원)', '지원금 신청액', '소득 종류', '공제(원천세)', '실 지급액'].forEach(function (t) {
+        hr.appendChild(mk('th', t, 'padding:6px 4px;text-align:center;background:var(--연함);font-size:12.5px;white-space:nowrap'));
+      });
+      head.appendChild(hr); table.appendChild(head);
+      sec.body = document.createElement('tbody'); table.appendChild(sec.body);
+      var foot = document.createElement('tfoot'); var fr = document.createElement('tr');
+      var fl = mk('td', s[0] + ' 소계', 'padding:7px 8px;font-weight:900;text-align:right;color:var(--깊음)'); fl.colSpan = 4; fr.appendChild(fl);
+      sec.fAmt = mk('td', '', 'text-align:right;font-weight:900;padding:7px 8px'); fr.appendChild(sec.fAmt);
+      sec.fOwn = mk('td', '', 'text-align:right;font-weight:900;padding:7px 8px'); fr.appendChild(sec.fOwn);
+      sec.fGrant = mk('td', '', 'text-align:right;font-weight:900;padding:7px 8px'); fr.appendChild(sec.fGrant);
+      fr.appendChild(mk('td', '')); sec.fDed = mk('td', '', 'text-align:right;font-weight:900;padding:7px 8px'); fr.appendChild(sec.fDed);
+      sec.fNet = mk('td', '', 'text-align:right;font-weight:900;padding:7px 8px'); fr.appendChild(sec.fNet);
+      foot.appendChild(fr); table.appendChild(foot);
+      wrap.appendChild(table); card.appendChild(wrap);
+      var add = mk('button', '+ 줄 추가', 'margin:8px 0 0;padding:6px 12px;font-size:13px');
+      add.type = 'button'; add.addEventListener('click', function () { addRow(sec); });
+      card.appendChild(add);
+      root.appendChild(card);
+      for (var i = 0; i < s[1]; i++) addRow(sec);
+      secs.push(sec);
+    });
+    recalc();
+  }
+
+  function recalc() {
+    var T = { amt: 0, own: 0, grant: 0, ded: 0, net: 0 };
+    var problem = '';
+    secs.forEach(function (sec) {
+      var S = { amt: 0, own: 0, grant: 0, ded: 0, net: 0 };
+      sec.rows.forEach(function (r) {
+        var p = num(r.price.value), q = num(r.qty.value), t = num(r.times.value), o = num(r.own.value);
+        var bad = [p, q, t, o].some(function (v) { return v !== null && (isNaN(v) || v < 0); });
+        [r.price, r.qty, r.times, r.own].forEach(function (el) { el.style.borderColor = ''; });
+        r.amt.textContent = r.grant.textContent = r.ded.textContent = r.net.textContent = '';
+        if (bad) {
+          [[r.price, p], [r.qty, q], [r.times, t], [r.own, o]].forEach(function (x) { if (x[1] !== null && (isNaN(x[1]) || x[1] < 0)) x[0].style.borderColor = 'var(--깊음)'; });
+          problem = '0 이상의 숫자만 써 주세요. (빨간 테두리 칸을 확인하세요)'; return;
+        }
+        if (p === null) return;
+        var amt = p * (q === null ? 1 : q) * (t === null ? 1 : t);
+        var own = o === null ? 0 : o;
+        if (own > amt) { r.own.style.borderColor = 'var(--깊음)'; problem = '자부담은 금액보다 클 수 없어요.'; own = 0; }
+        var grant = amt - own;
+        var rate = RATES[r.inc.value];
+        var ded = rate ? amt * rate : 0;
+        r.amt.textContent = fmt(amt); r.grant.textContent = fmt(grant);
+        r.ded.textContent = rate ? fmt(Math.round(ded)) : ''; r.net.textContent = fmt(Math.round(amt - ded));
+        S.amt += amt; S.own += own; S.grant += grant; S.ded += ded; S.net += amt - ded;
+      });
+      sec.fAmt.textContent = fmt(S.amt); sec.fOwn.textContent = fmt(S.own); sec.fGrant.textContent = fmt(S.grant);
+      sec.fDed.textContent = fmt(Math.round(S.ded)); sec.fNet.textContent = fmt(Math.round(S.net));
+      for (var k in T) T[k] += S[k];
+    });
+    msgBox.textContent = problem;
+    sumBox.textContent = '';
+    [['총사업비', T.amt, true], ['자부담 (내가 보태는 돈)', T.own, false], ['지원금 신청액', T.grant, true], ['공제 합계 (원천세)', Math.round(T.ded), false], ['받는 분 실 지급 합계', Math.round(T.net), false]].forEach(function (x) {
+      var b = mk('div', '', 'background:' + (x[2] ? 'var(--연함)' : 'var(--면)') + ';border:1px solid var(--선);border-radius:12px;padding:10px 12px');
+      b.appendChild(mk('div', x[0], 'font-size:12px;color:var(--sub);font-weight:700'));
+      b.appendChild(mk('div', fmt(x[1]) + '원', 'font-size:18px;font-weight:900;margin-top:2px'));
+      sumBox.appendChild(b);
+    });
+  }
+
+  document.getElementById('bud-reset').addEventListener('click', build);
+  document.getElementById('bud-print').addEventListener('click', function () { window.print(); });
+  document.getElementById('bud-ex').addEventListener('click', function () {
+    build();
+    secs.forEach(function (sec) {
+      var ex = EXAMPLE[sec.name]; if (!ex) return;
+      ex.forEach(function (v, i) {
+        var r = sec.rows[i] || addRow(sec);
+        r.name.value = v[0]; r.price.value = v[1]; r.qty.value = v[2]; r.times.value = v[3]; r.own.value = v[4] || ''; r.inc.value = v[5] || '';
+      });
+    });
+    recalc();
+  });
+
+  function esc(t) { return String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+  function cS(t, st) { return '<Cell' + (st ? ' ss:StyleID="' + st + '"' : '') + '><Data ss:Type="String">' + esc(t) + '</Data></Cell>'; }
+  function cN(v, f, st) { return '<Cell ss:StyleID="' + (st || 'n') + '"' + (f ? ' ss:Formula="' + esc(f) + '"' : '') + '><Data ss:Type="Number">' + v + '</Data></Cell>'; }
+  function cE(st) { return '<Cell' + (st ? ' ss:StyleID="' + st + '"' : '') + '/>'; }
+  function exportXls() {
+    var rows = [], rn = 0, subs = [];
+    function row(cells) { rn++; rows.push('<Row>' + cells.join('') + '</Row>'); }
+    row([cS('예산안 (예술인 데이터 플랫폼 artistcoach.kr 예산표 계산기)', 't')]);
+    row([cS('흰 칸(단가·수량·횟수·자부담)을 고치면 금액·합계가 다시 계산돼요. 공식 기준은 공고 원문에서 확인하세요.', 'm')]);
+    row(['구분', '내역', '단가(원)', '수량', '횟수', '금액(원)', '자부담(원)', '지원금 신청액', '소득 종류', '공제(원천세)', '실 지급액'].map(function (h) { return cS(h, 'h'); }));
+    secs.forEach(function (sec) {
+      var first = rn + 1, any = false, last = rn;
+      sec.rows.forEach(function (r) {
+        var p = num(r.price.value), q = num(r.qty.value), t = num(r.times.value), o = num(r.own.value);
+        if (r.name.value === '' && p === null) return;
+        any = true;
+        var cells = [cS(sec.name, 'k'), cS(r.name.value, 'k')];
+        var ok = p !== null && !isNaN(p) && p >= 0;
+        var qq = (q === null || isNaN(q)) ? 1 : q, tt = (t === null || isNaN(t)) ? 1 : t, oo = (o === null || isNaN(o)) ? 0 : o;
+        cells.push(ok ? cN(p, '', 'i') : cE('i'));
+        cells.push(q !== null && !isNaN(q) ? cN(q, '', 'i') : cE('i'));
+        cells.push(t !== null && !isNaN(t) ? cN(t, '', 'i') : cE('i'));
+        if (ok) {
+          var amt = p * qq * tt, rate = RATES[r.inc.value] || 0, ded = Math.round(amt * rate);
+          cells.push(cN(amt, 'IF(RC[-3]="","",RC[-3]*IF(RC[-2]="",1,RC[-2])*IF(RC[-1]="",1,RC[-1]))'));
+          cells.push(o !== null && !isNaN(o) ? cN(o, '', 'i') : cE('i'));
+          cells.push(cN(amt - oo, 'IF(RC[-2]="","",RC[-2]-RC[-1])'));
+          cells.push(r.inc.value ? cS(r.inc.value, 'k') : cE('k'));
+          cells.push(cN(ded, 'IF(RC[-4]="","",ROUND(IF(RC[-1]="사업소득",RC[-4]*0.033,IF(RC[-1]="기타소득",RC[-4]*0.088,0)),0))'));
+          cells.push(cN(amt - ded, 'IF(RC[-5]="","",RC[-5]-RC[-1])'));
+        } else {
+          cells.push(cE('n'), o !== null && !isNaN(o) ? cN(o, '', 'i') : cE('i'), cE('n'), r.inc.value ? cS(r.inc.value, 'k') : cE('k'), cE('n'), cE('n'));
+        }
+        row(cells); last = rn;
+      });
+      var sc = [cS(sec.name + ' 소계', 's'), cE('s'), cE('s'), cE('s'), cE('s')];
+      var key = [['amt', 6], ['own', 7], ['grant', 8], null, ['ded', 10], ['net', 11]];
+      var vals = { amt: 0, own: 0, grant: 0, ded: 0, net: 0 };
+      sec.rows.forEach(function (r) {
+        var p = num(r.price.value); if (p === null || isNaN(p) || p < 0) return;
+        var q = num(r.qty.value), t = num(r.times.value), o = num(r.own.value);
+        var amt = p * ((q === null || isNaN(q)) ? 1 : q) * ((t === null || isNaN(t)) ? 1 : t), oo = (o === null || isNaN(o)) ? 0 : o, ded = Math.round(amt * (RATES[r.inc.value] || 0));
+        vals.amt += amt; vals.own += oo; vals.grant += amt - oo; vals.ded += ded; vals.net += amt - ded;
+      });
+      key.forEach(function (k) {
+        if (!k) { sc.push(cE('s')); return; }
+        sc.push(cN(vals[k[0]], any ? 'SUM(R' + first + 'C:R' + last + 'C)' : '', 's'));
+      });
+      row(sc); subs.push({ r: rn, v: vals });
+    });
+    var tc = [cS('총계', 'g'), cE('g'), cE('g'), cE('g'), cE('g')], tv = { amt: 0, own: 0, grant: 0, ded: 0, net: 0 };
+    subs.forEach(function (s) { for (var k in tv) tv[k] += s.v[k]; });
+    [['amt', 6], ['own', 7], ['grant', 8], null, ['ded', 10], ['net', 11]].forEach(function (k) {
+      if (!k) { tc.push(cE('g')); return; }
+      tc.push(cN(tv[k[0]], 'SUM(' + subs.map(function (s) { return 'R' + s.r + 'C'; }).join(',') + ')', 'g'));
+    });
+    row(tc);
+    var A = 'ss:Horizontal="Center" ss:Vertical="Center"', B = '<Borders><Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1" ss:Color="#E8C9D8"/></Borders>';
+    var styles = '<Styles><Style ss:ID="Default"><Font ss:FontName="맑은 고딕" ss:Size="10"/></Style>' +
+      '<Style ss:ID="t"><Font ss:FontName="맑은 고딕" ss:Size="14" ss:Bold="1" ss:Color="#5B2A45"/></Style>' +
+      '<Style ss:ID="m"><Font ss:FontName="맑은 고딕" ss:Size="9" ss:Color="#888888"/></Style>' +
+      '<Style ss:ID="h"><Alignment ' + A + '/><Font ss:FontName="맑은 고딕" ss:Bold="1" ss:Color="#5B2A45"/><Interior ss:Color="#F3B8D0" ss:Pattern="Solid"/></Style>' +
+      '<Style ss:ID="k">' + B + '</Style>' +
+      '<Style ss:ID="i"><NumberFormat ss:Format="#,##0"/>' + B + '</Style>' +
+      '<Style ss:ID="n"><NumberFormat ss:Format="#,##0"/><Interior ss:Color="#FDEFF5" ss:Pattern="Solid"/>' + B + '</Style>' +
+      '<Style ss:ID="s"><NumberFormat ss:Format="#,##0"/><Font ss:FontName="맑은 고딕" ss:Bold="1"/><Interior ss:Color="#FDEFF5" ss:Pattern="Solid"/></Style>' +
+      '<Style ss:ID="g"><NumberFormat ss:Format="#,##0"/><Font ss:FontName="맑은 고딕" ss:Bold="1" ss:Color="#5B2A45"/><Interior ss:Color="#F3B8D0" ss:Pattern="Solid"/></Style></Styles>';
+    var widths = [70, 210, 80, 50, 50, 90, 80, 100, 80, 90, 90].map(function (w) { return '<Column ss:Width="' + w + '"/>'; }).join('');
+    var xml = '<?xml version="1.0" encoding="UTF-8"?><?mso-application progid="Excel.Sheet"?>' +
+      '<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">' + styles +
+      '<Worksheet ss:Name="내 예산안"><Table>' + widths + rows.join('') + '</Table></Worksheet></Workbook>';
+    var blob = new Blob(['﻿' + xml], { type: 'application/vnd.ms-excel' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob); a.download = '내_예산안.xls';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 2000);
+    msgBox.textContent = '엑셀 파일을 내려받았어요. 한글 문서에는 엑셀에서 표를 복사해 붙여 넣으면 돼요.';
+  }
+  document.getElementById('bud-xls').addEventListener('click', exportXls);
+  build();
+})();
+</script>
+</div>

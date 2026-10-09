@@ -7,7 +7,8 @@ const fs = require('fs');
 const path = require('path');
 
 module.exports = ({ 설정, 검수용, 뿌리, 결과, 틀, 길, 막기, 쓰기, 광고칸 = () => '', 가이드 = [] }) => {
-  const 켜짐 = !!(설정.사용 || 검수용) && Array.isArray(설정.자료) && 설정.자료.length > 0;
+  const 전체자료 = Array.isArray(설정.자료) ? 설정.자료.filter((g) => !g.보관) : [];   // 보관: true 인 자료는 어디에도 보이지 않는다
+  const 켜짐 = !!(설정.사용 || 검수용) && 전체자료.length > 0;
   if (!켜짐) return { 켜짐: false, 경로목록: [], 띠: '', 관련: () => '' };
   const { 변환, 광고넣기, 복사스크립트 } = require('./마크다운.js')({ 막기, 길 });
 
@@ -21,7 +22,7 @@ module.exports = ({ 설정, 검수용, 뿌리, 결과, 틀, 길, 막기, 쓰기,
 
   const 글경로 = (g) => path.join(뿌리, '자료', '자료실', '글', `${g.id}.md`);
   const 글 = {};   // id → { 제목, 요약, 본문 }
-  설정.자료.forEach((g) => {
+  전체자료.forEach((g) => {
     if (/^[A-Za-z0-9_-]+$/.test(g.id) && fs.existsSync(글경로(g))) {
       const r = 변환(fs.readFileSync(글경로(g), 'utf8'), { 카드: true });
       if (r.제목 && r.본문.length > 300) 글[g.id] = r;   // 너무 짧은 글은 웹 페이지로 올리지 않는다
@@ -31,7 +32,7 @@ module.exports = ({ 설정, 검수용, 뿌리, 결과, 틀, 길, 막기, 쓰기,
   // 안전 검사에 걸리면(외부 주소·네트워크·저장소 사용 등) 페이지를 만들지 않고 알린다.
   const 금지 = /\b(fetch|XMLHttpRequest|WebSocket|sendBeacon|eval|importScripts|localStorage|sessionStorage|indexedDB)\b|document\s*\.\s*cookie|new\s+Function|<iframe|<link|@import|\b(?:src|href|action|formaction)\s*=\s*["']?\s*(?:https?:)?\/\/|url\(\s*["']?\s*(?:https?:)?\/\//i;
   const 도구 = {};
-  설정.자료.forEach((g) => {
+  전체자료.forEach((g) => {
     const p = path.join(뿌리, '자료', '자료실', '도구', `${g.id}.html`);
     if (!/^[A-Za-z0-9_-]+$/.test(g.id) || !fs.existsSync(p)) return;
     const t = fs.readFileSync(p, 'utf8');
@@ -41,7 +42,7 @@ module.exports = ({ 설정, 검수용, 뿌리, 결과, 틀, 길, 막기, 쓰기,
   });
   const 글주소 = (g) => 길(`/resources/${g.id}/`);
   // 정식 사이트에서는 글이 준비된 자료만 보인다(준비 중인 자료는 검수용에서만 '곧 올라와요'로 보임)
-  const 자료목록 = 검수용 ? 설정.자료 : 설정.자료.filter((g) => 글[g.id] || 도구[g.id]);
+  const 자료목록 = 검수용 ? 전체자료 : 전체자료.filter((g) => g.승인 !== false && (글[g.id] || 도구[g.id]));
   if (!자료목록.length) return { 켜짐: false, 경로목록: [], 띠: '', 관련: () => '' };
 
   const 단추 = (g, 작게) => {
