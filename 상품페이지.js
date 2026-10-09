@@ -27,9 +27,9 @@ module.exports = ({ 설정: 원설정, 뿌리, 결과, 틀, 길, 막기, 쓰기,
 
   // ── 상품 목록
   쓰기('products/index.html', 틀({
-    제목: '상품 · 아티스트 코치', 설명: '아티스트 코치의 유료 서비스', 경로: '/products/',
+    제목: '스토어 · 아티스트 코치', 설명: '아티스트 코치의 유료 서비스', 경로: '/products/',
     본문: `<section class="일반글">
-  <span class="윗글">상품</span>
+  <span class="윗글">스토어</span>
   <h1>아티스트 코치 서비스</h1>
   <div class="상품목록">${설정.상품.map((p) => `<a class="상품카드" href="${길(`/products/${p.id}/`)}">${이미지주소(p) ? `<img src="${이미지주소(p)}" alt="${막기(p.이름)} 표지" width="800" height="1000">` : ''}<b>${막기(p.이름)}</b><span>${막기(p.한줄)}</span><em>${원(p.가격)}</em></a>`).join('')}</div>
   <p class="작은">결제 전에 <a href="${길('/refund/')}">환불 규정</a>과 <a href="${길('/terms/')}">이용약관</a>을 확인해 주세요.</p>
@@ -64,7 +64,7 @@ module.exports = ({ 설정: 원설정, 뿌리, 결과, 틀, 길, 막기, 쓰기,
     쓰기(`products/${p.id}/index.html`, 틀({
       제목: `${p.이름} · 아티스트 코치`, 설명: p.한줄, 경로: `/products/${p.id}/`, 스크립트,
       본문: `<article class="일반글 상품상세">
-  <span class="윗글">상품</span>
+  <span class="윗글">스토어</span>
   <h1>${막기(p.이름)}</h1>
   ${이미지주소(p) ? `<img class="상품이미지" src="${이미지주소(p)}" alt="${막기(p.이름)} 표지" width="800" height="1000">` : ''}
   <p class="가격">${원(p.가격)}</p>

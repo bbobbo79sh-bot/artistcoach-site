@@ -285,6 +285,8 @@ i{font-style:normal}
 .띠줄::-webkit-scrollbar{display:none}
 .띠카드{flex:0 0 190px;scroll-snap-align:start;display:flex;flex-direction:column;gap:5px;background:var(--면);border:1px solid var(--선);border-radius:14px;padding:13px 14px;text-decoration:none;color:inherit}
 .띠카드:hover{border-color:var(--브랜드)}
+.띠꼬리{display:flex;align-items:center;gap:6px}
+.무료꼬리{text-decoration:none;font-style:normal;font-size:11px;font-weight:700;padding:1px 7px;border-radius:999px;background:var(--연함);color:var(--깊음);vertical-align:middle}
 .띠카드 em{align-self:flex-start;font-style:normal;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px}
 .띠카드 em.종자료{background:var(--브랜드);color:#fff}.띠카드 em.종가이드{border:1px solid var(--브랜드);color:var(--깊음)}
 .띠카드 b{font-size:14.5px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
@@ -348,7 +350,7 @@ ${애드센스 ? `<script async src="https://pagead2.googlesyndication.com/pagea
 <body>
 <header class="머리"><div class="틀">
   <a class="로고줄" href="${길('/')}"><img src="${길('/logo.svg')}" alt="" width="36" height="36"><span class="글자로고">아티스트<mark>코치</mark></span></a>
-  <nav><a href="${길('/')}"${현재 === '공고' ? ' aria-current="page"' : ''}>공고</a><a href="${길('/about/')}"${현재 === '소개' ? ' aria-current="page"' : ''}>소개</a><a href="${길('/guide/')}"${현재 === '가이드' ? ' aria-current="page"' : ''}>가이드</a>${자료실켜짐 ? `<a href="${길('/resources/')}"${현재 === '자료실' ? ' aria-current="page"' : ''}>자료실</a>` : ''}${검수용 ? `<a href="${길('/products/')}">상품</a>` : ''}</nav>
+  <nav><a href="${길('/')}"${현재 === '공고' ? ' aria-current="page"' : ''}>공고</a><a href="${길('/about/')}"${현재 === '소개' ? ' aria-current="page"' : ''}>소개</a><a href="${길('/guide/')}"${현재 === '가이드' ? ' aria-current="page"' : ''}>가이드</a>${자료실켜짐 ? `<a href="${길('/resources/')}"${현재 === '자료실' ? ' aria-current="page"' : ''}>자료실</a>` : ''}${검수용 ? `<a href="${길('/products/')}">스토어</a>` : ''}</nav>
 </div></header>
 <main class="틀">
 ${본문}
@@ -501,7 +503,7 @@ ${곧마감.length ? `<section class="곧마감" aria-label="곧 마감되는 �
 </section>` : ''}
 ${자료실.띠}
 ${광고칸('첫화면')}
-${검수용 ? `<section class="추천" aria-label="상품"><div class="제목줄"><h2>상품</h2></div><div class="상품목록">${(상품설정.상품 || []).filter((p) => Number(p.가격) > 0).map((p) => `<a class="상품카드" href="${길(`/products/${p.id}/`)}">${p.이미지 ? `<img src="${길('/products/img/' + encodeURI(p.이미지))}" alt="${막기(p.이름)} 표지" width="800" height="1000">` : ''}<b>${막기(p.이름)}</b><span>${막기(p.한줄)}</span><em>${Number(p.가격).toLocaleString('ko-KR')}원</em></a>`).join('')}</div></section>` : ''}
+${검수용 ? `<section class="추천" aria-label="스토어"><div class="제목줄"><h2>스토어</h2></div><div class="상품목록">${(상품설정.상품 || []).filter((p) => Number(p.가격) > 0).map((p) => `<a class="상품카드" href="${길(`/products/${p.id}/`)}">${p.이미지 ? `<img src="${길('/products/img/' + encodeURI(p.이미지))}" alt="${막기(p.이름)} 표지" width="800" height="1000">` : ''}<b>${막기(p.이름)}</b><span>${막기(p.한줄)}</span><em>${Number(p.가격).toLocaleString('ko-KR')}원</em></a>`).join('')}</div></section>` : ''}
 <div class="도구"><div class="칩줄" id="기간줄">${기간목록.map(([v, 이름], i) => `<button class="칩" data-v="${v}" aria-pressed="${i === 0}">${이름}</button>`).join('')}</div></div>
 <div class="거름">
   <div class="칩줄" id="분류줄"><button class="칩" data-v="" aria-pressed="true">모든 종류</button>${분류목록.map((c) => `<button class="칩" data-v="${막기(c)}" aria-pressed="false">${막기(c)}</button>`).join('')}</div>
