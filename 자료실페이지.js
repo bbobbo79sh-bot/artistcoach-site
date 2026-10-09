@@ -92,11 +92,49 @@ module.exports = ({ 설정, 검수용, 뿌리, 결과, 틀, 길, 막기, 쓰기,
   ];
   const 띠 = `<section class="자료띠" aria-label="무료 자료">
   <div class="띠머리"><div><b>영감의 자료실</b><span>읽고, 계산하고, 따라 쓰는 자료 ${자료목록.length}가지 · 가이드 ${가이드.length}편 · 가입 없이 무료로 바로</span></div><a class="단추 주 작은단추" href="${길('/resources/')}">자료실 가기 →</a></div>
-  <div class="띠줄">${배너카드.map((c) => {
+  <div class="띠줄" id="자료줄">${[0, 1, 2].map((k) => 배너카드.map((c) => {
+    // 카드뉴스 줄처럼 끊김 없이 돌도록 같은 카드를 세 벌 놓는다(앞뒤 벌은 보조기기에서 숨김)
+    const 숨김 = k !== 1 ? ' tabindex="-1" aria-hidden="true"' : '';
     const 속 = `<div class="띠꼬리"><em class="${c.종류 === '자료' ? '종자료' : '종가이드'}">${c.종류}</em><u class="무료꼬리">무료</u></div><b>${막기(c.이름)}</b><span>${막기(c.한줄)}</span>`;
-    return c.주소 ? `<a class="띠카드" href="${c.주소}">${속}</a>` : `<div class="띠카드 준비중">${속}</div>`;
-  }).join('')}</div>
-</section>`;
+    return c.주소 ? `<a class="띠카드" href="${c.주소}"${숨김}>${속}</a>` : `<div class="띠카드 준비중"${k !== 1 ? ' aria-hidden="true"' : ''}>${속}</div>`;
+  }).join('')).join('')}</div>
+</section>
+<script>
+(function(){
+  var 줄=document.getElementById('자료줄');if(!줄)return;
+  var n=${배너카드.length};if(n<2)return;
+  var 줄임=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var 한벌=0,위치=0,멈춤=false,마지막=0,쉬는타이머=null;
+  function 재기(){var a=줄.children[0],b=줄.children[n];if(a&&b)한벌=b.offsetLeft-a.offsetLeft}
+  function 맞추기(){
+    if(!한벌)return;
+    if(위치>=한벌*2){위치-=한벌}else if(위치<한벌*0.5){위치+=한벌}
+    줄.scrollLeft=위치;
+  }
+  재기();위치=한벌;줄.scrollLeft=위치;
+  addEventListener('resize',function(){var 비율=한벌?위치/한벌:1;재기();위치=한벌*비율;줄.scrollLeft=위치},{passive:true});
+  function 멈추기(){멈춤=true;clearTimeout(쉬는타이머)}
+  function 이어가기(늦게){clearTimeout(쉬는타이머);쉬는타이머=setTimeout(function(){위치=줄.scrollLeft;멈춤=false},늦게||0)}
+  줄.addEventListener('mouseenter',멈추기);
+  줄.addEventListener('mouseleave',function(){이어가기(300)});
+  줄.addEventListener('touchstart',멈추기,{passive:true});
+  줄.addEventListener('touchend',function(){이어가기(2500)},{passive:true});
+  줄.addEventListener('focusin',멈추기);
+  줄.addEventListener('focusout',function(){이어가기(300)});
+  줄.addEventListener('wheel',function(){멈추기();이어가기(2500)},{passive:true});
+  줄.addEventListener('scroll',function(){
+    if(!멈춤)return;
+    위치=줄.scrollLeft;
+    if(위치>=한벌*2){위치-=한벌;줄.scrollLeft=위치}else if(위치<한벌*0.5){위치+=한벌;줄.scrollLeft=위치}
+  },{passive:true});
+  function 한프레임(t){
+    if(!마지막)마지막=t;var 간격=Math.min(t-마지막,64);마지막=t;
+    if(!멈춤&&!document.hidden){위치+=간격*0.035;맞추기()}
+    requestAnimationFrame(한프레임);
+  }
+  if(!줄임)requestAnimationFrame(한프레임);
+})();
+</script>`;
 
   // 공고 상세 아래: 관련 자료 1~2개
   const 관련 = (ids) => {

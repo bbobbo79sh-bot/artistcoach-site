@@ -281,7 +281,7 @@ i{font-style:normal}
 .자료띠{margin:26px 0 8px;padding:16px 0 16px 16px;background:var(--연함);border-radius:16px;overflow:hidden}
 .띠머리{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-right:16px}
 .띠머리 b{display:block;font-size:17px}.띠머리 span{font-size:13px;color:var(--sub)}
-.띠줄{display:flex;gap:10px;margin-top:14px;padding:2px 16px 4px 0;overflow-x:auto;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.띠줄{display:flex;gap:10px;margin-top:14px;padding:2px 16px 4px 0;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
 .띠줄::-webkit-scrollbar{display:none}
 .띠카드{flex:0 0 190px;scroll-snap-align:start;display:flex;flex-direction:column;gap:5px;background:var(--면);border:1px solid var(--선);border-radius:14px;padding:13px 14px;text-decoration:none;color:inherit}
 .띠카드:hover{border-color:var(--브랜드)}
@@ -497,10 +497,6 @@ ${추천.length ? `<section class="추천" aria-label="인기 카드뉴스" aria
   if(!줄임)requestAnimationFrame(한프레임);
 })();
 </script>` : ''}
-${곧마감.length ? `<section class="곧마감" aria-label="곧 마감되는 공고">
-  <div class="제목줄"><h2>곧 마감돼요</h2><button class="글단추" id="곧전체" type="button">7일 이내 ${곧마감.length}건 모두 보기 →</button></div>
-  <div class="띠목록">${곧마감.slice(0, 12).map(미니).join('')}</div>
-</section>` : ''}
 ${자료실.띠}
 ${광고칸('첫화면')}
 ${검수용 ? `<section class="추천" aria-label="스토어"><div class="제목줄"><h2>스토어</h2></div><div class="상품목록">${(상품설정.상품 || []).filter((p) => Number(p.가격) > 0).map((p) => `<a class="상품카드" href="${길(`/products/${p.id}/`)}">${p.이미지 ? `<img src="${길('/products/img/' + encodeURI(p.이미지))}" alt="${막기(p.이름)} 표지" width="800" height="1000">` : ''}<b>${막기(p.이름)}</b><span>${막기(p.한줄)}</span><em>${Number(p.가격).toLocaleString('ko-KR')}원</em></a>`).join('')}</div></section>` : ''}
