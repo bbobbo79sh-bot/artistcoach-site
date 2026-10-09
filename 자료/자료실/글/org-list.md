@@ -1,50 +1,548 @@
 # 예술지원기관 모음
-한 줄 요약: 전국에서 예술 지원사업 공고를 내는 기관 144곳을, 영감이 직접 모았어요.
+한 줄 요약: 공고를 내는 예술 지원 기관 429곳의 공식 누리집을 지역별로 모았어요. 이름을 누르면 해당 누리집으로 가요.
 
 ![표지](org-list-cover.png)
 
-## 먼저 알아 두세요
+## 총 429곳이에요
 
-지원사업 공고는 **여러 기관**에서 따로따로 나와요. 한곳에서만 볼 수는 없어요.
-그래서 전국의 예술 지원 기관을 **지역별로** 모아 두었어요. 내가 사는 곳 가까이의 기관부터 확인해 보세요.
+영감이 지원사업 공고를 찾아다니며 **직접 모은 기관 429곳**이에요.
+한 줄에 한 곳씩, 지역별로 정리했어요. 기관 이름을 누르면 그 기관의 공식 누리집이 새 창으로 열려요.
 
 > **영감의 한마디**
 > 공고는 가만있어도 오는 게 아니여~ 자네가 찾아가야 있어유. 사는 동네 재단부터 눈여겨봐.
 
-## 먼저 보세요: 공고를 모아 보여 주는 사이트 3곳
-
-지원사업을 **한곳에 모아 보여 주는 사이트**가 있어요. 영감이 늘 고맙게 쓰는 곳들이에요.
-
-| 사이트 | 어떤 곳 |
-|---|---|
-| **아트누리** | 예술 지원사업 공고를 모아 보여 줘요 |
-| **위아츠** | 예술 지원사업 공고를 모아 보여 줘요 |
-| **모모365** | 지원사업 공고를 모아 보여 줘요 |
-
-그런데 **가끔 빠뜨리는 공고가 있어요.** 그래서 내가 사는 곳 가까이의 기관은 **직접** 찾아보는 걸 권해요.
-
 ## 이렇게 쓰세요
 
-아래 상자에서 **지역 이름**(서울, 경기, 부산 등)을 눌러 훑어보거나, **기관 이름**(예: 문화재단, 성남)을 쳐서 찾으세요.
-
-기관을 찾았다면 이렇게 하세요.
-
-1. 기관 이름을 검색해서 **누리집**을 찾아요.
-2. **공지사항**(또는 사업공고) 게시판을 즐겨찾기해요.
-3. 알림을 받을 수 있으면 **신청**해 두어요. (소식지, 문자, 카카오톡 채널 등)
+1. 아래에서 **내가 사는 지역**부터 찾아요. (아래 지역 이름: 전국, 서울, 경기, 인천, 부산, 대구, 광주, 대전, 울산, 세종, 강원, 충북, 충남, 전북, 전남, 경북, 경남, 제주)
+2. 문화재단, 시청·군청·구청의 **공지사항(사업공고)** 게시판을 즐겨찾기해요.
+3. 소식을 받을 수 있으면(문자, 소식지, 카카오톡 채널) **신청**해 두어요.
 4. 일주일에 한 번, 새 공고가 올라왔는지 훑어봐요.
-
-## 공고를 찾았다면
-
-먼저 **신청 기간**을 확인하세요. 그다음 [공고문 1분 읽기]로 **네 가지만** 찾아서 읽어 보세요.
-막히는 말이 나오면 [공고문 단어 해석 사전]에서 찾아보세요.
+5. 공고를 찾았다면 **신청 기간**부터 확인하고, [공고문 1분 읽기]로 네 가지만 읽어 보세요. 막히는 말은 [공고문 단어 해석 사전]에서 찾아요.
 
 ## 알아 두세요
 
-- 이 목록은 **2024년 9월**에 영감이 직접 모은 것이에요.
-- 기관 이름이나 운영이 **바뀌었을 수** 있어요. 검색해서 최신 누리집을 꼭 확인하세요.
-- 모든 기관이 항상 예술인 공모를 하는 건 아니에요. 해마다 달라요.
-- 우리 지역 기관이 빠져 있다면 영감에게 알려 주세요.
+- 이 목록은 **2026년 10월에 확인한 기준**이에요. 기관 이름이나 누리집 주소가 바뀔 수 있어요.
+- 모든 기관이 해마다 예술인 공모를 하는 건 아니에요. 공고가 없는 해도 있어요.
+- 누리집이 열리지 않거나 우리 지역 기관이 빠져 있다면 영감에게 알려 주세요.
+
+## 전국 (53곳)
+
+전국 단위로 공모를 내는 기관이에요. 지역과 상관없이 지원할 수 있는 사업이 많아요.
+
+- [문화체육관광부](https://www.mcst.go.kr)
+- [한국문화예술위원회](https://www.arko.or.kr/)
+- [한국장애인문화예술원](https://kdac.or.kr/)
+- [국립극단](https://www.ntck.or.kr/ko)
+- [한국예술인복지재단](https://www.kawf.kr/)
+- [한국출판문화산업진흥원](https://www.kpipa.or.kr/)
+- [국가유산청](https://www.khs.go.kr)
+- [국립무형유산원](https://www.nihc.go.kr/)
+- [국가유산진흥원](https://www.kh.or.kr)
+- [(사)국제아동청소년연극협회](https://assitejkorea.org)
+- [한국국제문화교류진흥원](https://kofice.or.kr/)
+- [아트포럼리](https://artforum.co.kr/)
+- [한국공예디자인문화진흥원](https://www.kcdf.or.kr)
+- [한국콘텐츠진흥원](https://www.kocca.kr)
+- [전통공연예술진흥재단](https://www.kotpa.org/ucms/main/indexmain.do)
+- [CJ문화재단](https://www.cjazit.org/)
+- [대한무용협회](https://koreadanceassociation.org/)
+- [한국문화예술회관연합회](https://www.kocaca.or.kr)
+- [예술경영지원센터](https://www.gokams.or.kr)
+- [국립국악원](https://www.gugak.go.kr/)
+- [KT&G상상마당](https://www.sangsangmadang.com/)
+- [지역문화진흥원](https://www.rcda.or.kr)
+- [국립아시아문화전당](https://www.acc.go.kr)
+- [국립한글박물관](https://www.hangeul.go.kr)
+- [남산골한옥마을](https://hanokmaeul.co.kr/)
+- [국악방송](https://new.igbf.kr/)
+- [파라다이스문화재단](https://pcf.or.kr/)
+- [MnJ문화복지재단](https://www.mnjfoundation.org/)
+- [신나는국악여행 - 아트공감](https://www.empathyart.co.kr)
+- [한국메세나협회](https://www.mecenat.or.kr/ko/)
+- [서울돈화문국악당](https://sgtt.kr/)
+- [한국문화원연합회](https://kccf.or.kr/)
+- [두산아트센터](https://www.doosanartcenter.com/ko)
+- [수림문화재단](https://soorimcf.or.kr/)
+- [춘천인형극제](http://www.cocobau.com)
+- [재단법인 빛이나](https://www.shiny.or.kr)
+- [국립박물관문화재단](https://www.nmf.or.kr/)
+- [국립극장](https://www.ntok.go.kr/)
+- [한국박물관협회](https://museum.or.kr/)
+- [한국문화예술교육진흥원](https://arte.or.kr)
+- [한국연극인복지재단](http://plays.or.kr)
+- [한국소극장협회](https://www.smalltheater.or.kr)
+- [호반문화재단](https://hobancf.or.kr)
+- [한국미술협회](https://www.kfaa.or.kr)
+- [한국연극협회](http://ktheater.bravod.co.kr)
+- [서울연극협회](https://stheater.or.kr)
+- [한국사진작가협회](https://www.pask.net)
+- [한국음악협회](https://www.mak.or.kr:444)
+- [영화진흥위원회](https://www.kofic.or.kr)
+- [한국현대판화가협회](https://koreanprints.co.kr)
+- [한국공예·디자인문화진흥원](https://www.kcdf.or.kr)
+- [한국은행 화폐박물관](https://www.bok.or.kr/museum/main/main.do)
+- [신한갤러리(신한은행 아름다운은행)](https://www.beautifulshinhan.co.kr)
+
+## 서울 (59곳)
+
+서울시와 구 문화재단, 구청, 공연장·미술관이 있어요. 내가 사는 구의 문화재단과 구청도 꼭 확인하세요.
+
+- [서울문화재단](https://www.sfac.or.kr)
+- [노원문화재단](https://www.nowonarts.kr)
+- [성북문화재단](https://www.sbculture.or.kr)
+- [금천문화재단](https://gcfac.or.kr)
+- [도봉문화재단](https://www.dbfac.or.kr)
+- [강북문화재단](https://www.gbcf.or.kr/)
+- [동작문화재단](https://www.idfac.or.kr/)
+- [광진문화재단](https://www.naruart.or.kr/)
+- [구로문화재단](https://www.guroartsvalley.or.kr)
+- [서초문화재단](https://www.seochocf.or.kr)
+- [송파문화재단](https://www.songpafac.or.kr)
+- [소전문화재단](http://www.sojeonfdn.org/)
+- [종로문화재단](https://www.jfac.or.kr)
+- [영등포문화재단](https://www.ydpcf.or.kr/)
+- [강동문화재단](https://www.gdfac.or.kr)
+- [양천문화재단](https://yfac.kr)
+- [성동문화재단](https://www.sdfac.or.kr/)
+- [동대문문화재단](https://www.ddmac.or.kr/)
+- [마포문화재단](https://www.mfac.or.kr/)
+- [은평문화재단](https://www.efac.or.kr/)
+- [강남문화재단](https://www.gangnam.go.kr/office/gfac/index.htm)
+- [중랑문화재단](https://www.jnfac.or.kr)
+- [관악문화재단](https://gfac.or.kr)
+- [서울특별시(서울문화포털 공모소식)](https://culture.seoul.go.kr/)
+- [OCI미술관](https://www.ocimuseum.org/)
+- [강남구청](https://www.gangnam.go.kr/)
+- [국립정동극장](https://www.jeongdong.or.kr/)
+- [서울마포음악창작소](https://www.mapoindie.or.kr/)
+- [아마도예술공간](https://amadoart.org/)
+- [용산문화재단](https://yongsanculture.or.kr/)
+- [서울 종로구청](https://www.jongno.go.kr/portalMain.do)
+- [서울 용산구청](https://www.yongsan.go.kr/portal/main/main.do)
+- [서울 성동구청](https://www.sd.go.kr/main/index.do)
+- [서울 광진구청](https://www.gwangjin.go.kr/portal/main/main.do)
+- [서울 중랑구청](https://www.jungnang.go.kr/portal/main.do)
+- [서울 도봉구청](https://www.dobong.go.kr/)
+- [서울 노원구청](https://www.nowon.kr/www/index.do)
+- [서울 은평구청](https://www.ep.go.kr/www/index.do)
+- [서울 서대문구청](https://www.sdm.go.kr/index.do)
+- [서울 마포구청](https://www.mapo.go.kr/site/main/home)
+- [서울 양천구청](https://www.yangcheon.go.kr/site/yangcheon/main.do)
+- [서울 강서구청](https://www.gangseo.seoul.kr/index)
+- [서울 영등포구청](https://www.ydp.go.kr/www/index.do)
+- [서울 동작구청](https://www.dongjak.go.kr/portal/main/main.do)
+- [서울 관악구청](https://www.gwanak.go.kr/site/gwanak/main.do)
+- [서울특별시청](https://www.seoul.go.kr/main/index.jsp)
+- [서울 중구청](https://www.junggu.seoul.kr/main.do)
+- [서울 금천구청](https://www.geumcheon.go.kr/)
+- [서울 성북구청](https://www.sb.go.kr/www/index.do)
+- [서울 동대문구청](https://www.ddm.go.kr/www/index.do)
+- [서울 구로구청](https://www.guro.go.kr/www/mini.do)
+- [서울 강북구청](https://www.gangbuk.go.kr/portal/main/main.do)
+- [서울 서초구청](https://www.seocho.go.kr/site/seocho/main.do)
+- [서울 강동구청](https://www.gangdong.go.kr/newportal/)
+- [서울 송파구청](https://www.songpa.go.kr/www/index.do)
+- [갤러리이즈](http://www.galleryis.com)
+- [서울남산국악당](https://sgtt.kr)
+- [우란문화재단](https://wooranfdn.org)
+- [서울시립미술관(공지·공모)](https://sema.seoul.go.kr)
+
+## 경기 (60곳)
+
+경기도와 시·군 문화재단, 시청이 있어요. 시·군마다 지원 대상이 달라서 사는 곳 기관부터 보세요.
+
+- [파주문화재단](https://www.pajucf.or.kr)
+- [경기문화재단](https://www.ggcf.kr/)
+- [경기아트센터](https://ggac.or.kr/ggac/)
+- [성남아트센터(성남문화재단)](https://www.snart.or.kr)
+- [경기콘텐츠진흥원](https://www.gcon.or.kr)
+- [경기콘텐츠코리아랩](https://gconlab.or.kr)
+- [부천문화재단](https://www.bcf.or.kr)
+- [수원문화재단](https://www.swcf.or.kr/)
+- [광주시문화재단](https://www.nsart.or.kr)
+- [고양문화재단](https://www.artgy.or.kr)
+- [군포문화재단](https://www.gunpocf.or.kr)
+- [용인문화재단](https://www.yicf.or.kr)
+- [평택시문화재단](https://www.pccf.or.kr)
+- [안양문화예술재단](https://ayac.or.kr)
+- [하남문화재단](https://www.hnart.or.kr)
+- [안산문화재단](https://www.ansanart.com)
+- [의정부문화재단](https://www.uac.or.kr)
+- [여주세종문화관광재단](https://www.yjcf.or.kr)
+- [오산문화재단](https://www.osan.go.kr)
+- [과천문화재단](https://www.gcart.or.kr/)
+- [광명문화재단](https://www.gmcf.or.kr)
+- [김포문화재단](https://www.gcf.or.kr)
+- [양평문화재단](https://www.ypcf.or.kr/)
+- [포천문화관광재단](https://www.pcfac.or.kr/)
+- [구리문화재단](https://www.guriart.or.kr)
+- [안성시청](https://www.anseong.go.kr/)
+- [경기예술인의 집](https://artist.ggcf.kr)
+- [경기도청](https://www.gg.go.kr/)
+- [평택시청](https://www.pyeongtaek.go.kr/main.do)
+- [의정부시청](https://www.ui4u.go.kr/main.do)
+- [파주시청](https://www.paju.go.kr/index.do)
+- [광주시청(경기)](https://www.gjcity.go.kr/main.do)
+- [오산시청](https://www.osan.go.kr/main.do)
+- [이천시청](https://www.icheon.go.kr/main.do)
+- [양주시청](https://www.yangju.go.kr/www/index.do)
+- [의왕시청](https://www.uiwang.go.kr/index)
+- [하남시청](https://www.hanam.go.kr/intro_new.do)
+- [동두천시청](https://www.ddc.go.kr/ddc/index.do)
+- [과천시청](https://www.gccity.go.kr:443/main.do)
+- [양평군청](https://www.yp21.go.kr/www/index.do)
+- [수원시청](https://www.suwon.go.kr/index.do)
+- [고양시청](https://www.goyang.go.kr/www/index.do)
+- [성남시청](https://www.seongnam.go.kr/index)
+- [부천시청](https://www.bucheon.go.kr/site/main/index148)
+- [용인시청](https://www.yongin.go.kr/index.do)
+- [안양시청](https://www.anyang.go.kr/topic/index.do)
+- [화성시청](https://www.hscity.go.kr/www/index.do)
+- [안산시청](https://www.ansan.go.kr/www/main/main.do)
+- [시흥시청](https://www.siheung.go.kr/main.do)
+- [군포시청](https://www.gunpo.go.kr/www/index.do)
+- [포천시청](https://www.pocheon.go.kr/www/index.do)
+- [김포시청](https://www.gimpo.go.kr)
+- [광명시청](https://www.gm.go.kr/pt/index.do)
+- [여주시청](https://www.yeoju.go.kr/intro/intro.html)
+- [가평군청](https://www.gp.go.kr/portal/index.do)
+- [연천군청](https://www.yeoncheon.go.kr/intro.jsp)
+- [남양주시청](https://www.nyj.go.kr)
+- [구리시청](https://www.guri.go.kr/www/index.do)
+- [설미재미술관](http://www.mu-um.com)
+- [양주시립민복진미술관](https://www.yangju.go.kr/minbokjin/index.do)
+
+## 인천 (21곳)
+
+인천시와 자치구 기관이에요. 2026년 7월 행정구역이 바뀌어 중구·동구는 제물포구, 서구는 서해구, 새 구로 영종구·검단구가 생겼어요.
+
+- [인천문화재단](https://ifac.or.kr/index.do)
+- [인천중구문화재단](https://ijcf.or.kr/)
+- [남동문화재단](https://www.namdongcf.or.kr)
+- [부평구문화재단](https://www.bpcf.or.kr)
+- [연수문화재단](http://www.ysfac.or.kr)
+- [인천서구문화재단](https://iscf.kr)
+- [인천수봉문화회관](https://www.subong.or.kr/)
+- [인천미술협회](https://incheonfineart.kr/)
+- [인천시립무용단](https://www.incheon.go.kr/art/index)
+- [인천광역시청](https://www.incheon.go.kr/index)
+- [인천 제물포구청 (옛 동구·중구)](https://www.jemulpo.go.kr/)
+- [인천 미추홀구청](https://www.michuhol.go.kr/main/main.do)
+- [인천 연수구청](https://www.yeonsu.go.kr/main/)
+- [인천 남동구청](https://www.namdong.go.kr/)
+- [인천 부평구청](https://www.icbp.go.kr/main/)
+- [인천 계양구청](https://www.gyeyang.go.kr/open_content/main/)
+- [인천 서해구청 (옛 서구)](https://www.seohae.go.kr/open_content/main/)
+- [인천 강화군청](https://www.ganghwa.go.kr/open_content/main/)
+- [인천 옹진군청](https://www.ongjin.go.kr/open_content/main/)
+- [인천 영종구청](https://www.yeongjong.go.kr)
+- [인천 검단구청](https://www.geomdan.go.kr)
+
+## 부산 (21곳)
+
+부산시와 구 문화재단, 구청이에요.
+
+- [부산문화재단](https://www.bscf.or.kr)
+- [금정문화재단](http://www.gjfac.org)
+- [부산진문화재단](https://www.bsjincf.or.kr/)
+- [부산광역시청](https://www.busan.go.kr/index)
+- [부산 중구청](https://www.bsjunggu.go.kr/index.junggu)
+- [부산 서구청](https://www.bsseogu.go.kr/index.bsseogu)
+- [부산 영도구청](https://www.yeongdo.go.kr/main.web)
+- [부산 사하구청](https://www.saha.go.kr/main.do)
+- [부산 금정구청](https://www.geumjeong.go.kr/index.geumj)
+- [부산 강서구청](https://www.bsgangseo.go.kr/main.do)
+- [부산 연제구청](https://www.yeonje.go.kr/main.do)
+- [부산 수영구청](https://www.suyeong.go.kr/index.suyeong)
+- [부산 사상구청](https://www.sasang.go.kr/index.sasang)
+- [부산 동구청](https://www.bsdonggu.go.kr)
+- [부산 부산진구청](https://www.busanjin.go.kr/index.busanjin)
+- [부산 동래구청](https://www.dongnae.go.kr/index.dongnae?contentsSid=2073)
+- [부산 북구청](https://www.bsbukgu.go.kr/index.bsbukgu?contentsSid=1)
+- [부산 해운대구청](https://www.haeundae.go.kr/index.do)
+- [부산 남구청](https://www.bsnamgu.go.kr/)
+- [부산 기장군청](https://www.gijang.go.kr/index.gijang)
+- [부산비엔날레조직위원회](http://www.busanbiennale.org)
+
+## 대구 (17곳)
+
+대구시와 구·군 문화재단, 구청이에요.
+
+- [달서아트센터](https://www.dsac.or.kr)
+- [달성문화재단](https://www.dsart.or.kr)
+- [달서문화재단](https://www.dscf.or.kr)
+- [대구문화예술진흥원](https://dgfca.or.kr)
+- [수성문화재단](https://www.sscf.or.kr)
+- [대구동구문화재단](https://www.dgdgcf.or.kr)
+- [행복북구문화재단](https://www.hbcf.or.kr)
+- [대구광역시청](https://www.daegu.go.kr/)
+- [대구 동구청](https://www.dong.daegu.kr/main.do)
+- [대구 남구청](https://www.nam.daegu.kr/)
+- [대구 북구청](https://www.buk.daegu.kr/)
+- [대구 수성구청](https://www.suseong.kr/)
+- [대구 달서구청](https://www.dalseo.daegu.kr/)
+- [대구 달성군청](https://www.dalseong.daegu.kr/)
+- [대구 중구청](https://www.jung.daegu.kr)
+- [대구 서구청](https://www.dgs.go.kr/index_intro.jsp)
+- [대구 군위군청](https://www.gunwi.go.kr/ko/index.do)
+
+## 광주 (7곳)
+
+광주시와 구 문화재단, 구청이에요.
+
+- [광주문화재단](https://www.gjcf.or.kr)
+- [광주광역시청](https://www.gwangju.go.kr/main.do)
+- [광주 서구청](https://www.seogu.gwangju.kr/)
+- [광주 북구청](https://bukgu.gwangju.kr/)
+- [광주 광산구청](https://www.gwangsan.go.kr/)
+- [광주 동구청](https://www.donggu.kr/index.es?sid=a1)
+- [광주 남구청](https://www.namgu.gwangju.kr/)
+
+## 대전 (7곳)
+
+대전시와 구 문화재단, 구청이에요.
+
+- [대전문화재단](https://dcaf.or.kr)
+- [대전광역시청](https://www.daejeon.go.kr/)
+- [대전 중구청](https://www.djjunggu.go.kr/kr/index.do)
+- [대전 서구청](https://www.seogu.go.kr/kor.do)
+- [대전 대덕구청](https://www.daedeok.go.kr/dpt/DPT.do)
+- [대전 동구청](https://www.donggu.go.kr/dg/kor)
+- [대전 유성구청](https://www.yuseong.go.kr/kor/)
+
+## 울산 (9곳)
+
+울산시와 구·군 문화재단, 구청이에요.
+
+- [울산문화관광재단](https://uctf.or.kr/)
+- [고래문화재단](https://www.uwcf.or.kr)
+- [울주문화재단](http://www.ucf.or.kr)
+- [울산광역시청](https://www.ulsan.go.kr/u/rep/main.ulsan)
+- [울산 중구청](https://www.junggu.ulsan.kr/index.ulsan)
+- [울산 동구청](https://www.donggu.ulsan.kr/)
+- [울산 북구청](https://www.bukgu.ulsan.kr/index.do)
+- [울산 울주군청](https://www.ulju.ulsan.kr/ulju/main.do)
+- [울산 남구청](https://www.ulsannamgu.go.kr/easyMain/mainPage.do)
+
+## 세종 (2곳)
+
+세종특별자치시 기관이에요.
+
+- [세종시문화관광재단](https://www.sjcf.or.kr)
+- [세종특별자치시청](https://www.sejong.go.kr/index.jsp)
+
+## 강원 (28곳)
+
+강원도와 시·군 문화재단, 시청·군청이에요.
+
+- [인제군문화재단](http://www.injeart.or.kr/)
+- [강원문화재단](http://www.gwcf.or.kr/ko)
+- [원주문화재단](https://www.wcf.or.kr/)
+- [횡성문화관광재단](https://hscf.or.kr/)
+- [속초문화관광재단](http://sokchocf.or.kr)
+- [춘천문화재단](https://www.cccf.or.kr)
+- [영월문화관광재단](https://www.ywcf.or.kr)
+- [정선아리랑문화재단](https://www.jacf.or.kr)
+- [고성문화재단](https://goseongcf.or.kr/)
+- [춘천시청](https://www.chuncheon.go.kr/cityhall/)
+- [영월군청](https://www.yw.go.kr/www/index.do)
+- [화천군청](https://www.ihc.go.kr/www/index.do)
+- [양구군청](https://www.yanggu.go.kr/)
+- [강원특별자치도청](https://state.gwd.go.kr/portal)
+- [원주시청](https://www.wonju.go.kr/www/index.do)
+- [동해시청](https://www.dh.go.kr/www/index.do)
+- [홍천군청](https://www.hongcheon.go.kr/hongcheon_intro_new/intro.html)
+- [태백시청](https://www.taebaek.go.kr/intro.jsp)
+- [삼척시청](https://www.samcheok.go.kr/portal/intro/intro.jsp)
+- [속초시청](https://www.sokcho.go.kr/sc/portal)
+- [평창군청](https://www.pc.go.kr/portal)
+- [인제군청](https://www.inje.go.kr/portal)
+- [고성군청(강원)](https://www.gwgs.go.kr/)
+- [정선군청](https://www.jeongseon.go.kr/)
+- [강릉시청](http://www.gn.go.kr/)
+- [횡성군청](https://www.hsg.go.kr)
+- [양양군청](https://www.yangyang.go.kr)
+- [철원군청](https://www.cwg.go.kr/)
+
+## 충북 (17곳)
+
+충청북도와 시·군 문화재단, 시청·군청이에요.
+
+- [충주문화관광재단](https://cjcf.or.kr)
+- [충북문화재단](https://www.cbfc.or.kr)
+- [청주시문화산업진흥재단](https://www.cjculture.org)
+- [제천문화재단](https://www.jccf.or.kr/)
+- [청주시립대청호미술관](https://cmoa.cheongju.go.kr/daecheongho/index.do)
+- [충청북도청](https://www.chungbuk.go.kr/www/index.do)
+- [증평군청](https://www.jp.go.kr/kor.do)
+- [괴산군청](https://www.goesan.go.kr/www/index.do)
+- [단양군청](https://www.danyang.go.kr/dy21/1)
+- [청주시청](https://intro.cheongju.go.kr/)
+- [충주시청](https://www.chungju.go.kr/)
+- [옥천군청](https://www.oc.go.kr/www/index.do)
+- [보은군청](https://www.boeun.go.kr/www/index.do)
+- [진천군청](https://www.jincheon.go.kr/home/intro.do)
+- [음성군청](https://www.eumseong.go.kr/www/index.do)
+- [영동군청](https://www.yd21.go.kr/)
+- [제천시청](https://www.jecheon.go.kr/www/index.do)
+
+## 충남 (22곳)
+
+충청남도와 시·군 문화재단, 시청·군청이에요.
+
+- [충남문화관광재단](https://www.cacf.or.kr)
+- [홍주문화관광재단](https://hongju.or.kr/)
+- [공주문화관광재단](https://www.gongjuacc.or.kr)
+- [당진문화재단](http://www.dangjinart.kr)
+- [천안문화재단](https://www.cfac.or.kr/)
+- [서산문화재단](http://seosancf.or.kr/)
+- [충청남도청](https://www.chungnam.go.kr/main.do)
+- [천안시청](https://www.cheonan.go.kr/kor.do)
+- [보령시청](https://www.brcn.go.kr/)
+- [서산시청](https://www.seosan.go.kr/www/index.do)
+- [논산시청](https://www.nonsan.go.kr/)
+- [계룡시청](https://gyeryong.go.kr/kr/)
+- [당진시청](https://www.dangjin.go.kr/kor.do)
+- [서천군청](https://www.seocheon.go.kr/kor.do)
+- [청양군청](https://www.cheongyang.go.kr/kor.do)
+- [금산군청](https://www.geumsan.go.kr/kr/)
+- [홍성군청](https://www.hongseong.go.kr/kor/index.do)
+- [아산시청](https://www.asan.go.kr)
+- [예산군청](https://www.yesan.go.kr/)
+- [부여군청](https://www.buyeo.go.kr/intro.html)
+- [공주시청](https://www.gongju.go.kr/)
+- [태안군청](https://www.taean.go.kr/kor.do)
+
+## 전북 (20곳)
+
+전북특별자치도와 시·군 문화재단, 시청·군청이에요.
+
+- [전주문화재단](https://www.jjcf.or.kr)
+- [익산문화관광재단](https://www.ictf.or.kr)
+- [전북특별자치도문화관광재단](https://www.jbct.or.kr/)
+- [완주문화재단](https://www.wfac.or.kr)
+- [고창문화관광재단](http://gctf.or.kr/)
+- [전주시청](https://www.jeonju.go.kr/)
+- [정읍시청](https://www.jeongeup.go.kr/index.jeongeup)
+- [남원시청](https://www.namwon.go.kr/)
+- [김제시청](https://www.gimje.go.kr/index.gimje)
+- [장수군청](https://www.jangsu.go.kr/index.jangsu)
+- [임실군청](https://www.imsil.go.kr/index.imsil)
+- [순창군청](https://www.sunchang.go.kr/)
+- [전북특별자치도청](https://www.jeonbuk.go.kr/index.jeonbuk?contentsSid=1807)
+- [익산시청](https://www.iksan.go.kr/)
+- [진안군청](https://www.jinan.go.kr/index.jinan)
+- [군산시청](https://www.gunsan.go.kr/)
+- [무주군청](https://www.muju.go.kr/index.9is?contentUid=4028a6d28a8bff23018c336c49950e70)
+- [부안군청](https://www.buan.go.kr/index.buan)
+- [완주군청](https://www.wanju.go.kr/)
+- [고창군청](https://www.gochang.go.kr/index.gochang?menuCd=DOM_000000108000000000)
+
+## 전남 (27곳)
+
+전라남도와 시·군 문화재단, 시청·군청이에요.
+
+- [목포문화재단](https://mpcf.or.kr/)
+- [전라남도문화재단](https://www.jncf.or.kr)
+- [순천문화재단](https://www.cfsc.or.kr/)
+- [담양군문화재단](https://www.damyangcf.or.kr)
+- [전라남도청](https://www.jeonnam.go.kr/)
+- [목포시청](https://www.mokpo.go.kr/www)
+- [여수시청](https://www.yeosu.go.kr/)
+- [순천시청](https://www.suncheon.go.kr/kr/)
+- [나주시청](https://www.naju.go.kr/)
+- [고흥군청](https://www.goheung.go.kr/)
+- [화순군청](https://www.hwasun.go.kr/intro.do?S=S01)
+- [장흥군청](https://www.jangheung.go.kr/)
+- [강진군청](https://www.gangjin.go.kr/www)
+- [무안군청](https://www.muan.go.kr/)
+- [광양시청](https://gwangyang.go.kr/)
+- [구례군청](https://www.gurye.go.kr/)
+- [영암군청](https://www.yeongam.go.kr/)
+- [곡성군청](https://www.gokseong.go.kr/)
+- [장성군청](https://www.jangseong.go.kr/)
+- [해남군청](https://www.haenam.go.kr)
+- [신안군청](https://www.shinan.go.kr/)
+- [영광군청](https://www.yeonggwang.go.kr/)
+- [담양군청](https://www.damyang.go.kr/)
+- [진도군청](https://www.jindo.go.kr/intro.jsp)
+- [함평군청](https://www.hampyeong.go.kr/)
+- [보성군청](https://www.boseong.go.kr/intro.html)
+- [완도군청](https://www.wando.go.kr/)
+
+## 경북 (29곳)
+
+경상북도와 시·군 문화재단, 시청·군청이에요.
+
+- [경주문화재단](https://garts.kr)
+- [포항문화재단](https://phcf.or.kr/)
+- [영덕문화관광재단](https://www.ydct.org/)
+- [경북문화재단](https://www.gacf.kr)
+- [영주문화관광재단](https://www.yctf.or.kr/)
+- [군위문화관광재단](https://gunwi3964.org)
+- [경상북도청](https://www.gb.go.kr/)
+- [포항시청](https://www.pohang.go.kr/main.do)
+- [구미시청](https://www.gumi.go.kr/main.do)
+- [영천시청](https://www.yc.go.kr/main.do)
+- [청송군청](https://www.cs.go.kr/main.web)
+- [고령군청](https://www.goryeong.go.kr/kor/index.do)
+- [칠곡군청](https://www.chilgok.go.kr/main.do)
+- [봉화군청](https://www.bonghwa.go.kr/main.do)
+- [안동시청](https://www.andong.go.kr/)
+- [문경시청](https://www.gbmg.go.kr/main.do)
+- [김천시청](https://www.gc.go.kr/main.do)
+- [영양군청](https://www.yyg.go.kr/intro)
+- [성주군청](https://www.sj.go.kr/main.do)
+- [경주시청](https://www.gyeongju.go.kr/open_content/ko/index.do)
+- [경산시청](https://www.gbgs.go.kr/open_content/ko/index.do)
+- [상주시청](https://www.sangju.go.kr/)
+- [울릉군청](https://www.ulleung.go.kr/ko/main.do)
+- [의성군청](https://www.usc.go.kr/)
+- [청도군청](https://www.cheongdo.go.kr/main.do)
+- [예천군청](https://www.ycg.kr/)
+- [울진군청](https://www.uljin.go.kr/index.uljin)
+- [영주시청](https://www.yeongju.go.kr/design/main/index.html)
+- [영덕군청](https://www.yd.go.kr/)
+
+## 경남 (26곳)
+
+경상남도와 시·군 문화재단, 시청·군청이에요.
+
+- [경남문화예술진흥원](https://www.gcaf.or.kr)
+- [창원문화재단](https://cwcf.or.kr)
+- [사천문화재단](https://www.sccf.or.kr)
+- [거제시문화예술재단](https://www.geojeart.or.kr)
+- [거창문화재단](https://www.gccf.or.kr)
+- [밀양문화관광재단](https://www.mycf.or.kr)
+- [진주문화관광재단](https://jjct.or.kr/)
+- [진주시청](https://www.jinju.go.kr/main.web)
+- [사천시청](https://www.sacheon.go.kr/main.web)
+- [의령군청](https://www.uiryeong.go.kr/index.uiryeong)
+- [창녕군청](https://www.cng.go.kr/)
+- [고성군청(경남)](https://www.goseong.go.kr/index.goseong)
+- [남해군청](https://www.namhae.go.kr/)
+- [하동군청](https://www.hadong.go.kr/main.web)
+- [산청군청](https://www.sancheong.go.kr/www/index.do)
+- [경상남도청](https://www.gyeongnam.go.kr/)
+- [김해시청](https://www.gimhae.go.kr/_res/portal/intro3/intro.jsp)
+- [양산시청](https://www.yangsan.go.kr/intro.jsp)
+- [거창군청](https://www.geochang.go.kr/_res/intro/intro.jsp)
+- [거제시청](https://www.geoje.go.kr/index.geoje)
+- [통영시청](https://www.tongyeong.go.kr/_res/portal/intro/intro.jsp)
+- [밀양시청](https://www.miryang.go.kr/)
+- [합천군청](https://www.hc.go.kr/_res/portal/intro/intro.jsp)
+- [함양군청](https://www.hygn.go.kr/)
+- [창원시청](https://www.changwon.go.kr/)
+- [함안군청](https://www.haman.go.kr/_res/intro/intro.jsp)
+
+## 제주 (4곳)
+
+제주도 문화예술재단과 관련 기관이에요.
+
+- [제주문화예술재단](https://www.jfac.kr/)
+- [제주특별자치도청](https://www.jeju.go.kr/index.htm)
+- [서귀포시청](https://www.seogwipo.go.kr/)
+- [제주시청](https://www.jejusi.go.kr/index.ac)
 
 ---
 
