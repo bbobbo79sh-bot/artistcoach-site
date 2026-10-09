@@ -27,14 +27,26 @@ module.exports = ({ 설정, 검수용, 뿌리, 결과, 틀, 길, 막기, 쓰기,
       if (r.제목 && r.본문.length > 300) 글[g.id] = r;   // 너무 짧은 글은 웹 페이지로 올리지 않는다
     }
   });
+  // 직접 입력·계산하는 도구 페이지: 자료/자료실/도구/<id>.html (본문 조각 + 인라인 스크립트, 외부 라이브러리·서버 전송 없음).
+  // 안전 검사에 걸리면(외부 주소·네트워크·저장소 사용 등) 페이지를 만들지 않고 알린다.
+  const 금지 = /\b(fetch|XMLHttpRequest|WebSocket|sendBeacon|eval|importScripts|localStorage|sessionStorage|indexedDB)\b|document\s*\.\s*cookie|new\s+Function|<iframe|<link|@import|\b(?:src|href|action|formaction)\s*=\s*["']?\s*(?:https?:)?\/\/|url\(\s*["']?\s*(?:https?:)?\/\//i;
+  const 도구 = {};
+  설정.자료.forEach((g) => {
+    const p = path.join(뿌리, '자료', '자료실', '도구', `${g.id}.html`);
+    if (!/^[A-Za-z0-9_-]+$/.test(g.id) || !fs.existsSync(p)) return;
+    const t = fs.readFileSync(p, 'utf8');
+    const 걸림 = t.match(금지);
+    if (t.length > 200000 || 걸림) { console.log(`도구 페이지 건너뜀(${g.id}): ${걸림 ? '안전 검사에 걸림 → ' + 걸림[0] : '200KB 초과'}`); return; }
+    도구[g.id] = t;
+  });
   const 글주소 = (g) => 길(`/resources/${g.id}/`);
   // 정식 사이트에서는 글이 준비된 자료만 보인다(준비 중인 자료는 검수용에서만 '곧 올라와요'로 보임)
-  const 자료목록 = 검수용 ? 설정.자료 : 설정.자료.filter((g) => 글[g.id]);
+  const 자료목록 = 검수용 ? 설정.자료 : 설정.자료.filter((g) => 글[g.id] || 도구[g.id]);
   if (!자료목록.length) return { 켜짐: false, 경로목록: [], 띠: '', 관련: () => '' };
 
   const 단추 = (g, 작게) => {
     const 작 = 작게 ? ' 작은단추' : '';
-    return 글[g.id] ? `<a class="단추 주${작}" href="${글주소(g)}">읽어 보기</a>` : `<span class="단추 준비${작}">곧 올라와요</span>`;
+    return (글[g.id] || 도구[g.id]) ? `<a class="단추 주${작}" href="${글주소(g)}">${도구[g.id] ? '써 보기' : '읽어 보기'}</a>` : `<span class="단추 준비${작}">곧 올라와요</span>`;
   };
   const 카드 = (g) => `<div class="자료카드"><div class="자료몸"><b>${막기(g.이름)}</b><span>${막기(g.한줄)}</span><small>${막기(g.언제)}</small></div><div class="자료단추">${단추(g)}</div></div>`;
 
@@ -53,7 +65,7 @@ module.exports = ({ 설정, 검수용, 뿌리, 결과, 틀, 길, 막기, 쓰기,
   // 읽기 페이지
   const 경로목록 = ['/resources/'];
   자료목록.forEach((g) => {
-    const r = 글[g.id]; if (!r) return;
+    const r = 글[g.id] || (도구[g.id] ? { 제목: g.이름, 요약: g.한줄, 본문: '' } : null); if (!r) return;
     경로목록.push(`/resources/${g.id}/`);
     쓰기(`resources/${g.id}/index.html`, 틀({
       제목: `${r.제목 || g.이름} · 아티스트 코치`, 현재: '자료실', 경로: `/resources/${g.id}/`, 설명: (r.요약 || g.한줄).slice(0, 150),
@@ -64,6 +76,7 @@ module.exports = ({ 설정, 검수용, 뿌리, 결과, 틀, 길, 막기, 쓰기,
     ${fs.existsSync(path.join(그림폴더, 'mascot.png')) ? `<img src="${길('/resources/img/mascot.png')}" alt="" width="150" height="196">` : ''}
   </header>
   ${광고넣기(r.본문, 광고칸('글중간'))}
+  ${도구[g.id] ? `<section class="글카드 도구칸"><p class="도구안내">직접 입력해 보세요. 입력한 내용은 이 기기 안에서만 계산되고 어디로도 보내지 않아요.</p>${도구[g.id]}</section>` : ''}
   ${광고칸('글끝')}
   <p class="작은">이 자료는 아티스트 코치가 정리한 일반 안내입니다. 지원 조건과 기준은 각 공고 원문에서 꼭 확인해 주세요.</p>
   <p><a class="단추" href="${길('/resources/')}">자료실로 돌아가기</a> <a class="단추" href="${길('/')}">공고 보러 가기</a></p>
@@ -73,7 +86,7 @@ module.exports = ({ 설정, 검수용, 뿌리, 결과, 틀, 길, 막기, 쓰기,
 
   // 메인 화면 배너: 머리글 + 자료·가이드 카드가 옆으로 이어지는 줄 (다양한 자료가 있다는 것이 한눈에 보이게)
   const 배너카드 = [
-    ...자료목록.map((g) => ({ 종류: '자료', 이름: g.이름, 한줄: g.한줄, 주소: 글[g.id] ? 글주소(g) : '' })),
+    ...자료목록.map((g) => ({ 종류: '자료', 이름: g.이름, 한줄: g.한줄, 주소: (글[g.id] || 도구[g.id]) ? 글주소(g) : '' })),
     ...가이드.map((g) => ({ 종류: '가이드', 이름: g.제목, 한줄: g.요약, 주소: 길(`/guide/${g.번호}/`) })),
   ];
   const 띠 = `<section class="자료띠" aria-label="무료 자료">
