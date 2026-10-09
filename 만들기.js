@@ -96,6 +96,8 @@ const 검수용 = process.env.SITE_STAGING === '1';
 if (검수용) 상품설정.사용 = true;
 const 자료실설정 = JSON.parse(fs.readFileSync(path.join(뿌리, '자료', '자료실.json'), 'utf8'));
 const 자료실켜짐 = !!(자료실설정.사용 || 검수용);
+// 가이드 글(/guide/): 자료/가이드설정.json 의 '사용'이 true 일 때만 만든다. 2026-10-09 영감 결정으로 끔(글 파일은 자료/가이드/ 에 그대로 보관).
+const 가이드켜짐 = (() => { try { return JSON.parse(fs.readFileSync(path.join(뿌리, '자료', '가이드설정.json'), 'utf8')).사용 === true; } catch (e) { return false; } })();
 const 검색등록 = JSON.parse(fs.readFileSync(path.join(뿌리, '자료', '검색등록.json'), 'utf8'));
 const 구글확인 = (!검수용 && /^[A-Za-z0-9_-]{20,80}$/.test(검색등록.구글서치콘솔 || '')) ? 검색등록.구글서치콘솔 : '';
 const 광고설정 = JSON.parse(fs.readFileSync(path.join(뿌리, '자료', '광고.json'), 'utf8'));
@@ -350,7 +352,7 @@ ${애드센스 ? `<script async src="https://pagead2.googlesyndication.com/pagea
 <body>
 <header class="머리"><div class="틀">
   <a class="로고줄" href="${길('/')}"><img src="${길('/logo.svg')}" alt="" width="36" height="36"><span class="글자로고">아티스트<mark>코치</mark></span></a>
-  <nav><a href="${길('/')}"${현재 === '공고' ? ' aria-current="page"' : ''}>공고</a><a href="${길('/about/')}"${현재 === '소개' ? ' aria-current="page"' : ''}>소개</a><a href="${길('/guide/')}"${현재 === '가이드' ? ' aria-current="page"' : ''}>가이드</a>${자료실켜짐 ? `<a href="${길('/resources/')}"${현재 === '자료실' ? ' aria-current="page"' : ''}>자료실</a>` : ''}${검수용 ? `<a href="${길('/products/')}">스토어</a>` : ''}</nav>
+  <nav><a href="${길('/')}"${현재 === '공고' ? ' aria-current="page"' : ''}>공고</a><a href="${길('/about/')}"${현재 === '소개' ? ' aria-current="page"' : ''}>소개</a>${가이드켜짐 ? `<a href="${길('/guide/')}"${현재 === '가이드' ? ' aria-current="page"' : ''}>가이드</a>` : ''}${자료실켜짐 ? `<a href="${길('/resources/')}"${현재 === '자료실' ? ' aria-current="page"' : ''}>자료실</a>` : ''}${검수용 ? `<a href="${길('/products/')}">스토어</a>` : ''}</nav>
 </div></header>
 <main class="틀">
 ${본문}
@@ -445,7 +447,7 @@ const 첫화면스크립트 = `<script>
 })();
 </script>`;
 
-const 가이드결과 = require('./가이드페이지.js')({ 뿌리, 틀, 길, 막기, 쓰기, 광고칸 });
+const 가이드결과 = 가이드켜짐 ? require('./가이드페이지.js')({ 뿌리, 틀, 길, 막기, 쓰기, 광고칸 }) : { 경로목록: [], 글수: 0, 목록: [] };
 const 자료실 = require('./자료실페이지.js')({ 설정: 자료실설정, 검수용, 뿌리, 결과, 틀, 길, 막기, 쓰기, 광고칸, 가이드: 가이드결과.목록 });
 const 첫화면본문 = `
 <section class="영웅">

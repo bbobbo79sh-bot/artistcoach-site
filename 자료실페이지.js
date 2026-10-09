@@ -91,7 +91,7 @@ module.exports = ({ 설정, 검수용, 뿌리, 결과, 틀, 길, 막기, 쓰기,
     ...가이드.map((g) => ({ 종류: '가이드', 이름: g.제목, 한줄: g.요약, 주소: 길(`/guide/${g.번호}/`) })),
   ];
   const 띠 = `<section class="자료띠" aria-label="무료 자료">
-  <div class="띠머리"><div><b>영감의 자료실</b><span>읽고, 계산하고, 따라 쓰는 자료 ${자료목록.length}가지 · 가이드 ${가이드.length}편 · 가입 없이 무료로 바로</span></div><a class="단추 주 작은단추" href="${길('/resources/')}">자료실 가기 →</a></div>
+  <div class="띠머리"><div><b>영감의 자료실</b><span>읽고, 계산하고, 따라 쓰는 자료 ${자료목록.length}가지${가이드.length ? ` · 가이드 ${가이드.length}편` : ''} · 가입 없이 무료로 바로</span></div><a class="단추 주 작은단추" href="${길('/resources/')}">자료실 가기 →</a></div>
   <div class="띠줄" id="자료줄">${[0, 1, 2].map((k) => 배너카드.map((c) => {
     // 카드뉴스 줄처럼 끊김 없이 돌도록 같은 카드를 세 벌 놓는다(앞뒤 벌은 보조기기에서 숨김)
     const 숨김 = k !== 1 ? ' tabindex="-1" aria-hidden="true"' : '';
