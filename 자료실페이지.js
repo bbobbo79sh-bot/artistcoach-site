@@ -91,7 +91,7 @@ module.exports = ({ 설정, 검수용, 뿌리, 결과, 틀, 길, 막기, 쓰기,
     ...가이드.map((g) => ({ 종류: '가이드', 이름: g.제목, 한줄: g.요약, 주소: 길(`/guide/${g.번호}/`) })),
   ];
   const 띠 = `<section class="자료띠" aria-label="무료 자료">
-  <div class="띠머리"><div><b>무료로 읽는 지원서 자료</b><span>자료 ${자료목록.length}가지 · 가이드 ${가이드.length}편 · 가입 없이 바로 보기</span></div><a class="단추 주 작은단추" href="${길('/resources/')}">자료실 가기 →</a></div>
+  <div class="띠머리"><div><b>영감의 무료 자료실</b><span>읽고, 계산하고, 따라 쓰는 자료 ${자료목록.length}가지 · 가이드 ${가이드.length}편 · 가입 없이 바로</span></div><a class="단추 주 작은단추" href="${길('/resources/')}">자료실 가기 →</a></div>
   <div class="띠줄">${배너카드.map((c) => {
     const 속 = `<em class="${c.종류 === '자료' ? '종자료' : '종가이드'}">${c.종류}</em><b>${막기(c.이름)}</b><span>${막기(c.한줄)}</span>`;
     return c.주소 ? `<a class="띠카드" href="${c.주소}">${속}</a>` : `<div class="띠카드 준비중">${속}</div>`;
