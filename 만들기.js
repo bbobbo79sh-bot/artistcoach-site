@@ -258,6 +258,8 @@ i{font-style:normal}
 .글카드 h2{display:flex;align-items:center;gap:10px;margin:0 0 10px;font-size:19px;line-height:1.35}
 .글카드 h2::before{counter-increment:카드;content:counter(카드);flex:0 0 auto;width:30px;height:30px;border-radius:50%;background:var(--브랜드);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:15px;font-weight:800}
 .글카드 .표칸{margin:12px 0}
+.글본문 a[target=_blank]{color:var(--깊음);text-decoration:underline;text-underline-offset:3px}
+.글본문 a[target=_blank]::after{content:" ↗";font-size:.8em;opacity:.7}
 .도구칸 .도구안내{margin:0 0 12px;font-size:13.5px;color:var(--sub)}
 .도구칸 input,.도구칸 select,.도구칸 textarea{font:inherit;font-size:15px;padding:8px 10px;border:1px solid var(--선);border-radius:10px;background:var(--bg);color:inherit;max-width:100%}
 .도구칸 textarea{width:100%;min-height:90px}

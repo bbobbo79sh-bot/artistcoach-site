@@ -6,7 +6,10 @@
 const NL = String.fromCharCode(10), CRLF = String.fromCharCode(13, 10);
 
 module.exports = ({ 막기, 길 = (x) => x }) => {
-  const 인라인 = (t) => 막기(t).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').replace(/\*(.+?)\*/g, '<i>$1</i>');
+  // [이름](https://주소) → 새 창으로 열리는 바깥 링크. http/https 주소만 링크가 되고, 그 밖의 형태는 글자 그대로 보인다.
+  const 인라인 = (t) => 막기(t)
+    .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>')
+    .replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').replace(/\*(.+?)\*/g, '<i>$1</i>');
 
   // | 칸 | 칸 | 표: 첫 줄은 제목 줄, 둘째 줄(---)은 건너뛴다. 좁은 화면에서는 옆으로 밀어 볼 수 있다.
   const 표만들기 = (줄들) => {
