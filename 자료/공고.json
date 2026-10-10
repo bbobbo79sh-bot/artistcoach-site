@@ -2808,6 +2808,19 @@
   "benefit": ""
  },
  {
+  "id": "7d6b86c9",
+  "cat": "예술인 지원·공모",
+  "org": "아티스트 코치 영감",
+  "region": "",
+  "title": "영감 팁 10 아르코 2027 문예진흥기금 AI 활용 안내 그대로 읽었습니다 지원사업 안내",
+  "deadline": "2026-12-31",
+  "target": "",
+  "link": "https://www.arko.or.kr/content/6121",
+  "posted": "",
+  "summary": "",
+  "benefit": ""
+ },
+ {
   "id": "d1a57706",
   "cat": "예술인 지원·공모",
   "org": "서울문화재단",
@@ -3367,6 +3380,19 @@
   "benefit": ""
  },
  {
+  "id": "e1a79cfd",
+  "cat": "예술인 지원·공모",
+  "org": "한국예술인복지재단",
+  "region": "전국",
+  "title": "예술인복지 안내 09 예술활동준비금 분야·지역 지도 지원사업",
+  "deadline": "상시",
+  "target": "",
+  "link": "https://www.kawf.kr/",
+  "posted": "",
+  "summary": "",
+  "benefit": ""
+ },
+ {
   "id": "9dc062b1",
   "cat": "예술인 지원·공모",
   "org": "한국예술인복지재단",
@@ -3375,6 +3401,19 @@
   "deadline": "상시",
   "target": "",
   "link": "https://www.kawf.kr/social/sub06_2.do",
+  "posted": "",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "b6ed299d",
+  "cat": "예술인 지원·공모",
+  "org": "아티스트 코치 영감",
+  "region": "",
+  "title": "영감 팁 07 예술활동증명 왜 떨어졌나 장소가 안 됩니다 지원사업 안내",
+  "deadline": "상시",
+  "target": "",
+  "link": "https://www.kawf.kr/social/sub01_1.do",
   "posted": "",
   "summary": "",
   "benefit": ""
@@ -3393,6 +3432,19 @@
   "benefit": ""
  },
  {
+  "id": "6448288a",
+  "cat": "예술인 지원·공모",
+  "org": "인천문화재단",
+  "region": "인천",
+  "title": "인천예술인이음카드 한시적 캐시백 한도 확대 안내",
+  "deadline": "상시",
+  "target": "",
+  "link": "https://ifac.or.kr/bbs/view.do?bbsSn=236106&key=m2501152808232&pageIndex=1&bbsCtgrySn=78&sw=",
+  "posted": "2026-09-29",
+  "summary": "",
+  "benefit": ""
+ },
+ {
   "id": "40185e2b",
   "cat": "예술인 지원·공모",
   "org": "청주시문화산업진흥재단",
@@ -3402,6 +3454,19 @@
   "target": "",
   "link": "https://www.cjculture.org/sub.php?code=32&mode=view&no=1902&category=&page=1&search=&keyword=",
   "posted": "2026-10-07",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "cc22bc6e",
+  "cat": "예술인 지원·공모",
+  "org": "고성문화재단",
+  "region": "강원",
+  "title": "2026년 달홀영화관 관람료 지원사업",
+  "deadline": "상시",
+  "target": "",
+  "link": "https://goseongcf.or.kr/notify/1010",
+  "posted": "2026-10-08",
   "summary": "",
   "benefit": ""
  }
