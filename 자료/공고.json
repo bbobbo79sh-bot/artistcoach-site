@@ -637,6 +637,32 @@
   "benefit": ""
  },
  {
+  "id": "1fa64e36",
+  "cat": "예술인 지원·공모",
+  "org": "옥천군청",
+  "region": "충북",
+  "title": "2026년 옥천군 지역예술인 미술품 구입 공고",
+  "deadline": "2026-10-16",
+  "target": "",
+  "link": "https://eminwon.oc.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=43702&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_se_code=01,02,03,04,05",
+  "posted": "2026-10-07",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "c369ecf6",
+  "cat": "예술인 지원·공모",
+  "org": "예술경영지원센터(공모·기금)",
+  "region": "전국",
+  "title": "NOVA-UNIT: ART & VIDEO 오픈콜 | 참여작가 공모",
+  "deadline": "2026-10-16",
+  "target": "",
+  "link": "https://www.gokams.or.kr/01_news/event_view.aspx?Idx=51078&flag=34&page=1&txtKeyword=&ddlKeyfield=T",
+  "posted": "2026-10-08",
+  "summary": "",
+  "benefit": ""
+ },
+ {
   "id": "e6a85898",
   "cat": "예술인 지원·공모",
   "org": "설미재미술관",
@@ -1094,12 +1120,12 @@
  {
   "id": "765dabcf",
   "cat": "예술인 지원·공모",
-  "org": "모모365",
+  "org": "한국콘텐츠진흥원",
   "region": "모음사이트",
   "title": "대중음악 해외 쇼케이스(Korea Spotlight) 참가뮤지션 모집 공고(3차/태국)",
   "deadline": "2026-10-22",
   "target": "",
-  "link": "https://www.momo365.net/Support?cd=support&ViewType=detail&seq=178085",
+  "link": "https://www.kocca.kr/kocca/pims/view.do?intcNo=326D00110005&menuNo=204104&recptSt=&category=&pageIndex=1&search=&searchWrd=",
   "posted": "2026-10-08",
   "summary": "",
   "benefit": ""
@@ -1833,6 +1859,19 @@
   "benefit": ""
  },
  {
+  "id": "5d0fc4c3",
+  "cat": "예술 공모전·모집",
+  "org": "서울아트가이드",
+  "region": "전국",
+  "title": "Open Curation Project Spring 2027: CICA 미술관 팝업전/개인전/그룹전 협업 공모",
+  "deadline": "2026-11-02",
+  "target": "",
+  "link": "https://www.daljin.com/?WS=15&BC=214bv|&BNO=421479&PHPSESSID=9d92d82bec6994a58f0784f1f464deec",
+  "posted": "2026-09-07",
+  "summary": "",
+  "benefit": ""
+ },
+ {
   "id": "c0538726",
   "cat": "예술인 지원·공모",
   "org": "마포문화재단",
@@ -2427,6 +2466,19 @@
   "target": "",
   "link": "https://www.yc.go.kr/portal/bbs/view.do?bIdx=472880&ptIdx=544&mId=0301010000",
   "posted": "2026-10-07",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "ed2a1c1a",
+  "cat": "예술인 지원·공모",
+  "org": "광주문화재단",
+  "region": "광주",
+  "title": "광주예술인복지지원 「예술인 심리상담」 참여자 모집 공고 (0)",
+  "deadline": "2026-11-13",
+  "target": "",
+  "link": "https://www.gjcf.or.kr/cf/Board/87328/detailView.do",
+  "posted": "2026-09-22",
   "summary": "",
   "benefit": ""
  },
@@ -3211,6 +3263,19 @@
   "benefit": ""
  },
  {
+  "id": "3e112633",
+  "cat": "예술 공모전·모집",
+  "org": "서울아트가이드",
+  "region": "전국",
+  "title": "『서울아트가이드』 독자투고 공모",
+  "deadline": "2027-12-31",
+  "target": "",
+  "link": "https://www.daljin.com/?WS=15&BC=214bv|&BNO=390084&PHPSESSID=9d92d82bec6994a58f0784f1f464deec",
+  "posted": "2025-03-24",
+  "summary": "",
+  "benefit": ""
+ },
+ {
   "id": "9e76dcc1",
   "cat": "예술인 지원·공모",
   "org": "갤러리카페 아크",
@@ -3675,6 +3740,58 @@
   "target": "",
   "link": "https://www.gunpocf.or.kr/cf/ntt/nttView/BBS001?pageIndex=1&siteCd=&bbsId=BBS001&nttNo=4802&searchCondition=&searchText=",
   "posted": "2026-10-07",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "e1a79cfd",
+  "cat": "예술인 지원·공모",
+  "org": "한국예술인복지재단",
+  "region": "전국",
+  "title": "예술인복지 안내 09 예술활동준비금 분야·지역 지도 지원사업",
+  "deadline": "상시",
+  "target": "",
+  "link": "https://www.kawf.kr/",
+  "posted": "",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "b6ed299d",
+  "cat": "예술인 지원·공모",
+  "org": "아티스트 코치 영감",
+  "region": "",
+  "title": "영감 팁 07 예술활동증명 왜 떨어졌나 장소가 안 됩니다 지원사업 안내",
+  "deadline": "상시",
+  "target": "",
+  "link": "https://www.kawf.kr/social/sub01_1.do",
+  "posted": "",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "6448288a",
+  "cat": "예술인 지원·공모",
+  "org": "인천문화재단",
+  "region": "인천",
+  "title": "인천예술인이음카드 한시적 캐시백 한도 확대 안내",
+  "deadline": "상시",
+  "target": "",
+  "link": "https://ifac.or.kr/bbs/view.do?bbsSn=236106&key=m2501152808232&pageIndex=1&bbsCtgrySn=78&sw=",
+  "posted": "2026-09-29",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "cc22bc6e",
+  "cat": "예술인 지원·공모",
+  "org": "고성문화재단",
+  "region": "강원",
+  "title": "2026년 달홀영화관 관람료 지원사업",
+  "deadline": "상시",
+  "target": "",
+  "link": "https://goseongcf.or.kr/notify/1010",
+  "posted": "2026-10-08",
   "summary": "",
   "benefit": ""
  }
