@@ -103,7 +103,10 @@ const 구글확인 = (!검수용 && /^[A-Za-z0-9_-]{20,80}$/.test(검색등록.�
 const 광고설정 = JSON.parse(fs.readFileSync(path.join(뿌리, '자료', '광고.json'), 'utf8'));
 const 애드센스 = (!검수용 && 광고설정.애드센스 && 광고설정.애드센스.사용 && /^ca-pub-\d+$/.test(광고설정.애드센스.client)) ? 광고설정.애드센스.client : '';
 const 광고사용 = !검수용 && !!광고설정.사용 && Object.values(광고설정.자리).some((v) => v.unit);
-const 법 = require('./법률문서.js')(사업자, { 광고사용, 애드센스: !!애드센스 });
+// 방문 통계(GoatCounter): 자료/통계.json 의 '사용'이 true 이고 '코드'(goatcounter.com 에서 만든 이름)가 있을 때만 정식 사이트에 넣는다.
+const 통계설정 = (() => { try { return JSON.parse(fs.readFileSync(path.join(뿌리, '자료', '통계.json'), 'utf8')); } catch (e) { return {}; } })();
+const 통계코드 = (!검수용 && 통계설정.사용 === true && /^[a-z0-9-]{2,40}$/.test(통계설정.코드 || '')) ? 통계설정.코드 : '';
+const 법 = require('./법률문서.js')(사업자, { 광고사용, 애드센스: !!애드센스, 통계사용: !!통계코드 });
 // 카카오 애드핏 광고 칸. 켜져 있고 광고단위 번호가 있을 때만 그린다. 가림막(광고 표시)을 함께 둬서 광고임을 알린다.
 const 광고칸 = (자리) => {
   const v = 광고사용 && 광고설정.자리[자리];
@@ -333,6 +336,7 @@ const 틀 = ({ 제목, 설명, 경로, 본문, 현재 = '', 스크립트 = '', �
 <meta name="description" content="${막기(설명)}">
 <meta name="theme-color" content="${brand}">
 ${구글확인 ? `<meta name="google-site-verification" content="${구글확인}">` : ''}
+${통계코드 ? `<script data-goatcounter="https://${통계코드}.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>` : ''}
 ${색인 && !검수용 ? '' : '<meta name="robots" content="noindex, nofollow">'}
 <link rel="canonical" href="${주소}${경로}">
 <link rel="icon" href="${길('/logo.svg')}" type="image/svg+xml">
