@@ -31,10 +31,60 @@ module.exports = ({ 설정: 원설정, 뿌리, 결과, 틀, 길, 막기, 쓰기,
     본문: `<section class="일반글">
   <span class="윗글">스토어</span>
   <h1>아티스트 코치 서비스</h1>
-  <div class="상품목록">${설정.상품.map((p) => `<a class="상품카드" href="${길(`/products/${p.id}/`)}">${이미지주소(p) ? `<img src="${이미지주소(p)}" alt="${막기(p.이름)} 표지" width="800" height="1000">` : ''}<b>${막기(p.이름)}</b><span>${막기(p.한줄)}</span><em>${원(p.가격)}</em></a>`).join('')}</div>
+  <div class="상품목록">${설정.상품.filter((p) => !p.목록숨김).map((p) => `<a class="상품카드" href="${길(`/products/${p.id}/`)}">${이미지주소(p) ? `<img src="${이미지주소(p)}" alt="${막기(p.이름)} 표지" width="800" height="1000">` : ''}<b>${막기(p.이름)}</b><span>${막기(p.한줄)}</span><em>${원(p.가격)}</em></a>`).join('')}</div>
   <p class="작은">결제 전에 <a href="${길('/refund/')}">환불 규정</a>과 <a href="${길('/terms/')}">이용약관</a>을 확인해 주세요.</p>
 </section>`,
   }));
+
+  // ── 책 상품(소개글·목차·도서 정보·미리보기·구매 안내가 있는 상세 페이지)
+  const { 변환 } = require('./마크다운.js')({ 막기, 길 });
+  const 글읽기 = (폴더, 파일) => { const f = path.join(뿌리, '자료', '상품', 폴더, 파일 || ''); return (파일 && /^[A-Za-z0-9_.\-]+$/.test(파일) && fs.existsSync(f)) ? 변환(fs.readFileSync(f, 'utf8')) : null; };
+  const 구매폼 = (p) => `<form class="구매폼" onsubmit="return false">
+    <label>이름<input id="구매자이름" autocomplete="name"></label>
+    <label>이메일<input id="구매자메일" type="email" autocomplete="email"></label>
+    <label>연락처<input id="구매자전화" type="tel" autocomplete="tel" placeholder="휴대전화 번호"></label>
+    <label class="동의"><input id="동의약관" type="checkbox"> <a href="${길('/terms/')}" target="_blank">이용약관</a>에 동의합니다.</label>
+    <label class="동의"><input id="동의환불" type="checkbox"> <a href="${길('/refund/')}" target="_blank">환불 규정</a>을 확인했고, 디지털 콘텐츠는 내려받은 뒤에는 청약철회가 제한될 수 있음을 확인했습니다.</label>
+    <p id="결제알림" class="결제알림" role="alert" hidden></p>
+    <button id="결제버튼" class="단추 주" type="button">${원(p.가격)} 결제하기</button>
+  </form>`;
+  const 책본문 = (p) => {
+    const 소개 = 글읽기('소개', p.소개글);
+    const 미리 = 글읽기('미리보기', p.미리보기);
+    const 정보 = [['서명', p.이름], ['부제', p.부제], ['지은이', p.저자], ['펴낸곳', p.발행처], ['형태', p.형태 + (p.쪽수 ? ' · ' + p.쪽수 : '')], ['ISBN', p.isbn], ['펴낸날', p.펴낸날], ['정가', 원(p.가격)]].filter((x) => x[1]);
+    return `<article class="일반글 상품상세 책상세">
+  <span class="윗글">스토어 · 전자책</span>
+  <div class="책머리">
+    ${이미지주소(p) ? `<img class="상품이미지" src="${이미지주소(p)}" alt="${막기(p.이름)} 표지" width="700" height="1000">` : ''}
+    <div class="책머리글">
+      <h1>${막기(p.이름)}</h1>
+      ${p.부제 ? `<p class="부제">${막기(p.부제)}</p>` : ''}
+      <p class="저자줄">${막기(p.저자 || '')}${p.발행처 ? ' · ' + 막기(p.발행처) : ''}</p>
+      <p class="가격">${원(p.가격)}</p>
+      <p class="작은">PDF 전자책 · 결제 후 이메일로 전달 · 회원가입 없이 구매</p>
+      <p class="책단추"><a class="단추 주" href="#구매하기">구매하기</a>${미리 ? ` <a class="단추" href="${길(`/products/${p.id}/preview/`)}">미리 읽어 보기 (무료)</a>` : ''}</p>
+    </div>
+  </div>
+  ${소개 ? `<section class="글카드 책소개">${소개.본문}</section>` : ''}
+  ${p.목차 && p.목차.length ? `<section class="글카드"><h2>목차 한눈에</h2><ol class="책목차">${p.목차.map((m) => `<li><b>${막기(m[0])}</b><span>${막기(m[1])}</span></li>`).join('')}</ol></section>` : ''}
+  <section class="글카드"><h2>도서 정보</h2><dl class="정보">${정보.map((x) => `<div><dt>${막기(x[0])}</dt><dd>${막기(x[1])}</dd></div>`).join('')}</dl></section>
+  <section class="글카드"><h2>구매 안내</h2>
+    <dl class="정보">
+      <div><dt>받는 방법</dt><dd>${막기(p.제공방법)}. 링크는 구매하신 이메일로만 보내 드려요. 인쇄본과 배송은 없어요.</dd></div>
+      <div><dt>받는 시기</dt><dd>${막기(p.제공기간)}</dd></div>
+      <div><dt>다시 받기</dt><dd>이메일이나 링크를 잃어버리면 문의해 주세요. 확인한 뒤 다시 보내 드려요.</dd></div>
+      <div><dt>환불</dt><dd>${막기(p.환불가능기간)} · <a href="${길('/refund/')}">환불 규정 보기</a></dd></div>
+      <div><dt>문의</dt><dd>${막기(사업자.이메일 || '')}</dd></div>
+      <div><dt>이용 범위</dt><dd>구매하신 분 개인이 읽고 쓰는 용도로만 사용해 주세요. 복제·전송·다시 판매는 저작권법으로 금지돼 있어요.</dd></div>
+    </dl>
+  </section>
+  <section class="글카드" id="구매하기"><h2>구매하기 (회원가입 없이 구매할 수 있어요)</h2>
+  ${구매폼(p)}
+  <p class="작은">결제는 토스페이먼츠 결제창에서 진행되며, 카드번호는 운영자가 저장하지 않습니다. 개인정보는 <a href="${길('/privacy/')}">개인정보처리방침</a>에 따라 처리합니다.</p>
+  </section>
+  <p class="작은">${막기(사업자.상호)} · 대표 ${막기(사업자.대표자)} · 사업자등록번호 ${막기(사업자.사업자등록번호)} · 통신판매업 신고번호 ${막기(사업자.통신판매업신고)}</p>
+</article>`;
+  };
 
   // ── 상품 상세 (비회원 구매)
   설정.상품.forEach((p) => {
@@ -63,7 +113,7 @@ module.exports = ({ 설정: 원설정, 뿌리, 결과, 틀, 길, 막기, 쓰기,
 </script>`;
     쓰기(`products/${p.id}/index.html`, 틀({
       제목: `${p.이름} · 아티스트 코치`, 설명: p.한줄, 경로: `/products/${p.id}/`, 스크립트,
-      본문: `<article class="일반글 상품상세">
+      본문: p.소개글 ? 책본문(p) : `<article class="일반글 상품상세">
   <span class="윗글">스토어</span>
   <h1>${막기(p.이름)}</h1>
   ${이미지주소(p) ? `<img class="상품이미지" src="${이미지주소(p)}" alt="${막기(p.이름)} 표지" width="800" height="1000">` : ''}
@@ -87,6 +137,22 @@ module.exports = ({ 설정: 원설정, 뿌리, 결과, 틀, 길, 막기, 쓰기,
   </form>
   <p class="작은">결제는 토스페이먼츠 결제창에서 진행되며, 카드번호는 운영자가 저장하지 않습니다. 개인정보는 <a href="${길('/privacy/')}">개인정보처리방침</a>에 따라 처리합니다.</p>
   <p class="작은">${막기(사업자.상호)} · 대표 ${막기(사업자.대표자)} · 사업자등록번호 ${막기(사업자.사업자등록번호)} · 통신판매업 신고번호 ${막기(사업자.통신판매업신고)}</p>
+</article>`,
+    }));
+  });
+
+  // ── 책 미리 읽기(머리말·0장 일부, 글로 공개)
+  설정.상품.forEach((p) => {
+    const 미리 = p.소개글 && 글읽기('미리보기', p.미리보기);
+    if (!미리) return;
+    경로목록.push(`/products/${p.id}/preview/`);
+    쓰기(`products/${p.id}/preview/index.html`, 틀({
+      제목: `미리 읽기 · ${p.이름} · 아티스트 코치`, 설명: `${p.이름} — 머리말과 0장 '시작하기 전에'를 먼저 읽어 보세요.`, 경로: `/products/${p.id}/preview/`,
+      본문: `<article class="일반글 글본문 자료글">
+  <header class="자료영웅"><div class="영웅글"><span class="윗글">무료 미리 읽기</span><h1>${막기(p.이름)}</h1><p class="리드">머리말과 0장 '시작하기 전에'를 먼저 읽어 보세요. 이어지는 1~6장과 부록은 전자책에서 만나요.</p></div>${이미지주소(p) ? `<img src="${이미지주소(p)}" alt="" width="140" height="200">` : ''}</header>
+  ${미리.본문.replace(/<h2>/g, '<h2 class="미리소제목">')}
+  <section class="글카드"><p><b>이어서 읽고 싶으시다면</b> 1장부터 부록까지 147쪽의 전체 내용은 전자책에서 볼 수 있어요.</p><p><a class="단추 주" href="${길(`/products/${p.id}/`)}">전자책 보러 가기</a> <a class="단추" href="${길('/resources/')}">무료 자료실</a></p></section>
+  <p class="작은">책 내용은 저작권법의 보호를 받습니다. 복제·전송·다시 판매할 수 없습니다.</p>
 </article>`,
     }));
   });

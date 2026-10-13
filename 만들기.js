@@ -270,6 +270,15 @@ i{font-style:normal}
 .도구칸 textarea{width:100%;min-height:90px}
 .도구칸 label{display:block;font-weight:700;font-size:14px;margin:10px 0 4px}
 .도구칸 button{font:inherit;font-weight:700;border:0;border-radius:999px;padding:9px 16px;background:var(--브랜드);color:#fff;cursor:pointer}
+.책상세{counter-reset:카드}
+.책머리{display:flex;gap:22px;align-items:flex-start;margin:6px 0 16px}
+.책머리 .상품이미지{width:200px;flex:none;border-radius:10px;box-shadow:0 6px 20px rgba(0,0,0,.16)}
+.책머리글{min-width:0}.책머리글 h1{margin:0 0 6px;font-size:clamp(24px,4.6vw,32px);line-height:1.25}
+.책머리글 .부제{margin:0 0 8px;color:var(--sub);font-size:15.5px}.책머리글 .저자줄{margin:0 0 10px;font-weight:700}
+.책머리글 .가격{margin:6px 0}.책단추{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 0}
+@media (max-width:560px){.책머리{flex-direction:column;align-items:center;text-align:center}.책머리 .상품이미지{width:170px}.책단추{justify-content:center}}
+.책소개 p{margin:10px 0}.책소개 ul{margin:8px 0}.책목차{list-style:none;padding:0;margin:0}
+.책목차 li{display:flex;flex-direction:column;gap:2px;padding:10px 0;border-bottom:1px solid var(--선)}.책목차 li:last-child{border-bottom:0}.책목차 li span{font-size:14px;color:var(--sub)}
 .글그림{margin:18px 0;text-align:center}.글그림 img{max-width:min(100%,380px);height:auto;border-radius:14px;box-shadow:0 2px 12px rgba(0,0,0,.08)}
 .글본문 h3.번호{display:flex;align-items:center;gap:10px;margin:22px 0 6px;font-size:17px}
 .글본문 h3.번호 span{flex:0 0 auto;width:30px;height:30px;border-radius:50%;background:var(--브랜드);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:15px}
@@ -505,7 +514,7 @@ ${추천.length ? `<section class="추천" aria-label="인기 카드뉴스" aria
 </script>` : ''}
 ${자료실.띠}
 ${광고칸('첫화면')}
-${검수용 ? `<section class="추천" aria-label="스토어"><div class="제목줄"><h2>스토어</h2></div><div class="상품목록">${(상품설정.상품 || []).filter((p) => Number(p.가격) > 0).map((p) => `<a class="상품카드" href="${길(`/products/${p.id}/`)}">${p.이미지 ? `<img src="${길('/products/img/' + encodeURI(p.이미지))}" alt="${막기(p.이름)} 표지" width="800" height="1000">` : ''}<b>${막기(p.이름)}</b><span>${막기(p.한줄)}</span><em>${Number(p.가격).toLocaleString('ko-KR')}원</em></a>`).join('')}</div></section>` : ''}
+${검수용 ? `<section class="추천" aria-label="스토어"><div class="제목줄"><h2>스토어</h2></div><div class="상품목록">${(상품설정.상품 || []).filter((p) => Number(p.가격) > 0 && !p.목록숨김).map((p) => `<a class="상품카드" href="${길(`/products/${p.id}/`)}">${p.이미지 ? `<img src="${길('/products/img/' + encodeURI(p.이미지))}" alt="${막기(p.이름)} 표지" width="800" height="1000">` : ''}<b>${막기(p.이름)}</b><span>${막기(p.한줄)}</span><em>${Number(p.가격).toLocaleString('ko-KR')}원</em></a>`).join('')}</div></section>` : ''}
 <div class="도구"><div class="칩줄" id="기간줄">${기간목록.map(([v, 이름], i) => `<button class="칩" data-v="${v}" aria-pressed="${i === 0}">${이름}</button>`).join('')}</div></div>
 <div class="거름">
   <div class="칩줄" id="분류줄"><button class="칩" data-v="" aria-pressed="true">모든 종류</button>${분류목록.map((c) => `<button class="칩" data-v="${막기(c)}" aria-pressed="false">${막기(c)}</button>`).join('')}</div>
