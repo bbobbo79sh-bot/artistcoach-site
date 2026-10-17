@@ -1094,12 +1094,12 @@
  {
   "id": "2d3f32dc",
   "cat": "예술인 지원·공모",
-  "org": "충북문화재단",
+  "org": "한국콘텐츠진흥원",
   "region": "충북",
   "title": "2026년 충북 시·군 문예회관 활성화 공연 추진단체 모집공고",
   "deadline": "2026-10-28",
   "target": "전체",
-  "link": "https://artnuri.or.kr/crawler/info/view.do?key=2301170002&docid=S65574&seNo=001",
+  "link": "https://www.kocca.kr/kocca/bbs/view/B0000204/1968114.do?searchCnd=&searchWrd=&cateTp1=&cateTp2=&useYn=&menuNo=204897&categorys=2&subcate=50&cateCode=0&type=&instNo=0&questionTp=&ufSetting=&recovery=&option1=&option2=&year=&morePage=&qtp=&searchGenre=&domainId=&sortCode=&pageIndex=1",
   "posted": "",
   "summary": "",
   "benefit": ""
@@ -1120,12 +1120,12 @@
  {
   "id": "f67bddad",
   "cat": "예술 공모전·모집",
-  "org": "모모365",
+  "org": "고래문화재단",
   "region": "모음사이트",
   "title": "2027년「울산학생교육문화회관」초청 공연 및 전시 공모 공고",
   "deadline": "2026-10-29",
   "target": "",
-  "link": "https://www.momo365.net/Support?cd=support&ViewType=detail&seq=178424",
+  "link": "https://www.uwcf.or.kr/menu_05/01.jsp?prc=view&n=504&catgry=CAT001&pg=1",
   "posted": "2026-10-16",
   "summary": "",
   "benefit": ""
@@ -1140,6 +1140,19 @@
   "target": "",
   "link": "https://www.kocca.kr/kocca/pims/view.do?intcNo=126D00107006&menuNo=204104&recptSt=&category=&pageIndex=1&search=&searchWrd=",
   "posted": "2026-10-13",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "e7250ed3",
+  "cat": "예술 공모전·모집",
+  "org": "국악신문(경연대회)",
+  "region": "전국",
+  "title": "제16회 전국 동구리 전통민요경창대회(11/10-11) 광고부 08:01",
+  "deadline": "2026-10-29",
+  "target": "",
+  "link": "https://www.kukak21.com/bbs/board.php?bo_table=news&wr_id=44394",
+  "posted": "2026-09-16",
   "summary": "",
   "benefit": ""
  },
@@ -1614,12 +1627,12 @@
  {
   "id": "10f5b862",
   "cat": "예술 공모전·모집",
-  "org": "모모365",
+  "org": "한국문화예술회관연합회",
   "region": "모음사이트",
   "title": "한국문화예술회관연합회-국립심포니오케스트라 2027년 우수 콘텐츠 지역 문예회관 유통사업 공모 안내",
   "deadline": "2026-11-04",
   "target": "",
-  "link": "https://www.momo365.net/Support?cd=support&ViewType=detail&seq=178445",
+  "link": "https://www.kocaca.or.kr/shop_contents/myboard_read.htm?load_type=&page_idx=0&tag_on=&h_search_c=0&h_search_v=&me_popup=&myboard_code=myboard8&page_limit=10&idx=828645&page=1&category_idx=",
   "posted": "2026-10-16",
   "summary": "",
   "benefit": ""
@@ -2173,12 +2186,12 @@
  {
   "id": "e18618ef",
   "cat": "예술 공모전·모집",
-  "org": "모모365",
+  "org": "예술경영지원센터",
   "region": "모음사이트",
   "title": "구리역 하이니티 리버파크 미술작품 제작 설치 공모 공고",
   "deadline": "2026-11-08",
   "target": "",
-  "link": "https://www.momo365.net/Support?cd=contest&ViewType=detail&seq=178470",
+  "link": "https://www.gokams.or.kr:443/01_news/event_view.aspx?Idx=51138&flag=0&page=1&txtKeyword=&ddlKeyfield=T",
   "posted": "2026-10-16",
   "summary": "",
   "benefit": ""
@@ -2223,6 +2236,19 @@
   "benefit": ""
  },
  {
+  "id": "19c3a00a",
+  "cat": "예술 공모전·모집",
+  "org": "국악신문(경연대회)",
+  "region": "전국",
+  "title": "[세종대왕상 국회의장상 국무총리상 문체부장관상 서울시장상] 제12회 전국세종대왕전통예술경연대회( (11/13,15) [무용/민요/판소리/기악] 광고부 17:43",
+  "deadline": "2026-11-10",
+  "target": "",
+  "link": "https://www.kukak21.com/bbs/board.php?bo_table=news&wr_id=44848",
+  "posted": "2026-10-12",
+  "summary": "",
+  "benefit": ""
+ },
+ {
   "id": "5a4b9dca",
   "cat": "예술인 지원·공모",
   "org": "국립중앙과학관",
@@ -2232,6 +2258,19 @@
   "target": "전체",
   "link": "https://artnuri.or.kr/crawler/info/view.do?key=2301170002&docid=2610140001&seNo=002",
   "posted": "",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "6b7c6a16",
+  "cat": "예술 공모전·모집",
+  "org": "국악신문(경연대회)",
+  "region": "전국",
+  "title": "제 8회 보은전국국악경연대회(11/14) 신청서는 아래 다운 받으세요. 광고부 11:11",
+  "deadline": "2026-11-11",
+  "target": "",
+  "link": "https://www.kukak21.com/bbs/board.php?bo_table=news&wr_id=44664",
+  "posted": "2026-10-02",
   "summary": "",
   "benefit": ""
  },
@@ -2323,6 +2362,19 @@
   "target": "",
   "link": "https://eminwon.pohang.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=75923&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_se_code=01,02,03,04,05",
   "posted": "2026-10-16",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "e0766aad",
+  "cat": "예술 공모전·모집",
+  "org": "국악신문(경연대회)",
+  "region": "전국",
+  "title": "[도지사상] 제20회 전국 하남시 국악경연대회(11/14) 1) 행사개요 대 회 명 제20회 전국 하남시 국악경연대회 개최목적 우리 전통 국악의 소중한 가치를 계승하고 우수한 국악 인재를 발굴·양성하고자 『하남시 국악경연대회』를 개최합니다. 국악을 ᄉᆞᆼ하는 여... 광고부 14:03",
+  "deadline": "2026-11-13",
+  "target": "",
+  "link": "https://www.kukak21.com/bbs/board.php?bo_table=news&wr_id=44739",
+  "posted": "2026-10-08",
   "summary": "",
   "benefit": ""
  },
