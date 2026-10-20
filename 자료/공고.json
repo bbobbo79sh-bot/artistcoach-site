@@ -650,6 +650,19 @@
   "benefit": ""
  },
  {
+  "id": "55e13949",
+  "cat": "예술인 지원·공모",
+  "org": "서울문화재단",
+  "region": "서울",
+  "title": "2027년 연희문학창작촌 입주작가 정기공모(2·3개월)",
+  "deadline": "2026-10-23",
+  "target": "",
+  "link": "https://www.scas.kr/biz/detail/512",
+  "posted": "",
+  "summary": "",
+  "benefit": ""
+ },
+ {
   "id": "23767f96",
   "cat": "예술 공모전·모집",
   "org": "한국예술인복지재단",
@@ -1131,6 +1144,19 @@
   "benefit": ""
  },
  {
+  "id": "9b59b397",
+  "cat": "예술인 지원·공모",
+  "org": "Art Explora · 파리 국제예술촌",
+  "region": "",
+  "title": "Art Explora × 파리 국제예술촌 2027 레지던시 공모",
+  "deadline": "2026-10-30",
+  "target": "",
+  "link": "https://www.artexplora.org/en/the-artists-residencies-programme-presentation",
+  "posted": "",
+  "summary": "",
+  "benefit": ""
+ },
+ {
   "id": "74c4d385",
   "cat": "예술인 지원·공모",
   "org": "고창문화관광재단",
@@ -1257,6 +1283,45 @@
   "target": "",
   "link": "https://www.ntck.or.kr/ko/content/board/notice/50921/form?",
   "posted": "2026-10-07",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "f977b8ed",
+  "cat": "예술 공모전·모집",
+  "org": "문학동네",
+  "region": "",
+  "title": "제28회 문학동네어린이문학상 공모",
+  "deadline": "2026-10-31",
+  "target": "",
+  "link": "https://munhak.com/contest/prize/4399",
+  "posted": "",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "6e11f440",
+  "cat": "예술 공모전·모집",
+  "org": "문학동네",
+  "region": "",
+  "title": "제4회 문학동네 초승달문학상 공모",
+  "deadline": "2026-10-31",
+  "target": "",
+  "link": "https://munhak.com/contest/prize/4402",
+  "posted": "",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "dff6c704",
+  "cat": "예술 공모전·모집",
+  "org": "문학동네",
+  "region": "",
+  "title": "제15회 문학동네 동시문학상 공모",
+  "deadline": "2026-10-31",
+  "target": "",
+  "link": "https://munhak.com/contest/prize/4400",
+  "posted": "",
   "summary": "",
   "benefit": ""
  },
@@ -1438,6 +1503,19 @@
   "deadline": "2026-11-03",
   "target": "개인",
   "link": "https://artnuri.or.kr/crawler/info/view.do?key=2301170002&docid=S65592&seNo=001",
+  "posted": "",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "15d01794",
+  "cat": "예술인 지원·공모",
+  "org": "헤라르보니(HERALBONY)",
+  "region": "",
+  "title": "HERALBONY Art Prize 2027 장애예술인 작품 공모",
+  "deadline": "2026-11-03",
+  "target": "",
+  "link": "https://artprize.heralbony.jp/en/eligibility-and-guidelines",
   "posted": "",
   "summary": "",
   "benefit": ""
@@ -2115,6 +2193,19 @@
   "target": "",
   "link": "https://www.kocaca.or.kr/shop_contents/myboard_read.htm?load_type=&page_idx=0&tag_on=&h_search_c=0&h_search_v=&me_popup=&myboard_code=myboard8&page_limit=10&idx=828705&page=1&category_idx=",
   "posted": "2026-10-19",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "e219969b",
+  "cat": "예술인 지원·공모",
+  "org": "아시아문화협회(Asian Cultural Council)",
+  "region": "",
+  "title": "아시아문화협회 ACC 2027 펠로십·그랜트 참가자 공모 지원사업 안내",
+  "deadline": "2026-11-10",
+  "target": "",
+  "link": "https://www.asianculturalcouncil.org/grant-opportunities",
+  "posted": "",
   "summary": "",
   "benefit": ""
  },
@@ -3315,6 +3406,19 @@
   "benefit": ""
  },
  {
+  "id": "111f0a1c",
+  "cat": "예술 공모전·모집",
+  "org": "사계절출판사",
+  "region": "",
+  "title": "제25회 사계절문학상 공모",
+  "deadline": "2026-12-31",
+  "target": "",
+  "link": "http://www.sakyejul.net/bbs/m/mcb_data_view.php?type=mcb&ep=ep993587793575e55ff04653&gp=all&item=md7521927669a7ea24b6b98",
+  "posted": "",
+  "summary": "",
+  "benefit": ""
+ },
+ {
   "id": "1415c0fd",
   "cat": "예술 공모전·모집",
   "org": "영화진흥위원회",
@@ -3363,6 +3467,19 @@
   "target": "",
   "link": "https://www.kofic.or.kr/kofic/business/board/selectBoardDetail.do?boardNumber=4&boardSeqNumber=76001",
   "posted": "2026-10-12",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "ee849d81",
+  "cat": "예술인 지원·공모",
+  "org": "CJ ENM",
+  "region": "",
+  "title": "CJ ENM 2027 오펜 스토리텔러 창작지원 공모 지원사업 안내",
+  "deadline": "2027-01-18",
+  "target": "",
+  "link": "https://open.cjenm.com/ko/applyinfo/story/",
+  "posted": "",
   "summary": "",
   "benefit": ""
  },
