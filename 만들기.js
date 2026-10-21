@@ -75,6 +75,8 @@ const 공고 = 살아있는.filter((x) => !모음인가(x))
   .sort((a, b) => (a.deadline === '상시') - (b.deadline === '상시') || a.deadline.localeCompare(b.deadline));
 const 상시수 = 공고.filter((x) => x.deadline === '상시').length;
 // 인스타 카드뉴스 중 인기 있는 것 (조사 봇이 자료/추천.json 과 자료/추천/ 이미지를 내보낸다. 없으면 배너를 그리지 않는다)
+// 홈페이지 쪽 추천 배너 제외 목록(자료/추천제외.json: 공고 번호 배열). 카드 이미지에 지난 날짜가 박혀 있거나 규칙에 맞지 않는 카드를 급히 뺄 때 쓴다. 조사 봇이 덮어쓰는 추천.json 과 따로 둔다.
+const 추천제외 = (() => { try { return JSON.parse(fs.readFileSync(path.join(뿌리, '자료', '추천제외.json'), 'utf8')); } catch (e) { return []; } })();
 const 추천경로 = process.env.SITE_REC || path.join(뿌리, '자료', '추천.json');
 const 추천폴더 = process.env.SITE_RECIMG || path.join(뿌리, '자료', '추천');
 const 추천 = (() => {
@@ -82,7 +84,7 @@ const 추천 = (() => {
   try {
     return JSON.parse(fs.readFileSync(추천경로, 'utf8'))
       .map((r) => ({ ...r, 공고: 공고.find((x) => x.id === r.id) }))
-      .filter((r) => r.공고 && r.image && /^[\w.\-가-힣 ]+$/.test(r.image) && fs.existsSync(path.join(추천폴더, r.image)))
+      .filter((r) => r.공고 && !추천제외.includes(r.id) && r.image && /^[\w.\-가-힣 ]+$/.test(r.image) && fs.existsSync(path.join(추천폴더, r.image)))
       .sort((a, b) => (b.score || 0) - (a.score || 0)).slice(0, 8);
   } catch (e) { console.log('추천.json 을 읽지 못해 배너를 건너뜁니다: ' + e.message); return []; }
 })();
