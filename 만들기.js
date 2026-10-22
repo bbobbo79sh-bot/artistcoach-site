@@ -294,7 +294,7 @@ i{font-style:normal}
 .표칸 th,.표칸 td{border:1px solid var(--선);padding:9px 11px;text-align:left;vertical-align:top;line-height:1.6}
 .표칸 th{background:var(--연함);font-weight:700}
 .표칸 td:empty{height:38px}
-.자료띠{margin:26px 0 8px;padding:16px 0 16px 16px;background:var(--연함);border-radius:16px;overflow:hidden}
+.자료띠{margin:26px 0 8px;padding:16px 0 16px 16px;background:var(--아주연함);border:1px solid var(--선);border-radius:16px;overflow:hidden}
 .띠머리{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-right:16px}
 .띠머리 b{display:block;font-size:17px}.띠머리 span{font-size:13px;color:var(--sub)}
 .띠줄{display:flex;gap:10px;margin-top:14px;padding:2px 16px 4px 0;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
