@@ -247,6 +247,19 @@
   "benefit": ""
  },
  {
+  "id": "47555b7b",
+  "cat": "예술인 지원·공모",
+  "org": "춘천문화재단",
+  "region": "강원",
+  "title": "지역 출향예술인 교류지원사업 홈커밍 아트 춘천 참여 예술인 단체 모집 공모",
+  "deadline": "2026-10-29",
+  "target": "",
+  "link": "https://www.cccf.or.kr/home/program/business?id=12679",
+  "posted": "",
+  "summary": "",
+  "benefit": ""
+ },
+ {
   "id": "20a4a702",
   "cat": "예술인 지원·공모",
   "org": "문화체육관광부",
@@ -2041,6 +2054,19 @@
   "benefit": ""
  },
  {
+  "id": "9a875a3e",
+  "cat": "예술 공모전·모집",
+  "org": "양산시 농업기술센터",
+  "region": "",
+  "title": "양산국화축제 버스킹 신청 공모",
+  "deadline": "2026-11-13",
+  "target": "",
+  "link": "https://www.yangsan.go.kr/portal/saeol/gosi/view.do?notAncmtMgtNo=79586&mid=0102010000",
+  "posted": "",
+  "summary": "",
+  "benefit": ""
+ },
+ {
   "id": "a1ca530f",
   "cat": "예술 공모전·모집",
   "org": "인천 강화군청",
@@ -2414,6 +2440,32 @@
   "target": "",
   "link": "http://www.mu-um.com/?mid=0602&act=dtl&idx=4812&cateTP=&keyword=&page=1",
   "posted": "2026-10-26",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "54a61a0b",
+  "cat": "예술 공모전·모집",
+  "org": "대구문화예술회관",
+  "region": "",
+  "title": "아츠스프링 대구 페스티벌 TYPE-1 참여 무용수 모집 공모",
+  "deadline": "2026-11-20",
+  "target": "",
+  "link": "https://daeguartscenter.or.kr/index.do?menu_id=00001527&menu_link=/icms/bbs/selectBoardArticle.do&bbsId=BBS_00301&nttId=11320",
+  "posted": "",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "e58e9863",
+  "cat": "예술 공모전·모집",
+  "org": "보령시",
+  "region": "",
+  "title": "보령시립합창단 하반기 신규단원 모집 공모",
+  "deadline": "2026-11-20",
+  "target": "",
+  "link": "https://www.brcn.go.kr/prog/eminwon/kor/BB/sub04_03_01/view.do?mgtno=57438",
+  "posted": "",
   "summary": "",
   "benefit": ""
  },
