@@ -1,44 +1,5 @@
 [
  {
-  "id": "09ef124b",
-  "cat": "예술인 지원·공모",
-  "org": "국립현대무용단",
-  "region": "",
-  "title": "댄스하우스 전문 무용수 오픈 클래스 지원사업",
-  "deadline": "2026-10-26",
-  "target": "",
-  "link": "https://kncdc.kr/ko/news/noticeDetail?boardMasterSeq=5&boardSeq=2452&pgm=notice",
-  "posted": "",
-  "summary": "국립현대무용단이 경력 3년 이상의 전문 무용수를 대상으로 운영하는 댄스하우스 오픈 클래스(하반기 PART 2, 10월 클래스) 참가자 모집입니다. 발레 테크닉부터 현대무용 클래스까지 다양한 프로그램으로 신체 트레이닝과 움직임 확장 경험을 제공합니다.",
-  "benefit": "강좌별 참가비 1만 원 · 프로그램별 최대 20명 · 10월 6일~30일 · 국립현대무용단 댄스하우스(서울 강남구)"
- },
- {
-  "id": "6b4163d4",
-  "cat": "예술 공모전·모집",
-  "org": "국립국악원",
-  "region": "전국",
-  "title": "국립남도국악원 2027 토요상설공연 '국악이 좋다' 출연자 공모",
-  "deadline": "2026-10-26",
-  "target": "",
-  "link": "https://www.gugak.go.kr/site/program/board/basicboard/view?menuid=001005006001&pagesize=10&boardtypeid=58&boardid=49017&lang=ko",
-  "posted": "2026-09-29",
-  "summary": "국립남도국악원이 국악 상설공연 운영을 통해 국민 문화 향유 공간을 활성화하고 국악 생활화를 도모하고자 '2027 토요상설공연 국악이 좋다' 출연 단체 및 예술인을 공개 모집합니다.",
-  "benefit": ""
- },
- {
-  "id": "ff1f1d2d",
-  "cat": "예술 공모전·모집",
-  "org": "한국콘텐츠진흥원",
-  "region": "전국",
-  "title": "문화다양성을 위한 '작은 영화제' 지원 공모",
-  "deadline": "2026-10-26",
-  "target": "",
-  "link": "https://www.kocca.kr/kocca/bbs/view/B0000204/1967975.do?searchCnd=&searchWrd=&cateTp1=&cateTp2=&useYn=&menuNo=204897&categorys=2&subcate=50&cateCode=0&type=&instNo=0&questionTp=&ufSetting=&recovery=&option1=&option2=&year=&morePage=&qtp=&searchGenre=&domainId=&sortCode=&pageIndex=1",
-  "posted": "2026-09-30",
-  "summary": "한국콘텐츠진흥원이 2026 문화다양성 증진을 위한 '작은 영화제' 지원 대상을 공모하는 사업입니다(분야: 일반).",
-  "benefit": ""
- },
- {
   "id": "67fd754a",
   "cat": "예술인 지원·공모",
   "org": "서울문화재단",
@@ -572,6 +533,19 @@
   "benefit": ""
  },
  {
+  "id": "c896282f",
+  "cat": "예술 공모전·모집",
+  "org": "창작집단 모음",
+  "region": "",
+  "title": "연극 <유골사탕> 추가 배우 오디션 공모",
+  "deadline": "2026-10-30",
+  "target": "",
+  "link": "https://otr.co.kr/audition/?vid=22566",
+  "posted": "",
+  "summary": "",
+  "benefit": ""
+ },
+ {
   "id": "74c4d385",
   "cat": "예술인 지원·공모",
   "org": "고창문화관광재단",
@@ -750,6 +724,19 @@
   "target": "",
   "link": "https://www.arthub.co.kr/sub04/board01_view.htm?No=27358&page=1&sType1=1&sType2=2&sType3=3&sType4=&sort=new",
   "posted": "2026-10-22",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "414ccd9c",
+  "cat": "예술 공모전·모집",
+  "org": "컴퍼니 연결",
+  "region": "",
+  "title": "연극 <쉿!> 배우 오디션 공모",
+  "deadline": "2026-10-31",
+  "target": "",
+  "link": "https://otr.co.kr/audition/?vid=22513",
+  "posted": "",
   "summary": "",
   "benefit": ""
  },
@@ -1711,6 +1698,19 @@
   "deadline": "2026-11-08",
   "target": "",
   "link": "https://otr.co.kr/audition/?vid=22565",
+  "posted": "",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "a4f44724",
+  "cat": "예술 공모전·모집",
+  "org": "유머러's",
+  "region": "",
+  "title": "연극 <히든퍼즐> 3차팀 배우 오디션 공모",
+  "deadline": "2026-11-08",
+  "target": "",
+  "link": "https://otr.co.kr/audition/?vid=22573",
   "posted": "",
   "summary": "",
   "benefit": ""
