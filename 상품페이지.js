@@ -61,7 +61,7 @@ module.exports = ({ 설정: 원설정, 뿌리, 결과, 틀, 길, 막기, 쓰기,
       ${p.부제 ? `<p class="부제">${막기(p.부제)}</p>` : ''}
       <p class="저자줄">${막기(p.저자 || '')}${p.발행처 ? ' · ' + 막기(p.발행처) : ''}</p>
       <p class="가격">${원(p.가격)}</p>
-      <p class="작은">PDF 전자책 · 결제 후 이메일로 전달 · 회원가입 없이 구매</p>
+      <p class="작은">PDF 전자책 · 결제 후 바로 내려받기 · 회원가입 없이 구매</p>
       <p class="책단추"><a class="단추 주" href="#구매하기">구매하기</a>${미리 ? ` <a class="단추" href="${길(`/products/${p.id}/preview/`)}">미리 읽어 보기 (무료)</a>` : ''}</p>
     </div>
   </div>
@@ -70,9 +70,9 @@ module.exports = ({ 설정: 원설정, 뿌리, 결과, 틀, 길, 막기, 쓰기,
   <section class="글카드"><h2>도서 정보</h2><dl class="정보">${정보.map((x) => `<div><dt>${막기(x[0])}</dt><dd>${막기(x[1])}</dd></div>`).join('')}</dl></section>
   <section class="글카드"><h2>구매 안내</h2>
     <dl class="정보">
-      <div><dt>받는 방법</dt><dd>${막기(p.제공방법)}. 링크는 구매하신 이메일로만 보내 드려요. 인쇄본과 배송은 없어요.</dd></div>
+      <div><dt>받는 방법</dt><dd>${막기(p.제공방법)}. 인쇄본과 배송은 없어요.</dd></div>
       <div><dt>받는 시기</dt><dd>${막기(p.제공기간)}</dd></div>
-      <div><dt>다시 받기</dt><dd>이메일이나 링크를 잃어버리면 문의해 주세요. 확인한 뒤 다시 보내 드려요.</dd></div>
+      <div><dt>다시 받기</dt><dd>링크를 잃어버렸다면 <a href="${길('/pay/retrieve/')}">다시 받기</a>에서 결제할 때 적은 이메일과 휴대전화 번호 뒤 4자리로 새 링크를 받을 수 있어요.</dd></div>
       <div><dt>환불</dt><dd>${막기(p.환불가능기간)} · <a href="${길('/refund/')}">환불 규정 보기</a></dd></div>
       <div><dt>문의</dt><dd>${막기(사업자.이메일 || '')}</dd></div>
       <div><dt>이용 범위</dt><dd>구매하신 분 개인이 읽고 쓰는 용도로만 사용해 주세요. 복제·전송·다시 판매는 저작권법으로 금지돼 있어요.</dd></div>
@@ -149,7 +149,7 @@ module.exports = ({ 설정: 원설정, 뿌리, 결과, 틀, 길, 막기, 쓰기,
     쓰기(`products/${p.id}/preview/index.html`, 틀({
       제목: `미리 읽기 · ${p.이름} · 아티스트 코치`, 설명: `${p.이름} — 머리말과 0장 '시작하기 전에'를 먼저 읽어 보세요.`, 경로: `/products/${p.id}/preview/`,
       본문: `<article class="일반글 글본문 자료글">
-  <header class="자료영웅"><div class="영웅글"><span class="윗글">무료 미리 읽기</span><h1>${막기(p.이름)}</h1><p class="리드">머리말과 0장 '시작하기 전에'를 먼저 읽어 보세요. 이어지는 1~6장과 부록은 전자책에서 만나요.</p></div>${이미지주소(p) ? `<img src="${이미지주소(p)}" alt="" width="140" height="200">` : ''}</header>
+  <header class="자료영웅"><div class="영웅글"><span class="윗글">무료 미리 읽기</span><h1>${막기(p.이름)}</h1><p class="리드">머리말과 0장 '시작하기 전에'를 먼저 읽어 보세요. 이어지는 1~6장과 부록은 전자책에서 만나요.</p></div>${이미지주소(p) ? `<img src="${이미지주소(p)}" alt="${막기(p.이름)} 표지" width="140" height="200">` : ''}</header>
   ${미리.본문.replace(/<h2>/g, '<h2 class="미리소제목">')}
   <section class="글카드"><p><b>이어서 읽고 싶으시다면</b> 1장부터 부록까지 147쪽의 전체 내용은 전자책에서 볼 수 있어요.</p><p><a class="단추 주" href="${길(`/products/${p.id}/`)}">전자책 보러 가기</a> <a class="단추" href="${길('/resources/')}">무료 자료실</a></p></section>
   <p class="작은">책 내용은 저작권법의 보호를 받습니다. 복제·전송·다시 판매할 수 없습니다.</p>
@@ -164,14 +164,53 @@ module.exports = ({ 설정: 원설정, 뿌리, 결과, 틀, 길, 막기, 쓰기,
   var 키=q.get('paymentKey'), 주문=q.get('orderId'), 금액=q.get('amount');
   if(!키||!주문||!금액){상자.textContent='결제 정보를 찾을 수 없어요.';return}
   if(!서버){상자.innerHTML='결제창 연결 시험 화면입니다. 결제 승인 확인 서버가 아직 연결되지 않았습니다.<br>주문번호: '+주문.replace(/[<>&"]/g,'')+' · 금액: '+Number(금액).toLocaleString('ko-KR')+'원';return}
-  fetch(서버,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({paymentKey:키,orderId:주문,amount:Number(금액)})})
+  fetch(서버+'/confirm',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({paymentKey:키,orderId:주문,amount:Number(금액)})})
     .then(function(r){return r.json()}).then(function(d){
-      상자.textContent=d&&d.ok?'결제가 완료되었어요. 입력하신 이메일로 안내드릴게요.':'결제 확인에 실패했어요. 문의해 주세요.'})
-    .catch(function(){상자.textContent='결제 확인 중 오류가 났어요. 문의해 주세요.'});
+      if(d&&d.ok&&d.주소){
+        상자.textContent='결제가 완료되었어요. 감사합니다! 아래 버튼으로 전자책을 바로 내려받을 수 있어요.';
+        var 줄=document.getElementById('받기줄'), a=document.createElement('a');
+        a.className='단추 주'; a.href=d.주소; a.textContent='전자책 PDF 내려받기';
+        줄.insertBefore(a,줄.firstChild); 줄.hidden=false;
+        document.getElementById('받기안내').hidden=false;
+      }else{상자.textContent='결제 확인에 실패했어요. 결제가 됐는데도 이 문구가 보이면 문의해 주세요.'}})
+    .catch(function(){상자.textContent='결제 확인 중 오류가 났어요. 이 화면을 닫지 말고 문의해 주세요.'});
 })();
 </script>`;
   쓰기('pay/success/index.html', 틀({ 제목: '결제 결과 · 아티스트 코치', 설명: '결제 결과', 경로: '/pay/success/', 색인: false, 스크립트: 성공스크립트,
-    본문: `<section class="일반글"><h1>결제 결과</h1><p id="결과">확인 중이에요…</p><a class="단추 주" href="${길('/')}">처음으로</a></section>` }));
+    본문: `<section class="일반글"><h1>결제 결과</h1><p id="결과">확인 중이에요…</p>
+  <p id="받기줄" class="책단추" hidden><a class="단추" href="${길('/')}">처음으로</a></p>
+  <p id="받기안내" class="작은" hidden>링크는 24시간 동안 쓸 수 있어요. 이 화면을 닫아도 <a href="${길('/pay/retrieve/')}">다시 받기</a>에서 결제할 때 적은 이메일과 휴대전화 번호 뒤 4자리로 새 링크를 받을 수 있어요. 구매하신 책은 개인이 읽고 쓰는 용도로만 사용해 주세요.</p></section>` }));
+
+  // ── 다시 받기 (이메일 + 휴대전화 번호 뒤 4자리)
+  const 다시스크립트 = `<script>
+(function(){
+  var 서버=${JSON.stringify(서버)}, 폼=document.getElementById('다시폼'), 알림=document.getElementById('다시알림'), 결과=document.getElementById('다시결과');
+  폼.addEventListener('submit',function(e){
+    e.preventDefault(); 알림.hidden=true; 결과.hidden=true;
+    var 메일=document.getElementById('다시메일').value.trim(), 뒤=document.getElementById('다시뒤4').value.replace(/[^0-9]/g,'');
+    if(!서버){알림.textContent='아직 준비 중이에요.';알림.hidden=false;return}
+    fetch(서버+'/lookup',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:메일,last4:뒤})})
+      .then(function(r){return r.json()}).then(function(d){
+        if(d&&d.ok&&d.주소){
+          결과.textContent='';
+          var a=document.createElement('a'); a.className='단추 주'; a.href=d.주소; a.textContent='전자책 PDF 내려받기';
+          결과.appendChild(a); 결과.hidden=false;
+        }else{알림.textContent=(d&&d.error)||'구매 내역을 찾지 못했어요.';알림.hidden=false}})
+      .catch(function(){알림.textContent='확인 중 오류가 났어요. 잠시 뒤 다시 해 주세요.';알림.hidden=false});
+  });
+})();
+</script>`;
+  쓰기('pay/retrieve/index.html', 틀({ 제목: '전자책 다시 받기 · 아티스트 코치', 설명: '구매한 전자책 다시 받기', 경로: '/pay/retrieve/', 색인: false, 스크립트: 다시스크립트,
+    본문: `<section class="일반글"><span class="윗글">스토어</span><h1>전자책 다시 받기</h1>
+  <p>결제할 때 적으신 <b>이메일</b>과 <b>휴대전화 번호 뒤 4자리</b>를 넣으면 새 다운로드 링크를 드려요. 링크는 24시간 동안 쓸 수 있어요.</p>
+  <form id="다시폼" class="구매폼">
+    <label>이메일<input id="다시메일" type="email" autocomplete="email" required></label>
+    <label>휴대전화 번호 뒤 4자리<input id="다시뒤4" inputmode="numeric" maxlength="4" autocomplete="off" required></label>
+    <p id="다시알림" class="결제알림" role="alert" hidden></p>
+    <button class="단추 주" type="submit">새 링크 받기</button>
+  </form>
+  <p id="다시결과" class="책단추" hidden></p>
+  <p class="작은">찾지 못하시면 ${막기(사업자.이메일 || '')} 로 문의해 주세요.</p></section>` }));
   쓰기('pay/fail/index.html', 틀({ 제목: '결제 실패 · 아티스트 코치', 설명: '결제 실패', 경로: '/pay/fail/', 색인: false,
     본문: `<section class="일반글"><h1>결제가 완료되지 않았어요</h1><p>결제가 취소되었거나 실패했어요. 다시 시도해 주세요.</p><a class="단추 주" href="${길('/products/')}">상품으로 돌아가기</a></section>` }));
 
