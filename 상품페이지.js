@@ -103,6 +103,7 @@ module.exports = ({ 설정: 원설정, 뿌리, 결과, 틀, 길, 막기, 쓰기,
     if(!키||typeof TossPayments==='undefined'){alert('결제 준비 중입니다.');return}
     try{
       var 주문='ac'+Date.now().toString(36)+Math.random().toString(36).slice(2,10);
+      try{sessionStorage.setItem('acBuyer',JSON.stringify({o:주문,e:메일,p:전화}))}catch(_){}   // 결제 확인 때 다시 받기용으로 쓴다(주소에는 넣지 않는다)
       var 결제=TossPayments(키).payment({customerKey:TossPayments.ANONYMOUS});
       await 결제.requestPayment({method:'CARD',amount:{currency:'KRW',value:금액},orderId:주문,orderName:이름,
         successUrl:location.origin+기준+'/pay/success/',failUrl:location.origin+기준+'/pay/fail/',
@@ -164,7 +165,8 @@ module.exports = ({ 설정: 원설정, 뿌리, 결과, 틀, 길, 막기, 쓰기,
   var 키=q.get('paymentKey'), 주문=q.get('orderId'), 금액=q.get('amount');
   if(!키||!주문||!금액){상자.textContent='결제 정보를 찾을 수 없어요.';return}
   if(!서버){상자.innerHTML='결제창 연결 시험 화면입니다. 결제 승인 확인 서버가 아직 연결되지 않았습니다.<br>주문번호: '+주문.replace(/[<>&"]/g,'')+' · 금액: '+Number(금액).toLocaleString('ko-KR')+'원';return}
-  fetch(서버+'/confirm',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({paymentKey:키,orderId:주문,amount:Number(금액)})})
+  var 구매자={}; try{var s=JSON.parse(sessionStorage.getItem('acBuyer')||'{}'); if(s.o===주문)구매자=s; sessionStorage.removeItem('acBuyer')}catch(_){}
+  fetch(서버+'/confirm',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({paymentKey:키,orderId:주문,amount:Number(금액),email:구매자.e||'',phone:구매자.p||''})})
     .then(function(r){return r.json()}).then(function(d){
       if(d&&d.ok&&d.주소){
         상자.textContent='결제가 완료되었어요. 감사합니다! 아래 버튼으로 전자책을 바로 내려받을 수 있어요.';
