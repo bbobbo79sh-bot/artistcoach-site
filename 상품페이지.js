@@ -35,6 +35,7 @@ module.exports = ({ 설정: 원설정, 뿌리, 결과, 틀, 길, 막기, 쓰기,
   <h1>아티스트 코치 서비스</h1>
   <div class="상품목록">${설정.상품.filter((p) => !p.목록숨김).map((p) => `<a class="상품카드" href="${길(`/products/${p.id}/`)}">${이미지주소(p) ? `<img src="${이미지주소(p)}" alt="${막기(p.이름)} 표지" width="800" height="1000">` : ''}<b>${막기(p.이름)}</b><span>${막기(p.한줄)}</span><em>${원(p.가격)}</em></a>`).join('')}</div>
   <p class="작은">결제 전에 <a href="${길('/refund/')}">환불 규정</a>과 <a href="${길('/terms/')}">이용약관</a>을 확인해 주세요.</p>
+  <p class="작은">이미 구매하셨나요? <a href="${길('/pay/retrieve/')}">구매한 전자책 다시 받기</a></p>
 </section>`,
   }));
 
@@ -65,6 +66,7 @@ module.exports = ({ 설정: 원설정, 뿌리, 결과, 틀, 길, 막기, 쓰기,
       <p class="가격">${원(p.가격)}</p>
       <p class="작은">PDF 전자책 · 결제 후 바로 내려받기 · 회원가입 없이 구매</p>
       <p class="책단추"><a class="단추 주" href="#구매하기">구매하기</a>${미리 ? ` <a class="단추" href="${길(`/products/${p.id}/preview/`)}">미리 읽어 보기 (무료)</a>` : ''}</p>
+      <p class="작은">이미 구매하셨나요? <a href="${길('/pay/retrieve/')}">구매한 전자책 다시 받기</a></p>
     </div>
   </div>
   ${소개 ? `<section class="글카드 책소개">${소개.본문}</section>` : ''}

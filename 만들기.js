@@ -376,7 +376,7 @@ ${본문}
 <footer class="틀 바닥">
   <div><b>아티스트 코치</b> · artistcoach.kr · <a href="${인스타}" target="_blank" rel="noopener">인스타그램 @artistcoach_0gam</a></div>
   <div>공고 정보는 각 기관의 원문을 기준으로 정리합니다. 지원 전에는 꼭 원문 공고에서 조건과 마감을 다시 확인해 주세요.</div>
-  <div class="법링크"><a href="${길('/terms/')}">이용약관</a><a href="${길('/privacy/')}">개인정보처리방침</a><a href="${길('/refund/')}">환불 규정</a></div>
+  <div class="법링크"><a href="${길('/terms/')}">이용약관</a><a href="${길('/privacy/')}">개인정보처리방침</a><a href="${길('/refund/')}">환불 규정</a>${스토어켜짐 ? `<a href="${길('/pay/retrieve/')}">전자책 다시 받기</a>` : ''}</div>
   <div class="사업자">${법.바닥정보}</div>
 </footer>
 ${스크립트}
