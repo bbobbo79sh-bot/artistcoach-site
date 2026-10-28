@@ -1,31 +1,5 @@
 [
  {
-  "id": "67fd754a",
-  "cat": "예술인 지원·공모",
-  "org": "서울문화재단",
-  "region": "서울",
-  "title": "2027년 공연장상주단체지원사업 <매칭데이 및 사업설명회> 참여 안내",
-  "deadline": "2026-10-27",
-  "target": "단체",
-  "link": "https://artnuri.or.kr/crawler/info/view.do?key=2301170002&docid=SFAC_NOTICE_20261016043408002&seNo=001",
-  "posted": "",
-  "summary": "",
-  "benefit": ""
- },
- {
-  "id": "547f3bae",
-  "cat": "예술인 지원·공모",
-  "org": "천안어린이꿈누리터",
-  "region": "",
-  "title": "2027년도 천안어린이꿈누리터 공연 제안사 모집",
-  "deadline": "2026-10-27",
-  "target": "단체",
-  "link": "https://artnuri.or.kr/crawler/info/view.do?key=2301170002&docid=2610200003&seNo=002",
-  "posted": "",
-  "summary": "",
-  "benefit": ""
- },
- {
   "id": "a091b151",
   "cat": "예술 공모전·모집",
   "org": "한국해양진흥공사·부산일보",
@@ -121,7 +95,7 @@
   "cat": "예술 공모전·모집",
   "org": "순천문화재단",
   "region": "전남",
-  "title": "알림 「2026 순천 클래식 페스타」참여 이벤트 ★추가모집★ 안내🎁",
+  "title": "알림 「2026 순천 클래식 페스타」참여 이벤트 추가모집 안내",
   "deadline": "2026-10-28",
   "target": "",
   "link": "https://www.cfsc.or.kr/contents/open/open0102.asp?bseq=1&cat=39&sk=&sv=&yy=2026&page=1&mode=view&aseq=4222",
@@ -134,7 +108,7 @@
   "cat": "예술 공모전·모집",
   "org": "순천문화재단",
   "region": "전남",
-  "title": "축제·행사 「2026 순천 클래식 페스타」 이벤트 !!! 추가모집 !!! 안내 🎁 ~ 오천그린광장",
+  "title": "축제·행사 「2026 순천 클래식 페스타」 이벤트 추가모집 안내 ~ 오천그린광장",
   "deadline": "2026-10-28",
   "target": "",
   "link": "https://www.cfsc.or.kr/contents/news/news0106.asp#id=632",
@@ -749,6 +723,19 @@
   "deadline": "2026-10-31",
   "target": "전체",
   "link": "https://artnuri.or.kr/crawler/info/view.do?key=2301170002&docid=SFAC_NOTICE_20261027043402001&seNo=001",
+  "posted": "",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "2988043f",
+  "cat": "예술 공모전·모집",
+  "org": "제이컴퍼니",
+  "region": "",
+  "title": "대형 퍼포먼스 뮤지컬 <Shooting Stars> 배우·앙상블 오디션 공모",
+  "deadline": "2026-10-31",
+  "target": "",
+  "link": "https://otr.co.kr/audition/?vid=22562",
   "posted": "",
   "summary": "",
   "benefit": ""
@@ -1625,6 +1612,19 @@
   "benefit": ""
  },
  {
+  "id": "6579ac71",
+  "cat": "예술 공모전·모집",
+  "org": "아루또",
+  "region": "",
+  "title": "병맛코믹 로맨스연극 <어쩌다 보니> 배우 오디션 공모",
+  "deadline": "2026-11-05",
+  "target": "",
+  "link": "https://otr.co.kr/audition/?vid=22540",
+  "posted": "",
+  "summary": "",
+  "benefit": ""
+ },
+ {
   "id": "07932897",
   "cat": "예술인 지원·공모",
   "org": "아트허브",
@@ -1712,6 +1712,19 @@
   "target": "",
   "link": "https://cwcf.or.kr/commu/notice_view.asp?skey=&sword=&BCATE=BD00001&BSUBCATE=&place_idx=&page=1&idx=23896&bidx=2113",
   "posted": "2026-10-23",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "568967f5",
+  "cat": "예술 공모전·모집",
+  "org": "롯데컬처웍스",
+  "region": "",
+  "title": "<인사이드 더 플레이: 극장괴담_서울> 배우 오디션 공모",
+  "deadline": "2026-11-06",
+  "target": "",
+  "link": "https://otr.co.kr/audition/?vid=22574",
+  "posted": "",
   "summary": "",
   "benefit": ""
  },
@@ -1824,7 +1837,7 @@
   "cat": "예술인 지원·공모",
   "org": "대구 서구청",
   "region": "대구",
-  "title": ": 『달성토성마을 작가 레지던시』 입주 작가 공개모집 공고",
+  "title": "『달성토성마을 작가 레지던시』 입주 작가 공개모집 공고",
   "deadline": "2026-11-09",
   "target": "",
   "link": "https://eminwon.dgs.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=36023&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_se_code=01,02,03,04,05",
