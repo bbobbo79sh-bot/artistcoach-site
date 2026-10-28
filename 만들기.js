@@ -96,6 +96,7 @@ const 상품설정 = JSON.parse(fs.readFileSync(path.join(뿌리, '자료', '상
 // 상품 페이지를 켜고, 모든 페이지를 검색에서 숨기고(noindex·robots 차단), 광고 코드는 넣지 않는다.
 const 검수용 = process.env.SITE_STAGING === '1';
 if (검수용) 상품설정.사용 = true;
+const 스토어켜짐 = !!(상품설정.사용 && (상품설정.상품 || []).some((p) => Number(p.가격) > 0));   // 진짜 사이트도 상품 기능이 켜지면 메뉴·메인에 스토어를 보인다
 const 자료실설정 = JSON.parse(fs.readFileSync(path.join(뿌리, '자료', '자료실.json'), 'utf8'));
 const 자료실켜짐 = !!(자료실설정.사용 || 검수용);
 // 가이드 글(/guide/): 자료/가이드설정.json 의 '사용'이 true 일 때만 만든다. 2026-10-09 영감 결정으로 끔(글 파일은 자료/가이드/ 에 그대로 보관).
@@ -367,7 +368,7 @@ ${애드센스 ? `<script async src="https://pagead2.googlesyndication.com/pagea
 <body>
 <header class="머리"><div class="틀">
   <a class="로고줄" href="${길('/')}"><img src="${길('/logo.svg')}" alt="" width="36" height="36"><span class="글자로고">아티스트<mark>코치</mark></span></a>
-  <nav><a href="${길('/')}"${현재 === '공고' ? ' aria-current="page"' : ''}>공고</a><a href="${길('/about/')}"${현재 === '소개' ? ' aria-current="page"' : ''}>소개</a>${가이드켜짐 ? `<a href="${길('/guide/')}"${현재 === '가이드' ? ' aria-current="page"' : ''}>가이드</a>` : ''}${자료실켜짐 ? `<a href="${길('/resources/')}"${현재 === '자료실' ? ' aria-current="page"' : ''}>자료실</a>` : ''}${검수용 ? `<a href="${길('/products/')}">스토어</a>` : ''}</nav>
+  <nav><a href="${길('/')}"${현재 === '공고' ? ' aria-current="page"' : ''}>공고</a><a href="${길('/about/')}"${현재 === '소개' ? ' aria-current="page"' : ''}>소개</a>${가이드켜짐 ? `<a href="${길('/guide/')}"${현재 === '가이드' ? ' aria-current="page"' : ''}>가이드</a>` : ''}${자료실켜짐 ? `<a href="${길('/resources/')}"${현재 === '자료실' ? ' aria-current="page"' : ''}>자료실</a>` : ''}${스토어켜짐 ? `<a href="${길('/products/')}">스토어</a>` : ''}</nav>
 </div></header>
 <main class="틀">
 ${본문}
@@ -516,7 +517,7 @@ ${추천.length ? `<section class="추천" aria-label="인기 카드뉴스" aria
 </script>` : ''}
 ${자료실.띠}
 ${광고칸('첫화면')}
-${검수용 ? `<section class="추천" aria-label="스토어"><div class="제목줄"><h2>스토어</h2></div><div class="상품목록">${(상품설정.상품 || []).filter((p) => Number(p.가격) > 0 && !p.목록숨김).map((p) => `<a class="상품카드" href="${길(`/products/${p.id}/`)}">${p.이미지 ? `<img src="${길('/products/img/' + encodeURI(p.이미지))}" alt="${막기(p.이름)} 표지" width="800" height="1000">` : ''}<b>${막기(p.이름)}</b><span>${막기(p.한줄)}</span><em>${Number(p.가격).toLocaleString('ko-KR')}원</em></a>`).join('')}</div></section>` : ''}
+${스토어켜짐 ? `<section class="추천" aria-label="스토어"><div class="제목줄"><h2>스토어</h2></div><div class="상품목록">${(상품설정.상품 || []).filter((p) => Number(p.가격) > 0 && !p.목록숨김).map((p) => `<a class="상품카드" href="${길(`/products/${p.id}/`)}">${p.이미지 ? `<img src="${길('/products/img/' + encodeURI(p.이미지))}" alt="${막기(p.이름)} 표지" width="800" height="1000">` : ''}<b>${막기(p.이름)}</b><span>${막기(p.한줄)}</span><em>${Number(p.가격).toLocaleString('ko-KR')}원</em></a>`).join('')}</div></section>` : ''}
 <div class="도구"><div class="칩줄" id="기간줄">${기간목록.map(([v, 이름], i) => `<button class="칩" data-v="${v}" aria-pressed="${i === 0}">${이름}</button>`).join('')}</div></div>
 <div class="거름">
   <div class="칩줄" id="분류줄"><button class="칩" data-v="" aria-pressed="true">모든 종류</button>${분류목록.map((c) => `<button class="칩" data-v="${막기(c)}" aria-pressed="false">${막기(c)}</button>`).join('')}</div>
