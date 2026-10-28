@@ -12,7 +12,9 @@ module.exports = ({ 설정: 원설정, 뿌리, 결과, 틀, 길, 막기, 쓰기,
   if (!설정.사용 || !팔것.length) return { 경로목록: [] };
   설정 = { ...설정, 상품: 팔것 };
   const 원 = (n) => Number(n).toLocaleString('ko-KR') + '원';
-  const 키 = /^(test|live)_(gck|ck)_[A-Za-z0-9_]+$/.test(설정.토스클라이언트키 || '') ? 설정.토스클라이언트키 : '';
+  // 검수 사이트(SITE_STAGING)는 시험 키, 진짜 사이트는 라이브 키(있을 때)로 결제창을 연다. 서버도 같은 기준으로 비밀 키를 고른다.
+  const 고른키 = process.env.SITE_STAGING === '1' ? 설정.토스클라이언트키 : (설정.라이브클라이언트키 || 설정.토스클라이언트키);
+  const 키 = /^(test|live)_(gck|ck)_[A-Za-z0-9_]+$/.test(고른키 || '') ? 고른키 : '';
   const 서버 = /^https:\/\/[\w.\-/]+$/.test(설정.승인확인서버 || '') ? 설정.승인확인서버 : '';
   const 경로목록 = ['/products/'];
 
