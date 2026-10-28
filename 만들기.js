@@ -71,6 +71,13 @@ const 살아있는 = JSON.parse(fs.readFileSync(자료경로, 'utf8'))
 const 가림 = 살아있는.filter(모음인가);
 // 지역 칸에 모음 사이트 이름이 잘못 들어온 경우는 지역 없음으로 본다
 살아있는.forEach((x) => { if (모음.이름.some((n) => (x.region || '').includes(n)) || /^모음/.test(x.region || '')) x.region = ''; });
+// 제목 정리(2026-10-28 영감 지적): 기관 원문 제목의 이모티콘·별표·도형·"!!!" 같은 장식과 맨 앞 말머리(알림·공지·안내·축제·행사)를 지워 다른 공고와 같은 모양으로 보인다. 뜻이 바뀌는 글자는 건드리지 않는다.
+const 제목정리 = (t) => String(t || '')
+  .replace(/[\p{Extended_Pictographic}☀-➿■-◿★☆️‍]/gu, '')
+  .replace(/!{2,}/g, '')
+  .replace(/^\s*(알림|공지사항|공지|안내|축제[·ㆍ]행사)[\s:：\-]+(?=\S)/, '')
+  .replace(/\s{2,}/g, ' ').replace(/\s+([~,])/g, ' $1').trim();
+살아있는.forEach((x) => { x.title = 제목정리(x.title) || x.title; });
 const 공고 = 살아있는.filter((x) => !모음인가(x))
   .sort((a, b) => (a.deadline === '상시') - (b.deadline === '상시') || a.deadline.localeCompare(b.deadline));
 const 상시수 = 공고.filter((x) => x.deadline === '상시').length;
