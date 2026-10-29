@@ -637,6 +637,19 @@
   "benefit": "참여비 무료 · 회당 60명 내외 · 11월 4일(수) 19:00~21:00 · 신청 11월 1일 24시까지(선착순)"
  },
  {
+  "id": "964b29e8",
+  "cat": "예술인 지원·공모",
+  "org": "순천문화재단",
+  "region": "전남",
+  "title": "축제·행사 「2026 순천 클래식 페스타」 가을밤을 빛낼 아티스트 소개 ~ 오천그린광장",
+  "deadline": "2026-11-01",
+  "target": "",
+  "link": "https://www.cfsc.or.kr/contents/news/news0106.asp#id=633",
+  "posted": "2026-10-30",
+  "summary": "",
+  "benefit": ""
+ },
+ {
   "id": "ce2f2eac",
   "cat": "예술 공모전·모집",
   "org": "양평문화재단",
@@ -793,6 +806,19 @@
   "benefit": ""
  },
  {
+  "id": "c4951f70",
+  "cat": "예술 공모전·모집",
+  "org": "광주문화재단",
+  "region": "광주",
+  "title": "2026년 광주프린지페스티벌 <광주국제거리예술축제> 예술인아카데미 참여예술인 모집 공고",
+  "deadline": "2026-11-03",
+  "target": "전체",
+  "link": "https://artnuri.or.kr/crawler/info/view.do?key=2301170002&docid=S65835&seNo=001",
+  "posted": "",
+  "summary": "",
+  "benefit": ""
+ },
+ {
   "id": "4308e481",
   "cat": "예술인 지원·공모",
   "org": "아트허브",
@@ -868,6 +894,71 @@
   "link": "https://www.mcst.go.kr/site/s_notice/notice/noticeView.jsp?pSeq=19556",
   "posted": "2026-10-22",
   "summary": "문화체육관광부가 제7회 한국수어의 날 및 한국수어 주간 기념행사를 지원하는 사업을 맡아 운영할 주관기관을 공모합니다.",
+  "benefit": ""
+ },
+ {
+  "id": "e674ca29",
+  "cat": "예술 공모전·모집",
+  "org": "제주문화예술재단",
+  "region": "제주",
+  "title": "2026년 11월 제주 예술인 성장 지원 프로그램 [아트내비] 참여 예술인 모집",
+  "deadline": "2026-11-04",
+  "target": "전체",
+  "link": "https://artnuri.or.kr/crawler/info/view.do?key=2301170002&docid=JFAC_NOTICE_20261028043849001&seNo=001",
+  "posted": "",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "fb112fd8",
+  "cat": "예술인 지원·공모",
+  "org": "예술경영지원센터",
+  "region": "전국",
+  "title": "2026년 아트코리아랩 AI-융합 페스티벌(ARTS KOREA LAB FESTIVAL)",
+  "deadline": "2026-11-04",
+  "target": "전체",
+  "link": "https://artnuri.or.kr/crawler/info/view.do?key=2301170002&docid=GOKAMS_NEWS_20261028043706001&seNo=001",
+  "posted": "",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "1d6e089d",
+  "cat": "예술 공모전·모집",
+  "org": "여주세종문화관광재단",
+  "region": "경기",
+  "title": "2026년 지역문화예술 홍보 버스킹 공연자 모집공고",
+  "deadline": "2026-11-04",
+  "target": "",
+  "link": "https://www.yjcf.or.kr/brd/board/200/L/menu/341?brdType=R&thisPage=1&bbIdx=2567&searchField=&searchText=",
+  "posted": "2026-10-29",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "412efa74",
+  "cat": "예술인 지원·공모",
+  "org": "순천문화재단",
+  "region": "전남",
+  "title": "문화로 치유 지원사업「도시숲 예술치유」청(淸) : 숨이 머무는 정원 참여자 모집 공고",
+  "deadline": "2026-11-04",
+  "target": "",
+  "link": "https://www.cfsc.or.kr/contents/open/open0102.asp?bseq=1&cat=39&sk=&sv=&yy=2026&page=1&mode=view&aseq=4282",
+  "posted": "2026-10-29",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "00db8646",
+  "cat": "예술인 지원·공모",
+  "org": "순천문화재단",
+  "region": "전남",
+  "title": "문화로 치유 지원사업 「도시숲 예술치유」 청(淸) : 숨이 머무는 정원 프로그램 참여자 모집 ~ 순천만국가정원",
+  "deadline": "2026-11-04",
+  "target": "",
+  "link": "https://www.cfsc.or.kr/contents/news/news0106.asp#id=638",
+  "posted": "2026-10-28",
+  "summary": "",
   "benefit": ""
  },
  {
@@ -1367,12 +1458,12 @@
  {
   "id": "e2ecd12c",
   "cat": "예술인 지원·공모",
-  "org": "모모365",
+  "org": "한국콘텐츠진흥원",
   "region": "모음사이트",
   "title": "2026년도 부산문화예술지원사업 <쇼케이스 제작지원> 공고 ｢B-ARTs FESTA 초청작 선정｣",
   "deadline": "2026-11-05",
   "target": "",
-  "link": "https://www.momo365.net/Support?cd=support&ViewType=detail&seq=178787",
+  "link": "https://www.kocca.kr/kocca/bbs/view/B0000204/1968260.do?searchCnd=&searchWrd=&cateTp1=&cateTp2=&useYn=&menuNo=204897&categorys=2&subcate=50&cateCode=0&type=&instNo=0&questionTp=&ufSetting=&recovery=&option1=&option2=&year=&morePage=&qtp=&searchGenre=&domainId=&sortCode=&pageIndex=1",
   "posted": "2026-10-23",
   "summary": "부산문화재단이 2026년 부산문화예술지원사업 선정 단체 중 우수작을 골라 12월 B-ARTs FESTA에서 선보일 쇼케이스(부스) 제작을 지원합니다. 공연예술·시각예술·문학 분야 단체가 대상이며 개인은 신청할 수 없습니다.",
   "benefit": "쇼케이스 제작·운영비 단체당 최대 500만 원(15건 내외) · 접수 10월 23일~11월 5일 · 전시 12월 9~20일(예정)"
@@ -1426,6 +1517,19 @@
   "target": "",
   "link": "https://otr.co.kr/audition/?vid=22540",
   "posted": "",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "1dabd257",
+  "cat": "예술 공모전·모집",
+  "org": "서울연극협회",
+  "region": "전국",
+  "title": "[접수] 2026년 제23차 서울공연전단마케팅사업 접수 공고",
+  "deadline": "2026-11-05",
+  "target": "",
+  "link": "https://stheater.or.kr/community-notice/?q=YToxOntzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&bmode=view&idx=175269371&t=board",
+  "posted": "2026-10-26",
   "summary": "",
   "benefit": ""
  },
@@ -1586,6 +1690,32 @@
   "benefit": ""
  },
  {
+  "id": "171a4bfd",
+  "cat": "예술 공모전·모집",
+  "org": "부산 사하구청",
+  "region": "부산",
+  "title": "제3회『다대는TV』유튜브 영상 공모전 공고 (기간연장)",
+  "deadline": "2026-11-08",
+  "target": "",
+  "link": "https://eminwon.saha.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=46421&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_se_code=01,02,03,04,05",
+  "posted": "2026-10-28",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "06e53aaa",
+  "cat": "예술 공모전·모집",
+  "org": "아트허브",
+  "region": "전국",
+  "title": "갤러리믹 전시공모_플러스멤버십 1기",
+  "deadline": "2026-11-08",
+  "target": "",
+  "link": "https://www.arthub.co.kr/sub04/board01_view.htm?No=27363&page=1&sType1=1&sType2=2&sType3=3&sType4=&sort=new",
+  "posted": "2026-10-26",
+  "summary": "",
+  "benefit": ""
+ },
+ {
   "id": "cfd698ce",
   "cat": "예술 공모전·모집",
   "org": "아트허브",
@@ -1649,6 +1779,19 @@
   "posted": "2026-10-23",
   "summary": "대구 서구청이 달성토성마을 작가 레지던시에 2027~2028년 입주할 문화예술창작 작가 1팀(최대 3명)을 모집합니다. 접수일 기준 대구 거주 20세 이상 작가가 대상이며 이메일로 접수합니다.",
   "benefit": "창작공간 무상 제공 · 사무가구 일부와 제세공과금 전액 지원 · 입주 2027년 1월~2028년 12월(2년) · 접수 11월 5일~9일 18시 · 결과 11월 16일 발표 예정"
+ },
+ {
+  "id": "4dfdfe11",
+  "cat": "예술 공모전·모집",
+  "org": "인천 미추홀구청",
+  "region": "인천",
+  "title": "문학동 7통장 희망자 모집 공고",
+  "deadline": "2026-11-09",
+  "target": "",
+  "link": "https://eminwon.michuhol.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=68513&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_se_code=01,02,03,04,05",
+  "posted": "2026-10-30",
+  "summary": "",
+  "benefit": ""
  },
  {
   "id": "70c85603",
@@ -1794,6 +1937,32 @@
   "benefit": ""
  },
  {
+  "id": "e8ef08b5",
+  "cat": "예술인 지원·공모",
+  "org": "모모365",
+  "region": "모음사이트",
+  "title": "부평아트센터 공연장 및 전시장 대관 지원 사업 공모",
+  "deadline": "2026-11-11",
+  "target": "",
+  "link": "https://www.momo365.net/Support?cd=support&ViewType=detail&seq=179032",
+  "posted": "2026-10-29",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "ef7c7228",
+  "cat": "예술 공모전·모집",
+  "org": "강원특별자치도청",
+  "region": "강원",
+  "title": "강원특별자치도향토공예관 운영･관리 수탁기관 모집 공고",
+  "deadline": "2026-11-11",
+  "target": "",
+  "link": "https://state.gwd.go.kr/portal/bulletin/notification?pageIndex=1&recordCountPerPage=15&mode=&firstYN=N&articleSeq=272909&searchFromDate=2021-10-30&searchToDate=2026-10-30&searchCondition=TITLE&searchKeyword=",
+  "posted": "2026-10-28",
+  "summary": "",
+  "benefit": ""
+ },
+ {
   "id": "14686466",
   "cat": "예술인 지원·공모",
   "org": "구로문화재단",
@@ -1855,6 +2024,32 @@
   "target": "",
   "link": "https://eminwon.guro.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=51598&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_se_code=01,02,03,04,05",
   "posted": "2026-10-21",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "41aa6a8a",
+  "cat": "예술인 지원·공모",
+  "org": "김포문화재단",
+  "region": "경기",
+  "title": "김포형 문화예술교육 인큐베이팅 공모 <김포형 문화예술교육, 다음을 설계하다> 공모",
+  "deadline": "2026-11-12",
+  "target": "",
+  "link": "https://www.gcf.or.kr/main/pst/view.do?pst_id=recruit&pst_sn=5556&search=ajR6eHNSV05Pc0UrNjZEd1NFVnNIZkduNGFKTVBHZVRMbTJ1bnFaYk5uY1RYZGJBV1NWWE1XZVpLS2VkcjIzbkZXUjZESm9uSUxhd1V4OXJaSVhKZEE3K1pkL3plTFFwOW94bkNWdExmTVU9",
+  "posted": "2026-10-30",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "c3cb4c84",
+  "cat": "예술 공모전·모집",
+  "org": "대구 남구청",
+  "region": "대구",
+  "title": "대명공연예술센터 운영 수탁기관 모집 공고",
+  "deadline": "2026-11-12",
+  "target": "",
+  "link": "https://eminwon.nam.daegu.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=39758&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_se_code=01,02,03,04,05",
+  "posted": "2026-10-28",
   "summary": "",
   "benefit": ""
  },
@@ -1963,6 +2158,19 @@
   "benefit": ""
  },
  {
+  "id": "48d0c2da",
+  "cat": "예술인 지원·공모",
+  "org": "광주문화재단",
+  "region": "광주",
+  "title": "2026년 광주예술인복지지원사업 - 예술인 네트워크 지원 「예술인 사랑방」 참여자 모집 공고",
+  "deadline": "2026-11-13",
+  "target": "개인",
+  "link": "https://artnuri.or.kr/crawler/info/view.do?key=2301170002&docid=S65856&seNo=001",
+  "posted": "",
+  "summary": "",
+  "benefit": ""
+ },
+ {
   "id": "a1ca530f",
   "cat": "예술 공모전·모집",
   "org": "인천 강화군청",
@@ -1998,6 +2206,32 @@
   "target": "",
   "link": "https://otr.co.kr/audition/?vid=22544",
   "posted": "",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "9dfacfbd",
+  "cat": "예술인 지원·공모",
+  "org": "경기문화재단",
+  "region": "경기",
+  "title": "2026년 경기창작캠퍼스 공공갤러리 전시공간 지원 공모",
+  "deadline": "2026-11-15",
+  "target": "전체",
+  "link": "https://artnuri.or.kr/crawler/info/view.do?key=2301170002&docid=GGCF_ARTICLES_20261029043751001&seNo=001",
+  "posted": "",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "bfb6dbba",
+  "cat": "예술인 지원·공모",
+  "org": "경기문화재단",
+  "region": "경기",
+  "title": "창작지원 진행 2026 경기창작캠퍼스 공공갤러리 전시공간 지원 공모",
+  "deadline": "2026-11-15",
+  "target": "",
+  "link": "https://www.ggcf.kr/boards/businessNotices/articles/21664",
+  "posted": "2026-10-28",
   "summary": "",
   "benefit": ""
  },
@@ -2063,6 +2297,19 @@
   "target": "",
   "link": "https://www.lesmis.co.kr/30",
   "posted": "",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "b849e6bf",
+  "cat": "예술인 지원·공모",
+  "org": "한국콘텐츠진흥원",
+  "region": "전국",
+  "title": "2026년 부산글로벌웹툰센터 창작지원실 2차 입주모집 공고",
+  "deadline": "2026-11-16",
+  "target": "",
+  "link": "https://www.kocca.kr/kocca/bbs/view/B0000204/1968270.do?searchCnd=&searchWrd=&cateTp1=&cateTp2=&useYn=&menuNo=204897&categorys=2&subcate=50&cateCode=0&type=&instNo=0&questionTp=&ufSetting=&recovery=&option1=&option2=&year=&morePage=&qtp=&searchGenre=&domainId=&sortCode=&pageIndex=1",
+  "posted": "2026-10-28",
   "summary": "",
   "benefit": ""
  },
@@ -2180,6 +2427,19 @@
   "target": "",
   "link": "https://www.jbct.or.kr/bizNotice_infoView.php?id=2374",
   "posted": "2026-10-26",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "de60af22",
+  "cat": "예술인 지원·공모",
+  "org": "아트허브",
+  "region": "전국",
+  "title": "CICA 영 코리안 아티스트 개인전 시리즈 작가 공모",
+  "deadline": "2026-11-18",
+  "target": "",
+  "link": "https://www.arthub.co.kr/sub04/board01_view.htm?No=27366&page=1&sType1=1&sType2=2&sType3=3&sType4=&sort=new",
+  "posted": "2026-10-29",
   "summary": "",
   "benefit": ""
  },
@@ -2379,6 +2639,58 @@
   "benefit": ""
  },
  {
+  "id": "b65e8950",
+  "cat": "예술인 지원·공모",
+  "org": "부천문화재단",
+  "region": "경기",
+  "title": "2026년 생활문화 네트워킹 데이",
+  "deadline": "2026-11-20",
+  "target": "전체",
+  "link": "https://artnuri.or.kr/crawler/info/view.do?key=2301170002&docid=BCF_BOARD_20261028053012001&seNo=001",
+  "posted": "",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "1267087a",
+  "cat": "예술 공모전·모집",
+  "org": "칠곡군청",
+  "region": "경북",
+  "title": "2026년 칠곡군 「장롱 속 흑백 사진 공모전」 모집 공고문",
+  "deadline": "2026-11-20",
+  "target": "",
+  "link": "https://eminwon.chilgok.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=34503&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_se_code=01,02,03,04,05",
+  "posted": "2026-10-28",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "8b6c6fe9",
+  "cat": "예술 공모전·모집",
+  "org": "울릉군청",
+  "region": "경북",
+  "title": "울릉분재원 전시용 분재 매입사업 신청 3차 공고",
+  "deadline": "2026-11-20",
+  "target": "",
+  "link": "https://eminwon.ulleung.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=23742&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_se_code=01,02,03,04,05",
+  "posted": "2026-10-28",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "ff6d8c41",
+  "cat": "예술인 지원·공모",
+  "org": "아트허브",
+  "region": "전국",
+  "title": "우모하갤러리 전시작가 공모",
+  "deadline": "2026-11-20",
+  "target": "",
+  "link": "https://www.arthub.co.kr/sub04/board01_view.htm?No=27352&page=1&sType1=1&sType2=2&sType3=3&sType4=&sort=new",
+  "posted": "2026-10-21",
+  "summary": "",
+  "benefit": ""
+ },
+ {
   "id": "ee81b51d",
   "cat": "예술 공모전·모집",
   "org": "부산광역시 공원도시과",
@@ -2457,6 +2769,19 @@
   "benefit": ""
  },
  {
+  "id": "c883a72a",
+  "cat": "예술강사·심사위원 모집",
+  "org": "한국문화예술교육진흥원",
+  "region": "전국",
+  "title": "2027년 학교예술강사 지원사업 강사 선발 모집 공고",
+  "deadline": "2026-11-23",
+  "target": "개인",
+  "link": "https://artnuri.or.kr/crawler/info/view.do?key=2301170002&docid=ARTE_INFO_20261028043738001&seNo=001",
+  "posted": "",
+  "summary": "",
+  "benefit": ""
+ },
+ {
   "id": "307df320",
   "cat": "예술인 지원·공모",
   "org": "서울문화재단",
@@ -2479,6 +2804,19 @@
   "target": "",
   "link": "https://www.arthub.co.kr/sub04/board01_view.htm?No=27343&page=1&sType1=1&sType2=2&sType3=3&sType4=&sort=new",
   "posted": "2026-10-14",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "36268e2e",
+  "cat": "예술 공모전·모집",
+  "org": "아트허브",
+  "region": "전국",
+  "title": "CICA 미술관 디자인 국제전 Designer Now 2027 공모",
+  "deadline": "2026-11-24",
+  "target": "",
+  "link": "https://www.arthub.co.kr/sub04/board01_view.htm?No=27365&page=1&sType1=1&sType2=2&sType3=3&sType4=&sort=new",
+  "posted": "2026-10-29",
   "summary": "",
   "benefit": ""
  },
@@ -2847,15 +3185,28 @@
   "benefit": ""
  },
  {
-  "id": "a2194108",
+  "id": "67e2c0c0",
   "cat": "예술인 지원·공모",
-  "org": "아티스트 코치 영감",
+  "org": "(재)나주시천연염색문화재단",
   "region": "",
-  "title": "영감 책 카드 1호 공고문 분석 꿀팁 지원사업 안내",
+  "title": "2027년 한국천연염색박물관 기획전시 공모",
+  "deadline": "2026-11-30",
+  "target": "전체",
+  "link": "https://artnuri.or.kr/crawler/info/view.do?key=2301170002&docid=2610280001&seNo=002",
+  "posted": "",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "4b06770e",
+  "cat": "예술 공모전·모집",
+  "org": "문경시청",
+  "region": "경북",
+  "title": "문경시 관광AI 영상 공모전 개최 알림",
   "deadline": "2026-11-30",
   "target": "",
-  "link": "https://artistcoach.kr/",
-  "posted": "",
+  "link": "https://www.gbmg.go.kr/portal/bbs/view.do?mId=0301010000&bIdx=219208&ptIdx=73",
+  "posted": "2026-10-28",
   "summary": "",
   "benefit": ""
  },
@@ -2986,6 +3337,19 @@
   "target": "개인",
   "link": "https://artnuri.or.kr/crawler/info/view.do?key=2301170002&docid=CRL3585&seNo=001",
   "posted": "",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "58564ad0",
+  "cat": "예술 공모전·모집",
+  "org": "모모365",
+  "region": "모음사이트",
+  "title": "영암 왕인문화축제 홍보물 디자인 공모전 공고",
+  "deadline": "2026-12-07",
+  "target": "",
+  "link": "https://www.momo365.net/Support?cd=contest&ViewType=detail&seq=178964",
+  "posted": "2026-10-28",
   "summary": "",
   "benefit": ""
  },
@@ -4004,6 +4368,19 @@
   "benefit": ""
  },
  {
+  "id": "d4a0b5b2",
+  "cat": "예술 공모전·모집",
+  "org": "서울연극협회",
+  "region": "전국",
+  "title": "[모집] 2026년 제4차 서울연극협회 정회원‧정단체 입회 신청 안내",
+  "deadline": "2027-03-03",
+  "target": "",
+  "link": "https://stheater.or.kr/community-notice/?q=YToxOntzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&bmode=view&idx=175269699&t=board",
+  "posted": "2026-10-26",
+  "summary": "",
+  "benefit": ""
+ },
+ {
   "id": "3a295038",
   "cat": "예술인 지원·공모",
   "org": "세종시문화관광재단",
@@ -4650,6 +5027,19 @@
   "target": "",
   "link": "https://www.yeongdo.go.kr/00000/00007/00008.web?gcode=1025&idx=334300&amode=view&",
   "posted": "2026-10-12",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "a2194108",
+  "cat": "예술인 지원·공모",
+  "org": "아티스트 코치 영감",
+  "region": "",
+  "title": "영감 책 카드 1호 공고문 분석 꿀팁 지원사업 안내",
+  "deadline": "상시",
+  "target": "",
+  "link": "https://artistcoach.kr/",
+  "posted": "",
   "summary": "",
   "benefit": ""
  }
