@@ -162,6 +162,7 @@ i{font-style:normal}
 .추천{margin:18px 0 8px}
 .추천 .줄{display:flex;gap:12px;overflow-x:auto;scrollbar-width:none;padding:2px 0 4px;-webkit-overflow-scrolling:touch}
 .추천 .줄::-webkit-scrollbar{display:none}
+.추천 .줄,.띠줄{cursor:grab}.추천 .줄.끄는중,.띠줄.끄는중{cursor:grabbing;user-select:none}.추천 .장 img{-webkit-user-drag:none}
 .추천 .장{flex:0 0 calc((100% - 36px) / 4);display:block;border-radius:16px;overflow:hidden;background:var(--연함);box-shadow:0 2px 10px rgba(0,0,0,.08);transition:transform .15s}
 .추천 .장:hover{transform:translateY(-3px)}
 .추천 .장 img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover}
@@ -509,6 +510,21 @@ ${추천.length ? `<section class="추천" aria-label="인기 카드뉴스" aria
   줄.addEventListener('focusin',멈추기);
   줄.addEventListener('focusout',function(){이어가기(300)});
   줄.addEventListener('wheel',function(){멈추기();이어가기(2500)},{passive:true});
+  // 마우스로 누른 채 끌면 같이 넘어간다(컴퓨터). 끌고 난 뒤에는 카드가 눌려 열리지 않게 한다. 손가락 터치는 원래 방식 그대로.
+  var 끄는중=false,끈거리=0,앞X=0;
+  줄.addEventListener('pointerdown',function(e){
+    if(e.pointerType!=='mouse'||e.button!==0)return;
+    끄는중=true;끈거리=0;앞X=e.clientX;멈추기();줄.classList.add('끄는중');
+    addEventListener('pointermove',끌기,{passive:true});addEventListener('pointerup',놓기);addEventListener('pointercancel',놓기);
+  });
+  function 끌기(e){if(!끄는중)return;var d=e.clientX-앞X;앞X=e.clientX;끈거리+=Math.abs(d);줄.scrollLeft-=d}
+  function 놓기(){
+    if(!끄는중)return;끄는중=false;줄.classList.remove('끄는중');
+    removeEventListener('pointermove',끌기);removeEventListener('pointerup',놓기);removeEventListener('pointercancel',놓기);
+    if(!줄.matches(':hover'))이어가기(300);
+  }
+  줄.addEventListener('click',function(e){if(끈거리>5){e.preventDefault();e.stopPropagation();끈거리=0}},true);
+  줄.addEventListener('dragstart',function(e){e.preventDefault()});
   줄.addEventListener('scroll',function(){
     if(!멈춤)return;
     위치=줄.scrollLeft;
