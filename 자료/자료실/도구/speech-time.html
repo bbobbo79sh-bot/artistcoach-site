@@ -6,7 +6,6 @@
 <div style="font-size:13px;color:var(--sub);font-weight:700">발표 시간</div>
 <div id="sp-time" style="font-size:44px;font-weight:900;color:var(--깊음);line-height:1.2;margin:2px 0 2px">0초</div>
 <div id="sp-sub" style="font-size:13.5px;color:var(--sub);min-height:20px"></div>
-<div id="sp-verdict" style="font-size:16px;font-weight:900;line-height:1.55;margin:8px 0 0;min-height:24px"></div>
 </div>
 
 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;align-items:end">
@@ -20,11 +19,6 @@
 </div>
 <label style="font-size:13px;font-weight:700;display:block">슬라이드 (장)
 <input type="number" id="sp-slides" min="0" inputmode="numeric" placeholder="없으면 비워 두세요" style="width:100%;box-sizing:border-box;padding:10px;font-size:16px;margin:6px 0 0">
-</label>
-<label style="font-size:13px;font-weight:700;display:block">제한 시간
-<select id="sp-limit" style="width:100%;box-sizing:border-box;padding:10px;font-size:16px;margin:6px 0 0">
-<option value="0">정하지 않음</option><option value="3">3분</option><option value="5">5분</option><option value="7">7분</option><option value="10">10분</option><option value="15">15분</option><option value="20">20분</option>
-</select>
 </label>
 </div>
 <p style="font-size:12.5px;color:var(--sub);margin:14px 0 0">공백을 뺀 글자 수로 계산해요. 보통은 1분에 330자쯤이에요. 슬라이드는 한 장 넘기는 데 2초를 더해요. 사람마다 다르니 꼭 한 번 소리 내어 재 보세요. 대본은 이 기기 안에서만 계산되고 어디로도 보내지 않아요.</p>
@@ -49,18 +43,9 @@
     $('sp-time').textContent = mmss(total);
     $('sp-sub').textContent = slides ? ('말하기 ' + mmss(talk) + ' + 슬라이드 ' + slides + '장 ' + mmss(slides * 2)) : '';
     document.querySelectorAll('.sp-pre').forEach(function (b) { b.style.fontWeight = Number(b.getAttribute('data-r')) === rate ? '900' : ''; b.style.opacity = Number(b.getAttribute('data-r')) === rate ? '1' : '.5'; });
-    var lim = Number($('sp-limit').value) * 60, v = $('sp-verdict');
-    if (!lim) { v.textContent = ''; return; }
-    if (!n) { v.textContent = '대본을 넣으면 ' + mmss(lim) + '과 비교해 드려요.'; v.style.color = 'var(--sub)'; return; }
-    v.style.color = 'var(--깊음)';
-    var diff = total - lim, perSec = rate / 60;
-    if (Math.abs(diff) <= 10) v.textContent = '딱 맞아요.';
-    else if (diff > 0) v.textContent = mmss(diff) + ' 넘어요. 약 ' + fmt(Math.ceil(diff * perSec)) + '자를 줄이세요.';
-    else v.textContent = mmss(-diff) + ' 남아요. 약 ' + fmt(Math.floor(-diff * perSec)) + '자까지 더 써도 돼요.';
   }
   $('sp-text').addEventListener('input', recalc);
   $('sp-slides').addEventListener('input', recalc);
-  $('sp-limit').addEventListener('change', recalc);
   document.querySelectorAll('.sp-pre').forEach(function (b) { b.addEventListener('click', function () { rate = Number(b.getAttribute('data-r')); recalc(); }); });
   recalc();
 })();
