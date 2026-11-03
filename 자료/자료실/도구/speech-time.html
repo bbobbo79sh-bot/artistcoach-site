@@ -9,7 +9,7 @@
 <div id="sp-verdict" style="font-size:16px;font-weight:900;line-height:1.55;margin:8px 0 0;min-height:24px"></div>
 </div>
 
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px">
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;align-items:end">
 <div>
 <div style="font-size:13px;font-weight:700;margin:0 0 6px">말하는 속도</div>
 <div style="display:flex;gap:6px">
@@ -48,7 +48,7 @@
     $('sp-count').textContent = n ? ('공백 뺀 ' + fmt(n) + '자 · 공백 포함 ' + fmt(t.replace(/\r?\n/g, '').length) + '자') : '';
     $('sp-time').textContent = mmss(total);
     $('sp-sub').textContent = slides ? ('말하기 ' + mmss(talk) + ' + 슬라이드 ' + slides + '장 ' + mmss(slides * 2)) : '';
-    document.querySelectorAll('.sp-pre').forEach(function (b) { b.style.fontWeight = Number(b.getAttribute('data-r')) === rate ? '900' : ''; b.style.outline = Number(b.getAttribute('data-r')) === rate ? '2px solid var(--깊음)' : ''; });
+    document.querySelectorAll('.sp-pre').forEach(function (b) { b.style.fontWeight = Number(b.getAttribute('data-r')) === rate ? '900' : ''; b.style.opacity = Number(b.getAttribute('data-r')) === rate ? '1' : '.5'; });
     var lim = Number($('sp-limit').value) * 60, v = $('sp-verdict');
     if (!lim) { v.textContent = ''; return; }
     if (!n) { v.textContent = '대본을 넣으면 ' + mmss(lim) + '과 비교해 드려요.'; v.style.color = 'var(--sub)'; return; }
