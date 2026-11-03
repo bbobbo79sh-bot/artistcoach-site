@@ -1,0 +1,191 @@
+<div id="sp-root">
+<label for="sp-text" style="display:block;font-weight:900;color:var(--깊음);margin:0 0 6px">1. 발표 대본을 붙여 넣으세요</label>
+<textarea id="sp-text" rows="9" placeholder="여기에 발표 대본을 붙여 넣거나 쓰세요. 쓰는 대로 글자 수와 예상 발표 시간이 바로 계산돼요." style="width:100%;box-sizing:border-box;padding:10px 12px;font-size:16px;line-height:1.7;margin:0"></textarea>
+<div id="sp-stats" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin:10px 0 18px"></div>
+
+<div style="font-weight:900;color:var(--깊음);margin:0 0 6px">2. 말하는 속도를 정하세요</div>
+<div style="background:var(--면);border:1px solid var(--선);border-radius:14px;padding:12px 14px;margin:0 0 18px">
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin:0 0 10px">
+<button type="button" class="sp-pre" data-p="80">천천히 (80%)</button>
+<button type="button" class="sp-pre" data-p="100">보통 (100%)</button>
+<button type="button" class="sp-pre" data-p="120">빠르게 (120%)</button>
+</div>
+<input type="range" id="sp-rate" min="60" max="140" step="5" value="100" aria-label="말하는 속도" style="width:100%;margin:0">
+<div style="display:flex;justify-content:space-between;font-size:12.5px;color:var(--sub);font-weight:700"><span>느리게 60%</span><span id="sp-rate-now"></span><span>빠르게 140%</span></div>
+<p id="sp-cpm-note" style="font-size:13px;color:var(--sub);margin:8px 0 0"></p>
+
+<details style="margin:12px 0 0">
+<summary style="cursor:pointer;font-weight:900;color:var(--깊음)">내 말 속도로 더 정확하게 재기 (선택)</summary>
+<p style="font-size:13.5px;margin:8px 0">스톱워치를 켜고 대본의 첫 부분을 평소 발표하듯이 20초쯤 소리 내어 읽어 보세요. 멈춘 뒤, 읽은 만큼의 글을 아래 칸에 붙여 넣으면 내 속도가 계산돼요.</p>
+<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:0 0 8px">
+<b id="sp-sw" style="font-size:22px;font-variant-numeric:tabular-nums;min-width:96px">00:00.0</b>
+<button type="button" id="sp-sw-go" style="font-weight:900">시작</button>
+<button type="button" id="sp-sw-reset">처음으로</button>
+</div>
+<textarea id="sp-read" rows="3" placeholder="읽은 부분을 여기에 붙여 넣으세요" style="width:100%;box-sizing:border-box;padding:8px 10px;font-size:15px;margin:0"></textarea>
+<div id="sp-read-out" style="font-size:13.5px;font-weight:700;color:var(--깊음);margin:6px 0 0;min-height:20px"></div>
+</details>
+</div>
+
+<div style="font-weight:900;color:var(--깊음);margin:0 0 6px">3. 슬라이드(PPT)가 있다면 (선택)</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;background:var(--면);border:1px solid var(--선);border-radius:14px;padding:12px 14px;margin:0 0 18px">
+<label style="font-size:13.5px;font-weight:700">슬라이드 수 (장)<input type="number" id="sp-slides" min="0" inputmode="numeric" placeholder="0" style="width:100%;box-sizing:border-box;padding:8px;font-size:16px;margin:4px 0 0"></label>
+<label style="font-size:13.5px;font-weight:700">넘기는 시간 (초/장)<input type="number" id="sp-turn" min="0" inputmode="numeric" placeholder="2" style="width:100%;box-sizing:border-box;padding:8px;font-size:16px;margin:4px 0 0"></label>
+<label style="font-size:13.5px;font-weight:700">영상·자료 보여 주는 시간 (초)<input type="number" id="sp-extra" min="0" inputmode="numeric" placeholder="0" style="width:100%;box-sizing:border-box;padding:8px;font-size:16px;margin:4px 0 0"></label>
+</div>
+
+<div style="font-weight:900;color:var(--깊음);margin:0 0 6px">4. 심사 발표 시간에 맞는지 보세요</div>
+<div style="background:var(--면);border:1px solid var(--선);border-radius:14px;padding:12px 14px;margin:0 0 14px">
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin:0 0 8px">
+<button type="button" class="sp-lim" data-m="3">3분</button>
+<button type="button" class="sp-lim" data-m="5">5분</button>
+<button type="button" class="sp-lim" data-m="7">7분</button>
+<button type="button" class="sp-lim" data-m="10">10분</button>
+<button type="button" class="sp-lim" data-m="15">15분</button>
+<button type="button" class="sp-lim" data-m="20">20분</button>
+</div>
+<label style="font-size:13.5px;font-weight:700">직접 넣기 (분)<input type="number" id="sp-limit" min="0" step="0.5" inputmode="decimal" placeholder="예: 10" style="width:120px;padding:8px;font-size:16px;margin:0 0 0 8px"></label>
+</div>
+
+<div id="sp-result" style="background:var(--연함);border:1px solid var(--선);border-radius:16px;padding:16px 16px 14px;margin:0 0 10px">
+<div style="font-size:13px;color:var(--sub);font-weight:700">예상 발표 시간</div>
+<div id="sp-time" style="font-size:34px;font-weight:900;color:var(--깊음);margin:2px 0 4px">0초</div>
+<div id="sp-detail" style="font-size:13.5px;color:var(--sub);margin:0 0 8px"></div>
+<div id="sp-verdict" style="font-size:15.5px;font-weight:900;line-height:1.6"></div>
+</div>
+<div style="display:flex;gap:8px;flex-wrap:wrap">
+<button type="button" id="sp-copy" style="font-weight:900">결과 복사하기</button>
+<button type="button" id="sp-clear">모두 지우기</button>
+</div>
+<div id="sp-msg" style="font-size:13px;font-weight:700;color:var(--깊음);min-height:20px;margin:6px 0 0"></div>
+<p style="font-size:12.5px;color:var(--sub);margin:10px 0 0">보통 속도는 공백을 뺀 글자 기준 1분에 300자쯤으로 잡았어요(차분히 말하는 발표 속도). 사람마다 다르니 꼭 소리 내어 한 번 재 보세요. 대본은 이 기기 안에서만 계산되고 어디로도 보내지 않아요.</p>
+<script>
+(function () {
+  var BASE = 300; // 공백 뺀 글자 수 / 분 (보통 속도)
+  var $ = function (id) { return document.getElementById(id); };
+  var text = $('sp-text'), rate = $('sp-rate'), statsBox = $('sp-stats');
+  var myCpm = null;
+  var swTimer = null, swStart = 0, swMs = 0, swRun = false;
+
+  function fmt(n) { return Number(n).toLocaleString('ko-KR'); }
+  function mmss(s) {
+    s = Math.max(0, Math.round(s));
+    var m = Math.floor(s / 60), r = s % 60;
+    return m > 0 ? (m + '분 ' + (r < 10 ? '0' : '') + r + '초') : (r + '초');
+  }
+  function count(t) {
+    var noSpace = t.replace(/\s/g, '').length;
+    var withSpace = t.replace(/\r?\n/g, '').length;
+    var words = (t.trim().match(/\S+/g) || []).length;
+    var bytes = 0;
+    for (var i = 0; i < t.length; i++) {
+      var c = t.charCodeAt(i);
+      if (c < 0x80) bytes += 1;
+      else if (c < 0x800) bytes += 2;
+      else if (c >= 0xD800 && c <= 0xDBFF) { bytes += 4; i++; }
+      else bytes += 3;
+    }
+    return { noSpace: noSpace, withSpace: withSpace, words: words, bytes: bytes };
+  }
+  function num(id) { var v = parseFloat($(id).value); return isFinite(v) && v > 0 ? v : 0; }
+  function baseCpm() { return myCpm || BASE; }
+
+  var last = { total: 0, talk: 0, c: null, text: '' };
+
+  function recalc() {
+    var t = text.value;
+    var c = count(t);
+    var pct = Number(rate.value);
+    $('sp-rate-now').textContent = '지금 ' + pct + '%';
+    var cpm = baseCpm() * pct / 100;
+    $('sp-cpm-note').textContent = '지금 속도: 1분에 약 ' + fmt(Math.round(cpm)) + '자 (공백 뺀 글자)' + (myCpm ? ' · 내 속도(1분 ' + fmt(Math.round(myCpm)) + '자) 기준' : '');
+
+    statsBox.textContent = '';
+    [['공백 포함', fmt(c.withSpace) + '자'], ['공백 제외', fmt(c.noSpace) + '자'], ['단어 수', fmt(c.words) + '개'], ['바이트', fmt(c.bytes)]].forEach(function (x) {
+      var b = document.createElement('div');
+      b.style.cssText = 'background:var(--면);border:1px solid var(--선);border-radius:12px;padding:8px 10px';
+      var a = document.createElement('div'); a.textContent = x[0]; a.style.cssText = 'font-size:12px;color:var(--sub);font-weight:700';
+      var d = document.createElement('div'); d.textContent = x[1]; d.style.cssText = 'font-size:17px;font-weight:900;margin-top:2px';
+      b.appendChild(a); b.appendChild(d); statsBox.appendChild(b);
+    });
+
+    var talk = cpm > 0 ? c.noSpace / cpm * 60 : 0;
+    var slides = num('sp-slides'), turn = $('sp-turn').value === '' ? 2 : num('sp-turn'), extra = num('sp-extra');
+    var slideSec = slides * turn + extra;
+    var total = talk + slideSec;
+    last = { total: total, talk: talk, c: c, text: t };
+
+    $('sp-time').textContent = mmss(total);
+    var d = '말하기 ' + mmss(talk);
+    if (slideSec > 0) d += ' + 슬라이드·자료 ' + mmss(slideSec);
+    $('sp-detail').textContent = d;
+
+    var lim = num('sp-limit') * 60;
+    var v = $('sp-verdict');
+    document.querySelectorAll('.sp-lim').forEach(function (b) { b.style.fontWeight = (Number(b.getAttribute('data-m')) * 60 === lim) ? '900' : ''; });
+    if (!lim) { v.textContent = '발표 시간 제한을 고르면, 맞는지 알려 드려요.'; v.style.color = 'var(--sub)'; return; }
+    if (!c.noSpace) { v.textContent = '대본을 넣으면 제한 시간과 비교해 드려요.'; v.style.color = 'var(--sub)'; return; }
+    var diff = total - lim;
+    var perChar = cpm / 60; // 초당 글자
+    if (Math.abs(diff) <= 10) {
+      v.textContent = '딱 맞아요. 제한 ' + mmss(lim) + ' 안에 들어와요.'; v.style.color = 'var(--깊음)';
+    } else if (diff > 0) {
+      var cut = Math.ceil(diff * perChar);
+      v.textContent = mmss(diff) + ' 넘어요. 공백 뺀 글자 기준으로 약 ' + fmt(cut) + '자를 줄이면 맞아요.'; v.style.color = 'var(--깊음)';
+    } else {
+      var add = Math.floor(-diff * perChar);
+      v.textContent = mmss(-diff) + ' 여유가 있어요. 약 ' + fmt(add) + '자까지 더 써도 돼요. (시간을 꽉 채우기보다 조금 남기는 편이 안전해요.)'; v.style.color = 'var(--깊음)';
+    }
+  }
+
+  function say(m) { $('sp-msg').textContent = m; setTimeout(function () { if ($('sp-msg').textContent === m) $('sp-msg').textContent = ''; }, 3500); }
+
+  function swShow() {
+    var ms = swMs + (swRun ? (Date.now() - swStart) : 0);
+    var s = Math.floor(ms / 1000), t = Math.floor((ms % 1000) / 100);
+    $('sp-sw').textContent = (s < 600 ? '0' : '') + Math.floor(s / 60) + ':' + ((s % 60) < 10 ? '0' : '') + (s % 60) + '.' + t;
+    return ms;
+  }
+  function readCalc() {
+    var ms = swMs + (swRun ? (Date.now() - swStart) : 0);
+    var n = count($('sp-read').value).noSpace;
+    var out = $('sp-read-out');
+    if (!n || ms < 3000) { myCpm = null; out.textContent = (n && ms < 3000) ? '3초 이상 읽어야 계산돼요.' : ''; recalc(); return; }
+    myCpm = n / (ms / 60000);
+    out.textContent = '내 속도: ' + (ms / 1000).toFixed(1) + '초에 ' + fmt(n) + '자 → 1분에 약 ' + fmt(Math.round(myCpm)) + '자. 아래 계산에 이 속도를 써요.';
+    recalc();
+  }
+
+  text.addEventListener('input', recalc);
+  rate.addEventListener('input', recalc);
+  ['sp-slides', 'sp-turn', 'sp-extra', 'sp-limit'].forEach(function (id) { $(id).addEventListener('input', recalc); });
+  document.querySelectorAll('.sp-pre').forEach(function (b) { b.addEventListener('click', function () { rate.value = b.getAttribute('data-p'); recalc(); }); });
+  document.querySelectorAll('.sp-lim').forEach(function (b) { b.addEventListener('click', function () { $('sp-limit').value = b.getAttribute('data-m'); recalc(); }); });
+  $('sp-sw-go').addEventListener('click', function () {
+    if (!swRun) { swRun = true; swStart = Date.now(); $('sp-sw-go').textContent = '멈춤'; swTimer = setInterval(swShow, 100); }
+    else { swMs += Date.now() - swStart; swRun = false; clearInterval(swTimer); $('sp-sw-go').textContent = '이어서'; swShow(); readCalc(); }
+  });
+  $('sp-sw-reset').addEventListener('click', function () {
+    swRun = false; clearInterval(swTimer); swMs = 0; $('sp-sw-go').textContent = '시작'; swShow(); myCpm = null; $('sp-read-out').textContent = ''; recalc();
+  });
+  $('sp-read').addEventListener('input', readCalc);
+  $('sp-clear').addEventListener('click', function () {
+    text.value = ''; $('sp-read').value = ''; ['sp-slides', 'sp-turn', 'sp-extra', 'sp-limit'].forEach(function (id) { $(id).value = ''; });
+    rate.value = 100; swRun = false; clearInterval(swTimer); swMs = 0; $('sp-sw-go').textContent = '시작'; swShow(); myCpm = null; $('sp-read-out').textContent = ''; recalc(); say('모두 지웠어요.');
+  });
+  $('sp-copy').addEventListener('click', function () {
+    var c = last.c || count('');
+    var s = '[발표 시간 계산 결과]\n예상 발표 시간: ' + mmss(last.total) + '\n' + $('sp-detail').textContent +
+      '\n글자 수: 공백 포함 ' + fmt(c.withSpace) + '자 / 공백 제외 ' + fmt(c.noSpace) + '자 / 단어 ' + fmt(c.words) + '개\n말하기 속도: ' + $('sp-cpm-note').textContent +
+      '\n' + $('sp-verdict').textContent;
+    var done = function () { say('복사했어요.'); };
+    var fail = function () { say('복사가 안 됐어요. 결과를 직접 선택해서 복사해 주세요.'); };
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(s).then(done, fail); }
+      else { var ta = document.createElement('textarea'); ta.value = s; document.body.appendChild(ta); ta.select(); var ok = document.execCommand('copy'); document.body.removeChild(ta); ok ? done() : fail(); }
+    } catch (e) { fail(); }
+  });
+  swShow(); recalc();
+})();
+</script>
+</div>
