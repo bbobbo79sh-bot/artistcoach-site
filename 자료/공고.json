@@ -1950,6 +1950,32 @@
   "benefit": ""
  },
  {
+  "id": "53a699c6",
+  "cat": "예술 공모전·모집",
+  "org": "위로컴퍼니",
+  "region": "",
+  "title": "가족 코미디극 공부의 신 배우 오디션 공모",
+  "deadline": "2026-11-17",
+  "target": "",
+  "link": "https://otr.co.kr/audition/?vid=22626",
+  "posted": "",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "0e795f54",
+  "cat": "예술 공모전·모집",
+  "org": "위로컴퍼니",
+  "region": "",
+  "title": "연극 죽어야 사는 남자 현지 역 배우 오디션 공모",
+  "deadline": "2026-11-17",
+  "target": "",
+  "link": "https://otr.co.kr/audition/?vid=22622",
+  "posted": "",
+  "summary": "",
+  "benefit": ""
+ },
+ {
   "id": "0d01e27f",
   "cat": "예술인 지원·공모",
   "org": "재단법인 빛이나",
@@ -2609,6 +2635,19 @@
   "target": "",
   "link": "http://eminwon.anseong.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=74920&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_se_code=01,02,03,04,05",
   "posted": "2026-10-29",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "19292be1",
+  "cat": "예술 공모전·모집",
+  "org": "에스앤코",
+  "region": "",
+  "title": "뮤지컬 스쿨 오브 락 한국어 공연 아역 배우 오디션 공모",
+  "deadline": "2026-11-25",
+  "target": "",
+  "link": "https://otr.co.kr/audition/?vid=22625",
+  "posted": "",
   "summary": "",
   "benefit": ""
  },
