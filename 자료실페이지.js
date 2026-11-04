@@ -26,6 +26,15 @@ module.exports = ({ 설정, 검수용, 뿌리, 결과, 틀, 길, 막기, 쓰기,
     if (/^[A-Za-z0-9_-]+$/.test(g.id) && fs.existsSync(글경로(g))) {
       const r = 변환(fs.readFileSync(글경로(g), 'utf8'), { 카드: true });
       if (r.제목 && r.본문.length > 300) 글[g.id] = r;   // 너무 짧은 글은 웹 페이지로 올리지 않는다
+      // 접수 기간이 있는 안내글(자료실.json 의 '마감': 'YYYY-MM-DD'): 맨 위에 접수 중/접수 종료 띠를 붙인다. 사이트는 매일 아침 새로 만들어지므로 마감 다음 날부터 '접수 종료'로 바뀐다.
+      if (글[g.id] && /^\d{4}-\d{2}-\d{2}$/.test(g.마감 || '')) {
+        const 지금 = new Date(); const 오늘글 = `${지금.getFullYear()}-${String(지금.getMonth() + 1).padStart(2, '0')}-${String(지금.getDate()).padStart(2, '0')}`;
+        const 끝남 = 오늘글 > g.마감;
+        const 띠 = 끝남
+          ? `<p style="background:var(--연함);border:1px solid var(--선);border-radius:12px;padding:10px 14px;font-weight:900;margin:0 0 16px">접수가 끝났어요 (공연단체 접수 마감 ${g.마감.slice(5, 7).replace(/^0/, '')}월 ${g.마감.slice(8).replace(/^0/, '')}일). 이 글은 참고용으로 남겨 둬요. 다음 공모는 공식 공고를 확인하세요.</p>`
+          : `<p style="background:var(--연함);border:1px solid var(--선);border-radius:12px;padding:10px 14px;font-weight:900;margin:0 0 16px">지금 접수 중이에요 · 공연단체 접수 ${g.마감.slice(5, 7).replace(/^0/, '')}월 ${g.마감.slice(8).replace(/^0/, '')}일 17:00까지 (예정)</p>`;
+        글[g.id].본문 = 띠 + 글[g.id].본문;
+      }
     }
   });
   // 직접 입력·계산하는 도구 페이지: 자료/자료실/도구/<id>.html (본문 조각 + 인라인 스크립트, 외부 라이브러리·서버 전송 없음).
