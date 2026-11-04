@@ -561,6 +561,19 @@ ${공고.map(카드).join('\n')}
 }));
 
 // ───────── 공고 한 건마다 한 페이지 ─────────
+// 공고 상세에 덧붙이는 자세한 안내글: 자료/공고추가글/<공고 번호>.md 가 있으면 요약 아래에 붙인다(예: 접수 방법·서류가 복잡한 큰 사업). 조사 봇이 매일 내보내는 공고.json 은 건드리지 않는다.
+const 추가글 = (() => {
+  const 폴더 = path.join(뿌리, '자료', '공고추가글');
+  const { 변환: 추가변환 } = require('./마크다운.js')({ 막기, 길 });
+  const 공개목록 = (() => { try { return JSON.parse(fs.readFileSync(path.join(폴더, '공개.json'), 'utf8')); } catch (e) { return []; } })();
+  return (id) => {
+    const p = path.join(폴더, `${id}.md`);
+    if (!/^[A-Za-z0-9_-]+$/.test(id) || !fs.existsSync(p)) return '';
+    if (!검수용 && !공개목록.includes(id)) return '';   // 정식 사이트에는 공개.json 에 번호를 적은 것만 나온다(검수 사이트에서는 모두 보임)
+    const r = 추가변환(fs.readFileSync(p, 'utf8'), {});
+    return r && r.본문 ? `<section class="일반글 글본문 공고추가글">${r.본문}</section>` : '';
+  };
+})();
 // 요약이 한 줄이라도 있는 공고만 '충실한 페이지'로 본다. 요약이 없는 페이지는 사이트 안에서는 보이지만 검색 노출(색인)과 사이트맵에서는 뺀다.
 const 충실한가 = (x) => !!(x.summary && x.summary.trim());
 공고.forEach((x) => {
@@ -579,6 +592,7 @@ const 충실한가 = (x) => !!(x.summary && x.summary.trim());
   <dl class="정보">${정보.map(([이름, 값, 클래스]) => `<div${클래스 ? ` class="${클래스}"` : ''}><dt>${이름}</dt><dd>${값}</dd></div>`).join('')}</dl>
   <p class="출처줄"><span class="라벨">원문</span><b>${막기(x.org)}</b>의 공고 · ${막기(호스트(x.link))}<br>${x.summary || x.benefit ? '요약과 지원내용은 이 원문을 읽고 정리했어요.' : '이 공고의 요약은 원문을 읽고 정리하는 중이에요.'}</p>
   ${x.summary ? `<p class="요약">${막기(x.summary)}</p>` : `<p class="요약 없음글">요약을 준비하고 있어요. 자세한 내용은 원문에서 확인해 주세요.</p>`}
+  ${추가글(x.id)}
   <a class="단추 주 원문단추" href="${막기(x.link)}" target="_blank" rel="noopener noreferrer">원문 보러 가기 <span aria-hidden="true">→</span></a>
   <p class="안내">지원 조건, 금액, 마감 시각은 바뀔 수 있어요. 지원 전에 꼭 원문 공고에서 다시 확인해 주세요.</p>
 </article>
