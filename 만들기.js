@@ -91,10 +91,11 @@ const 추천 = (() => {
   try {
     return JSON.parse(fs.readFileSync(추천경로, 'utf8'))
       .map((r) => ({ ...r, 공고: 공고.find((x) => x.id === r.id) }))
-      .filter((r) => r.공고 && !추천제외.includes(r.id) && r.image && /^[\w.\-가-힣 ]+$/.test(r.image) && fs.existsSync(path.join(추천폴더, r.image)))
+      .filter((r) => r.공고 && !추천제외.includes(r.id) && (r.공고.deadline === '상시' || 남은날(r.공고.deadline) >= 0) && r.image && /^[\w.\-가-힣 ]+$/.test(r.image) && fs.existsSync(path.join(추천폴더, r.image)))
       .sort((a, b) => (b.score || 0) - (a.score || 0)).slice(0, 8);
   } catch (e) { console.log('추천.json 을 읽지 못해 배너를 건너뜁니다: ' + e.message); return []; }
 })();
+if (추천.length < 6) console.log('  ⚠ 추천 배너 카드가 ' + 추천.length + '장뿐입니다 (6장 이상 권장) — 조사 봇에 새 카드 요청');
 const 곧마감 = 공고.filter((x) => x.deadline !== '상시' && 남은날(x.deadline) <= 7);
 
 const 사업자 = JSON.parse(fs.readFileSync(path.join(뿌리, '자료', '사업자정보.json'), 'utf8'));
