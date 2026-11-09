@@ -95,7 +95,7 @@ const 추천 = (() => {
       .sort((a, b) => (b.score || 0) - (a.score || 0)).slice(0, 8);
   } catch (e) { console.log('추천.json 을 읽지 못해 배너를 건너뜁니다: ' + e.message); return []; }
 })();
-if (추천.length < 6) console.log('  ⚠ 추천 배너 카드가 ' + 추천.length + '장뿐입니다 (6장 이상 권장) — 조사 봇에 새 카드 요청');
+if (추천.length < 8) console.log('  ⚠ 추천 배너 카드가 ' + 추천.length + '장뿐입니다 (8장 이상 필요, 영감 규정 2026-11-09) — 조사 봇에 새 카드 요청');
 const 곧마감 = 공고.filter((x) => x.deadline !== '상시' && 남은날(x.deadline) <= 7);
 
 const 사업자 = JSON.parse(fs.readFileSync(path.join(뿌리, '자료', '사업자정보.json'), 'utf8'));
