@@ -653,6 +653,12 @@ const 상품결과 = require('./상품페이지.js')({ 설정: 상품설정, 뿌
 const 임시공유폴더 = path.join(뿌리, '자료', '임시공유');
 if (!검수용 && fs.existsSync(임시공유폴더)) fs.cpSync(임시공유폴더, 결과, { recursive: true });
 if (로그인) { 로그인.만들기(); console.log('  로그인 기능  켜짐 (' + 로그인.서버 + ')'); }
+// 짧은 주소: artistcoach.kr/book/ → 전자책 판매 페이지 (카드뉴스 QR·프로필 링크용). 유입 표시(ref=card)가 붙어 방문 통계에서 구분된다.
+if (스토어켜짐 && (상품설정.상품 || [])[0]) {
+  const 첫상품 = 상품설정.상품.find((p) => Number(p.가격) > 0) || 상품설정.상품[0];
+  const 가는곳 = 길(`/products/${첫상품.id}/`) + '?ref=card';
+  쓰기('book/index.html', `<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex"><title>아티스트 코치 전자책</title><meta http-equiv="refresh" content="0;url=${가는곳}"><link rel="canonical" href="${주소}${길(`/products/${첫상품.id}/`)}"></head><body><p><a href="${가는곳}">전자책 보러 가기</a></p><script>location.replace(${JSON.stringify(가는곳)}+(location.search?'&'+location.search.slice(1):''))</script></body></html>`);
+}
 쓰기('404.html', 틀({
   제목: '페이지를 찾을 수 없어요 · 아티스트 코치', 설명: '페이지를 찾을 수 없어요.', 경로: '/404.html', 색인: false,
   본문: `<section class="일반글"><h1>찾는 페이지가 없어요.</h1><p>공고가 마감돼 내려갔거나 주소가 바뀌었을 수 있어요.</p><a class="단추 주" href="${길('/')}">공고 목록으로 가기</a></section>`,
