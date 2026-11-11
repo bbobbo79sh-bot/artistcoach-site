@@ -109,6 +109,10 @@ const 자료실설정 = JSON.parse(fs.readFileSync(path.join(뿌리, '자료', '
 const 자료실켜짐 = !!(자료실설정.사용 || 검수용);
 // 가이드 글(/guide/): 자료/가이드설정.json 의 '사용'이 true 일 때만 만든다. 2026-10-09 영감 결정으로 끔(글 파일은 자료/가이드/ 에 그대로 보관).
 const 가이드켜짐 = (() => { try { return JSON.parse(fs.readFileSync(path.join(뿌리, '자료', '가이드설정.json'), 'utf8')).사용 === true; } catch (e) { return false; } })();
+const 로그인설정 = (() => { try { return JSON.parse(fs.readFileSync(path.join(뿌리, '자료', '로그인.json'), 'utf8')); } catch (e) { return {}; } })();
+if (process.env.SITE_LOGIN) 로그인설정.서버 = process.env.SITE_LOGIN;   // 시험용: SITE_LOGIN=http://127.0.0.1:8787
+const 로그인켜짐 = !!(로그인설정.서버 && (검수용 || 로그인설정.정식공개 === true));   // 검수 사이트에서만 먼저 보여 준다. 정식 공개는 영감이 허락한 뒤 '정식공개'를 true 로
+const 로그인 = 로그인켜짐 ? require('./로그인페이지.js')({ 설정: 로그인설정, 공고, 틀: (...a) => 틀(...a), 길, 막기, 쓰기 }) : null;
 const 검색등록 = JSON.parse(fs.readFileSync(path.join(뿌리, '자료', '검색등록.json'), 'utf8'));
 const 구글확인 = (!검수용 && /^[A-Za-z0-9_-]{20,80}$/.test(검색등록.구글서치콘솔 || '')) ? 검색등록.구글서치콘솔 : '';
 const 광고설정 = JSON.parse(fs.readFileSync(path.join(뿌리, '자료', '광고.json'), 'utf8'));
@@ -117,7 +121,7 @@ const 광고사용 = !검수용 && !!광고설정.사용 && Object.values(광고
 // 방문 통계(GoatCounter): 자료/통계.json 의 '사용'이 true 이고 '코드'(goatcounter.com 에서 만든 이름)가 있을 때만 정식 사이트에 넣는다.
 const 통계설정 = (() => { try { return JSON.parse(fs.readFileSync(path.join(뿌리, '자료', '통계.json'), 'utf8')); } catch (e) { return {}; } })();
 const 통계코드 = (!검수용 && 통계설정.사용 === true && /^[a-z0-9-]{2,40}$/.test(통계설정.코드 || '')) ? 통계설정.코드 : '';
-const 법 = require('./법률문서.js')(사업자, { 광고사용, 애드센스: !!애드센스, 통계사용: !!통계코드 });
+const 법 = require('./법률문서.js')(사업자, { 광고사용, 애드센스: !!애드센스, 통계사용: !!통계코드, 로그인: 로그인켜짐 });
 // 카카오 애드핏 광고 칸. 켜져 있고 광고단위 번호가 있을 때만 그린다. 가림막(광고 표시)을 함께 둬서 광고임을 알린다.
 const 광고칸 = (자리) => {
   const v = 광고사용 && 광고설정.자리[자리];
@@ -128,6 +132,7 @@ const 광고스크립트 = 광고사용 ? '<script async type="text/javascript" 
 
 // ───────── 스타일 ─────────
 const 스타일 = `
+${로그인 ? 로그인.스타일 : ''}
 :root{--bg:${bg};--면:${면};--ink:${ink};--sub:${sub};--브랜드:${brand};--브랜드글:${브랜드글};--깊음:${깊음};--연함:${연함};--아주연함:${아주연함};--선:${선};--바탕투명:${바탕투명}}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
@@ -377,8 +382,9 @@ ${애드센스 ? `<script async src="https://pagead2.googlesyndication.com/pagea
 <body>
 <header class="머리"><div class="틀">
   <a class="로고줄" href="${길('/')}"><img src="${길('/logo.svg')}" alt="" width="36" height="36"><span class="글자로고">아티스트<mark>코치</mark></span></a>
-  <nav><a href="${길('/')}"${현재 === '공고' ? ' aria-current="page"' : ''}>공고</a><a href="${길('/about/')}"${현재 === '소개' ? ' aria-current="page"' : ''}>소개</a>${가이드켜짐 ? `<a href="${길('/guide/')}"${현재 === '가이드' ? ' aria-current="page"' : ''}>가이드</a>` : ''}${자료실켜짐 ? `<a href="${길('/resources/')}"${현재 === '자료실' ? ' aria-current="page"' : ''}>자료실</a>` : ''}${스토어켜짐 ? `<a href="${길('/products/')}">스토어</a>` : ''}</nav>
+  <nav><a href="${길('/')}"${현재 === '공고' ? ' aria-current="page"' : ''}>공고</a><a href="${길('/about/')}"${현재 === '소개' ? ' aria-current="page"' : ''}>소개</a>${가이드켜짐 ? `<a href="${길('/guide/')}"${현재 === '가이드' ? ' aria-current="page"' : ''}>가이드</a>` : ''}${자료실켜짐 ? `<a href="${길('/resources/')}"${현재 === '자료실' ? ' aria-current="page"' : ''}>자료실</a>` : ''}${스토어켜짐 ? `<a href="${길('/products/')}">스토어</a>` : ''}${로그인 ? 로그인.메뉴 : ''}</nav>
 </div></header>
+${로그인 ? 로그인.스크립트태그 : ''}
 <main class="틀">
 ${본문}
 </main>
@@ -595,6 +601,7 @@ const 충실한가 = (x) => !!(x.summary && x.summary.trim());
   ${x.summary ? `<p class="요약">${막기(x.summary)}</p>` : `<p class="요약 없음글">요약을 준비하고 있어요. 자세한 내용은 원문에서 확인해 주세요.</p>`}
   ${추가글(x.id)}
   <a class="단추 주 원문단추" href="${막기(x.link)}" target="_blank" rel="noopener noreferrer">원문 보러 가기 <span aria-hidden="true">→</span></a>
+  ${로그인 ? `<div style="margin-top:12px">${로그인.관심단추(x.id)}</div>` : ''}
   <p class="안내">지원 조건, 금액, 마감 시각은 바뀔 수 있어요. 지원 전에 꼭 원문 공고에서 다시 확인해 주세요.</p>
 </article>
 ${자료실.관련(자료실설정['공고상세에_넣을_자료'] || [])}
@@ -645,6 +652,7 @@ const 상품결과 = require('./상품페이지.js')({ 설정: 상품설정, 뿌
 // 만드는 법·내리는 법은 도구/임시공유올리기.js 맨 위 설명 참고. 폴더를 지우면 주소가 사라진다.
 const 임시공유폴더 = path.join(뿌리, '자료', '임시공유');
 if (!검수용 && fs.existsSync(임시공유폴더)) fs.cpSync(임시공유폴더, 결과, { recursive: true });
+if (로그인) { 로그인.만들기(); console.log('  로그인 기능  켜짐 (' + 로그인.서버 + ')'); }
 쓰기('404.html', 틀({
   제목: '페이지를 찾을 수 없어요 · 아티스트 코치', 설명: '페이지를 찾을 수 없어요.', 경로: '/404.html', 색인: false,
   본문: `<section class="일반글"><h1>찾는 페이지가 없어요.</h1><p>공고가 마감돼 내려갔거나 주소가 바뀌었을 수 있어요.</p><a class="단추 주" href="${길('/')}">공고 목록으로 가기</a></section>`,
