@@ -112,7 +112,7 @@ const 가이드켜짐 = (() => { try { return JSON.parse(fs.readFileSync(path.jo
 const 로그인설정 = (() => { try { return JSON.parse(fs.readFileSync(path.join(뿌리, '자료', '로그인.json'), 'utf8')); } catch (e) { return {}; } })();
 if (process.env.SITE_LOGIN) 로그인설정.서버 = process.env.SITE_LOGIN;   // 시험용: SITE_LOGIN=http://127.0.0.1:8787
 const 로그인켜짐 = !!(로그인설정.서버 && (검수용 || 로그인설정.정식공개 === true));   // 검수 사이트에서만 먼저 보여 준다. 정식 공개는 영감이 허락한 뒤 '정식공개'를 true 로
-const 로그인 = 로그인켜짐 ? require('./로그인페이지.js')({ 설정: 로그인설정, 공고, 틀: (...a) => 틀(...a), 길, 막기, 쓰기 }) : null;
+const 로그인 = 로그인켜짐 ? require('./로그인페이지.js')({ 설정: { ...로그인설정, 판매서버: 상품설정.승인확인서버 }, 공고, 틀: (...a) => 틀(...a), 길, 막기, 쓰기 }) : null;
 const 검색등록 = JSON.parse(fs.readFileSync(path.join(뿌리, '자료', '검색등록.json'), 'utf8'));
 const 구글확인 = (!검수용 && /^[A-Za-z0-9_-]{20,80}$/.test(검색등록.구글서치콘솔 || '')) ? 검색등록.구글서치콘솔 : '';
 const 광고설정 = JSON.parse(fs.readFileSync(path.join(뿌리, '자료', '광고.json'), 'utf8'));
@@ -391,7 +391,7 @@ ${본문}
 <footer class="틀 바닥">
   <div><b>아티스트 코치</b> · artistcoach.kr · <a href="${인스타}" target="_blank" rel="noopener">인스타그램 @artistcoach_0gam</a></div>
   <div>공고 정보는 각 기관의 원문을 기준으로 정리합니다. 지원 전에는 꼭 원문 공고에서 조건과 마감을 다시 확인해 주세요.</div>
-  <div class="법링크"><a href="${길('/terms/')}">이용약관</a><a href="${길('/privacy/')}">개인정보처리방침</a><a href="${길('/refund/')}">환불 규정</a>${스토어켜짐 ? `<a href="${길('/pay/retrieve/')}">전자책 다시 받기</a>` : ''}</div>
+  <div class="법링크"><a href="${길('/terms/')}">이용약관</a><a href="${길('/privacy/')}">개인정보처리방침</a><a href="${길('/refund/')}">환불 규정</a>${스토어켜짐 ? `<a href="${길('/my/')}">내 구매·다시 받기</a>` : ''}</div>
   <div class="사업자">${법.바닥정보}</div>
 </footer>
 ${스크립트}

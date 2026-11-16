@@ -35,14 +35,15 @@ module.exports = ({ 설정: 원설정, 뿌리, 결과, 틀, 길, 막기, 쓰기,
   <h1>아티스트 코치 서비스</h1>
   <div class="상품목록">${설정.상품.filter((p) => !p.목록숨김).map((p) => `<a class="상품카드" href="${길(`/products/${p.id}/`)}">${이미지주소(p) ? `<img src="${이미지주소(p)}" alt="${막기(p.이름)} 표지" width="800" height="1000">` : ''}<b>${막기(p.이름)}</b><span>${막기(p.한줄)}</span><em>${원(p.가격)}</em></a>`).join('')}</div>
   <p class="작은">결제 전에 <a href="${길('/refund/')}">환불 규정</a>과 <a href="${길('/terms/')}">이용약관</a>을 확인해 주세요.</p>
-  <p class="작은">이미 구매하셨나요? <a href="${길('/pay/retrieve/')}">구매한 전자책 다시 받기</a></p>
+  <p class="작은">이미 구매하셨나요? 로그인하고 <a href="${길('/my/')}">내 구매에서 다시 받기</a></p>
 </section>`,
   }));
 
   // ── 책 상품(소개글·목차·도서 정보·미리보기·구매 안내가 있는 상세 페이지)
   const { 변환 } = require('./마크다운.js')({ 막기, 길 });
   const 글읽기 = (폴더, 파일) => { const f = path.join(뿌리, '자료', '상품', 폴더, 파일 || ''); return (파일 && /^[A-Za-z0-9_.\-]+$/.test(파일) && fs.existsSync(f)) ? 변환(fs.readFileSync(f, 'utf8')) : null; };
-  const 구매폼 = (p) => `<form class="구매폼" onsubmit="return false">
+  const 구매폼 = (p) => `<div id="로그인필요" class="로그인필요"><p><b>로그인한 뒤 구매할 수 있어요.</b><br>구글이나 카카오로 로그인하면, 구매한 책을 언제든 다시 받을 수 있어요.</p><a class="단추 주" href="${길('/login/')}" id="로그인가기">로그인하고 구매하기</a></div>
+  <form id="구매폼" class="구매폼" onsubmit="return false" hidden>
     <label>이름<input id="구매자이름" autocomplete="name"></label>
     <label>이메일<input id="구매자메일" type="email" autocomplete="email"></label>
     <label>연락처<input id="구매자전화" type="tel" autocomplete="tel" placeholder="휴대전화 번호"></label>
@@ -64,9 +65,9 @@ module.exports = ({ 설정: 원설정, 뿌리, 결과, 틀, 길, 막기, 쓰기,
       ${p.부제 ? `<p class="부제">${막기(p.부제)}</p>` : ''}
       <p class="저자줄">${막기(p.저자 || '')}${p.발행처 ? ' · ' + 막기(p.발행처) : ''}</p>
       <p class="가격">${원(p.가격)}</p>
-      <p class="작은">PDF 전자책 · 결제 후 바로 내려받기 · 회원가입 없이 구매</p>
+      <p class="작은">PDF 전자책 · 구글·카카오로 로그인한 뒤 구매 · 결제 후 바로 내려받기</p>
       <p class="책단추"><a class="단추 주" href="#구매하기">구매하기</a>${미리 ? ` <a class="단추" href="${길(`/products/${p.id}/preview/`)}">미리 읽어 보기 (무료)</a>` : ''}</p>
-      <p class="작은">이미 구매하셨나요? <a href="${길('/pay/retrieve/')}">구매한 전자책 다시 받기</a></p>
+      <p class="작은">이미 구매하셨나요? 로그인하고 <a href="${길('/my/')}">내 구매에서 다시 받기</a></p>
     </div>
   </div>
   ${소개 ? `<section class="글카드 책소개">${소개.본문}</section>` : ''}
@@ -76,13 +77,13 @@ module.exports = ({ 설정: 원설정, 뿌리, 결과, 틀, 길, 막기, 쓰기,
     <dl class="정보">
       <div><dt>받는 방법</dt><dd>${막기(p.제공방법)}. 인쇄본과 배송은 없어요.</dd></div>
       <div><dt>받는 시기</dt><dd>${막기(p.제공기간)}</dd></div>
-      <div><dt>다시 받기</dt><dd>링크를 잃어버렸다면 <a href="${길('/pay/retrieve/')}">다시 받기</a>에서 결제할 때 적은 이메일과 휴대전화 번호 뒤 4자리로 새 링크를 받을 수 있어요.</dd></div>
+      <div><dt>다시 받기</dt><dd>구매한 계정으로 로그인하면 <a href="${길('/my/')}">내 구매</a>에서 언제든 새 다운로드 링크를 받을 수 있어요.</dd></div>
       <div><dt>환불</dt><dd>${막기(p.환불가능기간)} · <a href="${길('/refund/')}">환불 규정 보기</a></dd></div>
       <div><dt>문의</dt><dd>${막기(사업자.이메일 || '')}</dd></div>
       <div><dt>이용 범위</dt><dd>구매하신 분 개인이 읽고 쓰는 용도로만 사용해 주세요. 복제·전송·다시 판매는 저작권법으로 금지돼 있어요.</dd></div>
     </dl>
   </section>
-  <section class="글카드" id="구매하기"><h2>구매하기 (회원가입 없이 구매할 수 있어요)</h2>
+  <section class="글카드" id="구매하기"><h2>구매하기 (구글·카카오로 로그인한 뒤 구매할 수 있어요)</h2>
   ${구매폼(p)}
   <p class="작은">결제는 토스페이먼츠 결제창에서 진행되며, 카드번호는 운영자가 저장하지 않습니다. 개인정보는 <a href="${길('/privacy/')}">개인정보처리방침</a>에 따라 처리합니다.</p>
   </section>
@@ -90,24 +91,30 @@ module.exports = ({ 설정: 원설정, 뿌리, 결과, 틀, 길, 막기, 쓰기,
 </article>`;
   };
 
-  // ── 상품 상세 (비회원 구매)
+  // ── 상품 상세 (로그인한 회원만 구매 — 2026-11-12 영감 결정)
   설정.상품.forEach((p) => {
     경로목록.push(`/products/${p.id}/`);
     const 스크립트 = `<script src="https://js.tosspayments.com/v2/standard"></script>
 <script>
 (function(){
   var 키=${JSON.stringify(키)}, 금액=${Number(p.가격)}, 이름=${JSON.stringify(p.이름)}, 기준=${JSON.stringify(길(''))};
-  var 버튼=document.getElementById('결제버튼'), 알림=document.getElementById('결제알림');
+  var 버튼=document.getElementById('결제버튼'), 알림=document.getElementById('결제알림'), A=window.AC;
   function 알려(t){알림.textContent=t;알림.hidden=!t}
+  function 로그인으로(){try{sessionStorage.setItem('ac_next',location.pathname)}catch(_){}location.href=기준+'/login/'}
+  // 로그인한 사람에게만 구매 폼을 보여 준다(서버도 로그인 없이는 결제를 확인해 주지 않는다)
+  var 로그인됨=!!(A&&A.tok());
+  document.getElementById('구매폼').hidden=!로그인됨; document.getElementById('로그인필요').hidden=로그인됨;
+  document.getElementById('로그인가기').addEventListener('click',function(e){e.preventDefault();로그인으로()});
   버튼.addEventListener('click',async function(){
     알려('');
+    if(!A||!A.tok()){로그인으로();return}
+    var 나=await A.api('/me'); if(!나||나._s===401){로그인으로();return}
     var 이름값=document.getElementById('구매자이름').value.trim(), 메일=document.getElementById('구매자메일').value.trim(), 전화=document.getElementById('구매자전화').value.replace(/[^0-9]/g,'');
     if(!이름값||!/^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$/.test(메일)||전화.length<9){알려('이름, 이메일, 연락처를 정확히 적어 주세요.');return}
     if(!document.getElementById('동의약관').checked||!document.getElementById('동의환불').checked){알려('이용약관과 환불 규정에 동의해 주세요.');return}
     if(!키||typeof TossPayments==='undefined'){alert('결제 준비 중입니다.');return}
     try{
       var 주문='ac'+Date.now().toString(36)+Math.random().toString(36).slice(2,10);
-      try{localStorage.setItem('acBuyer',JSON.stringify({o:주문,e:메일,p:전화,t:Date.now()}))}catch(_){}   // 결제 확인 때 다시 받기용으로 쓰고 바로 지운다(주소에는 넣지 않는다. 결제창이 다른 창으로 돌아와도 읽도록 localStorage)
       var 결제=TossPayments(키).payment({customerKey:TossPayments.ANONYMOUS});
       await 결제.requestPayment({method:'CARD',amount:{currency:'KRW',value:금액},orderId:주문,orderName:이름,
         successUrl:location.origin+기준+'/pay/success/',failUrl:location.origin+기준+'/pay/fail/',
@@ -130,16 +137,8 @@ module.exports = ({ 설정: 원설정, 뿌리, 결과, 틀, 길, 막기, 쓰기,
     <div><dt>제공 기간</dt><dd>${막기(p.제공기간)}</dd></div>
     <div><dt>환불 가능 기간</dt><dd>${막기(p.환불가능기간)} · <a href="${길('/refund/')}">환불 규정 보기</a></dd></div>
   </dl>
-  <h2>구매하기 (회원가입 없이 구매할 수 있어요)</h2>
-  <form class="구매폼" onsubmit="return false">
-    <label>이름<input id="구매자이름" autocomplete="name"></label>
-    <label>이메일<input id="구매자메일" type="email" autocomplete="email"></label>
-    <label>연락처<input id="구매자전화" type="tel" autocomplete="tel" placeholder="휴대전화 번호"></label>
-    <label class="동의"><input id="동의약관" type="checkbox"> <a href="${길('/terms/')}" target="_blank">이용약관</a>에 동의합니다.</label>
-    <label class="동의"><input id="동의환불" type="checkbox"> <a href="${길('/refund/')}" target="_blank">환불 규정</a>을 확인했고, 디지털 콘텐츠는 내려받은 뒤에는 청약철회가 제한될 수 있음을 확인했습니다.</label>
-    <p id="결제알림" class="결제알림" role="alert" hidden></p>
-    <button id="결제버튼" class="단추 주" type="button">${원(p.가격)} 결제하기</button>
-  </form>
+  <h2>구매하기 (구글·카카오로 로그인한 뒤 구매할 수 있어요)</h2>
+  ${구매폼(p)}
   <p class="작은">결제는 토스페이먼츠 결제창에서 진행되며, 카드번호는 운영자가 저장하지 않습니다. 개인정보는 <a href="${길('/privacy/')}">개인정보처리방침</a>에 따라 처리합니다.</p>
   <p class="작은">${막기(사업자.상호)} · 대표 ${막기(사업자.대표자)} · 사업자등록번호 ${막기(사업자.사업자등록번호)} · 통신판매업 신고번호 ${막기(사업자.통신판매업신고)}</p>
 </article>`,
@@ -165,14 +164,22 @@ module.exports = ({ 설정: 원설정, 뿌리, 결과, 틀, 길, 막기, 쓰기,
   // ── 결제 결과 (검색에 나오지 않게 noindex)
   const 성공스크립트 = `<script>
 (function(){
-  var q=new URLSearchParams(location.search), 서버=${JSON.stringify(서버)}, 상자=document.getElementById('결과');
+  var A=window.AC, 서버=${JSON.stringify(서버)}, 상자=document.getElementById('결과'), 기준=${JSON.stringify(길(''))};
+  var q=new URLSearchParams(location.search);
+  // 로그인이 풀려 있으면 결제 정보를 잠깐 보관했다가 로그인한 뒤 이 화면으로 돌아와 이어서 확인한다
+  if(!q.get('paymentKey')){try{var 보관=sessionStorage.getItem('ac_pay');if(보관){q=new URLSearchParams(보관)}}catch(_){}}
   var 키=q.get('paymentKey'), 주문=q.get('orderId'), 금액=q.get('amount');
   if(!키||!주문||!금액){상자.textContent='결제 정보를 찾을 수 없어요.';return}
   if(!서버){상자.innerHTML='결제창 연결 시험 화면입니다. 결제 승인 확인 서버가 아직 연결되지 않았습니다.<br>주문번호: '+주문.replace(/[<>&"]/g,'')+' · 금액: '+Number(금액).toLocaleString('ko-KR')+'원';return}
-  var 구매자={}; try{var s=JSON.parse(localStorage.getItem('acBuyer')||'{}'); if(s.o===주문&&Date.now()-(s.t||0)<3600000)구매자=s; localStorage.removeItem('acBuyer')}catch(_){}
-  fetch(서버+'/confirm',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({paymentKey:키,orderId:주문,amount:Number(금액),email:구매자.e||'',phone:구매자.p||''})})
+  function 로그인필요(){try{sessionStorage.setItem('ac_pay',q.toString());sessionStorage.setItem('ac_next',location.pathname)}catch(_){}
+    상자.innerHTML='결제를 확인하려면 로그인이 필요해요. 로그인 화면으로 이동합니다…';setTimeout(function(){location.href=기준+'/login/'},800)}
+  if(!A||!A.tok()){로그인필요();return}
+  fetch(서버+'/confirm',{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+A.tok()},body:JSON.stringify({paymentKey:키,orderId:주문,amount:Number(금액)})})
     .then(function(r){return r.json()}).then(function(d){
+      if(d&&d.로그인필요){A.set(null);로그인필요();return}
       if(d&&d.ok&&d.주소){
+        try{sessionStorage.removeItem('ac_pay')}catch(_){}
+        history.replaceState(null,'',location.pathname);
         상자.textContent='결제가 완료되었어요. 감사합니다! 아래 버튼으로 전자책을 바로 내려받을 수 있어요.';
         var 줄=document.getElementById('받기줄'), a=document.createElement('a');
         a.className='단추 주'; a.href=d.주소; a.textContent='전자책 PDF 내려받기';
@@ -185,38 +192,11 @@ module.exports = ({ 설정: 원설정, 뿌리, 결과, 틀, 길, 막기, 쓰기,
   쓰기('pay/success/index.html', 틀({ 제목: '결제 결과 · 아티스트 코치', 설명: '결제 결과', 경로: '/pay/success/', 색인: false, 스크립트: 성공스크립트,
     본문: `<section class="일반글"><h1>결제 결과</h1><p id="결과">확인 중이에요…</p>
   <p id="받기줄" class="책단추" hidden><a class="단추" href="${길('/')}">처음으로</a></p>
-  <p id="받기안내" class="작은" hidden>링크는 24시간 동안 쓸 수 있어요. 이 화면을 닫아도 <a href="${길('/pay/retrieve/')}">다시 받기</a>에서 결제할 때 적은 이메일과 휴대전화 번호 뒤 4자리로 새 링크를 받을 수 있어요. 구매하신 책은 개인이 읽고 쓰는 용도로만 사용해 주세요.</p></section>` }));
+  <p id="받기안내" class="작은" hidden>링크는 24시간 동안 쓸 수 있어요. 이 화면을 닫아도 같은 계정으로 로그인하면 <a href="${길('/my/')}">내 구매</a>에서 언제든 새 링크를 받을 수 있어요. 구매하신 책은 개인이 읽고 쓰는 용도로만 사용해 주세요.</p></section>` }));
 
-  // ── 다시 받기 (이메일 + 휴대전화 번호 뒤 4자리)
-  const 다시스크립트 = `<script>
-(function(){
-  var 서버=${JSON.stringify(서버)}, 폼=document.getElementById('다시폼'), 알림=document.getElementById('다시알림'), 결과=document.getElementById('다시결과');
-  폼.addEventListener('submit',function(e){
-    e.preventDefault(); 알림.hidden=true; 결과.hidden=true;
-    var 메일=document.getElementById('다시메일').value.trim(), 뒤=document.getElementById('다시뒤4').value.replace(/[^0-9]/g,'');
-    if(!서버){알림.textContent='아직 준비 중이에요.';알림.hidden=false;return}
-    fetch(서버+'/lookup',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:메일,last4:뒤})})
-      .then(function(r){return r.json()}).then(function(d){
-        if(d&&d.ok&&d.주소){
-          결과.textContent='';
-          var a=document.createElement('a'); a.className='단추 주'; a.href=d.주소; a.textContent='전자책 PDF 내려받기';
-          결과.appendChild(a); 결과.hidden=false;
-        }else{알림.textContent=(d&&d.error)||'구매 내역을 찾지 못했어요.';알림.hidden=false}})
-      .catch(function(){알림.textContent='확인 중 오류가 났어요. 잠시 뒤 다시 해 주세요.';알림.hidden=false});
-  });
-})();
-</script>`;
-  쓰기('pay/retrieve/index.html', 틀({ 제목: '전자책 다시 받기 · 아티스트 코치', 설명: '구매한 전자책 다시 받기', 경로: '/pay/retrieve/', 색인: false, 스크립트: 다시스크립트,
-    본문: `<section class="일반글"><span class="윗글">스토어</span><h1>전자책 다시 받기</h1>
-  <p>결제할 때 적으신 <b>이메일</b>과 <b>휴대전화 번호 뒤 4자리</b>를 넣으면 새 다운로드 링크를 드려요. 링크는 24시간 동안 쓸 수 있어요.</p>
-  <form id="다시폼" class="구매폼">
-    <label>이메일<input id="다시메일" type="email" autocomplete="email" required></label>
-    <label>휴대전화 번호 뒤 4자리<input id="다시뒤4" inputmode="numeric" maxlength="4" autocomplete="off" required></label>
-    <p id="다시알림" class="결제알림" role="alert" hidden></p>
-    <button class="단추 주" type="submit">새 링크 받기</button>
-  </form>
-  <p id="다시결과" class="책단추" hidden></p>
-  <p class="작은">찾지 못하시면 ${막기(사업자.이메일 || '')} 로 문의해 주세요.</p></section>` }));
+  // ── 다시 받기 옛 주소: 로그인 방식으로 바뀌어 '내 구매'(/my/)로 보낸다
+  쓰기('pay/retrieve/index.html', 틀({ 제목: '내 구매 · 아티스트 코치', 설명: '구매한 전자책 다시 받기', 경로: '/pay/retrieve/', 색인: false,
+    본문: `<section class="일반글"><h1>내 구매로 이동해요</h1><p>구매한 전자책은 로그인하면 <a href="${길('/my/')}">내 구매</a>에서 다시 받을 수 있어요.</p><a class="단추 주" href="${길('/my/')}">내 구매 가기</a><script>location.replace(${JSON.stringify(길('/my/'))})</script></section>` }));
   쓰기('pay/fail/index.html', 틀({ 제목: '결제 실패 · 아티스트 코치', 설명: '결제 실패', 경로: '/pay/fail/', 색인: false,
     본문: `<section class="일반글"><h1>결제가 완료되지 않았어요</h1><p>결제가 취소되었거나 실패했어요. 다시 시도해 주세요.</p><a class="단추 주" href="${길('/products/')}">상품으로 돌아가기</a></section>` }));
 

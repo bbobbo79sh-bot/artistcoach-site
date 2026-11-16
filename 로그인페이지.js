@@ -2,6 +2,7 @@
 // 켜는 조건: 자료/로그인.json 에 '서버' 주소가 있고, 검수 사이트이거나 '정식공개'가 true 일 때.
 // 저장: 로그인 열쇠(토큰)만 이 브라우저 localStorage 에 둔다. 비밀번호·이메일은 다루지 않는다.
 module.exports = ({ 설정, 공고, 틀, 길, 막기, 쓰기 }) => {
+  const 판매서버 = /^https:\/\/[\w.\-/]+$/.test(설정.판매서버 || '') ? String(설정.판매서버).replace(/\/+$/, '') : '';   // 전자책 결제 서버(구매 목록·다시 받기)
   const 서버 = String(설정.서버 || '').replace(/\/+$/, '');
 
   const 스크립트 = `(function(){
@@ -13,7 +14,7 @@ function api(p,o){o=o||{};o.headers=o.headers||{};var t=tok();if(t)o.headers.Aut
 window.AC={api:api,tok:tok,set:set,base:B,server:S};
 // 머리 오른쪽: 로그인 / 내 관심 공고
 var a=document.getElementById('계정칸');
-if(a){if(tok()){a.textContent='내 관심 공고';a.setAttribute('href',B+'/my/')}else{a.textContent='로그인';a.setAttribute('href',B+'/login/')}}
+if(a){if(tok()){a.textContent='내 공간';a.setAttribute('href',B+'/my/')}else{a.textContent='로그인';a.setAttribute('href',B+'/login/')}}
 // 공고 상세의 관심 단추
 document.addEventListener('DOMContentLoaded',function(){var b=document.getElementById('관심단추');
 if(b){var id=b.getAttribute('data-id'),on=false;
@@ -57,8 +58,10 @@ else{g.textContent=(q.error||'로그인하지 못했어요')+'.';document.getEle
   const 자료 = {}; 공고.forEach((x) => { 자료[x.id] = [x.title, x.org, x.deadline]; });
   const 내것본문 = `<section class="일반글 내것">
   <span class="윗글">내 공간</span>
-  <h1>내 관심 공고</h1>
+  <h1>내 공간</h1>
   <p id="내인사" class="작은"></p>
+  ${판매서버 ? '<h2>내 구매</h2><div id="내구매"><p class="작은">불러오는 중…</p></div>' : ''}
+  <h2>내 관심 공고</h2>
   <div id="내목록"><p class="작은">불러오는 중…</p></div>
   <div class="내줄">
     <button type="button" class="단추" id="로그아웃">로그아웃</button>
@@ -66,6 +69,14 @@ else{g.textContent=(q.error||'로그인하지 못했어요')+'.';document.getEle
   </div>
   <p class="작은">탈퇴하면 닉네임과 관심 공고가 바로 지워져요.</p>
 </section>
+<script>(function(){var A=window.AC,P=${JSON.stringify(판매서버)},B=document.getElementById('내구매');if(!A||!P||!B)return;if(!A.tok())return;
+ fetch(P+'/orders',{headers:{Authorization:'Bearer '+A.tok()}}).then(function(r){return r.json()}).then(function(d){
+  if(!d||!d.ok){B.innerHTML='<p class="작은">구매 내역을 불러오지 못했어요. 잠시 뒤 다시 해 주세요.</p>';return}
+  if(!d.목록.length){B.innerHTML='<p>아직 구매한 책이 없어요. <a href="'+A.base+'/products/">스토어 보러 가기</a></p>';return}
+  B.innerHTML='';d.목록.forEach(function(x){var row=document.createElement('div');row.className='내카드';var d1=document.createElement('div');var b=document.createElement('b');b.textContent=x.책;var sm=document.createElement('small');var t=new Date(x.구매시각);sm.textContent=t.getFullYear()+'.'+(t.getMonth()+1)+'.'+t.getDate()+' 구매 · 새 링크는 24시간 동안 쓸 수 있어요';d1.appendChild(b);d1.appendChild(sm);
+   var a=document.createElement('a');a.className='받기링크';a.href=x.주소;a.textContent='PDF 내려받기';row.appendChild(d1);row.appendChild(a);B.appendChild(row)})
+ }).catch(function(){B.innerHTML='<p class="작은">구매 내역을 불러오지 못했어요.</p>'});
+})();</script>
 <script type="application/json" id="공고자료">${JSON.stringify(자료).replace(/</g, '\\u003c')}</script>
 <script>(function(){var A=window.AC;if(!A)return;if(!A.tok()){location.replace(A.base+'/login/');return}
 var D=JSON.parse(document.getElementById('공고자료').textContent),L=document.getElementById('내목록');
@@ -99,6 +110,7 @@ document.getElementById('탈퇴').addEventListener('click',function(){if(!confir
 .내카드 a{flex:1;display:flex;flex-direction:column;gap:4px;padding:14px 16px;text-decoration:none;color:inherit}
 .내카드 a b{font-size:16px}.내카드 small,.내카드 div small{color:var(--sub)}
 .내카드 .디{align-self:flex-start}
+.내카드 .받기링크{display:flex;align-items:center;padding:0 18px;background:var(--브랜드);color:var(--브랜드글);font-weight:800;text-decoration:none;font-size:14px}
 .내카드 .빼기{border:0;border-left:1px solid var(--선);background:var(--아주연함);color:var(--sub);font:inherit;font-size:14px;padding:0 16px;cursor:pointer}
 .내카드.지남{opacity:.6}
 .내카드>div{flex:1;padding:14px 16px;display:flex;flex-direction:column;gap:4px}
