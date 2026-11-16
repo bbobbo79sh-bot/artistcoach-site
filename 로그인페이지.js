@@ -39,7 +39,7 @@ if(b){var id=b.getAttribute('data-id'),on=false;
   <p class="작은 로그인오류" id="로그인오류" hidden></p>
 </section>
 <script>(function(){var A=window.AC;if(!A)return;var box=document.getElementById('로그인단추');
-if(A.tok()){location.replace(A.base+'/my/');return}
+if(A.tok()){location.replace(A.base+'/');return}
 A.api('/config').then(function(j){var list=(j.로그인||[]);if(!list.length){box.innerHTML='<p>지금은 로그인을 준비하고 있어요.</p>';return}
  box.innerHTML='';list.forEach(function(p){var a=document.createElement('a');a.className='단추 로그인-'+p.id;a.textContent=p.이름+'로 로그인';
   a.href=A.server+'/auth/'+p.id+'/start?return='+encodeURIComponent(location.origin);box.appendChild(a)})},function(){box.innerHTML='<p>로그인 서버에 연결하지 못했어요. 잠시 뒤 다시 해 주세요.</p>'});
@@ -51,7 +51,7 @@ history.replaceState(null,'',location.pathname);
 var g=document.getElementById('완료글');
 if(q.t&&/^[0-9a-f]{64}$/.test(q.t)){A.set(q.t);var n='';try{n=sessionStorage.getItem('ac_next')||'';sessionStorage.removeItem('ac_next')}catch(e){}
  if(!/^\\/[A-Za-z0-9_\\-\\/]*$/.test(n)||n.indexOf('//')===0)n='';
- location.replace(n||A.base+'/my/')}
+ location.replace(n||A.base+'/')}
 else{g.textContent=(q.error||'로그인하지 못했어요')+'.';document.getElementById('다시').hidden=false}})();</script>`;
 
   // 내 관심 공고: 공고 정보는 이 페이지에 담아 두고, 어떤 공고를 담았는지만 서버에서 받는다
