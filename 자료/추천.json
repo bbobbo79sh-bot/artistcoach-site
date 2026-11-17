@@ -40,16 +40,6 @@
     "deadline": "2027-01-18"
   },
   {
-    "id": "89f02150",
-    "image": "89f02150.jpg",
-    "ig": "https://www.instagram.com/p/Dft9Y0Mla7a/",
-    "score": 98,
-    "views": 6934,
-    "title": "K-arts on the GO 2027년 제1차 공모 해외 초청 공연 전시 항공료 운송료 지원 최대 4천만원",
-    "org": "한국국제문화교류진흥원",
-    "deadline": "2026-11-23"
-  },
-  {
     "id": "111f0a1c",
     "image": "111f0a1c.jpg",
     "ig": "https://www.instagram.com/p/DfCGZmBGxlZ/",
@@ -78,5 +68,15 @@
     "title": "미국 Yaddo 레지던시 겨울 접수 예술가 모집 무료",
     "org": "Yaddo",
     "deadline": "2026-12-20"
+  },
+  {
+    "id": "1b61e01d",
+    "image": "1b61e01d.jpg",
+    "ig": "https://www.instagram.com/p/Dfb3_xAHBIf/",
+    "score": 60,
+    "views": 4500,
+    "title": "IAS CEU 부다페스트 아티스트 인 레지던스 펠로십 2027/28 공모 월 EUR 2,000",
+    "org": "IAS CEU",
+    "deadline": "2026-11-30"
   }
 ]
