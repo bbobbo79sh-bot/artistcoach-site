@@ -1209,6 +1209,19 @@
   "benefit": ""
  },
  {
+  "id": "9e3263a7",
+  "cat": "예술 공모전·모집",
+  "org": "유미플레이 코리아",
+  "region": "",
+  "title": "이머시브 시네마 〈INSANE Ver 2.0〉 배우 오디션 공모",
+  "deadline": "2026-11-24",
+  "target": "",
+  "link": "https://otr.co.kr/audition/?vid=22735",
+  "posted": "",
+  "summary": "",
+  "benefit": ""
+ },
+ {
   "id": "5921f6f9",
   "cat": "예술인 지원·공모",
   "org": "대전문화재단",
@@ -1627,12 +1640,12 @@
  {
   "id": "733e6717",
   "cat": "예술인 지원·공모",
-  "org": "모모365",
+  "org": "달서아트센터",
   "region": "모음사이트",
   "title": "달서아트센터 「2027 상반기 순수예술인 대관료 지원사업」 공고",
   "deadline": "2026-11-27",
   "target": "",
-  "link": "https://www.momo365.net/Support?cd=support&ViewType=detail&seq=179573",
+  "link": "https://www.dsac.or.kr/main/contents.do?proc_type=view&a_num=87187895&b_num=7082",
   "posted": "2026-11-16",
   "summary": "",
   "benefit": ""
@@ -1796,12 +1809,12 @@
  {
   "id": "6ac0a513",
   "cat": "예술인 지원·공모",
-  "org": "설미재미술관",
+  "org": "(사)캔 파운데이션",
   "region": "경기",
   "title": "[2027 명륜동 작업실] 입주 작가 공모",
   "deadline": "2026-11-29",
   "target": "",
-  "link": "http://www.mu-um.com/?mid=0602&act=dtl&idx=4817&cateTP=&keyword=&page=1",
+  "link": "https://can-foundation.org/archives/10744",
   "posted": "2026-11-16",
   "summary": "",
   "benefit": ""
@@ -1816,6 +1829,19 @@
   "target": "",
   "link": "https://www.arthub.co.kr/sub04/board01_view.htm?No=27380&page=1&sType1=1&sType2=2&sType3=3&sType4=&sort=new",
   "posted": "2026-11-09",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "f04a56b0",
+  "cat": "예술 공모전·모집",
+  "org": "s&l company",
+  "region": "",
+  "title": "연극 〈사랑을 이루어 드립니다〉 김부장 역 배우 오디션 공모",
+  "deadline": "2026-11-29",
+  "target": "",
+  "link": "https://otr.co.kr/audition/?vid=22738",
+  "posted": "",
   "summary": "",
   "benefit": ""
  },
@@ -3109,12 +3135,12 @@
  {
   "id": "c0d4c6c8",
   "cat": "예술 공모전·모집",
-  "org": "설미재미술관",
+  "org": "현대건설",
   "region": "경기",
   "title": "평택시 합정동 835번지 일원 공동주택 신축공사 미술작품 공모",
   "deadline": "2026-12-08",
   "target": "",
-  "link": "http://www.mu-um.com/?mid=0602&act=dtl&idx=4820&cateTP=&keyword=&page=1",
+  "link": "https://www.gg.go.kr/publicart/bbs/boardView.do?bsIdx=825&bIdx=110906936&page=1&menuId=3865&bcIdx=0&searchCondition=SUBJECT&searchKeyword=",
   "posted": "2026-11-17",
   "summary": "",
   "benefit": ""
@@ -3517,7 +3543,20 @@
   "title": "신진 작가 지원 전시 2027 아티스타트 작가 모집 공고",
   "deadline": "2026-12-20",
   "target": "개인",
-  "link": "https://artnuri.or.kr/crawler/info/view.do?key=2301170002&docid=2611120003&seNo=002",
+  "link": "https://www.sangsangmadang.com/support/detail/374",
+  "posted": "",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "9a96196f",
+  "cat": "예술 공모전·모집",
+  "org": "나인진엔터테인먼트",
+  "region": "",
+  "title": "연극 〈진짜나쁜소녀〉 전 배역 배우 오디션 공모",
+  "deadline": "2026-12-20",
+  "target": "",
+  "link": "https://otr.co.kr/audition/?vid=22743",
   "posted": "",
   "summary": "",
   "benefit": ""
@@ -4188,7 +4227,7 @@
  {
   "id": "a5c3240a",
   "cat": "예술 공모전·모집",
-  "org": "서울연극협회",
+  "org": "문익환 공연작품 기획모임",
   "region": "전국",
   "title": "[문익환 공연작품 기획모임 소식] 문익환 목사 창작희곡 공모",
   "deadline": "2027-12-31",
