@@ -2184,6 +2184,32 @@
   "benefit": ""
  },
  {
+  "id": "0b9c02d8",
+  "cat": "예술인 지원·공모",
+  "org": "천안시청",
+  "region": "충남",
+  "title": "2027년 지역 대표예술단체 지원 공모 시행절차 공고",
+  "deadline": "2026-11-30",
+  "target": "",
+  "link": "https://www.cheonan.go.kr/prog/saeolGosi/GOSI/kor/sub02_02_01/view.do?notAncmtMgtNo=116943",
+  "posted": "2026-11-19",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "269af667",
+  "cat": "예술인 지원·공모",
+  "org": "고성군청(경남)",
+  "region": "경남",
+  "title": "2026년 지역예술인 예술작품 구입 공고",
+  "deadline": "2026-11-30",
+  "target": "",
+  "link": "https://eminwon.goseong.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=47563&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_se_code=01,02,03,04,05",
+  "posted": "2026-11-19",
+  "summary": "",
+  "benefit": ""
+ },
+ {
   "id": "cba58e2c",
   "cat": "예술 공모전·모집",
   "org": "서울연극협회",
@@ -2309,6 +2335,19 @@
   "deadline": "2026-12-01",
   "target": "전체",
   "link": "https://artnuri.or.kr/crawler/info/view.do?key=2301170002&docid=S66201&seNo=001",
+  "posted": "",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "ea45d807",
+  "cat": "예술 공모전·모집",
+  "org": "이머시브스튜디오",
+  "region": "",
+  "title": "이머시브 공연 <Black Muse>·<Without You> 여성 배우 오디션 공모",
+  "deadline": "2026-12-01",
+  "target": "",
+  "link": "https://otr.co.kr/audition/?vid=22750",
   "posted": "",
   "summary": "",
   "benefit": ""
@@ -3185,19 +3224,6 @@
   "benefit": ""
  },
  {
-  "id": "269af667",
-  "cat": "예술인 지원·공모",
-  "org": "고성군청(경남)",
-  "region": "경남",
-  "title": "2026년 지역예술인 예술작품 구입 공고",
-  "deadline": "2026-12-14",
-  "target": "",
-  "link": "https://eminwon.goseong.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=47563&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_se_code=01,02,03,04,05",
-  "posted": "2026-11-19",
-  "summary": "",
-  "benefit": ""
- },
- {
   "id": "d9bb9075",
   "cat": "예술인 지원·공모",
   "org": "DAAD Berliner Künstlerprogramm (독일)",
@@ -3354,19 +3380,6 @@
   "benefit": ""
  },
  {
-  "id": "0b9c02d8",
-  "cat": "예술인 지원·공모",
-  "org": "천안시청",
-  "region": "충남",
-  "title": "2027년 지역 대표예술단체 지원 공모 시행절차 공고",
-  "deadline": "2026-12-17",
-  "target": "",
-  "link": "https://www.cheonan.go.kr/prog/saeolGosi/GOSI/kor/sub02_02_01/view.do?notAncmtMgtNo=116943",
-  "posted": "2026-11-19",
-  "summary": "",
-  "benefit": ""
- },
- {
   "id": "d826e2fe",
   "cat": "예술인 지원·공모",
   "org": "Emmanuel College (미국)",
@@ -3415,6 +3428,19 @@
   "target": "",
   "link": "https://www.daljin.com/?WS=15&BC=214bv|&BNO=424692&PHPSESSID=a00d56e5f488f6b3307f26f575b4455a",
   "posted": "2026-10-29",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "68ea9be5",
+  "cat": "예술 공모전·모집",
+  "org": "극단 로얄씨어터",
+  "region": "",
+  "title": "연극 <금관의 예수> 배우 및 조연출 공개 오디션 공모",
+  "deadline": "2026-12-19",
+  "target": "",
+  "link": "https://otr.co.kr/audition/?vid=22746",
+  "posted": "",
   "summary": "",
   "benefit": ""
  },
@@ -3921,6 +3947,19 @@
   "deadline": "2027-01-09",
   "target": "",
   "link": "https://otr.co.kr/audition/?vid=22717",
+  "posted": "",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "cd2242c1",
+  "cat": "예술 공모전·모집",
+  "org": "모모미디어",
+  "region": "",
+  "title": "연극 <정돈> 전 배역 배우 오디션 공모",
+  "deadline": "2027-01-10",
+  "target": "",
+  "link": "https://otr.co.kr/audition/?vid=22745",
   "posted": "",
   "summary": "",
   "benefit": ""
