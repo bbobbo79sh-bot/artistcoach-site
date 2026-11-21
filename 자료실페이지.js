@@ -67,7 +67,7 @@ module.exports = ({ 설정, 검수용, 뿌리, 결과, 틀, 길, 막기, 쓰기,
 
   const 노트목록 = [];
   (Array.isArray(설정.노트) ? 설정.노트 : []).forEach((n) => {
-    if (!/^[A-Za-z0-9_-]+$/.test(n.id || '')) return;
+    if (n.숨김 || !/^[A-Za-z0-9_-]+$/.test(n.id || '')) return;   // 숨김: true 는 어디에도 안 보임(영감 승인 전)
     const f = path.join(뿌리, '자료', '가이드', n.파일 || '');
     if (!fs.existsSync(f)) return;
     const r = 변환(fs.readFileSync(f, 'utf8'));
@@ -179,7 +179,7 @@ module.exports = ({ 설정, 검수용, 뿌리, 결과, 틀, 길, 막기, 쓰기,
     본문: `<section class="일반글 게시판">
   <h1>코치 노트와 도구함</h1>
   <p class="소개">읽고 배우는 글은 코치 노트에, 직접 쓰는 계산기와 양식은 도구함에 있어요.</p>
-  <div class="두칸"><a class="칸" href="${길('/notes/')}"><b>코치 노트</b><span>신청서 쓰는 법 · 글 ${글항목.length}편</span></a><a class="칸 도구칸" href="${길('/tools/')}"><b>도구함</b><span>계산기·워크시트·양식 · ${도구항목.length}가지</span></a></div>
+  <div class="두칸"><a class="칸" href="${길('/notes/')}"><b>코치 노트</b><span>AI 활용법 · 지원사업 신청서 작성법</span></a><a class="칸 도구칸" href="${길('/tools/')}"><b>도구함</b><span>예산 계산기 · 워크시트 · 양식</span></a></div>
   ${처음상자}
 </section>`,
   }));
@@ -221,7 +221,7 @@ module.exports = ({ 설정, 검수용, 뿌리, 결과, 틀, 길, 막기, 쓰기,
   <div class="글머리"><span class="분류표">${막기(n.탭 || '쓰는 법')}</span><h1>${막기(n.제목)}</h1>
     <div class="글정보"><span>영감</span>${날짜글(n.날짜) ? `<span>${날짜글(n.날짜)}</span>` : ''}<span>${분(n.본문)}분 읽기</span></div></div>
     ${n.요약 ? `<div class="한줄요약"><b>한 줄 요약</b>${막기(n.요약)}</div>` : ''}
-  ${제목들.length >= 3 ? `<nav class="노트목차" aria-label="목차">${제목들.map(([i, t]) => `<a href="#s${i}">${t}</a>`).join('')}</nav>` : ''}
+  ${제목들.length >= 3 ? (제목들.length > 8 ? `<details class="노트목차"><summary>목차 보기 (${제목들.length})</summary>${제목들.map(([i, t]) => `<a href="#s${i}">${t}</a>`).join('')}</details>` : `<nav class="노트목차" aria-label="목차">${제목들.map(([i, t]) => `<a href="#s${i}">${t}</a>`).join('')}</nav>`) : ''}
   ${광고넣기(본문, 광고칸('글중간'))}
   ${광고칸('글끝')}
   <nav class="이전다음" aria-label="이전 글과 다음 글">
@@ -237,10 +237,8 @@ module.exports = ({ 설정, 검수용, 뿌리, 결과, 틀, 길, 막기, 쓰기,
   });
 
   // 메인 화면: 코치 노트와 도구함 두 칸 + 최근 글
-  const 최근 = 글항목.slice(0, 3);
   const 띠 = `<section class="노트구역" aria-label="코치 노트와 도구함">
-  <div class="두칸"><a class="칸" href="${길('/notes/')}"><b>코치 노트</b><span>신청서 쓰는 법 · 글 ${글항목.length}편</span></a><a class="칸 도구칸" href="${길('/tools/')}"><b>도구함</b><span>계산기·워크시트·양식 · ${도구항목.length}가지</span></a></div>
-  ${최근.length ? `<h2>최근 코치 노트</h2><div class="게시판목록 작게">${최근.map((x) => 행(x, 글항목.indexOf(x) < 0 ? '' : 글항목.length - 글항목.indexOf(x))).join('')}</div>` : ''}
+  <div class="두칸"><a class="칸" href="${길('/notes/')}"><b>코치 노트</b><span>AI 활용법 · 지원사업 신청서 작성법</span></a><a class="칸 도구칸" href="${길('/tools/')}"><b>도구함</b><span>예산 계산기 · 워크시트 · 양식</span></a></div>
 </section>`;
 
   // 공고 상세 아래: 관련 자료 1~2개
