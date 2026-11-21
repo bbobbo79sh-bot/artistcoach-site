@@ -87,40 +87,71 @@ module.exports = ({ 설정, 검수용, 뿌리, 결과, 틀, 길, 막기, 쓰기,
   const 도구항목 = 항목.filter((x) => x.종류 === '도구');                                                                              // 도구함은 쓰는 순서(자료실.json 순서) 그대로
   if (!항목.length) return { 켜짐: false, 경로목록: [], 띠: '', 관련: () => '' };
 
-  const 줄 = (x) => `<a class="글줄" href="${x.주소}" data-탭="${막기(x.탭)}" data-주제="${막기(x.주제)}"><span class="글표${x.종류 === '도구' ? ' 도구표' : ''}">${x.종류 === '도구' ? '도구' : '글'}</span><span class="글줄몸"><b>${막기(x.이름)}</b><span>${막기(x.한줄)}</span><small>${x.종류 === '도구' ? 막기(x.탭) + ' · 바로 쓰기' : [날짜글(x.날짜), x.분 ? `${x.분}분 읽기` : ''].filter(Boolean).join(' · ')}</small></span></a>`;
+  // 게시판 한 줄: 번호 · 분류 · 제목(+한 줄 설명) · 작성일. 도구는 번호 없이 '열기 →'.
+  const 행 = (x, 번 = '') => {
+    const 도구형 = x.종류 === '도구';
+    return `<a class="행${도구형 ? ' 도구행' : ''}" href="${x.주소}" data-탭="${막기(x.탭)}" data-주제="${막기(x.주제)}" data-검색="${막기(((x.이름 || '') + ' ' + (x.한줄 || '')).toLowerCase())}">${도구형 ? '' : `<span class="번호">${번}</span>`}<span class="분류">${막기(x.탭)}</span><span class="제목"><b>${막기(x.이름)}</b><small>${막기(x.한줄)}</small></span><span class="날짜">${도구형 ? '열기 →' : 날짜글(x.날짜)}</span></a>`;
+  };
+  const 머리줄 = (도구형) => 도구형
+    ? '<div class="행 도구행 머리줄"><span class="분류">분류</span><span class="제목">도구</span><span class="날짜"></span></div>'
+    : '<div class="행 머리줄"><span class="번호">번호</span><span class="분류">분류</span><span class="제목">제목</span><span class="날짜">작성일</span></div>';
 
   const 처음이면 = (Array.isArray(설정.처음이면) ? 설정.처음이면 : []).map((id) => 항목.find((x) => x.id === id)).filter(Boolean);
   const 처음상자 = 처음이면.length >= 2 ? `<div class="처음이면"><b>처음이면 이 순서로</b><ol>${처음이면.map((x) => `<li><a href="${x.주소}">${막기(x.이름)}</a></li>`).join('')}</ol></div>` : '';
 
+  const 공지행 = 처음이면.length >= 2 ? `<a class="행 공지행" href="${처음이면[0].주소}"><span class="번호"></span><span class="분류 공지분류">공지</span><span class="제목"><b>처음이면 이 순서로 읽어 보세요</b><small>${처음이면.map((x, i) => `${i + 1} ${막기(x.이름)}`).join(' → ')}</small></span><span class="날짜"></span></a>` : '';
+
   const 거름스크립트 = `<script>
 (function(){
-  var 탭='',주제='',줄들=[].slice.call(document.querySelectorAll('.글줄')),없음=document.getElementById('목록없음');
+  var 쪽당=10,탭='',주제='',찾기='',쪽=1;
+  var 줄들=[].slice.call(document.querySelectorAll('.게시판목록 a.행:not(.공지행)')),없음=document.getElementById('목록없음'),쪽칸=document.getElementById('쪽번호'),건수=document.getElementById('건수'),입력=document.getElementById('찾기칸');
   function 그리기(){
-    var n=0;
-    줄들.forEach(function(a){var ok=(!탭||a.getAttribute('data-탭')===탭)&&(!주제||a.getAttribute('data-주제')===주제);a.hidden=!ok;if(ok)n++});
-    if(없음)없음.hidden=n>0;
+    var 맞음=줄들.filter(function(a){
+      return (!탭||a.getAttribute('data-탭')===탭)&&(!주제||a.getAttribute('data-주제')===주제)&&(!찾기||a.getAttribute('data-검색').indexOf(찾기)>=0);
+    });
+    var 쪽수=Math.max(1,Math.ceil(맞음.length/쪽당));if(쪽>쪽수)쪽=쪽수;
+    줄들.forEach(function(a){a.hidden=true});
+    맞음.slice((쪽-1)*쪽당,쪽*쪽당).forEach(function(a){a.hidden=false});
+    if(없음)없음.hidden=맞음.length>0;
+    if(건수)건수.textContent=맞음.length;
     [].forEach.call(document.querySelectorAll('[data-그룹]'),function(b){var 지금=b.getAttribute('data-그룹')==='탭'?탭:주제;b.setAttribute('aria-pressed',String(지금===b.getAttribute('data-값')))});
+    if(쪽칸){
+      쪽칸.innerHTML='';
+      if(쪽수>1){for(var i=1;i<=쪽수;i++){var b=document.createElement('button');b.type='button';b.textContent=i;b.setAttribute('data-쪽',i);b.setAttribute('aria-current',i===쪽?'page':'false');쪽칸.appendChild(b)}}
+    }
   }
-  document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-그룹]');if(!b)return;if(b.getAttribute('data-그룹')==='탭')탭=b.getAttribute('data-값');else 주제=b.getAttribute('data-값');그리기()});
+  document.addEventListener('click',function(e){
+    var t=e.target.closest&&e.target.closest('[data-그룹]');
+    if(t){if(t.getAttribute('data-그룹')==='탭')탭=t.getAttribute('data-값');else 주제=t.getAttribute('data-값');쪽=1;그리기();return}
+    var p=e.target.closest&&e.target.closest('[data-쪽]');
+    if(p){쪽=+p.getAttribute('data-쪽');그리기();var 목=document.querySelector('.게시판목록');if(목)목.scrollIntoView({block:'start'})}
+  });
+  if(입력)입력.addEventListener('input',function(){찾기=입력.value.trim().toLowerCase();쪽=1;그리기()});
   그리기();
 })();
 </script>`;
 
-  const 목록페이지 = ({ 목, 경로, 현재, 제목, 큰제목, 소개, 설명, 탭순서, 주제칩, 위에 = '' }) => {
+  const 목록페이지 = ({ 목, 경로, 현재, 제목, 큰제목, 소개, 설명, 탭순서, 주제칩, 위에 = '', 공지 = '' }) => {
     if (!목.length) return false;
     const 탭들 = 탭순서.filter((t) => 목.some((x) => x.탭 === t));
     const 칩들 = 주제칩 ? (Array.isArray(설정.주제) ? 설정.주제 : []).filter((t) => 목.some((x) => x.주제 === t)) : [];
     const 버튼 = (그룹, 값, 이름) => `<button type="button" data-그룹="${그룹}" data-값="${막기(값)}" aria-pressed="false">${막기(이름)}</button>`;
+    const 도구형 = 목.length > 0 && 목[0].종류 === '도구';
     쓰기(`${경로.replace(/^\//, '')}/index.html`, 틀({
       제목, 현재, 경로: `${경로}/`, 설명, 스크립트: 거름스크립트,
       본문: `<section class="일반글 게시판">
   <h1>${큰제목}</h1>
   <p class="소개">${소개}</p>
   ${위에}
-  ${탭들.length >= 2 ? `<div class="탭줄">${버튼('탭', '', '전체')}${탭들.map((t) => 버튼('탭', t, t)).join('')}</div>` : ''}
+  <div class="게시판바">
+    ${탭들.length >= 2 ? `<div class="탭줄">${버튼('탭', '', '전체')}${탭들.map((t) => 버튼('탭', t, t)).join('')}</div>` : '<span></span>'}
+    <label class="찾기줄"><span class="숨김">제목으로 찾기</span><input id="찾기칸" type="search" placeholder="제목으로 찾기" autocomplete="off"></label>
+  </div>
   ${칩들.length >= 2 ? `<div class="주제줄">${칩들.map((t) => 버튼('주제', t, t)).join('')}</div>` : ''}
-  <div class="글줄목록">${목.map(줄).join('')}</div>
-  <p id="목록없음" class="작은" hidden>이 칸에는 아직 올라온 것이 없어요.</p>
+  <p class="건수줄">전체 <b id="건수">${목.length}</b></p>
+  <div class="게시판목록">${머리줄(도구형)}${공지}${목.map((x, i) => 행(x, 도구형 ? '' : 목.length - i)).join('')}</div>
+  <p id="목록없음" class="작은 없음글" hidden>찾는 글이 없어요. 다른 낱말로 찾아보세요.</p>
+  <div id="쪽번호" class="쪽번호" aria-label="쪽 이동"></div>
   <p class="작은">일반 안내입니다. 지원 조건과 기준은 각 공고 원문에서 꼭 확인해 주세요.</p>
 </section>`,
     }));
@@ -132,7 +163,7 @@ module.exports = ({ 설정, 검수용, 뿌리, 결과, 틀, 길, 막기, 쓰기,
     목: 글항목, 경로: '/notes', 현재: '코치 노트', 제목: '코치 노트 · 아티스트 코치', 큰제목: '코치 노트',
     소개: '예술지원사업 신청서를 쓸 때 막히는 곳을, 영감이 쉬운 말로 풀어 드려요.',
     설명: '예술지원사업 신청서·기획서를 쓰는 법을 쉬운 말로 정리한 글 모음. 공고 읽기, 사업명, 문장, 예산, 심사까지.',
-    탭순서: Array.isArray(설정.탭 && 설정.탭.노트) ? 설정.탭.노트 : [], 주제칩: true, 위에: 처음상자,
+    탭순서: Array.isArray(설정.탭 && 설정.탭.노트) ? 설정.탭.노트 : [], 주제칩: false, 공지: 공지행,
   })) 경로목록.push('/notes/');
   if (목록페이지({
     목: 도구항목, 경로: '/tools', 현재: '도구함', 제목: '도구함 · 아티스트 코치', 큰제목: '도구함',
@@ -181,23 +212,26 @@ module.exports = ({ 설정, 검수용, 뿌리, 결과, 틀, 길, 막기, 쓰기,
     경로목록.push(`/notes/${n.id}/`);
     let k = 0; const 제목들 = [];
     const 본문 = n.본문.replace(/<h2>(.*?)<\/h2>/g, (m, t) => { k += 1; 제목들.push([k, t.replace(/<[^>]+>/g, '')]); return `<h2 id="s${k}">${t}</h2>`; });
-    const 다음 = 글항목[글항목.findIndex((x) => x.id === n.id) + 1];
+    const 자리 = 글항목.findIndex((x) => x.id === n.id); const 이전 = 글항목[자리 - 1], 다음 = 글항목[자리 + 1];   // 목록에서 바로 위(더 새 글)가 '이전 글', 바로 아래가 '다음 글'
     const 관련도구 = 도구항목.slice(0, 2);
     쓰기(`notes/${n.id}/index.html`, 틀({
       제목: `${n.제목} · 코치 노트 · 아티스트 코치`, 현재: '코치 노트', 경로: `/notes/${n.id}/`, 설명: (n.요약 || n.제목).slice(0, 150),
       스크립트: 본문.includes('class="복사칸"') ? 복사스크립트 : '',
       본문: `<article class="일반글 글본문 노트글">
-  <span class="윗글">코치 노트 · ${막기(n.탭 || '쓰는 법')}</span>
-  <h1>${막기(n.제목)}</h1>
-  <p class="메타">영감 · ${날짜글(n.날짜)}${날짜글(n.날짜) ? ' · ' : ''}${분(n.본문)}분 읽기</p>
-  ${n.요약 ? `<div class="한줄요약"><b>한 줄 요약</b>${막기(n.요약)}</div>` : ''}
+  <div class="글머리"><span class="분류표">${막기(n.탭 || '쓰는 법')}</span><h1>${막기(n.제목)}</h1>
+    <div class="글정보"><span>영감</span>${날짜글(n.날짜) ? `<span>${날짜글(n.날짜)}</span>` : ''}<span>${분(n.본문)}분 읽기</span></div></div>
+    ${n.요약 ? `<div class="한줄요약"><b>한 줄 요약</b>${막기(n.요약)}</div>` : ''}
   ${제목들.length >= 3 ? `<nav class="노트목차" aria-label="목차">${제목들.map(([i, t]) => `<a href="#s${i}">${t}</a>`).join('')}</nav>` : ''}
   ${광고넣기(본문, 광고칸('글중간'))}
   ${광고칸('글끝')}
-  ${다음 ? `<p class="다음글"><span>다음 글</span><br><a href="${다음.주소}">${막기(다음.이름)} →</a></p>` : ''}
-  ${관련도구.length ? `<aside class="관련자료" aria-label="바로 쓰는 도구"><h2>바로 써 보세요</h2><p>글에서 읽은 것을 도구함에서 바로 해 볼 수 있어요.</p><div class="글줄목록">${관련도구.map((x) => 줄(x)).join('')}</div><a class="더자료" href="${길('/tools/')}">도구함 더 보기 →</a></aside>` : ''}
+  <nav class="이전다음" aria-label="이전 글과 다음 글">
+    ${이전 ? `<a href="${이전.주소}"><em>이전 글</em><b>${막기(이전.이름)}</b></a>` : '<span><em>이전 글</em><b>첫 번째 글이에요</b></span>'}
+    ${다음 ? `<a href="${다음.주소}"><em>다음 글</em><b>${막기(다음.이름)}</b></a>` : '<span><em>다음 글</em><b>마지막 글이에요</b></span>'}
+  </nav>
+  <p class="목록줄"><a class="단추" href="${길('/notes/')}">목록</a></p>
+    ${관련도구.length ? `<aside class="관련자료" aria-label="바로 쓰는 도구"><h2>바로 써 보세요</h2><p>글에서 읽은 것을 도구함에서 바로 해 볼 수 있어요.</p><div class="게시판목록 작게">${관련도구.map((x) => 행(x)).join('')}</div><a class="더자료" href="${길('/tools/')}">도구함 더 보기 →</a></aside>` : ''}
   <p class="작은">이 글은 아티스트 코치가 정리한 일반 안내입니다. 지원 조건과 기준은 기관마다, 해마다 달라질 수 있으니 반드시 해당 공고와 기관의 최신 안내를 확인해 주세요.</p>
-  <p><a class="단추 주" href="${길('/')}">지원사업 공고 보러 가기</a> <a class="단추" href="${길('/notes/')}">코치 노트 목록</a></p>
+  <p><a class="단추 주" href="${길('/')}">지원사업 공고 보러 가기</a></p>
 </article>`,
     }));
   });
@@ -206,7 +240,7 @@ module.exports = ({ 설정, 검수용, 뿌리, 결과, 틀, 길, 막기, 쓰기,
   const 최근 = 글항목.slice(0, 3);
   const 띠 = `<section class="노트구역" aria-label="코치 노트와 도구함">
   <div class="두칸"><a class="칸" href="${길('/notes/')}"><b>코치 노트</b><span>신청서 쓰는 법 · 글 ${글항목.length}편</span></a><a class="칸 도구칸" href="${길('/tools/')}"><b>도구함</b><span>계산기·워크시트·양식 · ${도구항목.length}가지</span></a></div>
-  ${최근.length ? `<h2>최근 코치 노트</h2><div class="글줄목록">${최근.map(줄).join('')}</div>` : ''}
+  ${최근.length ? `<h2>최근 코치 노트</h2><div class="게시판목록 작게">${최근.map((x) => 행(x, 글항목.indexOf(x) < 0 ? '' : 글항목.length - 글항목.indexOf(x))).join('')}</div>` : ''}
 </section>`;
 
   // 공고 상세 아래: 관련 자료 1~2개

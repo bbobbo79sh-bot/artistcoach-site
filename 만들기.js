@@ -334,39 +334,77 @@ i{font-style:normal}
 .가이드카드{display:flex;flex-direction:column;gap:4px;background:var(--면);border:1px solid var(--선);border-radius:16px;padding:16px 18px;text-decoration:none;color:var(--ink)}
 .가이드카드 b{font-size:17px;line-height:1.4}.가이드카드 span{font-size:14px;color:var(--sub);line-height:1.55}
 /* 코치 노트·도구함 (2026-11-21) */
-.게시판 h1{font-size:28px;line-height:1.3;margin:6px 0 4px}.게시판 .소개{margin:0 0 14px;color:var(--sub);font-size:15.5px;line-height:1.7}
-.탭줄{display:flex;gap:20px;border-bottom:1px solid var(--선);margin:14px 0 12px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.게시판 h1{font-size:30px;line-height:1.3;margin:6px 0 4px;letter-spacing:-.03em}.게시판 .소개{margin:0 0 18px;color:var(--sub);font-size:15.5px;line-height:1.7}
+.숨김{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.게시판바{display:flex;align-items:flex-end;justify-content:space-between;gap:14px 20px;flex-wrap:wrap;margin:6px 0 0}
+.탭줄{display:flex;gap:22px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;max-width:100%}
 .탭줄::-webkit-scrollbar{display:none}
-.탭줄 button{font:inherit;font-size:15.5px;font-weight:700;color:var(--sub);background:none;border:0;border-bottom:3px solid transparent;padding:9px 0;cursor:pointer;white-space:nowrap;margin-bottom:-1px}
-.탭줄 button[aria-pressed="true"]{color:var(--깊음);border-bottom-color:var(--브랜드)}
-.주제줄{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 6px}
-.주제줄 button{font:inherit;font-size:13.5px;padding:5px 13px;border-radius:999px;border:1px solid var(--선);background:var(--면);color:var(--sub);cursor:pointer}
-.주제줄 button[aria-pressed="true"]{background:var(--브랜드);border-color:var(--브랜드);color:var(--브랜드글)}
-.글줄목록{display:block;margin:4px 0 8px}
-.글줄{display:flex;gap:13px;align-items:flex-start;padding:15px 2px;border-bottom:1px solid var(--선);text-decoration:none;color:var(--ink)}
-.글줄[hidden]{display:none}
-.글줄:hover .글줄몸 b{color:var(--깊음)}
-.글표{flex:0 0 46px;height:46px;border-radius:11px;background:var(--연함);color:var(--깊음);font-size:12.5px;font-weight:800;display:flex;align-items:center;justify-content:center}
-.글표.도구표{background:transparent;border:1.5px solid var(--브랜드)}
-.글줄몸{display:flex;flex-direction:column;gap:2px;min-width:0}
-.글줄몸 b{font-size:16.5px;line-height:1.45}.글줄몸 span{font-size:14px;color:var(--sub);line-height:1.55}.글줄몸 small{font-size:12.5px;color:var(--sub);margin-top:1px}
-.처음이면{background:var(--아주연함);border:1px solid var(--선);border-radius:14px;padding:13px 16px;margin:0 0 6px}
+.탭줄 button{font:inherit;font-size:15.5px;font-weight:700;color:var(--sub);background:none;border:0;border-bottom:3px solid transparent;padding:8px 0 9px;cursor:pointer;white-space:nowrap}
+.탭줄 button[aria-pressed="true"]{color:var(--ink);border-bottom-color:var(--브랜드)}
+.찾기줄{display:block;width:230px;max-width:100%}
+.찾기줄 input{width:100%;box-sizing:border-box;height:40px;font:inherit;font-size:14.5px;padding:0 14px 0 38px;border:1px solid var(--선);border-radius:12px;background:var(--면) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2.4' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-3.5-3.5'/%3E%3C/svg%3E") no-repeat 13px 50%;color:var(--ink)}
+.찾기줄 input:focus{outline:none;border-color:var(--브랜드)}
+.주제줄{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0 0}
+.주제줄 button{font:inherit;font-size:13px;padding:4px 12px;border-radius:999px;border:1px solid var(--선);background:var(--면);color:var(--sub);cursor:pointer}
+.주제줄 button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.건수줄{margin:16px 0 8px;font-size:13.5px;color:var(--sub)}.건수줄 b{color:var(--ink)}
+.게시판목록{border-top:2px solid var(--ink);margin:0 0 6px}
+.행{display:grid;grid-template-columns:56px 104px minmax(0,1fr) 64px;align-items:center;gap:0 14px;padding:15px 10px;border-bottom:1px solid var(--선);text-decoration:none;color:var(--ink)}
+.행.도구행{grid-template-columns:104px minmax(0,1fr) 64px}
+.행[hidden]{display:none}
+.행.머리줄{padding:10px 10px;font-size:12.5px;font-weight:700;color:var(--sub);background:color-mix(in srgb,var(--브랜드) 7%,#fff)}
+.행.머리줄 .분류,.행.머리줄 .날짜,.행.머리줄 .번호{background:none;padding:0;color:var(--sub);font-size:12.5px}
+a.행:hover{background:color-mix(in srgb,var(--브랜드) 7%,#fff)}
+.행.공지행{background:color-mix(in srgb,var(--브랜드) 7%,#fff)}.행 .분류.공지분류{background:var(--브랜드);border-color:var(--브랜드);color:#fff}
+.행 .번호{text-align:center;font-size:14px;color:var(--sub);font-variant-numeric:tabular-nums}
+.행 .분류{justify-self:start;font-size:12px;font-weight:700;color:var(--깊음);background:color-mix(in srgb,var(--브랜드) 7%,#fff);border:1px solid color-mix(in srgb,var(--브랜드) 22%,#fff);padding:2px 10px;border-radius:999px;white-space:nowrap}
+.행 .제목{display:flex;flex-direction:column;gap:3px;min-width:0}
+.행 .제목 b{font-size:16.5px;font-weight:700;line-height:1.45;letter-spacing:-.01em}
+.행 .제목 small{font-size:13.5px;color:var(--sub);line-height:1.5;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.행 .날짜{text-align:center;font-size:13px;color:var(--sub);font-variant-numeric:tabular-nums;white-space:nowrap}
+.행.도구행 .날짜{color:var(--깊음);font-weight:700}
+a.행:hover .제목 b{color:var(--깊음)}
+.게시판목록.작게 .행:not(.도구행){grid-template-columns:104px minmax(0,1fr) 64px}.게시판목록.작게 .번호{display:none}.게시판목록.작게 .머리줄{display:none}
+.쪽번호{display:flex;justify-content:center;gap:6px;margin:18px 0 4px}
+.쪽번호 button{font:inherit;font-size:14px;min-width:36px;height:36px;border-radius:10px;border:1px solid var(--선);background:var(--면);color:var(--sub);cursor:pointer}
+.쪽번호 button[aria-current="page"]{background:var(--ink);border-color:var(--ink);color:#fff;font-weight:700}
+.없음글{text-align:center;padding:30px 0}
+.글머리{margin:4px 0 16px;padding-bottom:14px;border-bottom:1px solid var(--선)}
+.글머리 .분류표{display:inline-block;font-size:12.5px;font-weight:700;color:var(--깊음);background:color-mix(in srgb,var(--브랜드) 7%,#fff);border:1px solid color-mix(in srgb,var(--브랜드) 22%,#fff);padding:2px 11px;border-radius:999px}
+.글머리 h1{font-size:28px;line-height:1.4;margin:10px 0 8px;letter-spacing:-.03em}
+.글정보{display:flex;gap:0;font-size:13.5px;color:var(--sub)}
+.글정보 span+span::before{content:"";display:inline-block;width:1px;height:11px;background:var(--선);margin:0 10px;vertical-align:-1px}
+.처음이면{background:color-mix(in srgb,var(--브랜드) 7%,#fff);border:1px solid var(--선);border-radius:14px;padding:13px 16px;margin:0 0 6px}
 .처음이면 b{display:block;margin-bottom:4px;color:var(--깊음);font-size:14.5px}
 .처음이면 ol{margin:0;padding-left:20px;font-size:14.5px;line-height:1.85}.처음이면 a{color:var(--ink);font-weight:600}
 .두칸{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0 8px}
-.두칸 .칸{display:flex;flex-direction:column;gap:4px;padding:16px;border-radius:16px;background:var(--아주연함);border:1.5px solid var(--연함);text-decoration:none;color:var(--ink)}
+.두칸 .칸{display:flex;flex-direction:column;gap:4px;padding:16px;border-radius:14px;background:color-mix(in srgb,var(--브랜드) 7%,#fff);border:1.5px solid color-mix(in srgb,var(--브랜드) 22%,#fff);text-decoration:none;color:var(--ink)}
 .두칸 .칸.도구칸{background:var(--면);border-color:var(--브랜드)}
 .두칸 .칸 b{font-size:18px;color:var(--깊음)}.두칸 .칸 span{font-size:13px;color:var(--sub);line-height:1.5}
 .노트구역{margin:24px 0 8px}.노트구역 h2{font-size:18px;margin:20px 0 0}
 .노트글 .메타{font-size:13.5px;color:var(--sub);margin:0 0 14px}
 .노트글 p,.노트글 li{font-size:17px;line-height:1.9}
 .노트글 h2{font-size:21px;line-height:1.45;margin:34px 0 10px;scroll-margin-top:72px}
-.한줄요약{background:var(--아주연함);border:1px solid var(--연함);border-radius:14px;padding:13px 16px;margin:0 0 16px;font-size:16.5px;line-height:1.75}
+.한줄요약{background:var(--면);border:1px solid var(--선);border-left:4px solid var(--브랜드);border-radius:10px;padding:13px 16px;margin:0 0 16px;font-size:16.5px;line-height:1.75}
 .한줄요약 b{display:block;font-size:12.5px;color:var(--깊음);margin-bottom:2px}
 .노트목차{border-left:3px solid var(--연함);padding:2px 0 2px 14px;margin:0 0 18px;font-size:14.5px;line-height:1.95}
 .노트목차 a{display:block;color:var(--sub);text-decoration:none}.노트목차 a:hover{color:var(--깊음)}
-.다음글{margin:28px 0 8px;padding-top:14px;border-top:1px solid var(--선);font-size:14.5px;line-height:1.7}
-.다음글 span{color:var(--sub);font-size:13px}.다음글 a{font-weight:800;color:var(--깊음);text-decoration:none}
+.이전다음{margin:30px 0 14px;border-top:1px solid var(--ink)}
+.이전다음 a,.이전다음 span{display:flex;align-items:center;gap:16px;padding:14px 8px;border-bottom:1px solid var(--선);text-decoration:none;color:var(--ink);min-width:0}
+.이전다음 a:hover{background:color-mix(in srgb,var(--브랜드) 7%,#fff)}
+.이전다음 em{flex:0 0 64px;font-style:normal;font-size:12.5px;font-weight:700;color:var(--sub)}
+.이전다음 b{font-size:15px;font-weight:600;line-height:1.45;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.이전다음 span b{color:var(--sub);font-weight:400}
+.목록줄{text-align:center;margin:0 0 18px}.목록줄 .단추{min-width:120px}
+@media (max-width:560px){
+ .게시판 h1{font-size:26px}.찾기줄{width:100%}
+ .행{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"제목 제목" "분류 날짜";gap:8px 10px;padding:15px 4px}
+ .행 .번호{display:none}.행 .제목{grid-area:제목}.행 .분류{grid-area:분류}.행 .날짜{grid-area:날짜;text-align:right}
+ .행.머리줄{display:none}.행 .제목 small{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+ .행.도구행{grid-template-columns:minmax(0,1fr) auto}
+ .게시판목록.작게 .행:not(.도구행){grid-template-columns:minmax(0,1fr) auto}
+ .글머리 h1{font-size:24px}.이전다음 em{flex-basis:56px}
+}
 @media (max-width:480px){.머리 .틀{flex-wrap:wrap;height:auto;padding-top:8px;padding-bottom:2px;gap:0 8px}.머리 nav{order:3;width:100%;justify-content:space-between;gap:0;padding:2px 0 8px}.머리 nav a{font-size:14.5px;padding:4px 2px}.노트글 h2{scroll-margin-top:100px}}
 .글본문 h1{font-size:28px;line-height:1.35;margin:10px 0 6px}.글본문 .리드{font-size:17px;color:var(--sub);margin:0 0 8px}
 .글본문 h2{font-size:20px;margin:30px 0 8px;letter-spacing:-.02em}.글본문 h3{font-size:17px;margin:20px 0 6px}
