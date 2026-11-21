@@ -383,6 +383,13 @@ a.행:hover .제목 b{color:var(--깊음)}
 .두칸 .칸 b{font-size:18px;color:var(--깊음)}.두칸 .칸 span{font-size:13px;color:var(--sub);line-height:1.5}
 .노트구역{margin:24px 0 8px}.노트구역 h2{font-size:18px;margin:20px 0 0}
 .노트글 .메타{font-size:13.5px;color:var(--sub);margin:0 0 14px}
+.책배너{display:flex;gap:16px;align-items:center;border:1px solid var(--선);border-radius:16px;padding:16px;margin:26px 0;background:var(--면)}
+.책배너 img{flex:0 0 92px;width:92px;height:auto;border-radius:8px;box-shadow:0 4px 14px rgba(0,0,0,.16)}
+.책배너 .책글{display:flex;flex-direction:column;gap:4px;min-width:0;align-items:flex-start}
+.책배너 .책표{font-size:12px;font-weight:800;color:var(--깊음);background:color-mix(in srgb,var(--브랜드) 7%,#fff);border:1px solid color-mix(in srgb,var(--브랜드) 22%,#fff);padding:2px 10px;border-radius:999px}
+.책배너 b{font-size:17px;line-height:1.4}.책배너 p{margin:0;font-size:14.5px;line-height:1.65;color:var(--sub)}.책배너 small{font-size:12.5px;color:var(--sub)}
+.책배너 .단추{margin-top:6px}.책배너.작게{padding:12px 14px}.책배너.작게 img{flex-basis:64px;width:64px}
+.노트글 .글그림{margin:20px 0}.노트글 .글그림 img{max-width:100%;width:100%;box-shadow:none;border-radius:16px;border:1px solid var(--선)}
 .노트글 p,.노트글 li{font-size:17px;line-height:1.9}
 .노트글 h2{font-size:21px;line-height:1.45;margin:34px 0 10px;scroll-margin-top:72px}
 .한줄요약{background:var(--면);border:1px solid var(--선);border-left:4px solid var(--브랜드);border-radius:10px;padding:13px 16px;margin:0 0 16px;font-size:16.5px;line-height:1.75}
@@ -553,7 +560,7 @@ const 첫화면스크립트 = `<script>
 </script>`;
 
 const 가이드결과 = 가이드켜짐 ? require('./가이드페이지.js')({ 뿌리, 틀, 길, 막기, 쓰기, 광고칸 }) : { 경로목록: [], 글수: 0, 목록: [] };
-const 자료실 = require('./자료실페이지.js')({ 설정: 자료실설정, 검수용, 뿌리, 결과, 틀, 길, 막기, 쓰기, 광고칸, 가이드: 가이드결과.목록 });
+const 자료실 = require('./자료실페이지.js')({ 상품설정, 스토어켜짐, 설정: 자료실설정, 검수용, 뿌리, 결과, 틀, 길, 막기, 쓰기, 광고칸, 가이드: 가이드결과.목록 });
 const 첫화면본문 = `
 <section class="영웅">
   <span class="윗글">오늘의 지원사업</span>
