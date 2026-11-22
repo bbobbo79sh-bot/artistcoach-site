@@ -30,7 +30,7 @@
     root.appendChild(h('section', { class: 'cm-문' }, [
       h('span', { class: 'cm-윗글', text: '커뮤니티' }),
       h('h1', { text: '로그인하면 들어올 수 있어요' }),
-      h('p', { text: '공지, 자유게시판, 합격·후기, 그리고 영감에게 직접 묻는 비공개 질문하기까지 — 모두 로그인한 분들만 볼 수 있는 공간이에요.' }),
+      h('p', { text: '공지, 자유게시판, 합격·후기, 그리고 영감에게 직접 묻는 비공개 문의하기까지 — 모두 로그인한 분들만 볼 수 있는 공간이에요.' }),
       h('p', { class: '작은', text: '구글이나 카카오 계정으로 로그인해요. 비밀번호는 받지 않고, 게시판에는 직접 정한 별명만 보여요.' }),
       h('a', { class: '단추 주', href: A.base + '/login/', text: '로그인하러 가기', onclick: function () { try { sessionStorage.setItem('ac_next', location.pathname) } catch (e) { } } })
     ]));
@@ -41,7 +41,7 @@
     var 줄 = h('div', { class: '게시판바' });
     var 탭줄 = h('div', { class: '탭줄', role: 'tablist' });
     판순서.forEach(function (b) {
-      var 글 = ({ notice: '📢 공지', free: '💬 자유게시판', ask: '🔒 질문하기', review: '🏆 합격·후기' })[b];
+      var 글 = ({ notice: '📢 공지', free: '💬 자유게시판', ask: '🔒 문의하기', review: '🏆 합격·후기' })[b];
       탭줄.appendChild(h('button', { type: 'button', 'aria-pressed': b === 현재 ? 'true' : 'false', text: 글, onclick: function () { 가기(b) } }));
     });
     if (me && me.관리자) 탭줄.appendChild(h('button', { type: 'button', 'aria-pressed': 현재 === 'admin' ? 'true' : 'false', text: '운영', onclick: function () { 가기('admin') } }));
@@ -165,7 +165,7 @@
       });
     }
     글.appendChild(제목); 글.appendChild(내용);
-    글.appendChild(안내('전화번호·주소·주민번호 같은 개인정보와 다른 분을 비난하는 글은 쓰지 말아 주세요. 개인적인 질문은 "질문하기"로 보내 주세요(나와 영감만 볼 수 있어요).'));
+    글.appendChild(안내('전화번호·주소·주민번호 같은 개인정보와 다른 분을 비난하는 글은 쓰지 말아 주세요. 개인적인 질문·문의는 "문의하기"로 보내 주세요(나와 영감만 볼 수 있어요).'));
     글.appendChild(오류);
     글.appendChild(h('div', { class: 'cm-줄' }, [h('button', { type: 'button', class: '단추 주', text: '올리기', onclick: 올리기 }), h('button', { type: 'button', class: '단추 약함', text: '취소', onclick: function () { 가기(판) } })]));
     root.appendChild(글);
@@ -175,7 +175,7 @@
   function 질문목록() {
     비우기(); 머리('ask');
     root.appendChild(h('div', { class: 'cm-비공개', id: 'cm-비공개' }, [h('b', { text: '🔒 완전 비공개예요' }), h('span', { text: '제목도 내용도 나와 영감만 볼 수 있어요. 다른 분들에게는 보이지 않아요.' }), h('small', { id: 'cm-통계', text: '' })]));
-    var 줄 = h('div', { class: 'cm-쓰기줄' }, [h('button', { type: 'button', class: '단추 주', text: '질문 쓰기', onclick: function () { 가기('write/ask') } })]);
+    var 줄 = h('div', { class: 'cm-쓰기줄' }, [h('button', { type: 'button', class: '단추 주', text: '문의 쓰기', onclick: function () { 가기('write/ask') } })]);
     root.appendChild(줄);
     var 표 = h('div', { class: '게시판목록' }, [h('div', { class: '행 머리줄' }, [h('span', { class: '번호', text: '번호' }), h('span', { class: '분류', text: '상태' }), h('span', { class: '제목', text: '내 질문' }), h('span', { class: '날짜', text: '날짜' })])]);
     root.appendChild(표);
@@ -183,7 +183,7 @@
     A.api('/ask').then(function (j) {
       if (j._s === 401) { 문닫힘(); return; }
       var 질 = j.질문 || [];
-      if (!질.length) { 표.appendChild(h('p', { class: '없음글 작은', text: '아직 보낸 질문이 없어요. 신청서 쓰다 막힌 곳, 컨설팅·결제 문의, 사이트에 바라는 점 뭐든 편하게 보내 주세요.' })); return; }
+      if (!질.length) { 표.appendChild(h('p', { class: '없음글 작은', text: '아직 보낸 문의가 없어요. 신청서 쓰다 막힌 곳, 컨설팅·결제 문의, 사이트에 바라는 점 뭐든 편하게 보내 주세요.' })); return; }
       질.forEach(function (x, i) {
         표.appendChild(h('a', { class: '행', href: '#view/ask/' + x.id }, [h('span', { class: '번호', text: String(질.length - i) }), h('span', { class: '분류' + (x.상태 === '답변' ? '' : ' 대기'), text: x.상태 === '답변' ? '답변 완료' : '답변 대기' }), h('span', { class: '제목' }, [h('b', { text: x.제목 }), h('small', { text: x.말머리 })]), h('span', { class: '날짜', text: 날짜(x.시각) })]));
       });
@@ -192,9 +192,9 @@
   function 질문쓰기() {
     비우기(); 머리('ask');
     var 글 = h('section', { class: 'cm-폼 cm-글쓰기' });
-    글.appendChild(h('h2', { text: '영감에게 질문하기' }));
+    글.appendChild(h('h2', { text: '영감에게 문의하기' }));
     글.appendChild(h('div', { class: 'cm-비공개' }, [h('b', { text: '🔒 완전 비공개예요' }), h('span', { text: '제목과 내용 모두 나와 영감만 볼 수 있어요. 답변은 이 화면에서 확인해요.' })]));
-    var 머 = h('select', { 'aria-label': '질문 종류' }, ['신청서 질문', '컨설팅·결제 문의', '사이트 건의', '기타'].map(function (x) { return h('option', { value: x, text: x }); }));
+    var 머 = h('select', { 'aria-label': '문의 종류' }, ['신청서 질문', '컨설팅·결제 문의', '사이트 건의', '기타'].map(function (x) { return h('option', { value: x, text: x }); }));
     var 제목 = h('input', { type: 'text', maxlength: '60', placeholder: '제목 (60자까지)', 'aria-label': '제목' });
     var 내용 = h('textarea', { rows: '10', maxlength: '3000', placeholder: '어떤 사업에 지원하는지, 어디서 막혔는지 적어 주시면 더 정확히 답할 수 있어요 (3000자까지)', 'aria-label': '내용' });
     var 오류 = h('p', { class: 'cm-오류 작은', hidden: 'hidden' });
@@ -218,7 +218,7 @@
     var 길 = 운영 ? '/admin/ask/' + id : '/ask/' + id;
     A.api(길).then(function (j) {
       칸.innerHTML = '';
-      if (!j.글) { 칸.appendChild(안내(j.오류 || '질문을 찾지 못했어요')); return; }
+      if (!j.글) { 칸.appendChild(안내(j.오류 || '문의를 찾지 못했어요')); return; }
       칸.appendChild(h('div', { class: '글머리' }, [h('span', { class: '분류표', text: j.말머리 }), h('h1', { text: j.제목 }), h('div', { class: '글정보' }, [h('span', { text: j.상태 === '답변' ? '답변 완료' : '답변 대기' }), h('span', { text: 긴날짜(j.시각) }), 운영 ? h('span', { text: '보낸 사람 ' + (j.별명 || '') }) : h('span', { text: '🔒 나와 영감만 볼 수 있어요' })])]));
       var 대화 = h('div', { class: 'cm-대화' });
       j.글.forEach(function (x) {
@@ -234,7 +234,7 @@
           A.api(길, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ 내용: v }) }).then(function (r) { if (r.보냄) 질문보기(id, 운영); else { 오류.textContent = r.오류 || '보내지 못했어요'; 오류.hidden = false; } });
         } }),
         h('button', { type: 'button', class: '단추', text: '목록', onclick: function () { 가기(운영 ? 'admin' : 'ask') } }),
-        운영 ? null : h('button', { type: 'button', class: '단추 약함', text: '질문 지우기', onclick: function () { if (!confirm('이 질문과 답변을 지울까요? 되돌릴 수 없어요.')) return; A.api('/ask/' + id, { method: 'DELETE' }).then(function () { 가기('ask') }); } })
+        운영 ? null : h('button', { type: 'button', class: '단추 약함', text: '문의 지우기', onclick: function () { if (!confirm('이 문의와 답변을 지울까요? 되돌릴 수 없어요.')) return; A.api('/ask/' + id, { method: 'DELETE' }).then(function () { 가기('ask') }); } })
       ])]));
     }, 오류화면);
   }
@@ -244,10 +244,10 @@
     비우기(); 머리('admin');
     if (!me.관리자) { root.appendChild(안내('운영자만 볼 수 있어요.')); return; }
     var 질 = h('div', { class: '게시판목록' }, [h('div', { class: '행 머리줄' }, [h('span', { class: '번호', text: '' }), h('span', { class: '분류', text: '상태' }), h('span', { class: '제목', text: '받은 질문' }), h('span', { class: '날짜', text: '날짜' })])]);
-    root.appendChild(h('h2', { class: 'cm-소제목', text: '받은 질문 (비공개)' })); root.appendChild(질);
+    root.appendChild(h('h2', { class: 'cm-소제목', text: '받은 문의 (비공개)' })); root.appendChild(질);
     A.api('/admin/ask?상태=전체').then(function (j) {
       var 목 = j.질문 || [];
-      if (!목.length) 질.appendChild(h('p', { class: '없음글 작은', text: '받은 질문이 없어요.' }));
+      if (!목.length) 질.appendChild(h('p', { class: '없음글 작은', text: '받은 문의가 없어요.' }));
       목.forEach(function (x, i) { 질.appendChild(h('a', { class: '행', href: '#admin/ask/' + x.id }, [h('span', { class: '번호', text: String(i + 1) }), h('span', { class: '분류' + (x.상태 === '답변' ? '' : ' 대기'), text: x.상태 === '답변' ? '답변함' : '대기' }), h('span', { class: '제목' }, [h('b', { text: x.제목 }), h('small', { text: x.별명 + ' · ' + x.말머리 })]), h('span', { class: '날짜', text: 날짜(x.시각) })])); });
     });
     var 신 = h('div', { class: '게시판목록' }, [h('div', { class: '행 머리줄' }, [h('span', { class: '번호', text: '' }), h('span', { class: '분류', text: '게시판' }), h('span', { class: '제목', text: '신고된 글' }), h('span', { class: '날짜', text: '' })])]);
@@ -267,7 +267,7 @@
   var 칸정보 = [
     { b: 'notice', 아이콘: '📢', 이름: '공지', 설명: '영감이 전하는 소식과 안내', 꼬리: '영감이 써요' },
     { b: 'free', 아이콘: '💬', 이름: '자유게시판', 설명: '질문, 정보 공유, 수다 — 편하게 이야기해요', 꼬리: '누구나 글쓰기' },
-    { b: 'ask', 아이콘: '🔒', 이름: '질문하기', 설명: '영감에게 직접 묻는 질문. 제목도 내용도 나와 영감만 봐요', 꼬리: '완전 비공개', 강조: true },
+    { b: 'ask', 아이콘: '🔒', 이름: '문의하기', 설명: '영감에게 직접 묻는 질문·문의.' + ' 제목도 내용도 나와 영감만 봐요', 꼬리: '완전 비공개', 강조: true },
     { b: 'review', 아이콘: '🏆', 이름: '합격·후기', 설명: '합격 소식과 준비 후기, 도움 된 팁', 꼬리: '누구나 글쓰기' }
   ];
   function 허브() {
