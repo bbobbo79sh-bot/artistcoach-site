@@ -83,7 +83,7 @@
   // ── 글 목록 ────────────────────────────────────────
   function 목록(판, 다음, 표) {
     var 처음 = !표;
-    if (처음) { 비우기(); 머리(판); 표 = h('div', { class: '게시판목록' }, [h('div', { class: '행 머리줄' }, [h('span', { class: '번호', text: '번호' }), h('span', { class: '분류', text: '분류' }), h('span', { class: '제목', text: '제목' }), h('span', { class: '날짜', text: '날짜' })])]); }
+    if (처음) { 비우기(); 머리(판); 표 = h('div', { class: '게시판목록' + (판 === 'notice' ? ' 분류없음' : '') }, [h('div', { class: '행 머리줄' }, [h('span', { class: '번호', text: '번호' }), 판 === 'notice' ? null : h('span', { class: '분류', text: '분류' }), h('span', { class: '제목', text: '제목' }), h('span', { class: '날짜', text: '날짜' })])]); }
     var 쓰기줄 = null, 더 = null;
     if (처음) { 번호표 = 0; root.appendChild(h('p', { class: '건수줄', id: 'cm-건수', text: '불러오는 중…' })); root.appendChild(표); }
     A.api('/community/' + 판 + (다음 ? '?다음=' + encodeURIComponent(다음) : '')).then(function (j) {
@@ -91,9 +91,9 @@
       var 건수 = document.getElementById('cm-건수');
       (j.글 || []).forEach(function (x) {
         번호표++;
-        표.appendChild(h('a', { class: '행' + (j.게시판 === 'notice' ? ' 공지행' : ''), href: '#view/' + 판 + '/' + x.id }, [
+        표.appendChild(h('a', { class: '행', href: '#view/' + 판 + '/' + x.id }, [
           h('span', { class: '번호', text: String(번호표) }),
-          h('span', { class: '분류' + (x.운영 ? ' 공지분류' : ''), text: x.운영 ? '운영' : (x.말머리 || '글') }),
+          판 === 'notice' ? null : h('span', { class: '분류', text: x.운영 ? '운영' : (x.말머리 || '글') }),
           h('span', { class: '제목' }, [h('b', { text: x.제목 + (x.댓글 ? '  [' + x.댓글 + ']' : '') }), h('small', { text: x.별명 })]),
           h('span', { class: '날짜', text: 날짜(x.시각) })
         ]));
@@ -116,7 +116,7 @@
       if (!j.글) { 칸.innerHTML = ''; 칸.appendChild(안내(j.오류 || '글을 찾지 못했어요')); 칸.appendChild(h('div', { class: '목록줄' }, [h('button', { type: 'button', class: '단추', text: '목록', onclick: function () { 가기(판) } })])); return; }
       var g = j.글; 칸.innerHTML = '';
       칸.appendChild(h('div', { class: '글머리' }, [
-        h('span', { class: '분류표', text: g.운영 ? '운영' : (g.말머리 || g.이름) }),
+        판 === 'notice' ? null : h('span', { class: '분류표', text: g.운영 ? '운영' : (g.말머리 || g.이름) }),
         h('h1', { text: g.제목 }),
         h('div', { class: '글정보' }, [h('span', { text: g.별명 + (g.운영 ? ' (운영)' : '') }), h('span', { text: 긴날짜(g.시각) }), h('span', { text: '댓글 ' + j.댓글.length })])
       ]));
@@ -174,12 +174,11 @@
   // ── 질문하기(비공개) ───────────────────────────────
   function 질문목록() {
     비우기(); 머리('ask');
-    root.appendChild(h('div', { class: 'cm-비공개', id: 'cm-비공개' }, [h('b', { text: '🔒 완전 비공개예요' }), h('span', { text: '제목도 내용도 나와 영감만 볼 수 있어요. 다른 분들에게는 보이지 않아요.' }), h('small', { id: 'cm-통계', text: '' })]));
+    root.appendChild(h('div', { class: 'cm-비공개', id: 'cm-비공개' }, [h('b', { text: '🔒 완전 비공개예요' }), h('span', { text: '제목도 내용도 나와 영감만 볼 수 있어요. 다른 분들에게는 보이지 않아요.' })]));
     var 줄 = h('div', { class: 'cm-쓰기줄' }, [h('button', { type: 'button', class: '단추 주', text: '문의 쓰기', onclick: function () { 가기('write/ask') } })]);
     root.appendChild(줄);
     var 표 = h('div', { class: '게시판목록' }, [h('div', { class: '행 머리줄' }, [h('span', { class: '번호', text: '번호' }), h('span', { class: '분류', text: '상태' }), h('span', { class: '제목', text: '내 질문' }), h('span', { class: '날짜', text: '날짜' })])]);
     root.appendChild(표);
-    A.api('/community/stats').then(function (s) { if (s.문의 != null) document.getElementById('cm-통계').textContent = '이번 달 문의 ' + s.문의 + '건 · 답변 ' + s.답변 + '건'; });
     A.api('/ask').then(function (j) {
       if (j._s === 401) { 문닫힘(); return; }
       var 질 = j.질문 || [];
@@ -288,8 +287,7 @@
         h('span', { class: 'cm-꼬리', text: x.꼬리 }),
         최근
       ]));
-      if (x.b === 'ask') A.api('/community/stats').then(function (s) { if (s.문의 != null) 최근.textContent = '이번 달 문의 ' + s.문의 + '건 · 답변 ' + s.답변 + '건'; });
-      else A.api('/community/' + x.b).then(function (j) { var 첫 = (j.글 || [])[0]; 최근.textContent = 첫 ? '최근 글 · ' + 첫.제목 : '아직 글이 없어요'; }, function () { 최근.textContent = ''; });
+      if (x.b !== 'ask') A.api('/community/' + x.b).then(function (j) { var 첫 = (j.글 || [])[0]; 최근.textContent = 첫 ? '최근 글 · ' + 첫.제목 : '아직 글이 없어요'; }, function () { 최근.textContent = ''; });
     });
     root.appendChild(격자);
   }
