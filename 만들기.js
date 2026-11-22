@@ -112,6 +112,7 @@ const 가이드켜짐 = (() => { try { return JSON.parse(fs.readFileSync(path.jo
 const 로그인설정 = (() => { try { return JSON.parse(fs.readFileSync(path.join(뿌리, '자료', '로그인.json'), 'utf8')); } catch (e) { return {}; } })();
 if (process.env.SITE_LOGIN) 로그인설정.서버 = process.env.SITE_LOGIN;   // 시험용: SITE_LOGIN=http://127.0.0.1:8787
 const 로그인켜짐 = !!(로그인설정.서버 && (검수용 || 로그인설정.정식공개 === true));   // 검수 사이트에서만 먼저 보여 준다. 정식 공개는 영감이 허락한 뒤 '정식공개'를 true 로
+const 커뮤니티 = 로그인켜짐 ? require('./커뮤니티페이지.js')({ 틀: (...a) => 틀(...a), 길, 쓰기 }) : null;
 const 로그인 = 로그인켜짐 ? require('./로그인페이지.js')({ 설정: { ...로그인설정, 판매서버: 상품설정.승인확인서버 }, 공고, 틀: (...a) => 틀(...a), 길, 막기, 쓰기 }) : null;
 const 검색등록 = JSON.parse(fs.readFileSync(path.join(뿌리, '자료', '검색등록.json'), 'utf8'));
 const 구글확인 = (!검수용 && /^[A-Za-z0-9_-]{20,80}$/.test(검색등록.구글서치콘솔 || '')) ? 검색등록.구글서치콘솔 : '';
@@ -132,7 +133,7 @@ const 광고스크립트 = 광고사용 ? '<script async type="text/javascript" 
 
 // ───────── 스타일 ─────────
 const 스타일 = `
-${로그인 ? 로그인.스타일 : ''}
+${로그인 ? 로그인.스타일 : ''}${커뮤니티 ? 커뮤니티.스타일 : ''}
 :root{--bg:${bg};--면:${면};--ink:${ink};--sub:${sub};--브랜드:${brand};--브랜드글:${브랜드글};--깊음:${깊음};--연함:${연함};--아주연함:${아주연함};--선:${선};--바탕투명:${바탕투명}}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
@@ -152,6 +153,8 @@ i{font-style:normal}
 .머리 nav{display:flex;gap:20px}
 .머리 nav a{text-decoration:none;font-size:14.5px;font-weight:600;color:var(--sub)}
 .머리 nav a:hover,.머리 nav a[aria-current]{color:var(--ink)}
+.메뉴묶음{position:relative;display:inline-flex}.드롭{display:none}
+@media (hover:hover) and (min-width:561px){.드롭{position:absolute;top:100%;left:50%;transform:translateX(-50%);padding-top:14px;z-index:40}.메뉴묶음:hover .드롭,.메뉴묶음:focus-within .드롭{display:block}.드롭상자{display:flex;flex-direction:column;min-width:176px;padding:8px;background:#fff;border:1px solid var(--선);border-radius:14px;box-shadow:0 12px 30px rgba(0,0,0,.12)}.머리 nav .드롭상자 a{display:flex;align-items:center;gap:6px;padding:10px 12px;border-radius:9px;font-size:14.5px;font-weight:600;color:var(--ink);white-space:nowrap}.머리 nav .드롭상자 a:hover{background:color-mix(in srgb,var(--브랜드) 8%,#fff);color:var(--깊음)}.드롭상자 small{font-size:11px;font-weight:700;color:var(--깊음);background:color-mix(in srgb,var(--브랜드) 10%,#fff);border-radius:999px;padding:1px 7px}}
 @media (max-width:560px){.머리 .틀{gap:8px}.로고줄{gap:6px}.로고줄 img{width:30px;height:30px}.글자로고{font-size:15.5px}.글자로고 mark{padding:0 5px}.머리 nav{gap:11px}.머리 nav a{font-size:13.5px}}
 
 .영웅{padding:26px 0 14px}
@@ -463,7 +466,7 @@ ${애드센스 ? `<script async src="https://pagead2.googlesyndication.com/pagea
 <body>
 <header class="머리"><div class="틀">
   <a class="로고줄" href="${길('/')}"><img src="${길('/logo.svg')}" alt="" width="36" height="36"><span class="글자로고">아티스트<mark>코치</mark></span></a>
-  <nav><a href="${길('/')}"${현재 === '공고' ? ' aria-current="page"' : ''}>공고</a>${자료실켜짐 ? `<a href="${길('/notes/')}"${현재 === '코치 노트' ? ' aria-current="page"' : ''}>코치노트</a><a href="${길('/tools/')}"${현재 === '도구함' ? ' aria-current="page"' : ''}>도구함</a>` : ''}${스토어켜짐 ? `<a href="${길('/products/')}">스토어</a>` : ''}${로그인 ? 로그인.메뉴 : ''}</nav>
+  <nav><a href="${길('/')}"${현재 === '공고' ? ' aria-current="page"' : ''}>공고</a>${자료실켜짐 ? `<a href="${길('/notes/')}"${현재 === '코치 노트' ? ' aria-current="page"' : ''}>코치노트</a><a href="${길('/tools/')}"${현재 === '도구함' ? ' aria-current="page"' : ''}>도구함</a>` : ''}${커뮤니티 ? `<span class="메뉴묶음"><a href="${길('/community/')}"${현재 === '커뮤니티' ? ' aria-current="page"' : ''} aria-haspopup="true">커뮤니티</a><span class="드롭"><span class="드롭상자"><a href="${길('/community/#notice')}">📢 공지</a><a href="${길('/community/#free')}">💬 자유게시판</a><a href="${길('/community/#ask')}">🔒 문의하기 <small>비공개</small></a><a href="${길('/community/#review')}">🏆 합격·후기</a></span></span></span>` : ''}${스토어켜짐 ? `<a href="${길('/products/')}">스토어</a>` : ''}${로그인 ? 로그인.메뉴 : ''}</nav>
 </div></header>
 ${로그인 ? 로그인.스크립트태그 : ''}
 <main class="틀">
@@ -733,6 +736,7 @@ const 상품결과 = require('./상품페이지.js')({ 설정: 상품설정, 뿌
 // 만드는 법·내리는 법은 도구/임시공유올리기.js 맨 위 설명 참고. 폴더를 지우면 주소가 사라진다.
 const 임시공유폴더 = path.join(뿌리, '자료', '임시공유');
 if (!검수용 && fs.existsSync(임시공유폴더)) fs.cpSync(임시공유폴더, 결과, { recursive: true });
+if (커뮤니티) 커뮤니티.만들기();
 if (로그인) { 로그인.만들기(); console.log('  로그인 기능  켜짐 (' + 로그인.서버 + ')'); }
 // 짧은 주소: artistcoach.kr/book/ → 전자책 판매 페이지 (카드뉴스 QR·프로필 링크용). 유입 표시(ref=card)가 붙어 방문 통계에서 구분된다.
 if (스토어켜짐 && (상품설정.상품 || [])[0]) {
