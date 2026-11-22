@@ -41,19 +41,19 @@
     var 줄 = h('div', { class: '게시판바' });
     var 탭줄 = h('div', { class: '탭줄', role: 'tablist' });
     판순서.forEach(function (b) {
-      var 글 = b === 'ask' ? '질문하기 🔒' : 판이름[b];
+      var 글 = ({ notice: '📢 공지', free: '💬 자유게시판', ask: '🔒 질문하기', review: '🏆 합격·후기' })[b];
       탭줄.appendChild(h('button', { type: 'button', 'aria-pressed': b === 현재 ? 'true' : 'false', text: 글, onclick: function () { 가기(b) } }));
     });
     if (me && me.관리자) 탭줄.appendChild(h('button', { type: 'button', 'aria-pressed': 현재 === 'admin' ? 'true' : 'false', text: '운영', onclick: function () { 가기('admin') } }));
     줄.appendChild(탭줄);
     var 내 = h('p', { class: 'cm-내별명 작은' });
-    if (me && me.별명) { 내.appendChild(document.createTextNode('내 별명 ')); 내.appendChild(h('b', { text: me.별명 })); 내.appendChild(document.createTextNode(' · ')); 내.appendChild(h('a', { href: '#', text: '바꾸기', onclick: function (e) { e.preventDefault(); 별명창(function () { route() }) } })); }
-    else 내.appendChild(h('a', { href: '#', text: '별명 정하기', onclick: function (e) { e.preventDefault(); 별명창(function () { route() }) } }));
+    if (me && me.별명) { 내.appendChild(document.createTextNode('게시판에 보이는 내 별명 ')); 내.appendChild(h('b', { text: me.별명 })); 내.appendChild(document.createTextNode(' · ')); 내.appendChild(h('a', { href: '#', text: '바꾸기', onclick: function (e) { e.preventDefault(); 별명창(function () { route() }) } })); }
+    else { 내.appendChild(document.createTextNode('아직 별명이 없어요 · ')); 내.appendChild(h('a', { href: '#', text: '별명 정하기', onclick: function (e) { e.preventDefault(); 별명창(function () { route() }) } })); }
     줄.appendChild(내);
     return 줄;
   }
   function 머리(현재) {
-    root.appendChild(h('div', { class: '게시판' }, [h('h1', { text: '커뮤니티' }), h('p', { class: '소개', text: '예술지원사업을 준비하는 분들의 이야기 공간이에요. 로그인한 분만 보고 쓸 수 있어요.' })]));
+    root.appendChild(h('div', { class: '게시판' }, [h('h1', {}, [h('a', { href: '#home', class: 'cm-홈링크', text: '커뮤니티' })]), h('p', { class: '소개', text: '예술지원사업을 준비하는 분들의 이야기 공간이에요. 로그인한 분만 보고 쓸 수 있어요.' })]));
     root.appendChild(탭(현재));
   }
 
@@ -62,8 +62,8 @@
     var 칸 = h('input', { type: 'text', maxlength: '12', value: (me && me.별명) || '', placeholder: '예) 무용하는 가나', 'aria-label': '별명' });
     var 오류 = h('p', { class: 'cm-오류 작은', hidden: 'hidden' });
     var 박스 = h('div', { class: 'cm-별명창' }, [
-      h('b', { text: '게시판에서 쓸 별명을 정해 주세요' }),
-      h('p', { class: '작은', text: '구글·카카오 이름은 밖에 보이지 않아요. 2~12자, 한글·영문·숫자만 쓸 수 있고 언제든 바꿀 수 있어요.' }),
+      h('b', { text: '게시판에서 이름 대신 보일 별명을 정해 주세요' }),
+      h('p', { class: '작은', text: '글과 댓글에는 이 별명만 보여요. 구글·카카오 이름은 다른 사람에게 보이지 않아요. 2~12자, 한글·영문·숫자만 쓸 수 있고 언제든 바꿀 수 있어요.' }),
       칸, 오류,
       h('div', { class: 'cm-줄' }, [
         h('button', { type: 'button', class: '단추 주', text: '저장', onclick: function () {
@@ -262,18 +262,51 @@
     });
   }
 
+
+  // ── 첫 화면: 네 칸으로 나뉘어 있다는 걸 한눈에 ────────
+  var 칸정보 = [
+    { b: 'notice', 아이콘: '📢', 이름: '공지', 설명: '영감이 전하는 소식과 안내', 꼬리: '영감이 써요' },
+    { b: 'free', 아이콘: '💬', 이름: '자유게시판', 설명: '질문, 정보 공유, 수다 — 편하게 이야기해요', 꼬리: '누구나 글쓰기' },
+    { b: 'ask', 아이콘: '🔒', 이름: '질문하기', 설명: '영감에게 직접 묻는 질문. 제목도 내용도 나와 영감만 봐요', 꼬리: '완전 비공개', 강조: true },
+    { b: 'review', 아이콘: '🏆', 이름: '합격·후기', 설명: '합격 소식과 준비 후기, 도움 된 팁', 꼬리: '누구나 글쓰기' }
+  ];
+  function 허브() {
+    비우기();
+    root.appendChild(h('div', { class: '게시판' }, [h('h1', { text: '커뮤니티' }), h('p', { class: '소개', text: '예술지원사업을 준비하는 분들의 이야기 공간이에요. 아래 네 곳 중 필요한 곳으로 들어가 보세요.' })]));
+    var 줄 = h('p', { class: 'cm-내별명 작은' });
+    if (me.별명) { 줄.appendChild(document.createTextNode('게시판에 보이는 내 별명 ')); 줄.appendChild(h('b', { text: me.별명 })); 줄.appendChild(document.createTextNode(' · ')); }
+    else 줄.appendChild(document.createTextNode('글을 쓰려면 별명이 필요해요 · '));
+    줄.appendChild(h('a', { href: '#', text: me.별명 ? '바꾸기' : '별명 정하기', onclick: function (e) { e.preventDefault(); 별명창(function () { 허브() }) } }));
+    root.appendChild(줄);
+    var 격자 = h('div', { class: 'cm-허브' });
+    칸정보.forEach(function (x) {
+      var 최근 = h('small', { class: 'cm-최근', text: x.b === 'ask' ? '' : '불러오는 중…' });
+      격자.appendChild(h('a', { class: 'cm-칸' + (x.강조 ? ' 강조' : ''), href: '#' + x.b }, [
+        h('span', { class: 'cm-아이콘', 'aria-hidden': 'true', text: x.아이콘 }),
+        h('b', { text: x.이름 }),
+        h('span', { class: 'cm-설명', text: x.설명 }),
+        h('span', { class: 'cm-꼬리', text: x.꼬리 }),
+        최근
+      ]));
+      if (x.b === 'ask') A.api('/community/stats').then(function (s) { if (s.문의 != null) 최근.textContent = '이번 달 문의 ' + s.문의 + '건 · 답변 ' + s.답변 + '건'; });
+      else A.api('/community/' + x.b).then(function (j) { var 첫 = (j.글 || [])[0]; 최근.textContent = 첫 ? '최근 글 · ' + 첫.제목 : '아직 글이 없어요'; }, function () { 최근.textContent = ''; });
+    });
+    root.appendChild(격자);
+  }
+
   function route() {
     var p = location.hash.replace(/^#\/?/, '').split('/');
-    var a = p[0] || 'notice';
+    var a = p[0] || 'home';
     if (a === 'view' && p[1] === 'ask' && p[2]) return 질문보기(p[2], false);
     if (a === 'view' && 판이름[p[1]] && p[2]) return 읽기(p[1], p[2]);
     if (a === 'write' && p[1] === 'ask') return 질문쓰기();
     if (a === 'write' && 판이름[p[1]]) return 쓰기(p[1]);
     if (a === 'admin' && p[1] === 'ask' && p[2]) return 질문보기(p[2], true);
+    if (a === 'home') return 허브();
     if (a === 'admin') return 운영화면();
     if (a === 'ask') return 질문목록();
     if (판이름[a]) return 목록(a);
-    return 목록('notice');
+    return 허브();
   }
 
   if (!A.tok()) { 문닫힘(); return; }

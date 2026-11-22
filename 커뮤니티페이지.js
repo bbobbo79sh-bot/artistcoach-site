@@ -4,6 +4,19 @@ const fs = require('fs');
 const path = require('path');
 module.exports = ({ 틀, 길, 쓰기 }) => {
   const 스타일 = `
+.cm-홈링크{color:inherit;text-decoration:none}
+.cm-허브{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0 8px}
+.cm-칸{display:flex;flex-direction:column;gap:6px;padding:18px 18px 16px;border-radius:18px;background:var(--면);border:1.5px solid var(--선);text-decoration:none;color:var(--ink);min-height:178px}
+.cm-칸:hover{border-color:var(--브랜드);background:color-mix(in srgb,var(--브랜드) 5%,#fff)}
+.cm-칸 .cm-아이콘{width:44px;height:44px;border-radius:14px;background:color-mix(in srgb,var(--브랜드) 10%,#fff);display:flex;align-items:center;justify-content:center;font-size:23px;line-height:1}
+.cm-칸 b{font-size:20px;letter-spacing:-.02em;margin-top:4px}
+.cm-칸 .cm-설명{font-size:14px;line-height:1.6;color:var(--sub)}
+.cm-칸 .cm-꼬리{align-self:flex-start;margin-top:auto;font-size:12px;font-weight:700;color:var(--깊음);background:color-mix(in srgb,var(--브랜드) 8%,#fff);border:1px solid color-mix(in srgb,var(--브랜드) 22%,#fff);padding:2px 10px;border-radius:999px}
+.cm-칸 .cm-최근{font-size:12.5px;color:var(--sub);line-height:1.5;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-height:19px}
+.cm-칸.강조{background:var(--브랜드);border-color:var(--브랜드);color:var(--브랜드글)}
+.cm-칸.강조 .cm-아이콘{background:rgba(255,255,255,.2)}.cm-칸.강조 .cm-설명,.cm-칸.강조 .cm-최근{color:var(--브랜드글);opacity:.92}
+.cm-칸.강조 .cm-꼬리{background:#fff;color:var(--깊음);border-color:#fff}
+@media (max-width:560px){.cm-허브{gap:10px}.cm-칸{padding:14px 13px 13px;min-height:168px;border-radius:16px}.cm-칸 b{font-size:17.5px}.cm-칸 .cm-설명{font-size:13px}.cm-칸 .cm-아이콘{width:38px;height:38px;font-size:20px}}
 .cm-문{max-width:520px;margin:10px auto;text-align:center}.cm-문 h1{font-size:26px;line-height:1.4;margin:6px 0 10px}.cm-문 p{line-height:1.8}.cm-문 .단추{margin-top:6px}
 .cm-윗글{display:inline-block;font-size:12.5px;font-weight:800;padding:5px 12px;border-radius:999px;background:var(--브랜드);color:var(--브랜드글);margin:0 0 8px}
 .cm-내별명{margin:0;padding-bottom:8px}.cm-내별명 a{color:var(--깊음);font-weight:700}
