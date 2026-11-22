@@ -20,7 +20,7 @@ module.exports = ({ 틀, 길, 쓰기 }) => {
 .cm-문{max-width:520px;margin:10px auto;text-align:center}.cm-문 h1{font-size:26px;line-height:1.4;margin:6px 0 10px}.cm-문 p{line-height:1.8}.cm-문 .단추{margin-top:6px}
 .cm-윗글{display:inline-block;font-size:12.5px;font-weight:800;padding:5px 12px;border-radius:999px;background:var(--브랜드);color:var(--브랜드글);margin:0 0 8px}
 .cm-내별명{margin:0;padding-bottom:8px}.cm-내별명 a{color:var(--깊음);font-weight:700}
-.cm-쓰기줄{display:flex;justify-content:flex-end;margin:14px 0 0}
+.cm-쓰기줄{display:flex;justify-content:flex-end;margin:14px 0 18px}
 .cm-더{margin-top:14px}
 .행 .분류.대기{background:#fff4e5;border-color:#f3c98b;color:#8a5200}
 .cm-소제목{font-size:18px;margin:28px 0 8px}
