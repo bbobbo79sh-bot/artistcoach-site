@@ -153,6 +153,8 @@ i{font-style:normal}
 .머리 nav{display:flex;gap:20px}
 .머리 nav a{text-decoration:none;font-size:14.5px;font-weight:600;color:var(--sub)}
 .머리 nav a:hover,.머리 nav a[aria-current]{color:var(--ink)}
+.메뉴묶음{position:relative;display:inline-flex}.드롭{display:none}
+@media (hover:hover) and (min-width:561px){.드롭{position:absolute;top:100%;left:50%;transform:translateX(-50%);padding-top:14px;z-index:40}.메뉴묶음:hover .드롭,.메뉴묶음:focus-within .드롭{display:block}.드롭상자{display:flex;flex-direction:column;min-width:176px;padding:8px;background:#fff;border:1px solid var(--선);border-radius:14px;box-shadow:0 12px 30px rgba(0,0,0,.12)}.머리 nav .드롭상자 a{display:flex;align-items:center;gap:6px;padding:10px 12px;border-radius:9px;font-size:14.5px;font-weight:600;color:var(--ink);white-space:nowrap}.머리 nav .드롭상자 a:hover{background:color-mix(in srgb,var(--브랜드) 8%,#fff);color:var(--깊음)}.드롭상자 small{font-size:11px;font-weight:700;color:var(--깊음);background:color-mix(in srgb,var(--브랜드) 10%,#fff);border-radius:999px;padding:1px 7px}}
 @media (max-width:560px){.머리 .틀{gap:8px}.로고줄{gap:6px}.로고줄 img{width:30px;height:30px}.글자로고{font-size:15.5px}.글자로고 mark{padding:0 5px}.머리 nav{gap:11px}.머리 nav a{font-size:13.5px}}
 
 .영웅{padding:26px 0 14px}
@@ -464,7 +466,7 @@ ${애드센스 ? `<script async src="https://pagead2.googlesyndication.com/pagea
 <body>
 <header class="머리"><div class="틀">
   <a class="로고줄" href="${길('/')}"><img src="${길('/logo.svg')}" alt="" width="36" height="36"><span class="글자로고">아티스트<mark>코치</mark></span></a>
-  <nav><a href="${길('/')}"${현재 === '공고' ? ' aria-current="page"' : ''}>공고</a>${자료실켜짐 ? `<a href="${길('/notes/')}"${현재 === '코치 노트' ? ' aria-current="page"' : ''}>코치노트</a><a href="${길('/tools/')}"${현재 === '도구함' ? ' aria-current="page"' : ''}>도구함</a>` : ''}${커뮤니티 ? `<a href="${길('/community/')}"${현재 === '커뮤니티' ? ' aria-current="page"' : ''}>커뮤니티</a>` : ''}${스토어켜짐 ? `<a href="${길('/products/')}">스토어</a>` : ''}${로그인 ? 로그인.메뉴 : ''}</nav>
+  <nav><a href="${길('/')}"${현재 === '공고' ? ' aria-current="page"' : ''}>공고</a>${자료실켜짐 ? `<a href="${길('/notes/')}"${현재 === '코치 노트' ? ' aria-current="page"' : ''}>코치노트</a><a href="${길('/tools/')}"${현재 === '도구함' ? ' aria-current="page"' : ''}>도구함</a>` : ''}${커뮤니티 ? `<span class="메뉴묶음"><a href="${길('/community/')}"${현재 === '커뮤니티' ? ' aria-current="page"' : ''} aria-haspopup="true">커뮤니티</a><span class="드롭"><span class="드롭상자"><a href="${길('/community/#notice')}">📢 공지</a><a href="${길('/community/#free')}">💬 자유게시판</a><a href="${길('/community/#ask')}">🔒 질문하기 <small>비공개</small></a><a href="${길('/community/#review')}">🏆 합격·후기</a></span></span></span>` : ''}${스토어켜짐 ? `<a href="${길('/products/')}">스토어</a>` : ''}${로그인 ? 로그인.메뉴 : ''}</nav>
 </div></header>
 ${로그인 ? 로그인.스크립트태그 : ''}
 <main class="틀">
