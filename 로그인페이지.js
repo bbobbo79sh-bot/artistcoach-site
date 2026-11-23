@@ -1,7 +1,7 @@
 // 로그인 · 내 관심 공고 화면 (만들기.js 가 불러 쓴다). 로그인 서버(로그인서버/ 폴더, Cloudflare Worker)와 이야기한다.
 // 켜는 조건: 자료/로그인.json 에 '서버' 주소가 있고, 검수 사이트이거나 '정식공개'가 true 일 때.
 // 저장: 로그인 열쇠(토큰)만 이 브라우저 localStorage 에 둔다. 비밀번호·이메일은 다루지 않는다.
-module.exports = ({ 설정, 공고, 틀, 길, 막기, 쓰기 }) => {
+module.exports = ({ 설정, 공고, 틀, 길, 막기, 쓰기, 멤버십 = false }) => {
   const 판매서버 = /^https:\/\/[\w.\-/]+$/.test(설정.판매서버 || '') ? String(설정.판매서버).replace(/\/+$/, '') : '';   // 전자책 결제 서버(구매 목록·다시 받기)
   const 서버 = String(설정.서버 || '').replace(/\/+$/, '');
 
@@ -61,6 +61,8 @@ else{g.textContent=(q.error||'로그인하지 못했어요')+'.';document.getEle
   <h1>내 공간</h1>
   <p id="내인사" class="작은"></p>
   ${판매서버 ? '<h2>내 구매</h2><div id="내구매"><p class="작은">불러오는 중…</p></div>' : ''}
+  ${멤버십 ? `<h2>내 이용권</h2>
+  <div id="내이용권"><p class="작은">불러오는 중…</p></div>` : ''}
   <h2>내 관심 공고</h2>
   <div id="내목록"><p class="작은">불러오는 중…</p></div>
   <div class="내줄">
@@ -77,6 +79,19 @@ else{g.textContent=(q.error||'로그인하지 못했어요')+'.';document.getEle
    var a=document.createElement('a');a.className='받기링크';a.href=x.주소;a.textContent='PDF 내려받기';row.appendChild(d1);row.appendChild(a);B.appendChild(row)})
  }).catch(function(){B.innerHTML='<p class="작은">구매 내역을 불러오지 못했어요.</p>'});
 })();</script>
+${멤버십 ? `<script>(function(){var A=window.AC,B=document.getElementById('내이용권');if(!A||!B||!A.tok())return;
+function 줄(t){B.innerHTML='';var p=document.createElement('p');p.textContent=t;B.appendChild(p)}
+function 그리기(j){
+ if(!j.이용중){B.innerHTML='<p>이용 중인 이용권이 없어요. <a href="'+A.base+'/membership/">고급 정보 이용권 알아보기</a></p>';return}
+ B.innerHTML='';var 카드=document.createElement('div');카드.className='내카드';var 안=document.createElement('div');var b=document.createElement('b');b.textContent='고급 정보 이용권 (월 10,000원)';var s=document.createElement('small');
+ s.textContent=j.상태==='해지예정'?'해지했어요 · '+j.만료+'까지 이용할 수 있어요':'이용 중 · 다음 결제일 '+(j.다음결제||'-')+' · '+(j.만료||'-')+'까지 이용';안.appendChild(b);안.appendChild(s);카드.appendChild(안);
+ if(j.상태==='이용중'){var 해지=document.createElement('button');해지.type='button';해지.className='빼기';해지.textContent='해지하기';
+  해지.addEventListener('click',function(){if(!confirm('해지할까요?\\n다음 결제부터 중단되고, 이미 결제한 기간('+(j.만료||'-')+')까지는 계속 볼 수 있어요.'))return;해지.disabled=true;
+   A.api('/membership/cancel',{method:'POST'}).then(function(r){if(r.해지){A.api('/membership').then(그리기)}else{해지.disabled=false;alert(r.오류||'해지하지 못했어요. 잠시 뒤 다시 해 주세요')}})});
+  카드.appendChild(해지)}
+ B.appendChild(카드)}
+A.api('/membership').then(function(j){if(j._s===401)return;그리기(j)},function(){줄('이용권 정보를 불러오지 못했어요.')});
+})();</script>` : ''}
 <script type="application/json" id="공고자료">${JSON.stringify(자료).replace(/</g, '\\u003c')}</script>
 <script>(function(){var A=window.AC;if(!A)return;if(!A.tok()){location.replace(A.base+'/login/');return}
 var D=JSON.parse(document.getElementById('공고자료').textContent),L=document.getElementById('내목록');
