@@ -174,17 +174,27 @@
   // ── 질문하기(비공개) ───────────────────────────────
   function 질문목록() {
     비우기(); 머리('ask');
-    root.appendChild(h('div', { class: 'cm-비공개', id: 'cm-비공개' }, [h('b', { text: '🔒 완전 비공개예요' }), h('span', { text: '제목도 내용도 나와 영감만 볼 수 있어요. 다른 분들에게는 보이지 않아요.' })]));
+    root.appendChild(h('div', { class: 'cm-비공개', id: 'cm-비공개' }, [h('b', { text: '🔒 완전 비공개예요' }), h('span', { text: '제목도 내용도 나와 영감만 볼 수 있어요. 다른 분들에게는 "비공개 문의입니다"로만 보여요.' })]));
     var 줄 = h('div', { class: 'cm-쓰기줄' }, [h('button', { type: 'button', class: '단추 주', text: '문의 쓰기', onclick: function () { 가기('write/ask') } })]);
     root.appendChild(줄);
     var 표 = h('div', { class: '게시판목록' }, [h('div', { class: '행 머리줄' }, [h('span', { class: '번호', text: '번호' }), h('span', { class: '분류', text: '상태' }), h('span', { class: '제목', text: '내 질문' }), h('span', { class: '날짜', text: '날짜' })])]);
     root.appendChild(표);
-    A.api('/ask').then(function (j) {
-      if (j._s === 401) { 문닫힘(); return; }
-      var 질 = j.질문 || [];
+    Promise.all([A.api('/ask'), A.api('/community/inquiries')]).then(function (두개) {
+      var j = 두개[0], 전 = 두개[1];
+      if (j._s === 401 || 전._s === 401) { 문닫힘(); return; }
+      var 내것 = {}; (j.질문 || []).forEach(function (x) { 내것[x.id] = x; });
+      var 질 = 전.문의 || [];
+      (j.질문 || []).forEach(function (x) { if (!질.some(function (y) { return y.id === x.id; })) 질.push({ id: x.id, 상태: x.상태, 시각: x.시각 }); });   // 내 문의는 색인이 없어도 빠지지 않게
+      질.sort(function (a, b) { return a.id < b.id ? -1 : 1; });   // 번호가 작을수록 최신
       if (!질.length) { 표.appendChild(h('p', { class: '없음글 작은', text: '아직 보낸 문의가 없어요. 신청서 쓰다 막힌 곳, 컨설팅·결제 문의, 사이트에 바라는 점 뭐든 편하게 보내 주세요.' })); return; }
       질.forEach(function (x, i) {
-        표.appendChild(h('a', { class: '행', href: '#view/ask/' + x.id }, [h('span', { class: '번호', text: String(질.length - i) }), h('span', { class: '분류' + (x.상태 === '답변' ? '' : ' 대기'), text: x.상태 === '답변' ? '답변 완료' : '답변 대기' }), h('span', { class: '제목' }, [h('b', { text: x.제목 }), h('small', { text: x.말머리 })]), h('span', { class: '날짜', text: 날짜(x.시각) })]));
+        var 상태칸 = h('span', { class: '분류' + (x.상태 === '답변' ? '' : ' 대기'), text: x.상태 === '답변' ? '답변 완료' : '답변 대기' });
+        var 번 = h('span', { class: '번호', text: String(질.length - i) }), 날 = h('span', { class: '날짜', text: 날짜(x.시각) });
+        if (내것[x.id]) {
+          표.appendChild(h('a', { class: '행', href: '#view/ask/' + x.id }, [번, 상태칸, h('span', { class: '제목' }, [h('b', { text: 내것[x.id].제목 }), h('small', { text: '내 문의 · ' + 내것[x.id].말머리 })]), 날]));
+        } else {
+          표.appendChild(h('div', { class: '행 잠금행' }, [번, 상태칸, h('span', { class: '제목' }, [h('b', { text: '🔒 비공개 문의입니다' })]), 날]));
+        }
       });
     }, 오류화면);
   }
