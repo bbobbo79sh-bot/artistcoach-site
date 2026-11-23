@@ -392,7 +392,7 @@ a.행:hover .제목 b{color:var(--깊음)}
 .책배너 .책표{font-size:12px;font-weight:800;color:var(--깊음);background:color-mix(in srgb,var(--브랜드) 7%,#fff);border:1px solid color-mix(in srgb,var(--브랜드) 22%,#fff);padding:2px 10px;border-radius:999px}
 .책배너 b{font-size:17px;line-height:1.4}.책배너 p{margin:0;font-size:14.5px;line-height:1.65;color:var(--sub)}.책배너 small{font-size:12.5px;color:var(--sub)}
 .책배너 .단추{margin-top:6px}.책배너.작게{padding:12px 14px}.책배너.작게 img{flex-basis:64px;width:64px}
-.포트폴리오틀{margin:20px 0}.포트화면{position:relative;width:100%;aspect-ratio:16/9;background:#000;border-radius:16px;overflow:hidden;border:1px solid var(--선)}.포트화면 iframe{position:absolute;inset:0;width:100%;height:100%;border:0}.포트줄{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0 6px}.포트줄 .단추{flex:1 1 180px;text-align:center}
+.포트폴리오틀{margin:20px 0}.포트화면{position:relative;width:100%;aspect-ratio:16/9;background:#000;border-radius:16px;overflow:hidden;border:1px solid var(--선)}.포트화면 iframe{position:absolute;inset:0;width:100%;height:100%;border:0}.포트줄{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0 6px}.포트줄 .단추{flex:1 1 180px;text-align:center;text-decoration:none}.포트줄 .단추.주,.노트글 .포트줄 a.단추.주{color:#fff}
 .노트글 .글그림{margin:20px 0}.노트글 .글그림 img{max-width:100%;width:100%;box-shadow:none;border-radius:16px;border:1px solid var(--선)}
 .노트글 p,.노트글 li{font-size:17px;line-height:1.9}
 .노트글 h2{font-size:21px;line-height:1.45;margin:34px 0 10px;scroll-margin-top:72px}
