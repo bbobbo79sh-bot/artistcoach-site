@@ -212,11 +212,14 @@ module.exports = ({ 상품설정 = {}, 스토어켜짐 = false, 설정, 검수�
   const 표지 = 책 && 책.이미지 && /^[A-Za-z0-9_.\-가-힣]+$/.test(책.이미지) && fs.existsSync(path.join(뿌리, '자료', '상품', 책.이미지)) ? 길('/products/img/' + encodeURI(책.이미지)) : '';
   const 책배너 = (작게) => (!스토어켜짐 || !책) ? '' : `<aside class="책배너${작게 ? ' 작게' : ''}" aria-label="영감의 전자책">${표지 ? `<img src="${표지}" alt="${막기(책.이름)} 표지" width="92" height="115" loading="lazy">` : ''}<div class="책글"><span class="책표">영감의 전자책</span><b>${막기(책.이름)}</b><p>${작게 ? '여기까지 오셨다면, 이 이력으로 신청서를 한 칸씩 쓰는 법이 궁금하시죠? 그 다음 단계는 책에서 함께 해요.' : '정리한 이력으로 신청서를 한 칸씩 써 보세요. 사업 개요부터 활동실적까지, AI와 함께 쓰는 법을 차근차근 알려 드려요.'}</p><small>${막기(책.형태 || '전자책')} · ${막기(책.쪽수 || '')} · ${Number(책.가격).toLocaleString('ko-KR')}원</small><a class="단추 주 작은단추" href="${길('/products/' + 책.id + '/')}">책 자세히 보기</a></div></aside>`;
 
+  // 포트폴리오 화면 상자: 글 안에 [[포트폴리오]] 한 줄을 적으면 그 자리에 들어간다. 파일은 자료/정적/notes/portfolio-demo/ (index.html=움직이는 원본, portfolio.pdf)
+  const 포트폴리오틀 = `<div class="포트폴리오틀"><div class="포트화면"><iframe src="${길('/notes/portfolio-demo/')}" title="인승현 포트폴리오 (움직이는 원본)" loading="lazy" allow="fullscreen; autoplay" allowfullscreen></iframe></div><div class="포트줄"><a class="단추 주" href="${길('/notes/portfolio-demo/')}" target="_blank" rel="noopener">원본으로 보기 (전체 화면)</a><a class="단추" href="${길('/notes/portfolio-demo/portfolio.pdf')}" download>PDF 내려받기 (2.4MB)</a></div><p class="작은">원본은 움직임이 모두 나오는 HTML이에요. 폰에서는 '원본으로 보기'를 누르고 화면을 가로로 돌리면 더 크게 보여요. 열리지 않는 환경에서는 PDF를 받아 보세요.</p></div>`;
+
   // 코치 노트 글 읽기 화면 (주소 /notes/<id>/): 한 줄 요약 → 목차 → 번호 소제목 → 다음 글
   노트목록.forEach((n) => {
     경로목록.push(`/notes/${n.id}/`);
     let k = 0; const 제목들 = [];
-    const 본문 = n.본문.replace(/<p>\[\[책(:작게)?\]\]<\/p>/g, (m, 작) => 책배너(!!작)).replace(/<h2>(.*?)<\/h2>/g, (m, t) => { k += 1; 제목들.push([k, t.replace(/<[^>]+>/g, '')]); return `<h2 id="s${k}">${t}</h2>`; });
+    const 본문 = n.본문.replace(/<p>\[\[포트폴리오\]\]<\/p>/g, () => 포트폴리오틀).replace(/<p>\[\[책(:작게)?\]\]<\/p>/g, (m, 작) => 책배너(!!작)).replace(/<h2>(.*?)<\/h2>/g, (m, t) => { k += 1; 제목들.push([k, t.replace(/<[^>]+>/g, '')]); return `<h2 id="s${k}">${t}</h2>`; });
     const 자리 = 글항목.findIndex((x) => x.id === n.id); const 이전 = 글항목[자리 - 1], 다음 = 글항목[자리 + 1];   // 목록에서 바로 위(더 새 글)가 '이전 글', 바로 아래가 '다음 글'
     const 관련도구 = 도구항목.slice(0, 2);
     쓰기(`notes/${n.id}/index.html`, 틀({
