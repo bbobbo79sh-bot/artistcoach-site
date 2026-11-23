@@ -25,6 +25,7 @@ module.exports = ({ 틀, 길, 쓰기 }) => {
 .cm-쓰기줄{display:flex;justify-content:flex-end;margin:14px 0 18px}
 .cm-더{margin-top:14px}
 .행 .분류.대기{background:#fff4e5;border-color:#f3c98b;color:#8a5200}
+.행.잠금행{cursor:default;color:var(--흐림,#888)}.행.잠금행 .제목 b{font-weight:500;color:inherit}
 .cm-소제목{font-size:18px;margin:28px 0 8px}
 .cm-비공개{display:flex;flex-direction:column;gap:3px;background:color-mix(in srgb,var(--브랜드) 7%,#fff);border:1px solid color-mix(in srgb,var(--브랜드) 22%,#fff);border-radius:14px;padding:13px 16px;margin:14px 0 0;font-size:14.5px;line-height:1.6}
 .cm-비공개 b{color:var(--깊음);font-size:15px}.cm-비공개 small{color:var(--sub)}
