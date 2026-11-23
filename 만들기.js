@@ -392,6 +392,7 @@ a.행:hover .제목 b{color:var(--깊음)}
 .책배너 .책표{font-size:12px;font-weight:800;color:var(--깊음);background:color-mix(in srgb,var(--브랜드) 7%,#fff);border:1px solid color-mix(in srgb,var(--브랜드) 22%,#fff);padding:2px 10px;border-radius:999px}
 .책배너 b{font-size:17px;line-height:1.4}.책배너 p{margin:0;font-size:14.5px;line-height:1.65;color:var(--sub)}.책배너 small{font-size:12.5px;color:var(--sub)}
 .책배너 .단추{margin-top:6px}.책배너.작게{padding:12px 14px}.책배너.작게 img{flex-basis:64px;width:64px}
+.포트폴리오틀{margin:20px 0}.포트화면{position:relative;width:100%;aspect-ratio:16/9;background:#000;border-radius:16px;overflow:hidden;border:1px solid var(--선)}.포트화면 iframe{position:absolute;inset:0;width:100%;height:100%;border:0}.포트줄{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0 6px}.포트줄 .단추{flex:1 1 180px;text-align:center}
 .노트글 .글그림{margin:20px 0}.노트글 .글그림 img{max-width:100%;width:100%;box-shadow:none;border-radius:16px;border:1px solid var(--선)}
 .노트글 p,.노트글 li{font-size:17px;line-height:1.9}
 .노트글 h2{font-size:21px;line-height:1.45;margin:34px 0 10px;scroll-margin-top:72px}
@@ -736,6 +737,9 @@ const 상품결과 = require('./상품페이지.js')({ 설정: 상품설정, 뿌
 // 만드는 법·내리는 법은 도구/임시공유올리기.js 맨 위 설명 참고. 폴더를 지우면 주소가 사라진다.
 const 임시공유폴더 = path.join(뿌리, '자료', '임시공유');
 if (!검수용 && fs.existsSync(임시공유폴더)) fs.cpSync(임시공유폴더, 결과, { recursive: true });
+// 글에 끼워 넣는 정적 파일(예: 코치 노트의 움직이는 포트폴리오): 자료/정적/ 안의 폴더·파일이 결과 폴더에 같은 경로로 들어간다(검수용·정식 모두).
+const 정적폴더 = path.join(뿌리, '자료', '정적');
+if (fs.existsSync(정적폴더)) fs.cpSync(정적폴더, 결과, { recursive: true });
 if (커뮤니티) 커뮤니티.만들기();
 if (로그인) { 로그인.만들기(); console.log('  로그인 기능  켜짐 (' + 로그인.서버 + ')'); }
 // 짧은 주소: artistcoach.kr/book/ → 전자책 판매 페이지 (카드뉴스 QR·프로필 링크용). 유입 표시(ref=card)가 붙어 방문 통계에서 구분된다.
