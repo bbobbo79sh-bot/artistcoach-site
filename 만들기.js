@@ -78,7 +78,9 @@ const 제목정리 = (t) => String(t || '')
   .replace(/^\s*(알림|공지사항|공지|안내|축제[·ㆍ]행사)[\s:：\-]+(?=\S)/, '')
   .replace(/\s{2,}/g, ' ').replace(/\s+([~,])/g, ' $1').trim();
 살아있는.forEach((x) => { x.title = 제목정리(x.title) || x.title; });
-const 공고 = 살아있는.filter((x) => !모음인가(x))
+// 지원사업 공고가 아닌 기관의 소개·안내 글(예: 한국예술인복지재단 '예술인복지 안내 07 음악 분야 예술활동증명 기준')은 공고 목록에 올리지 않는다(영감 지적 2026-11-25). 자료는 조사 봇이 내보내므로 원천에서도 거르도록 요청해 두었다.
+const 안내글인가 = (x) => /^\s*예술인복지 안내\s*\d+(\s*\/\s*\d+)?(\s|$)/.test(x.title || '');
+const 공고 = 살아있는.filter((x) => !모음인가(x) && !안내글인가(x))
   .sort((a, b) => (a.deadline === '상시') - (b.deadline === '상시') || a.deadline.localeCompare(b.deadline));
 const 상시수 = 공고.filter((x) => x.deadline === '상시').length;
 // 인스타 카드뉴스 중 인기 있는 것 (조사 봇이 자료/추천.json 과 자료/추천/ 이미지를 내보낸다. 없으면 배너를 그리지 않는다)
