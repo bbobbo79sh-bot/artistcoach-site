@@ -1,7 +1,7 @@
 // 로그인 · 내 관심 공고 화면 (만들기.js 가 불러 쓴다). 로그인 서버(로그인서버/ 폴더, Cloudflare Worker)와 이야기한다.
 // 켜는 조건: 자료/로그인.json 에 '서버' 주소가 있고, 검수 사이트이거나 '정식공개'가 true 일 때.
 // 저장: 로그인 열쇠(토큰)만 이 브라우저 localStorage 에 둔다. 비밀번호·이메일은 다루지 않는다.
-module.exports = ({ 설정, 공고, 틀, 길, 막기, 쓰기, 멤버십 = false }) => {
+module.exports = ({ 설정, 공고, 틀, 길, 막기, 쓰기, 멤버십 = false, 검수용 = false }) => {
   const 판매서버 = /^https:\/\/[\w.\-/]+$/.test(설정.판매서버 || '') ? String(설정.판매서버).replace(/\/+$/, '') : '';   // 전자책 결제 서버(구매 목록·다시 받기)
   const 서버 = String(설정.서버 || '').replace(/\/+$/, '');
 
@@ -103,7 +103,7 @@ function draw(ids){if(!ids.length){L.innerHTML='<p>아직 담은 공고가 없�
  L.innerHTML=rows.map(function(r){if(r.gone)return'<div class="내카드 지남"><div><b>내려간 공고</b><small>마감됐거나 사이트에서 내려갔어요</small></div><button type="button" class="빼기" data-id="'+r.id+'">빼기</button></div>';
   var tag=r.n===null?'상시':r.n<0?'마감됨':r.n===0?'오늘 마감':'D-'+r.n;
   return'<div class="내카드'+(r.n!==null&&r.n<0?' 지남':'')+'"><a href="'+A.base+'/notice/'+r.id+'/"><span class="디'+(r.n!==null&&r.n<=3&&r.n>=0?' 급':'')+'">'+tag+'</span><b>'+esc(r.t)+'</b><small>'+esc(r.o)+'</small></a><button type="button" class="빼기" data-id="'+r.id+'">빼기</button></div>'}).join('')}
-A.api('/me').then(function(m){if(m._s===401){location.replace(A.base+'/login/');return}document.getElementById('내인사').textContent=(m.이름||'')+'님, 안녕하세요 ('+(m.제공자==='kakao'?'카카오':'구글')+' 로그인)';
+A.api('/me').then(function(m){if(m._s===401){location.replace(A.base+'/login/');return}document.getElementById('내인사').textContent=(m.이름||'')+'님, 안녕하세요 ('+(m.제공자==='kakao'?'카카오':m.제공자==='review'?'심사용':'구글')+' 로그인)';
  A.api('/saved').then(function(j){draw(j.공고||[])})});
 L.addEventListener('click',function(e){var b=e.target.closest('.빼기');if(!b)return;A.api('/saved/'+b.getAttribute('data-id'),{method:'DELETE'}).then(function(j){if(j.공고)draw(j.공고)})});
 document.getElementById('로그아웃').addEventListener('click',function(){A.api('/logout',{method:'POST'}).then(function(){A.set(null);location.href=A.base+'/'})});
@@ -131,11 +131,35 @@ document.getElementById('탈퇴').addEventListener('click',function(){if(!confir
 .내카드>div{flex:1;padding:14px 16px;display:flex;flex-direction:column;gap:4px}
 .내줄{display:flex;gap:10px;margin:22px 0 8px}
 .단추.약함{background:#fff;color:var(--sub);border:1px solid var(--선)}
+.심사폼{display:flex;flex-direction:column;gap:10px;margin:18px 0}.심사폼 label{font-weight:700;font-size:15px}
+.심사폼 input{width:100%;font:inherit;font-size:16px;padding:12px 14px;border:1px solid var(--선);border-radius:12px;background:var(--면);color:var(--ink);box-sizing:border-box}
 `;
+
+  // 토스페이먼츠 심사 담당자용 테스트 로그인 화면. 검수용 사이트에만 만들고 어디에도 링크하지 않는다. (서버: 로그인서버 POST /auth/review)
+  const 심사본문 = `<section class="일반글 로그인상자">
+  <span class="윗글">심사용</span>
+  <h1>심사용 테스트 로그인</h1>
+  <p>결제 심사 담당자만 쓰는 화면이에요. 일반 회원은 <a href="${길('/login/')}">구글·카카오 로그인</a>을 써 주세요.</p>
+  <form id="심사폼" class="심사폼" autocomplete="off">
+    <label for="심사id">ID</label><input id="심사id" type="text" autocomplete="off" maxlength="60">
+    <label for="심사pw">비밀번호</label><input id="심사pw" type="password" autocomplete="off" maxlength="80">
+    <p class="작은 로그인오류" id="심사오류" hidden></p>
+    <button type="submit" class="단추 주" id="심사단추">로그인</button>
+  </form>
+</section>
+<script>(function(){var A=window.AC;if(!A)return;var f=document.getElementById('심사폼'),e=document.getElementById('심사오류'),b=document.getElementById('심사단추');
+f.addEventListener('submit',function(ev){ev.preventDefault();e.hidden=true;b.disabled=true;
+ fetch(A.server+'/auth/review',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:document.getElementById('심사id').value.trim(),pw:document.getElementById('심사pw').value})})
+ .then(function(r){return r.json().then(function(j){return{s:r.status,j:j}})}).then(function(x){
+  if(x.j&&x.j.t&&/^[0-9a-f]{64}$/.test(x.j.t)){A.set(x.j.t);var n='';try{n=sessionStorage.getItem('ac_next')||'';sessionStorage.removeItem('ac_next')}catch(_){}
+   if(!/^\\/[A-Za-z0-9_\\-\\/]*$/.test(n)||n.indexOf('//')===0)n='';location.replace(n||A.base+'/membership/');return}
+  e.textContent=(x.j&&x.j.오류)||'로그인하지 못했어요';e.hidden=false;b.disabled=false},function(){e.textContent='서버에 연결하지 못했어요';e.hidden=false;b.disabled=false})});
+})();</script>`;
 
   const 만들기 = () => {
     쓰기('login.js', 스크립트);
     const 공통 = { 색인: false };
+    if (검수용) 쓰기('login/review/index.html', 틀({ 제목: '심사용 로그인 · 아티스트 코치', 설명: '결제 심사용 테스트 로그인', 경로: '/login/review/', 본문: 심사본문, ...공통 }));
     쓰기('login/index.html', 틀({ 제목: '로그인 · 아티스트 코치', 설명: '아티스트 코치 로그인', 경로: '/login/', 본문: 로그인본문, ...공통 }));
     쓰기('login/done/index.html', 틀({ 제목: '로그인 중 · 아티스트 코치', 설명: '로그인 중', 경로: '/login/done/', 본문: 완료본문, ...공통 }));
     쓰기('my/index.html', 틀({ 제목: '내 관심 공고 · 아티스트 코치', 설명: '내 관심 공고', 경로: '/my/', 본문: 내것본문, ...공통 }));
