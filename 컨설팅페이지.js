@@ -4,7 +4,7 @@
 // 아직 없는 것: 파일 첨부 · 영감 피드백/추가 질문 화면 · 결제 연결.
 const fs = require('fs');
 const path = require('path');
-module.exports = ({ 틀, 길, 쓰기 }) => {
+module.exports = ({ 틀, 길, 쓰기, 토스키 = '' }) => {
   const 구역 = [
     { id: 'A', t: 'A. 나의 활동', s: '심사위원이 볼 나의 모습이에요.' },
     { id: 'B', t: 'B. 지원사업 경험', s: '지금까지의 도전을 돌아봅니다.' },
@@ -104,10 +104,9 @@ var 진행방식='<div class="cs-상자"><h2>진행 방식</h2><ol class="cs-단
  +'<li><span class="번호">4</span><div><b>최종 피드백으로 컨설팅 종료</b><small>그에 따른 피드백을 드리고 컨설팅이 마무리돼요.</small></div></li></ol></div>';
 function 시작화면(j){
  root.innerHTML=머리+'<p>컨설팅은 아래 순서로 진행돼요.</p>'+진행방식+
-  (j.시작가능?'<div class="cs-검수">검수용 사이트의 시험 화면이에요. 결제는 연결되어 있지 않아요.</div><button type="button" class="단추 주 cs-큰단추" id="cs-시작">컨설팅 시작하기</button>'
-  :'<div class="cs-상자"><b>컨설팅은 결제 후에 열려요.</b><br>지금은 준비 중이에요. 열리면 바로 알려 드릴게요.</div>');
- var b=document.getElementById('cs-시작');
- if(b)b.addEventListener('click',function(){b.disabled=true;A.api('/consulting/start',{method:'POST'}).then(function(r){if(r.있음)그리기(r);else{b.disabled=false;alert(r.오류||'시작하지 못했어요')}},function(){b.disabled=false;alert('연결하지 못했어요')})})}
+  '<div class="cs-상자"><b>컨설팅은 결제하면 바로 시작할 수 있어요.</b><br><small style="color:var(--sub)">결제는 토스페이먼츠로 해요. 카드번호는 토스페이먼츠가 처리하고 이 사이트에는 저장되지 않아요.</small></div>'
+  +'<a class="단추 주 cs-큰단추" id="cs-결제" href="'+A.base+'/consulting/pay/" style="display:block;text-align:center;text-decoration:none">'+(j.결제열림===false?'결제 준비 중이에요':'결제하고 시작하기')+'</a>';
+}
 function 질문칸(q){var id='q'+q.n,본='';
  if(q.kind==='rank'){본='<div class="cs-순위">'+q.items.map(function(it,i){return'<div><label for="'+id+'_'+i+'">'+esc(it)+'</label><select id="'+id+'_'+i+'" data-k="'+id+'_'+i+'"><option value="">선택</option><option>1위</option><option>2위</option><option>3위</option><option>4위</option></select></div>'}).join('')+'</div>'}
  else if(q.kind==='basic'){
@@ -168,11 +167,82 @@ document.addEventListener('visibilitychange',function(){if(document.hidden&&dirt
 불러오기();
 })();</script>`;
 
+  const 결제본문 = `<section class="일반글 cs-글" id="cs-결제화면">
+  <span class="윗글">컨설팅</span>
+  <h1>컨설팅 신청</h1>
+  <p>결제하면 바로 질문지를 시작할 수 있어요.</p>
+  <div class="cs-상자"><h2>지원사업 컨설팅 (비대면 서면)</h2>
+    <div style="display:flex;align-items:baseline;gap:8px;margin:4px 0 10px"><b style="font-size:30px;letter-spacing:-.03em">100,000원</b><span style="color:var(--sub)">1회 결제</span></div>
+    <ul style="margin:0;padding-left:20px;line-height:1.85">
+      <li>결제한 본인이 로그인해서 보는 이 사이트 안의 웹 페이지로 진행돼요. 파일을 이메일로 보내 드리는 방식이 아니에요.</li>
+      <li>질문지를 제출한 날부터 <b>7일 이내</b> 첫 피드백과 추가 질문, 추가 질문 답변을 받은 날부터 <b>7일 이내</b> 최종 피드백을 드려요. 답변이 늦어지면 그만큼 길어져요. (최대 약 3주)</li>
+      <li>컨설팅은 방향과 준비를 돕는 서비스이며, 지원사업 선정을 보장하지 않아요.</li>
+    </ul></div>
+  <div class="cs-상자"><h2>환불 안내</h2>
+    <ul style="margin:0;padding-left:20px;line-height:1.85">
+      <li>질문지 제출 전, 결제일부터 7일 이내이면 <b>전액 환불</b>해요.</li>
+      <li>질문지를 제출한 뒤 첫 피드백 전에는 결제 금액의 <b>50%</b>를 환불해요.</li>
+      <li>첫 피드백을 받은 뒤에는 이미 서비스가 제공되어 <b>환불이 어려워요.</b></li>
+      <li>약속한 기한을 지키지 못하면 <b>전액 환불</b>해 드려요. <a href="${길('/refund/')}">환불 규정 전체 보기</a> · <a href="${길('/terms/')}">이용약관</a></li>
+    </ul></div>
+  <div class="cs-상자">
+    <label style="display:flex;gap:10px;align-items:flex-start;margin:4px 0"><input type="checkbox" id="cs-동의1" style="margin-top:6px;width:18px;height:18px;flex:none"><span><b>(필수)</b> 위 서비스 내용과 이용약관, 환불 규정을 확인했고 동의해요.</span></label>
+    <label style="display:flex;gap:10px;align-items:flex-start;margin:10px 0 4px"><input type="checkbox" id="cs-동의2" style="margin-top:6px;width:18px;height:18px;flex:none"><span><b>(필수)</b> 첫 피드백을 받은 뒤에는 환불이 어렵다는 것을 확인했어요.</span></label></div>
+  <p class="작은" id="cs-알림" hidden style="color:#c0392b"></p>
+  <button type="button" class="단추 주 cs-큰단추" id="cs-결제하기">100,000원 결제하기</button>
+  <p class="작은" style="margin-top:12px">카드번호는 토스페이먼츠가 처리하고 이 사이트에는 저장되지 않아요.</p>
+</section>
+<script src="https://js.tosspayments.com/v2/standard"></script>
+<script>(function(){var A=window.AC;if(!A)return;var 키=${JSON.stringify(토스키)};
+var 알림=document.getElementById('cs-알림'),버튼=document.getElementById('cs-결제하기');
+function 알려(t){알림.textContent=t;알림.hidden=!t}
+if(!A.tok()){try{sessionStorage.setItem('ac_next','/consulting/pay/')}catch(e){}location.replace(A.base+'/login/');return}
+A.api('/consulting/me').then(function(j){if(j._s===401)return;if(j.있음){location.replace(A.base+'/consulting/me/');return}if(j.결제열림===false){버튼.disabled=true;버튼.textContent='결제 준비 중이에요'}});
+버튼.addEventListener('click',async function(){
+ 알려('');
+ if(!document.getElementById('cs-동의1').checked||!document.getElementById('cs-동의2').checked){알려('두 가지 동의에 모두 체크해 주세요.');return}
+ if(!키||typeof TossPayments==='undefined'){알려('결제창을 불러오지 못했어요. 잠시 뒤 다시 해 주세요.');return}
+ 버튼.disabled=true;
+ try{
+  var 주문=await A.api('/consulting/pay/order',{method:'POST'});
+  if(!주문||!주문.주문번호){버튼.disabled=false;if(주문&&주문._s===409){location.replace(A.base+'/consulting/me/');return}알려((주문&&주문.오류)||'주문을 만들지 못했어요.');return}
+  var 나=await A.api('/me');
+  var 결제=TossPayments(키).payment({customerKey:TossPayments.ANONYMOUS});
+  await 결제.requestPayment({method:'CARD',amount:{currency:'KRW',value:주문.금액},orderId:주문.주문번호,orderName:주문.상품이름,
+   successUrl:location.origin+A.base+'/consulting/pay/done/',failUrl:location.origin+A.base+'/consulting/pay/fail/'});
+ }catch(e){버튼.disabled=false;if(e&&e.code!=='USER_CANCEL')알려('결제창을 열지 못했어요: '+(e.message||e.code||''))}
+});})();</script>`;
+  const 완료본문 = `<section class="일반글 cs-글">
+  <span class="윗글">컨설팅</span>
+  <h1 id="cs-제목">결제를 확인하고 있어요…</h1>
+  <p id="cs-말">잠시만 기다려 주세요. 이 화면을 닫지 마세요.</p>
+  <div class="ms-줄" style="display:flex;gap:10px;margin-top:18px"><a class="단추 주" id="cs-이동" href="${길('/consulting/me/')}" hidden>질문지 시작하기</a></div>
+</section>
+<script>(function(){var A=window.AC;if(!A)return;
+var q=new URLSearchParams(location.search),제목=document.getElementById('cs-제목'),말=document.getElementById('cs-말'),이동=document.getElementById('cs-이동');
+function 실패(t){제목.textContent='결제를 확인하지 못했어요';말.textContent=t||'잠시 뒤 다시 해 주세요.';}
+if(!A.tok()){try{sessionStorage.setItem('ac_next',location.pathname+location.search)}catch(e){}location.replace(A.base+'/login/');return}
+var 키=q.get('paymentKey'),주문=q.get('orderId'),금액=Number(q.get('amount'));
+if(!키||!주문||!금액){실패('결제 정보가 없어요.');return}
+A.api('/consulting/pay/confirm',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({paymentKey:키,orderId:주문,amount:금액})}).then(function(r){
+ if(r&&r.결제완료){제목.textContent='결제가 완료됐어요';말.textContent='이제 질문지를 시작할 수 있어요. 쓰는 내용은 자동으로 저장돼요.';이동.hidden=false;return}
+ 실패((r&&r.오류)||'');
+},function(){실패('연결하지 못했어요. 결제 금액이 나갔다면 잠시 뒤 이 화면을 새로고침해 주세요.')});})();</script>`;
+  const 실패본문 = `<section class="일반글 cs-글">
+  <span class="윗글">컨설팅</span>
+  <h1>결제가 끝나지 않았어요</h1>
+  <p id="cs-사유">결제를 마치지 못했어요. 금액은 청구되지 않았어요.</p>
+  <p><a class="단추 주" href="${길('/consulting/pay/')}">다시 결제하기</a> <a class="단추 약함" href="${길('/consulting/')}">컨설팅 안내로</a></p>
+</section>
+<script>(function(){var m=new URLSearchParams(location.search).get('message');if(m)document.getElementById('cs-사유').textContent='결제를 마치지 못했어요: '+m+' (금액은 청구되지 않았어요)'})();</script>`;
   const 판매스타일 = fs.readFileSync(path.join(__dirname, '홈화면', '컨설팅.css'), 'utf8');
   const 판매본문 = fs.readFileSync(path.join(__dirname, '홈화면', '컨설팅.html'), 'utf8').replace(/\{\{BASE\}\}/g, 길(''));
   const 만들기 = () => {
     // 판매 페이지(누구나 볼 수 있음)와, 결제한 사람이 쓰는 질문지 화면(로그인 필요)을 나눈다
     쓰기('consulting/index.html', 틀({ 제목: '지원사업 컨설팅 · 아티스트 코치', 설명: '지원사업에 도전하기 전, 내 방향부터 잡아 보는 서면 컨설팅. 질문에 답하면 코치 영감이 전체 답변을 종합해 피드백을 드려요.', 경로: '/consulting/', 현재: '컨설팅', 본문: 판매본문, 색인: false }));
+    쓰기('consulting/pay/index.html', 틀({ 제목: '컨설팅 신청 · 아티스트 코치', 설명: '지원사업 컨설팅 결제', 경로: '/consulting/pay/', 현재: '컨설팅', 본문: 결제본문, 색인: false }));
+    쓰기('consulting/pay/done/index.html', 틀({ 제목: '컨설팅 결제 확인 · 아티스트 코치', 설명: '지원사업 컨설팅 결제 확인', 경로: '/consulting/pay/done/', 현재: '컨설팅', 본문: 완료본문, 색인: false }));
+    쓰기('consulting/pay/fail/index.html', 틀({ 제목: '컨설팅 결제 · 아티스트 코치', 설명: '지원사업 컨설팅 결제', 경로: '/consulting/pay/fail/', 현재: '컨설팅', 본문: 실패본문, 색인: false }));
     쓰기('consulting/me/index.html', 틀({ 제목: '내 컨설팅 · 아티스트 코치', 설명: '지원사업 컨설팅 질문지', 경로: '/consulting/me/', 현재: '커뮤니티', 본문, 색인: false }));
   };
   return { 스타일: 스타일 + '\n' + 판매스타일, 만들기 };
