@@ -2,6 +2,8 @@
 // 컨설팅 봇의 시안(바탕화면 '지원사업 컨설팅 봇')을 사이트에 옮긴 것이다. 문구 원칙: 흰색 톤, 가격·"질문 30개" 같은 숫자를 앞세우지 않는다, "자세히"를 권한다.
 // 결제 연결 전이라 검수 사이트에서만 만든다(정식 사이트에는 이 화면이 없다). 내용은 로그인 서버(/consulting)에 저장되고 본인과 운영자만 본다.
 // 아직 없는 것: 파일 첨부 · 영감 피드백/추가 질문 화면 · 결제 연결.
+const fs = require('fs');
+const path = require('path');
 module.exports = ({ 틀, 길, 쓰기 }) => {
   const 구역 = [
     { id: 'A', t: 'A. 나의 활동', s: '심사위원이 볼 나의 모습이에요.' },
@@ -90,7 +92,7 @@ var root=document.getElementById('cs-root'),data={},timer=null,dirty=false,바�
 function esc(s){return String(s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
 function 시각(){var d=new Date();return d.getHours()+':'+String(d.getMinutes()).padStart(2,'0')}
 function 날짜글(s){var m=/^(\\d{4})-(\\d{2})-(\\d{2})$/.exec(s||'');return m?m[1]+'년 '+Number(m[2])+'월 '+Number(m[3])+'일':(s||'')}
-if(!A.tok()){try{sessionStorage.setItem('ac_next','/consulting/')}catch(e){}location.replace(A.base+'/login/');return}
+if(!A.tok()){try{sessionStorage.setItem('ac_next','/consulting/me/')}catch(e){}location.replace(A.base+'/login/');return}
 var 머리='<span class="윗글">컨설팅</span><h1>지원사업 컨설팅</h1>';
 function 오류(t){root.innerHTML=머리+'<p>'+esc(t)+'</p>'}
 function 불러오기(){A.api('/consulting/me').then(function(j){if(j._s===401)return;그리기(j)},function(){오류('연결하지 못했어요. 잠시 뒤 다시 해 주세요.')})}
@@ -166,8 +168,12 @@ document.addEventListener('visibilitychange',function(){if(document.hidden&&dirt
 불러오기();
 })();</script>`;
 
+  const 판매스타일 = fs.readFileSync(path.join(__dirname, '홈화면', '컨설팅.css'), 'utf8');
+  const 판매본문 = fs.readFileSync(path.join(__dirname, '홈화면', '컨설팅.html'), 'utf8').replace(/\{\{BASE\}\}/g, 길(''));
   const 만들기 = () => {
-    쓰기('consulting/index.html', 틀({ 제목: '지원사업 컨설팅 · 아티스트 코치', 설명: '지원사업 컨설팅', 경로: '/consulting/', 현재: '커뮤니티', 본문, 색인: false }));
+    // 판매 페이지(누구나 볼 수 있음)와, 결제한 사람이 쓰는 질문지 화면(로그인 필요)을 나눈다
+    쓰기('consulting/index.html', 틀({ 제목: '지원사업 컨설팅 · 아티스트 코치', 설명: '지원사업에 도전하기 전, 내 방향부터 잡아 보는 서면 컨설팅. 질문에 답하면 코치 영감이 전체 답변을 종합해 피드백을 드려요.', 경로: '/consulting/', 현재: '컨설팅', 본문: 판매본문, 색인: false }));
+    쓰기('consulting/me/index.html', 틀({ 제목: '내 컨설팅 · 아티스트 코치', 설명: '지원사업 컨설팅 질문지', 경로: '/consulting/me/', 현재: '커뮤니티', 본문, 색인: false }));
   };
-  return { 스타일, 만들기 };
+  return { 스타일: 스타일 + '\n' + 판매스타일, 만들기 };
 };
