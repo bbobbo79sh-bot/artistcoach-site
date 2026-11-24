@@ -37,6 +37,7 @@ if(b){var id=b.getAttribute('data-id'),on=false;
   <div id="로그인단추" class="로그인단추줄"><p class="작은">불러오는 중…</p></div>
   <p class="작은">받는 정보는 <b>닉네임(이름)</b> 하나예요. 이메일과 전화번호는 받지 않아요. 자세한 내용은 <a href="${길('/privacy/')}">개인정보처리방침</a>을 봐 주세요.</p>
   <p class="작은 로그인오류" id="로그인오류" hidden></p>
+  ${검수용 ? `<p class="작은"><b>결제 심사 담당자</b>께: 신청서에 적은 테스트 계정(ID·비밀번호)으로 들어가려면 <a href="${길('/login/review/')}">심사용 로그인</a>을 눌러 주세요. 로그인 뒤 <a href="${길('/membership/')}">고급 정보 이용권</a>에서 가입 화면을 볼 수 있어요.</p>` : ''}
 </section>
 <script>(function(){var A=window.AC;if(!A)return;var box=document.getElementById('로그인단추');
 if(A.tok()){location.replace(A.base+'/');return}
