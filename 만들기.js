@@ -439,7 +439,8 @@ a.행:hover .제목 b{color:var(--깊음)}
 
 // ───────── 공통 틀 ─────────
 // 스타일 파일이 바뀌면 주소가 달라지게 해서, 예전 스타일이 브라우저에 남아 화면이 깨지는 일을 막는다
-const 스타일버전 = require('crypto').createHash('sha1').update(스타일).digest('hex').slice(0, 8);
+const 새스타일 = ['홈.css', '목록.css'].map((f) => fs.readFileSync(path.join(뿌리, '홈화면', f), 'utf8')).join('\n');
+const 스타일버전 = require('crypto').createHash('sha1').update(스타일 + 새스타일).digest('hex').slice(0, 8);
 const 틀 = ({ 제목, 설명, 경로, 본문, 현재 = '', 스크립트 = '', 색인 = true }) => `<!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -469,7 +470,7 @@ ${애드센스 ? `<script async src="https://pagead2.googlesyndication.com/pagea
 <body>
 <header class="머리"><div class="틀">
   <a class="로고줄" href="${길('/')}"><img src="${길('/logo.svg')}" alt="" width="36" height="36"><span class="글자로고">아티스트<mark>코치</mark></span></a>
-  <nav><a href="${길('/')}"${현재 === '공고' ? ' aria-current="page"' : ''}>공고</a>${자료실켜짐 ? `<a href="${길('/notes/')}"${현재 === '코치 노트' ? ' aria-current="page"' : ''}>코치노트</a><a href="${길('/tools/')}"${현재 === '도구함' ? ' aria-current="page"' : ''}>도구함</a>` : ''}${커뮤니티 ? `<span class="메뉴묶음"><a href="${길('/community/')}"${현재 === '커뮤니티' ? ' aria-current="page"' : ''} aria-haspopup="true">커뮤니티</a><span class="드롭"><span class="드롭상자"><a href="${길('/community/#notice')}">📢 공지</a><a href="${길('/community/#free')}">💬 자유게시판</a><a href="${길('/community/#ask')}">🔒 문의하기 <small>비공개</small></a><a href="${길('/community/#review')}">🏆 합격·후기</a></span></span></span>` : ''}${스토어켜짐 ? `<a href="${길('/products/')}">스토어</a>` : ''}${로그인 ? 로그인.메뉴 : ''}</nav>
+  <nav><a href="${길('/notices/')}"${현재 === '공고' ? ' aria-current="page"' : ''}>공고</a>${자료실켜짐 ? `<a href="${길('/notes/')}"${현재 === '코치 노트' ? ' aria-current="page"' : ''}>코치노트</a><a href="${길('/tools/')}"${현재 === '도구함' ? ' aria-current="page"' : ''}>도구함</a>` : ''}${커뮤니티 ? `<span class="메뉴묶음"><a href="${길('/community/')}"${현재 === '커뮤니티' ? ' aria-current="page"' : ''} aria-haspopup="true">커뮤니티</a><span class="드롭"><span class="드롭상자"><a href="${길('/community/#notice')}">📢 공지</a><a href="${길('/community/#free')}">💬 자유게시판</a><a href="${길('/community/#ask')}">🔒 문의하기 <small>비공개</small></a><a href="${길('/community/#review')}">🏆 합격·후기</a></span></span></span>` : ''}${멤버십켜짐 ? `<a href="${길('/membership/library/')}" style="color:var(--깊음)">🔒 코치 라운지</a>` : ''}${스토어켜짐 ? `<a href="${길('/products/')}">스토어</a>` : ''}${로그인 ? 로그인.메뉴 : ''}</nav>
 </div></header>
 ${로그인 ? 로그인.스크립트태그 : ''}
 <main class="틀">
@@ -567,14 +568,11 @@ const 첫화면스크립트 = `<script>
 
 const 가이드결과 = 가이드켜짐 ? require('./가이드페이지.js')({ 뿌리, 틀, 길, 막기, 쓰기, 광고칸 }) : { 경로목록: [], 글수: 0, 목록: [] };
 const 자료실 = require('./자료실페이지.js')({ 상품설정, 스토어켜짐, 설정: 자료실설정, 검수용, 뿌리, 결과, 틀, 길, 막기, 쓰기, 광고칸, 가이드: 가이드결과.목록 });
+const 새화면 = require('./새홈.js')({ 공고, 오늘글, 길, 막기, 쓰기, 뿌리, 멤버십켜짐 });
+const 미니딱지스크립트 = `<script>(function(){var 오늘=new Date();오늘.setHours(0,0,0,0);[].slice.call(document.querySelectorAll('.미니')).forEach(function(c){var d=c.dataset.deadline;if(!d||d==='상시')return;var n=Math.round((new Date(d+'T00:00:00')-오늘)/86400000);if(n<0){c.remove();return}var b=c.querySelector('.디');if(b){b.textContent=n===0?'오늘 마감':'D-'+n;b.classList.toggle('급',n<=3)}})})();</script>`;
 const 첫화면본문 = `
-<section class="영웅">
-  <span class="윗글">오늘의 지원사업</span>
-  <h1>오늘 마감 공고,<br><mark>코치가 먼저</mark> 챙겼어요.</h1>
-  <p class="설명">전국 기관의 지원사업 공고를 마감이 가까운 순서로 모았어요. 공고마다 기관의 원문 링크로 연결돼요.</p>
-  <div class="검색줄"><input id="검색" type="search" placeholder="사업명이나 기관으로 찾기" autocomplete="off" aria-label="공고 검색"></div>
-  <div class="수치"><span><b>${공고.length}</b>건의 공고</span><span><b>${상시수}</b>건 상시 접수</span><span>${오늘.getMonth() + 1}월 ${오늘.getDate()}일 기준</span></div>
-</section>
+${새화면.홈스테이지}
+${새화면.라운지구역}
 ${추천.length ? `<section class="추천" aria-label="인기 카드뉴스" aria-roledescription="carousel">
   <div class="제목줄"><h2>카드뉴스로 먼저 보기</h2></div>
   <div class="줄" id="추천줄">${[0, 1, 2].map((k) => 추천.map((r) => `<a class="장" href="${길(`/notice/${r.공고.id}/`)}"${k !== 1 ? ' tabindex="-1"' : ''}${k !== 1 ? ' aria-hidden="true"' : ''}>
@@ -635,23 +633,18 @@ ${추천.length ? `<section class="추천" aria-label="인기 카드뉴스" aria
 ${자료실.띠}
 ${광고칸('첫화면')}
 ${스토어켜짐 ? `<section class="추천" aria-label="스토어"><div class="제목줄"><h2>스토어</h2></div><div class="상품목록">${(상품설정.상품 || []).filter((p) => Number(p.가격) > 0 && !p.목록숨김).map((p) => `<a class="상품카드" href="${길(`/products/${p.id}/`)}">${p.이미지 ? `<img src="${길('/products/img/' + encodeURI(p.이미지))}" alt="${막기(p.이름)} 표지" width="800" height="1000">` : ''}<b>${막기(p.이름)}</b><span>${막기(p.한줄)}</span><em>${Number(p.가격).toLocaleString('ko-KR')}원</em></a>`).join('')}</div></section>` : ''}
-<div class="도구"><div class="칩줄" id="기간줄">${기간목록.map(([v, 이름], i) => `<button class="칩" data-v="${v}" aria-pressed="${i === 0}">${이름}</button>`).join('')}</div></div>
-<div class="거름">
-  <div class="칩줄" id="분류줄"><button class="칩" data-v="" aria-pressed="true">모든 종류</button>${분류목록.map((c) => `<button class="칩" data-v="${막기(c)}" aria-pressed="false">${막기(c)}</button>`).join('')}</div>
-  <div class="선택줄"><select id="권역" aria-label="지역"><option value="">지역 전체</option></select><select id="대상" aria-label="지원 대상"><option value="">대상 전체</option></select></div>
-</div>
-<div class="개수줄" id="개수줄"><span class="개수" id="개수"></span><div class="보기바꿈" role="group" aria-label="보기 방식"><button type="button" data-v="간단" aria-pressed="true">목록</button><button type="button" data-v="카드" aria-pressed="false">카드</button></div></div>
-<div class="목록 간단" id="목록">
-${공고.map(카드).join('\n')}
-</div>
-<p class="없음" id="없음" hidden>조건에 맞는 공고가 없어요.</p>
-<button class="더보기" id="더보기" hidden>더 보기</button>
-<button class="맨위" id="맨위" type="button" aria-label="맨 위로">↑</button>`;
+</div></div>`;
 
 쓰기('index.html', 틀({
   제목: '아티스트 코치 · 예술인을 위한 지원사업 공고',
   설명: `전국 예술 지원사업 공고 ${공고.length}건을 마감 임박 순으로. 원문 링크와 함께 한곳에서 확인하세요.`,
-  경로: '/', 본문: 첫화면본문, 현재: '공고', 스크립트: 첫화면스크립트,
+  경로: '/', 본문: 첫화면본문, 현재: '공고', 스크립트: 새화면.홈스크립트 + 미니딱지스크립트,
+}));
+
+쓰기('notices/index.html', 틀({
+  제목: '공고 목록 · 아티스트 코치',
+  설명: `전국 예술 지원사업 공고 ${공고.length}건을 기관 순서(중앙·광역·시군구·민간)로 모았어요. 장르·지역·마감으로 좁혀 보세요.`,
+  경로: '/notices/', 본문: 새화면.목록본문, 현재: '공고', 스크립트: 새화면.목록스크립트,
 }));
 
 // ───────── 공고 한 건마다 한 페이지 ─────────
@@ -680,7 +673,7 @@ const 충실한가 = (x) => !!(x.summary && x.summary.trim());
     x.posted && ['게시일', 날짜짧게(x.posted)],
   ].filter(Boolean);
   const 본문 = `<article class="상세">
-  <a class="뒤로" href="${길('/')}">← 공고 목록</a>
+  <a class="뒤로" href="${길('/notices/')}">← 공고 목록</a>
   <div class="위"><span class="디${급함(x.deadline) ? ' 급' : ''}" data-d="${x.deadline}" id="딱지">${딱지글(x.deadline)}</span></div>
   <h1>${막기(x.title)}</h1>
   <dl class="정보">${정보.map(([이름, 값, 클래스]) => `<div${클래스 ? ` class="${클래스}"` : ''}><dt>${이름}</dt><dd>${값}</dd></div>`).join('')}</dl>
@@ -757,7 +750,7 @@ if (스토어켜짐 && (상품설정.상품 || [])[0]) {
 }));
 
 // ───────── 스타일 · 로고 · 아이콘 · 검색엔진용 파일 ─────────
-쓰기('style.css', 스타일.trim() + '\n');
+쓰기('style.css', 스타일.trim() + '\n' + 새스타일 + '\n');
 쓰기('logo.svg', 로고SVG());
 쓰기('logo-mono.svg', 로고SVG(ink));
 쓰기('manifest.webmanifest', JSON.stringify({
@@ -770,7 +763,7 @@ if (애드센스) 쓰기('ads.txt', `google.com, pub-${애드센스.replace('ca-
 쓰기('robots.txt', 검수용 ? 'User-agent: *\nDisallow: /\n' : `User-agent: *\nAllow: /\nSitemap: ${주소}/sitemap.xml\n`);
 if (검수용 && process.env.SITE_CNAME) 쓰기('CNAME', process.env.SITE_CNAME.trim() + '\n');
 쓰기('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
-  ['/', '/about/', '/terms/', '/privacy/', '/refund/', ...가이드결과.경로목록, ...자료실.경로목록, ...상품결과.경로목록, ...공고.filter(충실한가).map((x) => `/notice/${x.id}/`)].map((u) => `  <url><loc>${주소}${u}</loc><lastmod>${오늘글}</lastmod></url>`).join('\n') + `\n</urlset>\n`);
+  ['/', '/notices/', '/about/', '/terms/', '/privacy/', '/refund/', ...가이드결과.경로목록, ...자료실.경로목록, ...상품결과.경로목록, ...공고.filter(충실한가).map((x) => `/notice/${x.id}/`)].map((u) => `  <url><loc>${주소}${u}</loc><lastmod>${오늘글}</lastmod></url>`).join('\n') + `\n</urlset>\n`);
 
 if (추천.length) {
   추천.forEach((r) => { fs.mkdirSync(path.join(결과, '추천'), { recursive: true }); fs.copyFileSync(path.join(추천폴더, r.image), path.join(결과, '추천', r.image)); });
