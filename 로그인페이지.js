@@ -83,8 +83,8 @@ else{g.textContent=(q.error||'로그인하지 못했어요')+'.';document.getEle
 ${멤버십 ? `<script>(function(){var A=window.AC,B=document.getElementById('내이용권');if(!A||!B||!A.tok())return;
 function 줄(t){B.innerHTML='';var p=document.createElement('p');p.textContent=t;B.appendChild(p)}
 function 그리기(j){
- if(!j.이용중){B.innerHTML='<p>이용 중인 이용권이 없어요. <a href="'+A.base+'/membership/">고급 정보 이용권 알아보기</a></p>';return}
- B.innerHTML='';var 카드=document.createElement('div');카드.className='내카드';var 안=document.createElement('div');var b=document.createElement('b');b.textContent='고급 정보 이용권 (월 10,000원)';var s=document.createElement('small');
+ if(!j.이용중){B.innerHTML='<p>이용 중인 이용권이 없어요. <a href="'+A.base+'/membership/">코치 크루 알아보기</a></p>';return}
+ B.innerHTML='';var 카드=document.createElement('div');카드.className='내카드';var 안=document.createElement('div');var b=document.createElement('b');b.textContent='코치 크루 (월 10,000원)';var s=document.createElement('small');
  s.textContent=j.상태==='해지예정'?'해지했어요 · '+j.만료+'까지 이용할 수 있어요':'이용 중 · 다음 결제일 '+(j.다음결제||'-')+' · '+(j.만료||'-')+'까지 이용';안.appendChild(b);안.appendChild(s);카드.appendChild(안);
  if(j.상태==='이용중'){var 해지=document.createElement('button');해지.type='button';해지.className='빼기';해지.textContent='해지하기';
   해지.addEventListener('click',function(){if(!confirm('해지할까요?\\n다음 결제부터 중단되고, 이미 결제한 기간('+(j.만료||'-')+')까지는 계속 볼 수 있어요.'))return;해지.disabled=true;

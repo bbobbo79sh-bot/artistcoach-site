@@ -1,11 +1,11 @@
-// 고급 정보 이용권(월 구독) 안내 화면 (만들기.js 가 불러 쓴다).
+// 코치 크루(월 구독) 안내 화면 (만들기.js 가 불러 쓴다).
 // 결제는 토스 정기결제 계약·카드사 심사가 끝난 뒤에 연결한다. 그 전에는 '결제 준비 중'으로만 보이고, 정식 사이트에는 '멤버십공개'가 true 일 때만 나온다.
 // 상태(이용중·해지예정)는 로그인 서버(/membership)에서 읽는다. 해지 단추는 "내 공간"(로그인페이지.js)에 있고 여기서도 같은 서버 길을 쓴다.
 module.exports = ({ 틀, 길, 쓰기, 토스키 = '' }) => {
   const 스타일 = `
 .ms-글{max-width:720px}
 .ms-값{display:flex;align-items:baseline;gap:8px;margin:6px 0 4px}.ms-값 b{font-size:34px;letter-spacing:-.03em;color:var(--깊음)}.ms-값 span{color:var(--sub)}
-.ms-상자{border:1.5px solid var(--선);border-radius:18px;background:var(--면);padding:18px 20px;margin:16px 0}
+.ms-상자{border:1px solid var(--선);border-radius:20px;background:var(--면);padding:20px 22px;margin:16px 0;box-shadow:0 4px 18px rgba(11,27,58,.06)}
 .ms-상자 h2{font-size:18px;margin:0 0 8px}.ms-상자 ul{margin:0;padding-left:20px;line-height:1.85}
 .ms-준비{background:color-mix(in srgb,var(--브랜드) 7%,#fff);border:1px solid color-mix(in srgb,var(--브랜드) 22%,#fff);border-radius:14px;padding:13px 16px;margin:14px 0;line-height:1.7}
 .ms-줄{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 6px}
@@ -14,7 +14,7 @@ module.exports = ({ 틀, 길, 쓰기, 토스키 = '' }) => {
 .ms-폼 input[type=email]{width:100%;font:inherit;font-size:16px;padding:12px 14px;border:1px solid var(--선);border-radius:12px;background:var(--면);color:var(--ink);box-sizing:border-box}
 .ms-폼 .ms-동의{display:flex;gap:10px;align-items:flex-start;font-weight:500;line-height:1.7}.ms-폼 .ms-동의 input{margin-top:5px;width:18px;height:18px;flex:none}
 .ms-글목록{list-style:none;margin:18px 0;padding:0;display:grid;gap:12px}
-.ms-글목록 a{display:block;border:1.5px solid var(--선);border-radius:18px;background:var(--면);padding:18px 20px;text-decoration:none;color:inherit;transition:transform .15s,border-color .15s}
+.ms-글목록 a{display:block;border:1px solid var(--선);border-radius:20px;background:var(--면);padding:18px 22px;box-shadow:0 4px 18px rgba(11,27,58,.06);text-decoration:none;color:inherit;transition:transform .15s,border-color .15s}
 .ms-글목록 a:hover{transform:translateY(-3px);border-color:var(--브랜드)}
 .ms-글목록 b{display:block;font-size:19px;line-height:1.4;letter-spacing:-.02em}
 .ms-글목록 span{display:block;color:var(--sub);margin-top:4px;line-height:1.6}.ms-글목록 small{display:block;color:var(--sub);margin-top:8px;font-size:13px}
@@ -22,8 +22,8 @@ module.exports = ({ 틀, 길, 쓰기, 토스키 = '' }) => {
 .ms-저작{margin-top:34px;padding:14px 16px;border-radius:14px;background:var(--아주연함);color:var(--sub);font-size:14px;line-height:1.7}
 `;
   const 본문 = `<section class="일반글 ms-글">
-  <span class="윗글">이용권</span>
-  <h1>고급 정보 이용권</h1>
+  <span class="윗글">코치 크루</span>
+  <h1>코치 크루가 되어 보세요</h1>
   <p>AI를 활용한 지원사업 신청서 작성 요령처럼, 공개 글보다 한 걸음 더 들어간 정보를 회원 전용 게시판에 올립니다.</p>
   <div class="ms-값"><b>월 10,000원</b><span>매월 자동 결제 · 언제든 해지</span></div>
   <div class="ms-준비" id="ms-준비"><b>결제는 아직 열리지 않았어요.</b><br>결제대행사 심사가 끝나면 이 화면에서 가입할 수 있어요. 열리면 바로 알려 드릴게요.</div>
@@ -43,13 +43,13 @@ module.exports = ({ 틀, 길, 쓰기, 토스키 = '' }) => {
 <script>(function(){var A=window.AC;if(!A)return;var 단추=document.getElementById('ms-단추'),상태=document.getElementById('ms-내상태'),준비=document.getElementById('ms-준비');
 if(!A.tok())return;
 A.api('/membership').then(function(j){if(j._s===401)return;
- if(j.이용중){단추.textContent='고급 정보 보러 가기';단추.href=A.base+'/membership/library/';
+ if(j.이용중){단추.textContent='코치 라운지 들어가기';단추.href=A.base+'/membership/library/';
   상태.textContent=j.상태==='해지예정'?'해지했어요. '+j.만료+'까지 이용할 수 있어요.':'이용 중이에요. 다음 결제일은 '+(j.다음결제||'-')+'이에요.';return}
  if(j.결제열림){준비.hidden=true;단추.textContent='가입하기';단추.href=A.base+'/membership/join/'}else{단추.textContent='결제 준비 중';단추.setAttribute('disabled','disabled');단추.removeAttribute('href')}   // 결제가 열리기(토스 정기결제 승인) 전에는 누를 수 없다
 })})();</script>`;
   const 가입본문 = `<section class="일반글 ms-글">
-  <span class="윗글">이용권</span>
-  <h1>고급 정보 이용권 가입</h1>
+  <span class="윗글">코치 크루</span>
+  <h1>코치 크루 되기</h1>
   <div class="ms-값"><b>월 10,000원</b><span>매월 자동 결제 · 언제든 해지</span></div>
   <div class="ms-상자">
     <h2>가입하기 전에 꼭 확인해 주세요</h2>
@@ -99,11 +99,11 @@ A.api('/membership/subscribe',{method:'POST',headers:{'Content-Type':'applicatio
 },function(){끝('연결하지 못했어요','잠시 뒤 다시 해 주세요. 결제 여부는 "내 공간"에서 확인할 수 있어요.',false)})})();</script>`;
   // 회원 전용 글 목록·읽기 (이용권이 있는 회원만. 글 내용은 로그인 서버에서만 내려온다)
   const 자료목록본문 = `<section class="일반글 ms-글">
-  <span class="윗글">이용권</span>
-  <h1>고급 정보</h1>
-  <p>AI를 활용한 지원사업 신청서 작성 요령처럼, 공개 글보다 한 걸음 더 들어간 정보를 운영자가 직접 써서 올려요. 이용권 회원만 볼 수 있어요.</p>
+  <span class="윗글">코치 라운지</span>
+  <h1>코치 라운지</h1>
+  <p>AI를 활용한 지원사업 신청서 작성 요령처럼, 공개 글보다 한 걸음 더 들어간 정보를 운영자가 직접 써서 올려요. 코치 크루만 볼 수 있어요.</p>
   <div id="ms-자료" class="작은">불러오는 중…</div>
-  <p class="작은" style="margin-top:22px"><a href="${길('/membership/')}">이용권 안내로 돌아가기</a></p>
+  <p class="작은" style="margin-top:22px"><a href="${길('/membership/')}">코치 크루 안내로 돌아가기</a></p>
 </section>
 <script>(function(){var A=window.AC;if(!A)return;
 if(!A.tok()){try{sessionStorage.setItem('ac_next','/membership/library/')}catch(e){}location.replace(A.base+'/login/');return}
@@ -111,12 +111,12 @@ function esc(s){return String(s).replace(/[&<>"']/g,function(c){return{'&':'&amp
 var 칸=document.getElementById('ms-자료');
 A.api('/library').then(function(j){
  if(j._s===401)return;
- if(j._s===403){칸.innerHTML='<div class="ms-상자"><b>이용권이 있는 회원만 볼 수 있어요.</b><br>가입 전에 가격과 해지 방법을 확인할 수 있어요.</div><p><a class="단추 주" href="'+A.base+'/membership/">이용권 안내 보기</a></p>';return}
+ if(j._s===403){칸.innerHTML='<div class="ms-상자"><b>코치 크루만 볼 수 있어요.</b><br>가입 전에 가격과 해지 방법을 확인할 수 있어요.</div><p><a class="단추 주" href="'+A.base+'/membership/">코치 크루 안내 보기</a></p>';return}
  if(!j.글||!j.글.length){칸.innerHTML='<div class="ms-상자">아직 올라온 글이 없어요. 곧 올라와요.</div>';return}
  칸.className='';칸.innerHTML='<ul class="ms-글목록">'+j.글.map(function(g){return'<li><a href="'+A.base+'/membership/library/read/?id='+encodeURIComponent(g.id)+'"><b>'+esc(g.제목)+'</b>'+(g.요약?'<span>'+esc(g.요약)+'</span>':'')+(g.날짜?'<small>'+esc(g.날짜)+'</small>':'')+'</a></li>'}).join('')+'</ul>'},
  function(){칸.textContent='연결하지 못했어요. 잠시 뒤 다시 해 주세요.'})})();</script>`;
   const 자료읽기본문 = `<section class="일반글 ms-글">
-  <span class="윗글">이용권</span>
+  <span class="윗글">코치 라운지</span>
   <h1 id="ms-글제목">불러오는 중…</h1>
   <div class="작은" id="ms-글날짜"></div>
   <div class="ms-본문" id="ms-글본문"></div>
@@ -140,16 +140,16 @@ function 본문그리기(t){var 줄=String(t).split('\\n'),out=[],문단=[],목�
 if(!id){제목.textContent='글을 찾을 수 없어요';return}
 A.api('/library/'+id).then(function(j){
  if(j._s===401)return;
- if(j._s===403){제목.textContent='이용권이 있는 회원만 볼 수 있어요';몸.innerHTML='<p><a class="단추 주" href="'+A.base+'/membership/">이용권 안내 보기</a></p>';return}
+ if(j._s===403){제목.textContent='코치 크루만 볼 수 있어요';몸.innerHTML='<p><a class="단추 주" href="'+A.base+'/membership/">코치 크루 안내 보기</a></p>';return}
  if(j._s===404||!j.제목){제목.textContent='글을 찾을 수 없어요';return}
- document.title=j.제목+' · 고급 정보 · 아티스트 코치';제목.textContent=j.제목;날.textContent=j.날짜||'';몸.innerHTML=본문그리기(j.본문);document.getElementById('ms-저작').hidden=false},
+ document.title=j.제목+' · 코치 라운지 · 아티스트 코치';제목.textContent=j.제목;날.textContent=j.날짜||'';몸.innerHTML=본문그리기(j.본문);document.getElementById('ms-저작').hidden=false},
  function(){제목.textContent='연결하지 못했어요'})})();</script>`;
   const 만들기 = () => {
-    쓰기('membership/library/index.html', 틀({ 제목: '고급 정보 · 아티스트 코치', 설명: '고급 정보 이용권 회원 전용 글', 경로: '/membership/library/', 현재: '커뮤니티', 본문: 자료목록본문, 색인: false }));
-    쓰기('membership/library/read/index.html', 틀({ 제목: '고급 정보 · 아티스트 코치', 설명: '고급 정보 이용권 회원 전용 글', 경로: '/membership/library/read/', 현재: '커뮤니티', 본문: 자료읽기본문, 색인: false }));
-    쓰기('membership/join/index.html', 틀({ 제목: '고급 정보 이용권 가입 · 아티스트 코치', 설명: '고급 정보 이용권 가입', 경로: '/membership/join/', 현재: '커뮤니티', 본문: 가입본문, 색인: false }));
+    쓰기('membership/library/index.html', 틀({ 제목: '코치 라운지 · 아티스트 코치', 설명: '코치 크루 회원 전용 글', 경로: '/membership/library/', 현재: '커뮤니티', 본문: 자료목록본문, 색인: false }));
+    쓰기('membership/library/read/index.html', 틀({ 제목: '코치 라운지 · 아티스트 코치', 설명: '코치 크루 회원 전용 글', 경로: '/membership/library/read/', 현재: '커뮤니티', 본문: 자료읽기본문, 색인: false }));
+    쓰기('membership/join/index.html', 틀({ 제목: '코치 크루 되기 · 아티스트 코치', 설명: '코치 크루 되기', 경로: '/membership/join/', 현재: '커뮤니티', 본문: 가입본문, 색인: false }));
     쓰기('membership/done/index.html', 틀({ 제목: '이용권 가입 · 아티스트 코치', 설명: '이용권 가입 마무리', 경로: '/membership/done/', 현재: '커뮤니티', 본문: 완료본문, 색인: false }));
-    쓰기('membership/index.html', 틀({ 제목: '고급 정보 이용권 · 아티스트 코치', 설명: '아티스트 코치 고급 정보 이용권 안내', 경로: '/membership/', 현재: '커뮤니티', 본문, 색인: false }));
+    쓰기('membership/index.html', 틀({ 제목: '코치 크루 · 아티스트 코치', 설명: '아티스트 코치 코치 크루 안내', 경로: '/membership/', 현재: '커뮤니티', 본문, 색인: false }));
   };
   return { 스타일, 만들기 };
 };
