@@ -79,7 +79,9 @@ const 제목정리 = (t) => String(t || '')
   .replace(/\s{2,}/g, ' ').replace(/\s+([~,])/g, ' $1').trim();
 살아있는.forEach((x) => { x.title = 제목정리(x.title) || x.title; });
 // 지원사업 공고가 아닌 기관의 소개·안내 글(예: 한국예술인복지재단 '예술인복지 안내 07 음악 분야 예술활동증명 기준')은 공고 목록에 올리지 않는다(영감 지적 2026-11-25). 자료는 조사 봇이 내보내므로 원천에서도 거르도록 요청해 두었다.
-const 안내글인가 = (x) => /^\s*예술인복지 안내\s*\d+(\s*\/\s*\d+)?(\s|$)/.test(x.title || '');
+const 제외설정 = (() => { try { return JSON.parse(fs.readFileSync(path.join(뿌리, '자료', '공고제외.json'), 'utf8')); } catch (e) { return {}; } })();
+const 제외패턴 = (제외설정.제목패턴 || []).map((p) => new RegExp(p));
+const 안내글인가 = (x) => (제외설정.기관 || []).includes(x.org) || (제외설정.번호 || []).includes(x.id) || 제외패턴.some((r) => r.test(String(x.title || '').trim()));   // 공고가 아닌 글
 const 공고 = 살아있는.filter((x) => !모음인가(x) && !안내글인가(x))
   .sort((a, b) => (a.deadline === '상시') - (b.deadline === '상시') || a.deadline.localeCompare(b.deadline));
 const 상시수 = 공고.filter((x) => x.deadline === '상시').length;
