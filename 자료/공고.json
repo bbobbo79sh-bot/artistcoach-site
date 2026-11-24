@@ -1950,6 +1950,19 @@
   "benefit": ""
  },
  {
+  "id": "eb1db3d9",
+  "cat": "예술 공모전·모집",
+  "org": "극단 예인",
+  "region": "",
+  "title": "<존재의 바깥> 배우 오디션 공모",
+  "deadline": "2026-12-02",
+  "target": "",
+  "link": "https://otr.co.kr/audition/?vid=22764",
+  "posted": "",
+  "summary": "",
+  "benefit": ""
+ },
+ {
   "id": "d69b1b64",
   "cat": "예술 공모전·모집",
   "org": "충주시청",
@@ -2037,6 +2050,19 @@
   "target": "",
   "link": "https://otr.co.kr/audition/?vid=22756",
   "posted": "",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "d68f5512",
+  "cat": "예술 공모전·모집",
+  "org": "전주문화재단",
+  "region": "전북",
+  "title": "[공고] 2026년도 이팝프렌즈 예술상 수상후보자 공개추천 모집(기간연장)",
+  "deadline": "2026-12-03",
+  "target": "",
+  "link": "https://jjcf.or.kr/main/inner.php?sMenu=F1200&mode=view&no=293",
+  "posted": "2026-11-13",
   "summary": "",
   "benefit": ""
  },
@@ -2582,6 +2608,19 @@
   "deadline": "2026-12-07",
   "target": "",
   "link": "https://eminwon.chuncheon.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=77032&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_se_code=01,02,03,04,05",
+  "posted": "2026-11-24",
+  "summary": "",
+  "benefit": ""
+ },
+ {
+  "id": "fa426845",
+  "cat": "예술인 지원·공모",
+  "org": "평화문화진지",
+  "region": "전국",
+  "title": "[모집] 2027년 평화문화진지 창작스튜디오 입주작가 모집",
+  "deadline": "2026-12-07",
+  "target": "",
+  "link": "https://culturebunker.or.kr/archives/notice/%eb%aa%a8%ec%a7%91-2027%eb%85%84-%ed%8f%89%ed%99%94%eb%ac%b8%ed%99%94%ec%a7%84%ec%a7%80-%ec%b0%bd%ec%9e%91%ec%8a%a4%ed%8a%9c%eb%94%94%ec%98%a4-%ec%9e%85%ec%a3%bc%ec%9e%91%ea%b0%80-%eb%aa%a8%ec%a7%91",
   "posted": "2026-11-24",
   "summary": "",
   "benefit": ""
