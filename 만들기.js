@@ -468,7 +468,11 @@ ${색인 && !검수용 ? '' : '<meta name="robots" content="noindex, nofollow">'
 <meta property="og:title" content="${막기(제목)}">
 <meta property="og:description" content="${막기(설명)}">
 <meta property="og:url" content="${주소}${경로}">
-<meta property="og:image" content="${주소}/icon-512.png">
+<meta property="og:image" content="${주소}/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="아티스트 코치 로고">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <link rel="stylesheet" href="${길('/style.css')}?v=${스타일버전}">
 ${애드센스 ? `<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${애드센스}" crossorigin="anonymous"></script>` : ''}
