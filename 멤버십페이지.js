@@ -18,7 +18,7 @@ module.exports = ({ 틀, 길, 쓰기, 토스키 = '' }) => {
 .ms-글목록 a:hover{transform:translateY(-3px);border-color:var(--브랜드)}
 .ms-글목록 b{display:block;font-size:19px;line-height:1.4;letter-spacing:-.02em}
 .ms-글목록 span{display:block;color:var(--sub);margin-top:4px;line-height:1.6}.ms-글목록 small{display:block;color:var(--sub);margin-top:8px;font-size:13px}
-.ms-본문{line-height:1.95;font-size:17px}.ms-본문 h2{font-size:22px;margin:30px 0 8px}.ms-본문 p{margin:0 0 16px}.ms-본문 ul{margin:0 0 16px;padding-left:22px}.ms-본문 li{margin:4px 0}
+.ms-본문{line-height:1.95;font-size:17px}.ms-본문 h2{font-size:22px;margin:30px 0 8px}.ms-본문 p{margin:0 0 16px}.ms-본문 ul{margin:0 0 16px;padding-left:22px}.ms-본문 li{margin:4px 0}.ms-본문 h3{font-size:19px;margin:24px 0 6px}.ms-본문 ol{margin:0 0 16px;padding-left:24px}.ms-본문 img{max-width:100%;height:auto;border-radius:12px;display:block;margin:14px auto}.ms-본문 blockquote{margin:0 0 16px;padding:12px 16px;border-left:4px solid var(--브랜드);background:var(--아주연함);border-radius:0 12px 12px 0;line-height:1.8}.ms-본문 .ms-표칸{overflow-x:auto;margin:0 0 16px}.ms-본문 table{border-collapse:collapse;width:100%;font-size:15px}.ms-본문 th,.ms-본문 td{border:1px solid var(--선);padding:8px 10px;text-align:left;vertical-align:top;line-height:1.6}.ms-본문 th{background:var(--아주연함)}.ms-본문 .ms-상자묶음{position:relative;margin:0 0 16px}.ms-본문 pre.ms-상자{margin:0;white-space:pre-wrap;word-break:break-word;background:var(--아주연함);border:1px solid var(--선);border-radius:14px;padding:16px 16px 14px;font:inherit;font-size:15.5px;line-height:1.8}.ms-본문 .ms-복사{position:absolute;top:8px;right:8px;border:1px solid var(--선);background:var(--면);border-radius:10px;padding:4px 10px;font-size:13px;cursor:pointer}
 .ms-저작{margin-top:34px;padding:14px 16px;border-radius:14px;background:var(--아주연함);color:var(--sub);font-size:14px;line-height:1.7}
 `;
   const 본문 = `<section class="일반글 ms-글">
@@ -128,21 +128,36 @@ var id=(/[?&]id=([a-z0-9-]+)/.exec(location.search)||[])[1]||'';
 if(!A.tok()){try{sessionStorage.setItem('ac_next','/membership/library/')}catch(e){}location.replace(A.base+'/login/');return}
 function esc(s){return String(s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
 var 제목=document.getElementById('ms-글제목'),날=document.getElementById('ms-글날짜'),몸=document.getElementById('ms-글본문');
-function 본문그리기(t){var 줄=String(t).split('\\n'),out=[],문단=[],목록=[];
+function 본문그리기(t){var 줄=String(t).split('\\n'),out=[],문단=[],목록=[],종류='',표=[],인용=[],상자=null,T=String.fromCharCode(96),틱=T+T+T,코드=new RegExp(T+'([^'+T+']+)'+T,'g');
+ function 인라인(x){return esc(x).replace(/\\*\\*([^*]+)\\*\\*/g,'<b>$1</b>').replace(코드,'<code>$1</code>')}
  function 문단닫기(){if(문단.length){out.push('<p>'+문단.join('<br>')+'</p>');문단=[]}}
- function 목록닫기(){if(목록.length){out.push('<ul>'+목록.join('')+'</ul>');목록=[]}}
- 줄.forEach(function(l){var s=l.replace(/\\s+$/,'');
-  if(!s.trim()){문단닫기();목록닫기();return}
-  if(/^## /.test(s)){문단닫기();목록닫기();out.push('<h2>'+esc(s.slice(3))+'</h2>')}
-  else if(/^- /.test(s)){문단닫기();목록.push('<li>'+esc(s.slice(2))+'</li>')}
-  else{목록닫기();문단.push(esc(s))}});
- 문단닫기();목록닫기();return out.join('')}
+ function 목록닫기(){if(목록.length){out.push('<'+종류+'>'+목록.join('')+'</'+종류+'>');목록=[]}}
+ function 인용닫기(){if(인용.length){out.push('<blockquote>'+인용.join('<br>')+'</blockquote>');인용=[]}}
+ function 표닫기(){if(!표.length)return;var 행=표.filter(function(r){return!/^\\|?[\\s:|-]+\\|?$/.test(r)}).map(function(r){return r.replace(/^\\||\\|$/g,'').split('|').map(function(c){return c.trim()})});표=[];if(!행.length)return;var h=행.shift();out.push('<div class="ms-표칸"><table><thead><tr>'+h.map(function(c){return'<th>'+인라인(c)+'</th>'}).join('')+'</tr></thead><tbody>'+행.map(function(r){return'<tr>'+r.map(function(c){return'<td>'+인라인(c)+'</td>'}).join('')+'</tr>'}).join('')+'</tbody></table></div>')}
+ function 닫기(){문단닫기();목록닫기();인용닫기();표닫기()}
+ 줄.forEach(function(l){
+  if(상자){if(l.trim().indexOf(틱)===0){out.push('<div class="ms-상자묶음"><pre class="ms-상자">'+esc(상자.join('\\n'))+'</pre></div>');상자=null}else{상자.push(l)}return}
+  var s=l.replace(/\\s+$/,'');
+  if(s.trim().indexOf(틱)===0){닫기();상자=[];return}
+  if(!s.trim()){닫기();return}
+  var im=/^!\\[([^\\]]*)\\]\\(([\\w.-]+\\.(?:svg|jpg|jpeg|png))\\)$/.exec(s.trim());
+  if(im){닫기();out.push('<img loading="lazy" src="'+A.base+'/resources/img/'+im[2]+'" alt="'+esc(im[1])+'">');return}
+  if(/^### /.test(s)){닫기();out.push('<h3>'+인라인(s.slice(4))+'</h3>');return}
+  if(/^## /.test(s)){닫기();out.push('<h2>'+인라인(s.slice(3))+'</h2>');return}
+  if(/^\\|/.test(s)){문단닫기();목록닫기();인용닫기();표.push(s);return}
+  if(/^> ?/.test(s)){문단닫기();목록닫기();표닫기();인용.push(인라인(s.replace(/^> ?/,'')));return}
+  var li=/^(?:- |\\d+\\. )/.exec(s);
+  if(li){var k=li[0]==='- '?'ul':'ol';문단닫기();인용닫기();표닫기();if(목록.length&&종류!==k)목록닫기();종류=k;목록.push('<li>'+인라인(s.slice(li[0].length))+'</li>');return}
+  목록닫기();인용닫기();표닫기();문단.push(인라인(s))});
+ if(상자)out.push('<div class="ms-상자묶음"><pre class="ms-상자">'+esc(상자.join('\\n'))+'</pre></div>');
+ 닫기();return out.join('')}
+function 복사단추(){Array.prototype.forEach.call(몸.querySelectorAll('.ms-상자묶음'),function(w){var b=document.createElement('button');b.type='button';b.className='ms-복사';b.textContent='복사';b.onclick=function(){var x=w.querySelector('pre').textContent;try{navigator.clipboard.writeText(x).then(function(){b.textContent='복사됨'},function(){b.textContent='길게 눌러 복사'})}catch(e){b.textContent='길게 눌러 복사'}setTimeout(function(){b.textContent='복사'},1800)};w.appendChild(b)})}
 if(!id){제목.textContent='글을 찾을 수 없어요';return}
 A.api('/library/'+id).then(function(j){
  if(j._s===401)return;
  if(j._s===403){제목.textContent='코치 크루만 볼 수 있어요';몸.innerHTML='<p><a class="단추 주" href="'+A.base+'/membership/">코치 크루 안내 보기</a></p>';return}
  if(j._s===404||!j.제목){제목.textContent='글을 찾을 수 없어요';return}
- document.title=j.제목+' · 코치 라운지 · 아티스트 코치';제목.textContent=j.제목;날.textContent=j.날짜||'';몸.innerHTML=본문그리기(j.본문);document.getElementById('ms-저작').hidden=false},
+ document.title=j.제목+' · 코치 라운지 · 아티스트 코치';제목.textContent=j.제목;날.textContent=j.날짜||'';몸.innerHTML=본문그리기(j.본문);복사단추();document.getElementById('ms-저작').hidden=false},
  function(){제목.textContent='연결하지 못했어요'})})();</script>`;
   const 만들기 = () => {
     쓰기('membership/library/index.html', 틀({ 제목: '코치 라운지 · 아티스트 코치', 설명: '코치 크루 회원 전용 글', 경로: '/membership/library/', 현재: '커뮤니티', 본문: 자료목록본문, 색인: false }));
