@@ -34,12 +34,16 @@
     if(/시청|구청|군청|문화재단|문화관광재단|문화예술회관|예술회관|아트센터|평생학습|문화원|^.{2,4}시$|^.{2,4}군$|^.{2,4}구$|\S+구$/.test(o)){
       var r=x.region&&x.region!=='전국'&&METRO.indexOf(x.region)>=0?x.region:(sido(o)||cityOf(o)||'기타 지역');var ri=METRO.indexOf(r);return {t:3,g:r,ord:ri<0?99:ri}}
     return {t:4,g:'민간·기타',ord:0}}
-  N.forEach(function(x){var c=classify(x);x._t=c.t;x._g=c.g;x._o=c.ord;x._d=dday(x.deadline)});
+  // 구분: 채용·구인 / 위원 모집 / 기관·사업자 대상 / 오디션 / 그 밖(지원·공모). 제목 글자로 가른다(앞에서부터 맞는 첫 번째).
+  var KINDS=[['지원','지원·공모'],['오디션','오디션'],['채용','채용·구인'],['위원','위원 모집'],['기관','기관·사업자 대상']];
+  var KRX=[['채용',/채용|구인|직원\s*(모집|공개)|인력\s*(모집|채용)|스태프\s*모집|계약직|기간제|인턴|공무직|사무직|강사\s*(모집|채용|공개)|서비스인력|운영요원|근로자/],['위원',/위원\s*(모집|위촉|공모|추천|선정)|(심사|자문|평가|운영|선정|추진|전문)\s*위원|위원단|서포터즈\s*모집/],['기관',/수탁|위탁\s*(운영|기관|사업)|운영\s*(자|기관|법인|단체)\s*(모집|선정|공모)|징수단체|협력\s*(기관|전시|단체)|배급사|참여\s*기관|사업자\s*(모집|선정)|입점|업체\s*(모집|선정)|용역|제안서|대행사|운영자\s*공모|보조사업자|수행기관|참여기업|참가기업|기업\s*(모집|공모)/],['오디션',/오디션|단원\s*(모집|공개)|(배우|출연자|출연진|연주자|합창단원|모델)\s*(모집|공개)|캐스팅/]];
+  function kindOf(x){var t=clean(x.title);for(var i=0;i<KRX.length;i++){if(KRX[i][1].test(t))return KRX[i][0]}return '지원'}
+  N.forEach(function(x){var c=classify(x);x._t=c.t;x._g=c.g;x._o=c.ord;x._d=dday(x.deadline);x._k=kindOf(x)});
   function cmp(a,b){if(a._t!==b._t)return a._t-b._t;if(a._o!==b._o)return a._o-b._o;if(a._g!==b._g)return a._g<b._g?-1:1;var da=a._d===null?9999:a._d,db=b._d===null?9999:b._d;return da-db}
   var ALL=N.slice().sort(cmp);
   function groups(items){var order=[],map={};items.forEach(function(x){var k=x._t+'|'+x._g;if(!map[k]){map[k]={key:k,t:x._t,g:x._g,items:[]};order.push(k)}map[k].items.push(x)});return order.map(function(k){return map[k]})}
   function fieldMatch(x,f){return !f||KW[f].test(clean(x.title)+' '+x.org)}
   function regionMatch(x,r){return !r||x._t===1||x.region===r||x._g===r||x.region==='전국'}
   function deadlineText(x){return x._d===null?'상시 접수':md(x.deadline)+' 마감'}
-  window.AC={ALL:ALL,TIERS:TIERS,KW:KW,METRO:METRO,esc:esc,clean:clean,md:md,groups:groups,fieldMatch:fieldMatch,regionMatch:regionMatch,deadlineText:deadlineText,href:function(x){return (window.__BASE||'')+'/notice/'+x.id+'/'}};
+  window.AC={ALL:ALL,TIERS:TIERS,KW:KW,METRO:METRO,esc:esc,clean:clean,md:md,groups:groups,fieldMatch:fieldMatch,KINDS:KINDS,regionMatch:regionMatch,deadlineText:deadlineText,href:function(x){return (window.__BASE||'')+'/notice/'+x.id+'/'}};
 })();

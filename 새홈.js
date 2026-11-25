@@ -3,7 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 
-module.exports = ({ 공고, 오늘글, 길, 막기, 쓰기, 뿌리, 멤버십켜짐 }) => {
+module.exports = ({ 공고, 오늘글, 길, 막기, 쓰기, 뿌리, 멤버십켜짐, 서버 = '' }) => {
   const 읽기 = (f) => fs.readFileSync(path.join(뿌리, '홈화면', f), 'utf8');
 
 
@@ -33,6 +33,7 @@ module.exports = ({ 공고, 오늘글, 길, 막기, 쓰기, 뿌리, 멤버십켜
   <a class="전체목록" href="${길('/notices/')}">전체 공고 목록 보기 →</a></div>
  <div class="panel" id="panel"><header><div><b id="pt"></b><small id="pc"></small></div><button id="px" aria-label="닫기">✕</button></header><div class="list" id="list"></div></div>
  <div class="hint" id="hint"></div>
+ <div class="mapcredit">지도 자료: 통계청 SGIS 행정구역경계(2018)를 단순화해 사용</div>
  <a class="scrollcue" href="#아래">↓ 더 보기</a>
 </div>
 <div class="ticker"><div class="lb"><i></i>LIVE <span>마감 임박</span></div><div class="tr"><div class="tk" id="tk"></div></div></div>
@@ -41,16 +42,17 @@ module.exports = ({ 공고, 오늘글, 길, 막기, 쓰기, 뿌리, 멤버십켜
 </div>
 <div class="새홈"><div class="아래" id="아래">`;
 
-  const 라운지구역 = 멤버십켜짐 ? `<section class="라운지구역" id="라운지"><h2>🔒 코치 라운지</h2><p class="d2">코치 크루가 되면 들어올 수 있는 전용 게시판이에요. 제목은 누구나 볼 수 있지만, 안에 든 이야기는 크루에게만 열려요.</p>
-<div class="g4"><div class="잠긴"><span class="lk">🔒</span><div class="t">예술활동증명, 왜 떨어졌을까</div><div class="s">반려 사유 7가지와 다시 내는 법</div><span class="m">크루 전용</span></div>
-<div class="잠긴"><span class="lk">🔒</span><div class="t">AI로 신청서 첫 문단 쓰는 법</div><div class="s">그대로 따라 쓰는 질문 순서</div><span class="m">크루 전용</span></div>
-<div class="잠긴"><span class="lk">🔒</span><div class="t">심사위원 관점 점검표</div><div class="s">내 신청서를 심사위원처럼 읽어 보기</div><span class="m">크루 전용</span></div>
-<div class="잠긴"><span class="lk">🔒</span><div class="t">무료로 쓰는 연습·공연 공간</div><div class="s">지역별로 모은 곳과 신청 요령</div><span class="m">크루 전용</span></div></div>
-<a class="크루단추" href="${길('/membership/')}">코치 크루 되기 →</a></section>` : '';
+  // 라운지에 실제로 올라간 글 제목만 서버에서 받아 보여 준다(없는 글을 미리 걸어 두지 않는다). 받지 못하면 구역을 숨긴다.
+  const 라운지구역 = 멤버십켜짐 ? `<section class="라운지구역" id="라운지" hidden><h2>🔒 코치 라운지</h2><p class="d2">코치 크루가 되면 들어올 수 있는 전용 게시판이에요. 제목은 누구나 볼 수 있지만, 안에 든 이야기는 크루에게만 열려요.</p>
+<div class="g4" id="라운지글"></div>
+<a class="크루단추" href="${길('/membership/')}">코치 크루 되기 →</a></section>
+<script>(function(){var S='${막기(서버)}',sec=document.getElementById('라운지'),g=document.getElementById('라운지글');if(!S||!sec)return;
+function esc(s){return String(s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+fetch(S+'/library/preview').then(function(r){return r.json()}).then(function(j){var a=(j&&j.글)||[];if(!a.length)return;g.innerHTML=a.slice(0,4).map(function(x){return'<div class="잠긴"><span class="lk">🔒</span><div class="t">'+esc(x.제목)+'</div><span class="m">크루 전용'+(x.날짜?' · '+esc(x.날짜):'')+'</span></div>'}).join('');sec.hidden=false}).catch(function(){})})();</script>` : '';
 
   const 목록본문 = `<div class="새목록">${글꼴}
 <h1>공고 <small>NOTICES</small></h1><p class="d2">중앙 정부·공공기관 → 광역 → 시·군·구 → 민간 순서로 모았어요. 마감이 아니라 <b>기관 순서</b>가 먼저예요. 공고마다 기관의 원문 링크로 이어져요.</p>
-<div class="tools"><div class="fr"><b>장르</b><span id="fF"></span></div><div class="fr"><b>지역</b><span id="fR"></span></div><div class="fr"><b>마감</b><span id="fP"></span></div><div class="fr"><b>기관별</b><span id="fJ"></span></div><div class="fr"><b>검색</b><input class="sr" id="q" placeholder="공고 이름이나 기관 이름" aria-label="공고 검색"></div></div>
+<div class="tools"><div class="fr"><b>장르</b><span id="fF"></span></div><div class="fr"><b>지역</b><span id="fR"></span></div><div class="fr"><b>구분</b><span id="fK"></span></div><div class="fr"><b>마감</b><span id="fP"></span></div><div class="fr"><b>기관별</b><span id="fJ"></span></div><div class="fr"><b>검색</b><input class="sr" id="q" placeholder="공고 이름이나 기관 이름" aria-label="공고 검색"></div></div>
 <div id="list"></div><div class="note" id="cn"></div></div>`;
 
   return { 홈스테이지, 홈스크립트, 라운지구역, 목록본문, 목록스크립트 };

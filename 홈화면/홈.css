@@ -100,3 +100,5 @@ main.틀:has(.새홈){max-width:none;padding:0}
 .새홈 .panel header{border-bottom:1px solid var(--line)}
 .새홈 .row{border-bottom:1px solid #edf1f8}
 .새홈 .ticker{background:var(--ink)}
+
+.새홈 .mapcredit{position:absolute;right:16px;bottom:56px;font-size:11px;color:var(--sub);opacity:.7;z-index:3;pointer-events:none;text-align:right;max-width:46vw}

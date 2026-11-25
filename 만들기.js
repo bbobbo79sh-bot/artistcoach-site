@@ -576,7 +576,7 @@ const 첫화면스크립트 = `<script>
 
 const 가이드결과 = 가이드켜짐 ? require('./가이드페이지.js')({ 뿌리, 틀, 길, 막기, 쓰기, 광고칸 }) : { 경로목록: [], 글수: 0, 목록: [] };
 const 자료실 = require('./자료실페이지.js')({ 상품설정, 스토어켜짐, 설정: 자료실설정, 검수용, 뿌리, 결과, 틀, 길, 막기, 쓰기, 광고칸, 가이드: 가이드결과.목록 });
-const 새화면 = require('./새홈.js')({ 공고, 오늘글, 길, 막기, 쓰기, 뿌리, 멤버십켜짐 });
+const 새화면 = require('./새홈.js')({ 공고, 오늘글, 길, 막기, 쓰기, 뿌리, 멤버십켜짐, 서버: String(로그인설정.서버 || '').replace(/\/+$/, '') });
 const 미니딱지스크립트 = `<script>(function(){var 오늘=new Date();오늘.setHours(0,0,0,0);[].slice.call(document.querySelectorAll('.미니')).forEach(function(c){var d=c.dataset.deadline;if(!d||d==='상시')return;var n=Math.round((new Date(d+'T00:00:00')-오늘)/86400000);if(n<0){c.remove();return}var b=c.querySelector('.디');if(b){b.textContent=n===0?'오늘 마감':'D-'+n;b.classList.toggle('급',n<=3)}})})();</script>`;
 const 첫화면본문 = `
 ${새화면.홈스테이지}
