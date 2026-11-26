@@ -1,5 +1,5 @@
-// 지원사업 컨설팅 화면 (만들기.js 가 불러 쓴다). 질문지 작성 · 자동 저장 · 제출 · 제출 뒤 진행 상태.
-// 컨설팅 봇의 시안(바탕화면 '지원사업 컨설팅 봇')을 사이트에 옮긴 것이다. 문구 원칙: 흰색 톤, 가격·"질문 30개" 같은 숫자를 앞세우지 않는다, "자세히"를 권한다.
+// 지원사업 멘토링 화면 (만들기.js 가 불러 쓴다). 질문지 작성 · 자동 저장 · 제출 · 제출 뒤 진행 상태.
+// 멘토링 봇의 시안(바탕화면 '지원사업 멘토링 봇')을 사이트에 옮긴 것이다. 문구 원칙: 흰색 톤, 가격·"질문 30개" 같은 숫자를 앞세우지 않는다, "자세히"를 권한다.
 // 결제 연결 전이라 검수 사이트에서만 만든다(정식 사이트에는 이 화면이 없다). 내용은 로그인 서버(/consulting)에 저장되고 본인과 운영자만 본다.
 // 아직 없는 것: 파일 첨부 · 영감 피드백/추가 질문 화면 · 결제 연결.
 const fs = require('fs');
@@ -42,7 +42,7 @@ module.exports = ({ 틀, 길, 쓰기, 토스키 = '' }) => {
     { n: 27, s: 'E', q: '선정되면 자부담이나 정산 부담이 생기는데, 감당할 수 있는 정도는 어느 정도인가요?' },
     { n: 28, s: 'E', q: '지원서에 쓸 사업 아이디어가 있나요? 있다면 자세히 적어 주세요.' },
     { n: 29, s: 'E', q: '지금 가장 걱정되는 부분은 무엇인가요?', h: '구상·글쓰기·예산·팀·일정·정산' },
-    { n: 30, s: 'E', q: '이 컨설팅이 끝났을 때 가장 얻고 싶은 것은 무엇인가요?' },
+    { n: 30, s: 'E', q: '이 멘토링이 끝났을 때 가장 얻고 싶은 것은 무엇인가요?' },
   ];
 
   const 스타일 = `
@@ -82,8 +82,8 @@ module.exports = ({ 틀, 길, 쓰기, 토스키 = '' }) => {
 `;
 
   const 본문 = `<section class="일반글 cs-글" id="cs-root">
-  <span class="윗글">컨설팅</span>
-  <h1>지원사업 컨설팅</h1>
+  <span class="윗글">멘토링</span>
+  <h1>지원사업 멘토링</h1>
   <p>불러오는 중…</p>
 </section>
 <script>(function(){var A=window.AC;if(!A)return;
@@ -92,8 +92,8 @@ var root=document.getElementById('cs-root'),data={},timer=null,dirty=false,바�
 function esc(s){return String(s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
 function 시각(){var d=new Date();return d.getHours()+':'+String(d.getMinutes()).padStart(2,'0')}
 function 날짜글(s){var m=/^(\\d{4})-(\\d{2})-(\\d{2})$/.exec(s||'');return m?m[1]+'년 '+Number(m[2])+'월 '+Number(m[3])+'일':(s||'')}
-if(!A.tok()){try{sessionStorage.setItem('ac_next','/consulting/me/')}catch(e){}location.replace(A.base+'/login/');return}
-var 머리='<span class="윗글">컨설팅</span><h1>지원사업 컨설팅</h1>';
+if(!A.tok()){try{sessionStorage.setItem('ac_next','/mentoring/me/')}catch(e){}location.replace(A.base+'/login/');return}
+var 머리='<span class="윗글">멘토링</span><h1>지원사업 멘토링</h1>';
 function 오류(t){root.innerHTML=머리+'<p>'+esc(t)+'</p>'}
 function 불러오기(){A.api('/consulting/me').then(function(j){if(j._s===401)return;그리기(j)},function(){오류('연결하지 못했어요. 잠시 뒤 다시 해 주세요.')})}
 function 그리기(j){if(바닥){바닥.remove();바닥=null}if(!j.있음){시작화면(j);return}if(j.상태==='작성중'){폼(j);return}제출후(j)}
@@ -101,11 +101,11 @@ var 진행방식='<div class="cs-상자"><h2>진행 방식</h2><ol class="cs-단
  +'<li><span class="번호">1</span><div><b>질문에 답변을 작성해 주세요</b><small>이 페이지를 쭉 내려가며 질문에 답변하고 제출해 주세요. 쓰는 내용은 자동으로 저장돼요.</small></div></li>'
  +'<li><span class="번호">2</span><div><b>영감님의 피드백과 추가 질문</b><small>제출하시면 7일 이내에 피드백과 추가 질문이 올라와요. 이 페이지에서 본인만 볼 수 있어요.</small></div></li>'
  +'<li><span class="번호">3</span><div><b>추가 질문에 다시 답변해 주세요</b><small>해당 질문에 답변을 주시면 돼요.</small></div></li>'
- +'<li><span class="번호">4</span><div><b>최종 피드백으로 컨설팅 종료</b><small>그에 따른 피드백을 드리고 컨설팅이 마무리돼요.</small></div></li></ol></div>';
+ +'<li><span class="번호">4</span><div><b>최종 피드백으로 멘토링 종료</b><small>그에 따른 피드백을 드리고 멘토링이 마무리돼요.</small></div></li></ol></div>';
 function 시작화면(j){
- root.innerHTML=머리+'<p>컨설팅은 아래 순서로 진행돼요.</p>'+진행방식+
-  '<div class="cs-상자"><b>컨설팅은 결제하면 바로 시작할 수 있어요.</b><br><small style="color:var(--sub)">결제는 토스페이먼츠로 해요. 카드번호는 토스페이먼츠가 처리하고 이 사이트에는 저장되지 않아요.</small></div>'
-  +'<a class="단추 주 cs-큰단추" id="cs-결제" href="'+A.base+'/consulting/pay/" style="display:block;text-align:center;text-decoration:none">'+(j.결제열림===false?'결제 준비 중이에요':'결제하고 시작하기')+'</a>';
+ root.innerHTML=머리+'<p>멘토링은 아래 순서로 진행돼요.</p>'+진행방식+
+  '<div class="cs-상자"><b>멘토링은 결제하면 바로 시작할 수 있어요.</b><br><small style="color:var(--sub)">결제는 토스페이먼츠로 해요. 카드번호는 토스페이먼츠가 처리하고 이 사이트에는 저장되지 않아요.</small></div>'
+  +'<a class="단추 주 cs-큰단추" id="cs-결제" href="'+A.base+'/mentoring/pay/" style="display:block;text-align:center;text-decoration:none">'+(j.결제열림===false?'결제 준비 중이에요':'결제하고 시작하기')+'</a>';
 }
 function 질문칸(q){var id='q'+q.n,본='';
  if(q.kind==='rank'){본='<div class="cs-순위">'+q.items.map(function(it,i){return'<div><label for="'+id+'_'+i+'">'+esc(it)+'</label><select id="'+id+'_'+i+'" data-k="'+id+'_'+i+'"><option value="">선택</option><option>1위</option><option>2위</option><option>3위</option><option>4위</option></select></div>'}).join('')+'</div>'}
@@ -130,9 +130,9 @@ function 저장(빠르게){clearTimeout(timer);if(!dirty)return Promise.resolve(
 function 예약(){dirty=true;상태말('저장 중…','');clearTimeout(timer);timer=setTimeout(function(){저장(false)},800);진행()}
 function 폼(j){data=Object.assign({},j.답변||{});dirty=false;
  var 본='';SEC.forEach(function(s){본+='<h2 class="cs-구역">'+esc(s.t)+'</h2><p class="cs-구역말">'+esc(s.s)+'</p>';Q.filter(function(q){return q.s===s.id}).forEach(function(q){본+=질문칸(q)})});
- root.innerHTML=머리+'<p>결제해 주셔서 감사합니다. 컨설팅은 아래 순서로 진행돼요.</p>'+진행방식
-  +'<div class="cs-상자"><h2>작성 안내</h2><p style="margin:0">쭉 내려가며 작성해 주세요. 최대한 자세하게, 친절히 작성해 주세요.<br>작성해 주신 내용을 중심으로 컨설팅이 이루어지기 때문에, 자세하게 작성해 주실수록 좋은 답변을 받으실 수 있습니다.</p>'
-  +'<p class="cs-구역말" style="margin:12px 0 0">모르겠는 부분은 "모르겠다"고 적어 주셔도 괜찮아요. 영상이나 문서는 주소(링크)를 답변에 적어 주세요. 쓰신 내용은 본인과 컨설턴트만 볼 수 있고, 컨설팅 외 용도로 쓰지 않아요.</p></div>'
+ root.innerHTML=머리+'<p>결제해 주셔서 감사합니다. 멘토링은 아래 순서로 진행돼요.</p>'+진행방식
+  +'<div class="cs-상자"><h2>작성 안내</h2><p style="margin:0">쭉 내려가며 작성해 주세요. 최대한 자세하게, 친절히 작성해 주세요.<br>작성해 주신 내용을 중심으로 멘토링이 이루어지기 때문에, 자세하게 작성해 주실수록 좋은 답변을 받으실 수 있습니다.</p>'
+  +'<p class="cs-구역말" style="margin:12px 0 0">모르겠는 부분은 "모르겠다"고 적어 주셔도 괜찮아요. 영상이나 문서는 주소(링크)를 답변에 적어 주세요. 쓰신 내용은 본인과 컨설턴트만 볼 수 있고, 멘토링 외 용도로 쓰지 않아요.</p></div>'
   +본
   +'<div class="cs-상자"><h2>다 쓰셨나요?</h2><p class="cs-구역말" id="cs-제출말"></p><button type="button" class="단추 주 cs-큰단추" id="cs-제출">제출하기</button><p class="cs-구역말" style="margin-top:10px">제출하시면 더 이상 고칠 수 없어요. 피드백이 올라오면 이메일로 알려 드려요.</p></div>';
  root.querySelectorAll('[data-k]').forEach(function(el){var k=el.getAttribute('data-k');
@@ -153,7 +153,7 @@ function 제출후(j){var 목록='';Q.forEach(function(q){var 값='';
   else if(q.kind==='basic'){var a=j.답변;값=[a.q21_addr&&'거주지: '+a.q21_addr,a.q21_biz&&'사업자등록증: '+a.q21_biz,a.q21_org&&'단체 설립 계획: '+a.q21_org,a.q21_orgnote].filter(Boolean).join('\\n')}
   else{값=j.답변['q'+q.n]||''}
   if(값)목록+='<details><summary>'+q.n+'. '+esc(q.q)+'</summary><div class="답" data-n="'+q.n+'"></div></details>'});
- root.innerHTML=머리+'<p>나의 컨설팅 페이지</p>'
+ root.innerHTML=머리+'<p>나의 멘토링 페이지</p>'
   +'<div class="cs-단계표"><div class="끝"><b>1</b>답변 제출 완료</div><div class="지금"><b>2</b>1차 피드백 · 추가 질문</div><div><b>3</b>추가 질문 답변</div><div><b>4</b>최종 피드백</div></div>'
   +'<div class="cs-상자"><h2>제출하셨어요</h2><p style="margin:0">'+(j.마감?esc(날짜글(j.마감))+'까지 ':'7일 이내에 ')+'영감님의 피드백과 추가 질문이 올라와요. 올라오면 이메일로 알려 드려요.</p></div>'
   +'<div class="cs-상자"><h2>내가 쓴 답변</h2><div class="cs-내답">'+목록+'</div></div>';
@@ -168,15 +168,15 @@ document.addEventListener('visibilitychange',function(){if(document.hidden&&dirt
 })();</script>`;
 
   const 결제본문 = `<section class="일반글 cs-글" id="cs-결제화면">
-  <span class="윗글">컨설팅</span>
-  <h1>컨설팅 신청</h1>
+  <span class="윗글">멘토링</span>
+  <h1>멘토링 신청</h1>
   <p>결제하면 바로 질문지를 시작할 수 있어요.</p>
-  <div class="cs-상자"><h2>지원사업 컨설팅 (비대면 서면)</h2>
+  <div class="cs-상자"><h2>지원사업 멘토링 (비대면 서면)</h2>
     <div style="display:flex;align-items:baseline;gap:8px;margin:4px 0 10px"><b style="font-size:30px;letter-spacing:-.03em">100,000원</b><span style="color:var(--sub)">1회 결제</span></div>
     <ul style="margin:0;padding-left:20px;line-height:1.85">
       <li>결제한 본인이 로그인해서 보는 이 사이트 안의 웹 페이지로 진행돼요. 파일을 이메일로 보내 드리는 방식이 아니에요.</li>
       <li>질문지를 제출한 날부터 <b>7일 이내</b> 첫 피드백과 추가 질문, 추가 질문 답변을 받은 날부터 <b>7일 이내</b> 최종 피드백을 드려요. 답변이 늦어지면 그만큼 길어져요. (최대 약 3주)</li>
-      <li>컨설팅은 방향과 준비를 돕는 서비스이며, 지원사업 선정을 보장하지 않아요.</li>
+      <li>멘토링은 방향과 준비를 돕는 서비스이며, 지원사업 선정을 보장하지 않아요.</li>
     </ul></div>
   <div class="cs-상자"><h2>환불 안내</h2>
     <ul style="margin:0;padding-left:20px;line-height:1.85">
@@ -196,8 +196,8 @@ document.addEventListener('visibilitychange',function(){if(document.hidden&&dirt
 <script>(function(){var A=window.AC;if(!A)return;var 키=${JSON.stringify(토스키)};
 var 알림=document.getElementById('cs-알림'),버튼=document.getElementById('cs-결제하기');
 function 알려(t){알림.textContent=t;알림.hidden=!t}
-if(!A.tok()){try{sessionStorage.setItem('ac_next','/consulting/pay/')}catch(e){}location.replace(A.base+'/login/');return}
-A.api('/consulting/me').then(function(j){if(j._s===401)return;if(j.있음){location.replace(A.base+'/consulting/me/');return}if(j.결제열림===false){버튼.disabled=true;버튼.textContent='결제 준비 중이에요'}});
+if(!A.tok()){try{sessionStorage.setItem('ac_next','/mentoring/pay/')}catch(e){}location.replace(A.base+'/login/');return}
+A.api('/consulting/me').then(function(j){if(j._s===401)return;if(j.있음){location.replace(A.base+'/mentoring/me/');return}if(j.결제열림===false){버튼.disabled=true;버튼.textContent='결제 준비 중이에요'}});
 버튼.addEventListener('click',async function(){
  알려('');
  if(!document.getElementById('cs-동의1').checked||!document.getElementById('cs-동의2').checked){알려('두 가지 동의에 모두 체크해 주세요.');return}
@@ -205,18 +205,18 @@ A.api('/consulting/me').then(function(j){if(j._s===401)return;if(j.있음){locat
  버튼.disabled=true;
  try{
   var 주문=await A.api('/consulting/pay/order',{method:'POST'});
-  if(!주문||!주문.주문번호){버튼.disabled=false;if(주문&&주문._s===409){location.replace(A.base+'/consulting/me/');return}알려((주문&&주문.오류)||'주문을 만들지 못했어요.');return}
+  if(!주문||!주문.주문번호){버튼.disabled=false;if(주문&&주문._s===409){location.replace(A.base+'/mentoring/me/');return}알려((주문&&주문.오류)||'주문을 만들지 못했어요.');return}
   var 나=await A.api('/me');
   var 결제=TossPayments(키).payment({customerKey:TossPayments.ANONYMOUS});
   await 결제.requestPayment({method:'CARD',amount:{currency:'KRW',value:주문.금액},orderId:주문.주문번호,orderName:주문.상품이름,
-   successUrl:location.origin+A.base+'/consulting/pay/done/',failUrl:location.origin+A.base+'/consulting/pay/fail/'});
+   successUrl:location.origin+A.base+'/mentoring/pay/done/',failUrl:location.origin+A.base+'/mentoring/pay/fail/'});
  }catch(e){버튼.disabled=false;if(e&&e.code!=='USER_CANCEL')알려('결제창을 열지 못했어요: '+(e.message||e.code||''))}
 });})();</script>`;
   const 완료본문 = `<section class="일반글 cs-글">
-  <span class="윗글">컨설팅</span>
+  <span class="윗글">멘토링</span>
   <h1 id="cs-제목">결제를 확인하고 있어요…</h1>
   <p id="cs-말">잠시만 기다려 주세요. 이 화면을 닫지 마세요.</p>
-  <div class="ms-줄" style="display:flex;gap:10px;margin-top:18px"><a class="단추 주" id="cs-이동" href="${길('/consulting/me/')}" hidden>질문지 시작하기</a></div>
+  <div class="ms-줄" style="display:flex;gap:10px;margin-top:18px"><a class="단추 주" id="cs-이동" href="${길('/mentoring/me/')}" hidden>질문지 시작하기</a></div>
 </section>
 <script>(function(){var A=window.AC;if(!A)return;
 var q=new URLSearchParams(location.search),제목=document.getElementById('cs-제목'),말=document.getElementById('cs-말'),이동=document.getElementById('cs-이동');
@@ -229,21 +229,23 @@ A.api('/consulting/pay/confirm',{method:'POST',headers:{'Content-Type':'applicat
  실패((r&&r.오류)||'');
 },function(){실패('연결하지 못했어요. 결제 금액이 나갔다면 잠시 뒤 이 화면을 새로고침해 주세요.')});})();</script>`;
   const 실패본문 = `<section class="일반글 cs-글">
-  <span class="윗글">컨설팅</span>
+  <span class="윗글">멘토링</span>
   <h1>결제가 끝나지 않았어요</h1>
   <p id="cs-사유">결제를 마치지 못했어요. 금액은 청구되지 않았어요.</p>
-  <p><a class="단추 주" href="${길('/consulting/pay/')}">다시 결제하기</a> <a class="단추 약함" href="${길('/consulting/')}">컨설팅 안내로</a></p>
+  <p><a class="단추 주" href="${길('/mentoring/pay/')}">다시 결제하기</a> <a class="단추 약함" href="${길('/mentoring/')}">멘토링 안내로</a></p>
 </section>
 <script>(function(){var m=new URLSearchParams(location.search).get('message');if(m)document.getElementById('cs-사유').textContent='결제를 마치지 못했어요: '+m+' (금액은 청구되지 않았어요)'})();</script>`;
   const 판매스타일 = fs.readFileSync(path.join(__dirname, '홈화면', '컨설팅.css'), 'utf8');
   const 판매본문 = fs.readFileSync(path.join(__dirname, '홈화면', '컨설팅.html'), 'utf8').replace(/\{\{BASE\}\}/g, 길(''));
   const 만들기 = () => {
     // 판매 페이지(누구나 볼 수 있음)와, 결제한 사람이 쓰는 질문지 화면(로그인 필요)을 나눈다
-    쓰기('consulting/index.html', 틀({ 제목: '지원사업 컨설팅 · 아티스트 코치', 설명: '지원사업에 도전하기 전, 내 방향부터 잡아 보는 서면 컨설팅. 질문에 답하면 코치 영감이 전체 답변을 종합해 피드백을 드려요.', 경로: '/consulting/', 현재: '컨설팅', 본문: 판매본문, 색인: false }));
-    쓰기('consulting/pay/index.html', 틀({ 제목: '컨설팅 신청 · 아티스트 코치', 설명: '지원사업 컨설팅 결제', 경로: '/consulting/pay/', 현재: '컨설팅', 본문: 결제본문, 색인: false }));
-    쓰기('consulting/pay/done/index.html', 틀({ 제목: '컨설팅 결제 확인 · 아티스트 코치', 설명: '지원사업 컨설팅 결제 확인', 경로: '/consulting/pay/done/', 현재: '컨설팅', 본문: 완료본문, 색인: false }));
-    쓰기('consulting/pay/fail/index.html', 틀({ 제목: '컨설팅 결제 · 아티스트 코치', 설명: '지원사업 컨설팅 결제', 경로: '/consulting/pay/fail/', 현재: '컨설팅', 본문: 실패본문, 색인: false }));
-    쓰기('consulting/me/index.html', 틀({ 제목: '내 컨설팅 · 아티스트 코치', 설명: '지원사업 컨설팅 질문지', 경로: '/consulting/me/', 현재: '커뮤니티', 본문, 색인: false }));
+    쓰기('mentoring/index.html', 틀({ 제목: '지원사업 멘토링 · 아티스트 코치', 설명: '지원사업에 도전하기 전, 내 방향부터 잡아 보는 서면 멘토링. 질문에 답하면 코치 영감이 전체 답변을 종합해 피드백을 드려요.', 경로: '/mentoring/', 현재: '멘토링', 본문: 판매본문, 색인: false }));
+    쓰기('mentoring/pay/index.html', 틀({ 제목: '멘토링 신청 · 아티스트 코치', 설명: '지원사업 멘토링 결제', 경로: '/mentoring/pay/', 현재: '멘토링', 본문: 결제본문, 색인: false }));
+    쓰기('mentoring/pay/done/index.html', 틀({ 제목: '멘토링 결제 확인 · 아티스트 코치', 설명: '지원사업 멘토링 결제 확인', 경로: '/mentoring/pay/done/', 현재: '멘토링', 본문: 완료본문, 색인: false }));
+    쓰기('mentoring/pay/fail/index.html', 틀({ 제목: '멘토링 결제 · 아티스트 코치', 설명: '지원사업 멘토링 결제', 경로: '/mentoring/pay/fail/', 현재: '멘토링', 본문: 실패본문, 색인: false }));
+    쓰기('mentoring/me/index.html', 틀({ 제목: '내 멘토링 · 아티스트 코치', 설명: '지원사업 멘토링 질문지', 경로: '/mentoring/me/', 현재: '커뮤니티', 본문, 색인: false }));
+    // 예전 주소(/consulting/…)로 들어오면 새 주소(/mentoring/…)로 보낸다 (토스에 이미 알린 주소가 끊기지 않게)
+    [['consulting/', 'mentoring/'], ['consulting/pay/', 'mentoring/pay/'], ['consulting/me/', 'mentoring/me/']].forEach(([옛, 새]) => 쓰기(옛 + 'index.html', `<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><meta http-equiv="refresh" content="0;url=${길('/' + 새)}"><link rel="canonical" href="${길('/' + 새)}"><title>멘토링 안내로 이동</title></head><body><p><a href="${길('/' + 새)}">멘토링 안내로 이동</a></p></body></html>`));
   };
   return { 스타일: 스타일 + '\n' + 판매스타일, 만들기 };
 };

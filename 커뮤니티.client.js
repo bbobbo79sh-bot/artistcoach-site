@@ -186,7 +186,7 @@
       var 질 = 전.문의 || [];
       (j.질문 || []).forEach(function (x) { if (!질.some(function (y) { return y.id === x.id; })) 질.push({ id: x.id, 상태: x.상태, 시각: x.시각 }); });   // 내 문의는 색인이 없어도 빠지지 않게
       질.sort(function (a, b) { return a.id < b.id ? -1 : 1; });   // 번호가 작을수록 최신
-      if (!질.length) { 표.appendChild(h('p', { class: '없음글 작은', text: '아직 보낸 문의가 없어요. 신청서 쓰다 막힌 곳, 컨설팅·결제 문의, 사이트에 바라는 점 뭐든 편하게 보내 주세요.' })); return; }
+      if (!질.length) { 표.appendChild(h('p', { class: '없음글 작은', text: '아직 보낸 문의가 없어요. 신청서 쓰다 막힌 곳, 멘토링·결제 문의, 사이트에 바라는 점 뭐든 편하게 보내 주세요.' })); return; }
       질.forEach(function (x, i) {
         var 상태칸 = h('span', { class: '분류' + (x.상태 === '답변' ? '' : ' 대기'), text: x.상태 === '답변' ? '답변 완료' : '답변 대기' });
         var 번 = h('span', { class: '번호', text: String(질.length - i) }), 날 = h('span', { class: '날짜', text: 날짜(x.시각) });
@@ -203,7 +203,7 @@
     var 글 = h('section', { class: 'cm-폼 cm-글쓰기' });
     글.appendChild(h('h2', { text: '영감에게 문의하기' }));
     글.appendChild(h('div', { class: 'cm-비공개' }, [h('b', { text: '🔒 완전 비공개예요' }), h('span', { text: '제목과 내용 모두 나와 영감만 볼 수 있어요. 답변은 이 화면에서 확인해요.' })]));
-    var 머 = h('select', { 'aria-label': '문의 종류' }, ['신청서 질문', '컨설팅·결제 문의', '사이트 건의', '기타'].map(function (x) { return h('option', { value: x, text: x }); }));
+    var 머 = h('select', { 'aria-label': '문의 종류' }, ['신청서 질문', '멘토링·결제 문의', '사이트 건의', '기타'].map(function (x) { return h('option', { value: x, text: x }); }));
     var 제목 = h('input', { type: 'text', maxlength: '60', placeholder: '제목 (60자까지)', 'aria-label': '제목' });
     var 내용 = h('textarea', { rows: '10', maxlength: '3000', placeholder: '어떤 사업에 지원하는지, 어디서 막혔는지 적어 주시면 더 정확히 답할 수 있어요 (3000자까지)', 'aria-label': '내용' });
     var 오류 = h('p', { class: 'cm-오류 작은', hidden: 'hidden' });
