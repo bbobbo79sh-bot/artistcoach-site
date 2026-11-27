@@ -147,7 +147,7 @@ function 폼(j){data=Object.assign({},j.답변||{});dirty=false;
   +'<div class="cs-상자"><h2>작성 안내</h2><p style="margin:0">쭉 내려가며 작성해 주세요. 최대한 자세하게, 친절히 작성해 주세요.<br>작성해 주신 내용을 중심으로 멘토링이 이루어지기 때문에, 자세하게 작성해 주실수록 좋은 답변을 받으실 수 있습니다.</p>'
   +'<p class="cs-구역말" style="margin:12px 0 0">모르겠는 부분은 "모르겠다"고 적어 주셔도 괜찮아요. 영상이나 문서는 주소(링크)를 답변에 적어 주세요. 쓰신 내용은 본인과 컨설턴트만 볼 수 있고, 멘토링 외 용도로 쓰지 않아요.</p></div>'
   +본
-  +'<div class="cs-상자"><h2>다 쓰셨나요?</h2><p class="cs-구역말" id="cs-제출말"></p><button type="button" class="단추 주 cs-큰단추" id="cs-제출">제출하기</button><p class="cs-구역말" style="margin-top:10px">제출하시면 더 이상 고칠 수 없어요. 피드백이 올라오면 이메일로 알려 드려요.</p></div>';
+  +'<div class="cs-상자"><h2>다 쓰셨나요?</h2><p class="cs-구역말" id="cs-제출말"></p><label class="제목" for="cs-메일" style="display:block;font-weight:700;margin:6px 0 4px">피드백 알림을 받을 이메일 (선택)</label><input type="email" id="cs-메일" maxlength="100" autocomplete="email" placeholder="name@example.com" style="width:100%;box-sizing:border-box;font:inherit;font-size:16px;padding:10px 12px;border:1px solid var(--선);border-radius:10px;margin-bottom:12px"><button type="button" class="단추 주 cs-큰단추" id="cs-제출">제출하기</button><p class="cs-구역말" style="margin-top:10px">제출하시면 더 이상 고칠 수 없어요. 피드백이 올라오면 이메일로 알려 드려요.</p></div>';
  root.querySelectorAll('[data-k]').forEach(function(el){var k=el.getAttribute('data-k');
   if(el.type==='radio'){if(data[k]===el.value)el.checked=true}else if(data[k]!==undefined)el.value=data[k]});
  root.addEventListener('input',입력,false);root.addEventListener('change',입력,false);
@@ -160,7 +160,7 @@ function 폼(j){data=Object.assign({},j.답변||{});dirty=false;
   if(세기()<Q.length&&!confirm('비어 있는 질문이 있어요. 그대로 제출할까요?\\n제출하면 더 이상 고칠 수 없어요.'))return;
   if(세기()===Q.length&&!confirm('제출할까요? 제출하면 더 이상 고칠 수 없어요.'))return;
   b.disabled=true;저장(false).then(function(ok){if(!ok){b.disabled=false;alert('저장하지 못해서 제출하지 않았어요. 잠시 뒤 다시 해 주세요.');return}
-   A.api('/consulting/me/submit',{method:'POST'}).then(function(r){if(r.있음){그리기(r);window.scrollTo(0,0)}else{b.disabled=false;alert(r.오류||'제출하지 못했어요')}},function(){b.disabled=false;alert('연결하지 못했어요. 잠시 뒤 다시 해 주세요.')})})})}
+   A.api('/consulting/me/submit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({이메일:(document.getElementById('cs-메일').value||'').trim()})}).then(function(r){if(r.있음){그리기(r);window.scrollTo(0,0)}else{b.disabled=false;alert(r.오류||'제출하지 못했어요')}},function(){b.disabled=false;alert('연결하지 못했어요. 잠시 뒤 다시 해 주세요.')})})})}
 var NL=String.fromCharCode(10);
 function 질문값(q,a){if(q.kind==='rank')return q.items.map(function(it,i){var v=a['q'+q.n+'_'+i];return v?it+' '+v:''}).filter(Boolean).join(' · ');
  if(q.kind==='basic')return[a.q21_addr&&'거주지: '+a.q21_addr,a.q21_biz&&'사업자등록증: '+a.q21_biz,a.q21_org&&'단체 설립 계획: '+a.q21_org,a.q21_orgnote].filter(Boolean).join(NL);
