@@ -1,7 +1,7 @@
 // 지원사업 멘토링 화면 (만들기.js 가 불러 쓴다). 질문지 작성 · 자동 저장 · 제출 · 제출 뒤 진행 상태.
 // 멘토링 봇의 시안(바탕화면 '지원사업 멘토링 봇')을 사이트에 옮긴 것이다. 문구 원칙: 흰색 톤, 가격·"질문 30개" 같은 숫자를 앞세우지 않는다, "자세히"를 권한다.
 // 결제 연결 전이라 검수 사이트에서만 만든다(정식 사이트에는 이 화면이 없다). 내용은 로그인 서버(/consulting)에 저장되고 본인과 운영자만 본다.
-// 아직 없는 것: 파일 첨부 · 영감 피드백/추가 질문 화면 · 결제 연결.
+// 만들어 둔 것: 질문지 · 영감 피드백(1차·최종)·추가 질문 · 운영자 화면(/mentoring/admin/). 아직 없는 것: 파일 첨부 · 안내 이메일.
 const fs = require('fs');
 const path = require('path');
 module.exports = ({ 틀, 길, 쓰기, 토스키 = '' }) => {
@@ -79,6 +79,19 @@ module.exports = ({ 틀, 길, 쓰기, 토스키 = '' }) => {
 .cs-내답 summary{cursor:pointer;padding:11px 14px;font-weight:700}
 .cs-내답 .답{padding:0 14px 14px;white-space:pre-wrap;line-height:1.7}
 .cs-검수{background:var(--아주연함);border-radius:10px;padding:10px 14px;font-size:14px;color:var(--깊음);margin:12px 0}
+.cs-피드백 h3{font-size:16px;margin:16px 0 4px;color:var(--깊음)}
+.cs-피드백 p{white-space:pre-wrap;line-height:1.75;margin:0}
+.cs-피드백 ol{margin:6px 0 0;padding-left:22px;line-height:1.85;white-space:pre-wrap}
+.cs-작은날짜{color:var(--sub);font-size:13px;margin:-4px 0 6px}
+.ad-표{display:grid;gap:10px;margin:14px 0}
+.ad-행{display:flex;flex-direction:column;gap:3px;border:1px solid var(--선);border-radius:14px;background:var(--면);padding:14px 16px;text-decoration:none;color:inherit}
+.ad-행.차례{border:2px solid var(--브랜드);background:var(--아주연함)}
+.ad-행 span{font-weight:700}.ad-행 small{color:var(--sub)}
+.ad-라벨{display:block;font-weight:700;margin:14px 0 4px}
+.ad-칸,.ad-할일{width:100%;box-sizing:border-box;font:inherit;font-size:16px;padding:10px 12px;border:1px solid var(--선);border-radius:10px;background:var(--면);color:var(--ink);margin-bottom:6px}
+.ad-칸{min-height:120px;resize:vertical;line-height:1.65}
+.cs-내답 .답{white-space:pre-wrap}
+@media print{.cs-바닥,header,nav,footer,#cs-인쇄{display:none!important}}
 `;
 
   const 본문 = `<section class="일반글 cs-글" id="cs-root">
@@ -134,7 +147,7 @@ function 폼(j){data=Object.assign({},j.답변||{});dirty=false;
   +'<div class="cs-상자"><h2>작성 안내</h2><p style="margin:0">쭉 내려가며 작성해 주세요. 최대한 자세하게, 친절히 작성해 주세요.<br>작성해 주신 내용을 중심으로 멘토링이 이루어지기 때문에, 자세하게 작성해 주실수록 좋은 답변을 받으실 수 있습니다.</p>'
   +'<p class="cs-구역말" style="margin:12px 0 0">모르겠는 부분은 "모르겠다"고 적어 주셔도 괜찮아요. 영상이나 문서는 주소(링크)를 답변에 적어 주세요. 쓰신 내용은 본인과 컨설턴트만 볼 수 있고, 멘토링 외 용도로 쓰지 않아요.</p></div>'
   +본
-  +'<div class="cs-상자"><h2>다 쓰셨나요?</h2><p class="cs-구역말" id="cs-제출말"></p><button type="button" class="단추 주 cs-큰단추" id="cs-제출">제출하기</button><p class="cs-구역말" style="margin-top:10px">제출하시면 더 이상 고칠 수 없어요. 피드백이 올라오면 이메일로 알려 드려요.</p></div>';
+  +'<div class="cs-상자"><h2>다 쓰셨나요?</h2><p class="cs-구역말" id="cs-제출말"></p><label class="제목" for="cs-메일" style="display:block;font-weight:700;margin:6px 0 4px">피드백 알림을 받을 이메일 (선택)</label><input type="email" id="cs-메일" maxlength="100" autocomplete="email" placeholder="name@example.com" style="width:100%;box-sizing:border-box;font:inherit;font-size:16px;padding:10px 12px;border:1px solid var(--선);border-radius:10px;margin-bottom:12px"><button type="button" class="단추 주 cs-큰단추" id="cs-제출">제출하기</button><p class="cs-구역말" style="margin-top:10px">제출하시면 더 이상 고칠 수 없어요. 피드백이 올라오면 이메일로 알려 드려요.</p></div>';
  root.querySelectorAll('[data-k]').forEach(function(el){var k=el.getAttribute('data-k');
   if(el.type==='radio'){if(data[k]===el.value)el.checked=true}else if(data[k]!==undefined)el.value=data[k]});
  root.addEventListener('input',입력,false);root.addEventListener('change',입력,false);
@@ -147,21 +160,55 @@ function 폼(j){data=Object.assign({},j.답변||{});dirty=false;
   if(세기()<Q.length&&!confirm('비어 있는 질문이 있어요. 그대로 제출할까요?\\n제출하면 더 이상 고칠 수 없어요.'))return;
   if(세기()===Q.length&&!confirm('제출할까요? 제출하면 더 이상 고칠 수 없어요.'))return;
   b.disabled=true;저장(false).then(function(ok){if(!ok){b.disabled=false;alert('저장하지 못해서 제출하지 않았어요. 잠시 뒤 다시 해 주세요.');return}
-   A.api('/consulting/me/submit',{method:'POST'}).then(function(r){if(r.있음){그리기(r);window.scrollTo(0,0)}else{b.disabled=false;alert(r.오류||'제출하지 못했어요')}},function(){b.disabled=false;alert('연결하지 못했어요. 잠시 뒤 다시 해 주세요.')})})})}
-function 제출후(j){var 목록='';Q.forEach(function(q){var 값='';
-  if(q.kind==='rank'){값=q.items.map(function(it,i){var v=j.답변['q'+q.n+'_'+i];return v?it+' '+v:''}).filter(Boolean).join(' · ')}
-  else if(q.kind==='basic'){var a=j.답변;값=[a.q21_addr&&'거주지: '+a.q21_addr,a.q21_biz&&'사업자등록증: '+a.q21_biz,a.q21_org&&'단체 설립 계획: '+a.q21_org,a.q21_orgnote].filter(Boolean).join('\\n')}
-  else{값=j.답변['q'+q.n]||''}
-  if(값)목록+='<details><summary>'+q.n+'. '+esc(q.q)+'</summary><div class="답" data-n="'+q.n+'"></div></details>'});
- root.innerHTML=머리+'<p>나의 멘토링 페이지</p>'
-  +'<div class="cs-단계표"><div class="끝"><b>1</b>답변 제출 완료</div><div class="지금"><b>2</b>1차 피드백 · 추가 질문</div><div><b>3</b>추가 질문 답변</div><div><b>4</b>최종 피드백</div></div>'
-  +'<div class="cs-상자"><h2>제출하셨어요</h2><p style="margin:0">'+(j.마감?esc(날짜글(j.마감))+'까지 ':'7일 이내에 ')+'영감님의 피드백과 추가 질문이 올라와요. 올라오면 이메일로 알려 드려요.</p></div>'
-  +'<div class="cs-상자"><h2>내가 쓴 답변</h2><div class="cs-내답">'+목록+'</div></div>';
- root.querySelectorAll('.답').forEach(function(el){var n=Number(el.getAttribute('data-n')),q=Q.filter(function(x){return x.n===n})[0],값='';
-  if(q.kind==='rank'){값=q.items.map(function(it,i){var v=j.답변['q'+n+'_'+i];return v?it+' '+v:''}).filter(Boolean).join(' · ')}
-  else if(q.kind==='basic'){var a=j.답변;값=[a.q21_addr&&'거주지: '+a.q21_addr,a.q21_biz&&'사업자등록증: '+a.q21_biz,a.q21_org&&'단체 설립 계획: '+a.q21_org,a.q21_orgnote].filter(Boolean).join('\\n')}
-  else{값=j.답변['q'+n]||''}
-  el.textContent=값})}
+   A.api('/consulting/me/submit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({이메일:(document.getElementById('cs-메일').value||'').trim()})}).then(function(r){if(r.있음){그리기(r);window.scrollTo(0,0)}else{b.disabled=false;alert(r.오류||'제출하지 못했어요')}},function(){b.disabled=false;alert('연결하지 못했어요. 잠시 뒤 다시 해 주세요.')})})})}
+var NL=String.fromCharCode(10);
+function 질문값(q,a){if(q.kind==='rank')return q.items.map(function(it,i){var v=a['q'+q.n+'_'+i];return v?it+' '+v:''}).filter(Boolean).join(' · ');
+ if(q.kind==='basic')return[a.q21_addr&&'거주지: '+a.q21_addr,a.q21_biz&&'사업자등록증: '+a.q21_biz,a.q21_org&&'단체 설립 계획: '+a.q21_org,a.q21_orgnote].filter(Boolean).join(NL);
+ return a['q'+q.n]||''}
+function 단계표(j){var s=j.상태,n=s==='제출됨'?2:(s==='추가질문'?3:(s==='추가제출됨'?4:5));
+ var 이름=['답변 제출 완료','1차 피드백 · 추가 질문','추가 질문 답변','최종 피드백'];
+ return'<div class="cs-단계표">'+이름.map(function(t,i){var c=(i+1)<n?'끝':((i+1)===n?'지금':'');return'<div'+(c?' class="'+c+'"':'')+'><b>'+(i+1)+'</b>'+t+'</div>'}).join('')+'</div>'}
+function 피드백상자(제목,f){var 할일=(f.다음할일||[]).map(function(x){return'<li>'+esc(x)+'</li>'}).join('');
+ return'<div class="cs-상자 cs-피드백"><h2>'+esc(제목)+'</h2><div class="cs-작은날짜">'+esc(날짜글((f.올린시각||'').slice(0,10)))+' 올라옴</div>'
+  +'<h3>잘하고 계신 점</h3><p>'+esc(f.잘한점||'')+'</p>'
+  +'<h3>앞으로의 방향</h3><p>'+esc(f.방향||'')+'</p>'
+  +'<h3>다음에 하실 일</h3><ol>'+할일+'</ol></div>'}
+function 추가폼(j){var qs=j.추가질문||[];
+ var h='<div class="cs-상자"><h2>추가 질문</h2><p class="cs-구역말" style="margin:0">아래 질문에 답변해 주세요. 쓰는 내용은 자동으로 저장돼요.</p></div>';
+ qs.forEach(function(q,i){var id='e'+(i+1);h+='<div class="cs-질문"><label class="제목" for="'+id+'"><span class="번호">'+(i+1)+'</span>'+esc(q)+'</label><textarea id="'+id+'" data-e="'+id+'" maxlength="6000" placeholder="여기에 적어 주세요"></textarea></div>'});
+ h+='<div class="cs-상자"><p class="cs-구역말" id="cs-추가상태" style="margin:0 0 10px">자동 저장 켜짐</p><button type="button" class="단추 주 cs-큰단추" id="cs-추가제출">추가 질문 답변 제출하기</button><p class="cs-구역말" style="margin:10px 0 0">제출하시면 더 이상 고칠 수 없어요. 답변을 제출한 날부터 7일 이내에 최종 피드백이 올라와요.</p></div>';
+ return h}
+function 추가답변상자(j){var qs=j.추가질문||[],a=j.추가답변||{},목록='';
+ qs.forEach(function(q,i){var v=a['e'+(i+1)];if(v)목록+='<details><summary>'+(i+1)+'. '+esc(q)+'</summary><div class="답">'+esc(v)+'</div></details>'});
+ return'<div class="cs-상자"><h2>추가 질문과 내 답변</h2><div class="cs-내답">'+(목록||'<p class="cs-구역말" style="margin:0">쓰신 답변이 없어요.</p>')+'</div></div>'}
+function 추가바인딩(j){var ed=Object.assign({},j.추가답변||{}),t=null,더럽=false;
+ function 말(x){var s=document.getElementById('cs-추가상태');if(s)s.textContent=x}
+ function 저장2(){if(!더럽)return Promise.resolve(true);말('저장 중…');
+  return A.api('/consulting/me/extra',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({답변:ed})}).then(function(r){
+   if(r.저장){더럽=false;말('자동 저장됨 · '+시각());return true}
+   if(r._s===409){불러오기();return false}
+   말('저장하지 못했어요. 잠시 뒤 다시 시도해요.');return false},function(){말('저장하지 못했어요. 연결을 확인해 주세요.');return false})}
+ root.querySelectorAll('[data-e]').forEach(function(el){var k=el.getAttribute('data-e');if(ed[k]!==undefined)el.value=ed[k];
+  el.addEventListener('input',function(){if(el.value.trim())ed[k]=el.value;else delete ed[k];더럽=true;말('저장 중…');clearTimeout(t);t=setTimeout(저장2,800)})});
+ document.getElementById('cs-추가제출').addEventListener('click',function(){var b=this;
+  if(!Object.keys(ed).length){alert('답변을 한 칸 이상 적어 주세요.');return}
+  if(!confirm('제출할까요? 제출하면 더 이상 고칠 수 없어요.'))return;
+  b.disabled=true;저장2().then(function(ok){if(!ok){b.disabled=false;alert('저장하지 못해서 제출하지 않았어요. 잠시 뒤 다시 해 주세요.');return}
+   A.api('/consulting/me/extra/submit',{method:'POST'}).then(function(r){if(r.있음){그리기(r);window.scrollTo(0,0)}else{b.disabled=false;alert(r.오류||'제출하지 못했어요')}},function(){b.disabled=false;alert('연결하지 못했어요. 잠시 뒤 다시 해 주세요.')})})})}
+function 제출후(j){var a=j.답변||{},목록='',s=j.상태;
+ Q.forEach(function(q){var v=질문값(q,a);if(v)목록+='<details><summary>'+q.n+'. '+esc(q.q)+'</summary><div class="답">'+esc(v)+'</div></details>'});
+ var 본='';
+ if(s==='제출됨'){본='<div class="cs-상자"><h2>제출하셨어요</h2><p style="margin:0">'+(j.마감?esc(날짜글(j.마감))+'까지 ':'7일 이내에 ')+'영감님의 피드백과 추가 질문이 올라와요. 올라오면 이메일로 알려 드려요.</p></div>'}
+ else{
+  if(j.피드백1)본+=피드백상자('1차 피드백',j.피드백1);
+  if(s==='추가질문')본+=추가폼(j);
+  else{
+   if((j.추가질문||[]).length)본+=추가답변상자(j);
+   if(s==='추가제출됨')본+='<div class="cs-상자"><h2>추가 질문 답변을 제출하셨어요</h2><p style="margin:0">'+(j.마감2?esc(날짜글(j.마감2))+'까지 ':'7일 이내에 ')+'최종 피드백이 올라와요. 올라오면 이메일로 알려 드려요.</p></div>';
+   if(s==='완료'&&j.최종피드백)본+=피드백상자('최종 피드백',j.최종피드백)+'<div class="cs-상자"><h2>멘토링이 마무리됐어요</h2><p style="margin:0">끝까지 함께해 주셔서 감사합니다. 이 페이지는 언제든 다시 보실 수 있어요.</p><p style="margin:10px 0 0"><button type="button" class="단추" id="cs-인쇄">피드백 PDF로 저장</button></p></div>'}}
+ root.innerHTML=머리+'<p>나의 멘토링 페이지</p>'+단계표(j)+본+'<div class="cs-상자"><h2>내가 쓴 답변</h2><div class="cs-내답">'+목록+'</div></div>';
+ if(s==='추가질문')추가바인딩(j);
+ var 인쇄=document.getElementById('cs-인쇄');if(인쇄)인쇄.addEventListener('click',function(){window.print()})}
 window.addEventListener('pagehide',function(){if(dirty)저장(true)});
 document.addEventListener('visibilitychange',function(){if(document.hidden&&dirty)저장(true)});
 불러오기();
@@ -235,6 +282,10 @@ A.api('/consulting/pay/confirm',{method:'POST',headers:{'Content-Type':'applicat
   <p><a class="단추 주" href="${길('/mentoring/pay/')}">다시 결제하기</a> <a class="단추 약함" href="${길('/mentoring/')}">멘토링 안내로</a></p>
 </section>
 <script>(function(){var m=new URLSearchParams(location.search).get('message');if(m)document.getElementById('cs-사유').textContent='결제를 마치지 못했어요: '+m+' (금액은 청구되지 않았어요)'})();</script>`;
+  // 운영자 화면 껍데기: 누구에게나 '찾는 페이지가 없어요'로 보이고, 운영자 로그인일 때만 서버에서 화면 코드를 받아 그린다.
+  const 운영자본문 = `<section class="일반글" id="ad-root"><h1>찾는 페이지가 없어요.</h1><p>공고가 마감돼 내려갔거나 주소가 바뀌었을 수 있어요.</p><a class="단추 주" href="${길('/')}">공고 보러 가기</a></section>
+<script>(function(){var A=window.AC;if(!A||!A.tok())return;window.__Q=${JSON.stringify(질문)};
+A.api('/consulting/admin/ui').then(function(j){if(j&&j.스크립트)(0,eval)(j.스크립트)},function(){})})();</script>`;
   const 판매스타일 = fs.readFileSync(path.join(__dirname, '홈화면', '컨설팅.css'), 'utf8');
   const 판매본문 = fs.readFileSync(path.join(__dirname, '홈화면', '컨설팅.html'), 'utf8').replace(/\{\{BASE\}\}/g, 길(''));
   const 만들기 = () => {
@@ -243,6 +294,7 @@ A.api('/consulting/pay/confirm',{method:'POST',headers:{'Content-Type':'applicat
     쓰기('mentoring/pay/index.html', 틀({ 제목: '멘토링 신청 · 아티스트 코치', 설명: '지원사업 멘토링 결제', 경로: '/mentoring/pay/', 현재: '멘토링', 본문: 결제본문, 색인: false }));
     쓰기('mentoring/pay/done/index.html', 틀({ 제목: '멘토링 결제 확인 · 아티스트 코치', 설명: '지원사업 멘토링 결제 확인', 경로: '/mentoring/pay/done/', 현재: '멘토링', 본문: 완료본문, 색인: false }));
     쓰기('mentoring/pay/fail/index.html', 틀({ 제목: '멘토링 결제 · 아티스트 코치', 설명: '지원사업 멘토링 결제', 경로: '/mentoring/pay/fail/', 현재: '멘토링', 본문: 실패본문, 색인: false }));
+    쓰기('mentoring/admin/index.html', 틀({ 제목: '찾는 페이지가 없어요 · 아티스트 코치', 설명: '찾는 페이지가 없어요', 경로: '/mentoring/admin/', 현재: '커뮤니티', 본문: 운영자본문, 색인: false }));
     쓰기('mentoring/me/index.html', 틀({ 제목: '내 멘토링 · 아티스트 코치', 설명: '지원사업 멘토링 질문지', 경로: '/mentoring/me/', 현재: '커뮤니티', 본문, 색인: false }));
     // 예전 주소(/consulting/…)로 들어오면 새 주소(/mentoring/…)로 보낸다 (토스에 이미 알린 주소가 끊기지 않게)
     [['consulting/', 'mentoring/'], ['consulting/pay/', 'mentoring/pay/'], ['consulting/me/', 'mentoring/me/']].forEach(([옛, 새]) => 쓰기(옛 + 'index.html', `<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><meta http-equiv="refresh" content="0;url=${길('/' + 새)}"><link rel="canonical" href="${길('/' + 새)}"><title>멘토링 안내로 이동</title></head><body><p><a href="${길('/' + 새)}">멘토링 안내로 이동</a></p></body></html>`));

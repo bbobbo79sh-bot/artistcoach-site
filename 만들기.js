@@ -408,6 +408,7 @@ a.행:hover .제목 b{color:var(--깊음)}
 .한줄요약 b{display:block;font-size:12.5px;color:var(--깊음);margin-bottom:2px}
 .노트목차{border-left:3px solid var(--연함);padding:2px 0 2px 14px;margin:0 0 18px;font-size:14.5px;line-height:1.95}
 .노트목차 summary{cursor:pointer;font-weight:700;color:var(--ink);padding:2px 0;list-style:none}.노트목차 summary::-webkit-details-marker{display:none}.노트목차 summary::after{content:' ▾';color:var(--sub)}.노트목차[open] summary{margin-bottom:6px}
+.노트목차 .목차이름{display:block;font-weight:700;color:var(--ink);margin-bottom:2px}
 .노트목차 a{display:block;color:var(--sub);text-decoration:none}.노트목차 a:hover{color:var(--깊음)}
 .이전다음{margin:30px 0 14px;border-top:1px solid var(--ink)}
 .이전다음 a,.이전다음 span{display:flex;align-items:center;gap:16px;padding:14px 8px;border-bottom:1px solid var(--선);text-decoration:none;color:var(--ink);min-width:0}
