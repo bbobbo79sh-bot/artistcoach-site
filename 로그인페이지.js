@@ -90,7 +90,7 @@ function 그리기(j){
   해지.addEventListener('click',function(){if(카드.querySelector('.해지확인'))return;해지.hidden=true;카드.style.flexWrap='wrap';
    var 상=document.createElement('div');상.className='해지확인';상.setAttribute('style','flex-basis:100%;width:100%;margin-top:14px;padding:16px 18px;border:2px solid #e5484d;border-radius:14px;background:#fff6f6;box-sizing:border-box');
    var q=document.createElement('b');q.textContent='정말 해지할까요?';q.style.cssText='display:block;font-size:17px';
-   var d=document.createElement('p');d.textContent='다음 결제부터 중단돼요. 이미 결제한 기간('+(j.만료||'-')+')까지는 계속 볼 수 있어요. 해지한 뒤에는 이 화면에서 되돌릴 수 없어요.';d.style.margin='8px 0 14px';
+   var d=document.createElement('p');d.textContent='다음 결제부터 중단돼요. 이미 결제한 기간('+(j.만료||'-')+')까지는 계속 볼 수 있어요. 이용 기간이 끝나기 전에는 '해지 취소하기'로 되돌릴 수 있어요.';d.style.margin='8px 0 14px';
    var 줄2=document.createElement('div');줄2.style.cssText='display:flex;gap:10px;flex-wrap:wrap';
    var 예=document.createElement('button');예.type='button';예.textContent='네, 해지할게요';예.style.cssText='background:#e5484d;color:#fff;border:0;border-radius:999px;padding:12px 20px;font-weight:700;font-size:15px;cursor:pointer';
    var 아니=document.createElement('button');아니.type='button';아니.className='단추 주';아니.textContent='계속 이용할게요';
@@ -99,6 +99,19 @@ function 그리기(j){
     A.api('/membership/cancel',{method:'POST'}).then(function(r){if(r.해지){A.api('/membership').then(그리기)}else{예.disabled=false;아니.disabled=false;alert(r.오류||'해지하지 못했어요. 잠시 뒤 다시 해 주세요')}})});
    줄2.appendChild(예);줄2.appendChild(아니);상.appendChild(q);상.appendChild(d);상.appendChild(줄2);카드.appendChild(상)});
   카드.appendChild(해지)}
+ if(j.상태==='해지예정'){var 되돌리기=document.createElement('button');되돌리기.type='button';되돌리기.className='단추';되돌리기.textContent='해지 취소하기';
+  되돌리기.addEventListener('click',function(){if(카드.querySelector('.취소확인'))return;되돌리기.hidden=true;카드.style.flexWrap='wrap';
+   var 상=document.createElement('div');상.className='취소확인';상.setAttribute('style','flex-basis:100%;width:100%;margin-top:14px;padding:16px 18px;border:2px solid #1f4dff;border-radius:14px;background:#f4f7ff;box-sizing:border-box');
+   var q=document.createElement('b');q.textContent='해지를 취소할까요?';q.style.cssText='display:block;font-size:17px';
+   var d=document.createElement('p');d.textContent='이용권이 계속돼요. 다음 결제일은 '+(j.만료||'-')+'이고, 그날 월 10,000원이 자동 결제돼요. 해지는 언제든 다시 할 수 있어요.';d.style.margin='8px 0 14px';
+   var 줄2=document.createElement('div');줄2.style.cssText='display:flex;gap:10px;flex-wrap:wrap';
+   var 예=document.createElement('button');예.type='button';예.className='단추 주';예.textContent='네, 계속 이용할게요';
+   var 아니=document.createElement('button');아니.type='button';아니.className='단추';아니.textContent='아니요';
+   아니.addEventListener('click',function(){상.remove();되돌리기.hidden=false});
+   예.addEventListener('click',function(){예.disabled=true;아니.disabled=true;
+    A.api('/membership/resume',{method:'POST'}).then(function(r){if(r.취소됨){A.api('/membership').then(그리기)}else{예.disabled=false;아니.disabled=false;alert(r.오류||'해지를 취소하지 못했어요. 잠시 뒤 다시 해 주세요')}})});
+   줄2.appendChild(예);줄2.appendChild(아니);상.appendChild(q);상.appendChild(d);상.appendChild(줄2);카드.appendChild(상)});
+  카드.appendChild(되돌리기)}
  B.appendChild(카드)}
 A.api('/membership').then(function(j){if(j._s===401)return;그리기(j)},function(){줄('이용권 정보를 불러오지 못했어요.')});
 })();</script>` : ''}
