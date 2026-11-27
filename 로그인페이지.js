@@ -99,7 +99,7 @@ function 그리기(j){
     A.api('/membership/cancel',{method:'POST'}).then(function(r){if(r.해지){A.api('/membership').then(그리기)}else{예.disabled=false;아니.disabled=false;alert(r.오류||'해지하지 못했어요. 잠시 뒤 다시 해 주세요')}})});
    줄2.appendChild(예);줄2.appendChild(아니);상.appendChild(q);상.appendChild(d);상.appendChild(줄2);카드.appendChild(상)});
   카드.appendChild(해지)}
- if(j.상태==='해지예정'){var 되돌리기=document.createElement('button');되돌리기.type='button';되돌리기.className='단추';되돌리기.textContent='해지 취소하기';
+ if(j.상태==='해지예정'){var 되돌리기=document.createElement('button');되돌리기.type='button';되돌리기.className='단추 주';되돌리기.textContent='해지 취소하기';되돌리기.style.cssText='font-size:17px;padding:15px 26px;border-radius:14px;box-shadow:0 8px 20px rgba(31,77,255,.30)';
   되돌리기.addEventListener('click',function(){if(카드.querySelector('.취소확인'))return;되돌리기.hidden=true;카드.style.flexWrap='wrap';
    var 상=document.createElement('div');상.className='취소확인';상.setAttribute('style','flex-basis:100%;width:100%;margin-top:14px;padding:16px 18px;border:2px solid #1f4dff;border-radius:14px;background:#f4f7ff;box-sizing:border-box');
    var q=document.createElement('b');q.textContent='해지를 취소할까요?';q.style.cssText='display:block;font-size:17px';
