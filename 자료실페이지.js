@@ -229,7 +229,7 @@ module.exports = ({ 상품설정 = {}, 스토어켜짐 = false, 설정, 검수�
   <div class="글머리"><span class="분류표">${막기(n.탭 || '쓰는 법')}</span><h1>${막기(n.제목)}</h1>
     <div class="글정보"><span>영감</span>${날짜글(n.날짜) ? `<span>${날짜글(n.날짜)}</span>` : ''}<span>${분(n.본문)}분 읽기</span></div></div>
     ${n.요약 ? `<div class="한줄요약"><b>한 줄 요약</b>${막기(n.요약)}</div>` : ''}
-  ${제목들.length >= 3 ? (제목들.length > 8 ? `<details class="노트목차"><summary>목차 보기 (${제목들.length})</summary>${제목들.map(([i, t]) => `<a href="#s${i}">${t}</a>`).join('')}</details>` : `<nav class="노트목차" aria-label="목차">${제목들.map(([i, t]) => `<a href="#s${i}">${t}</a>`).join('')}</nav>`) : ''}
+  ${제목들.length >= 3 ? (제목들.length > 8 ? `<details class="노트목차"><summary>목차 보기 (${제목들.length})</summary>${제목들.map(([i, t]) => `<a href="#s${i}">${t}</a>`).join('')}</details>` : `<nav class="노트목차" aria-label="목차"><b class="목차이름">목차</b>${제목들.map(([i, t]) => `<a href="#s${i}">${t}</a>`).join('')}</nav>`) : ''}
   ${광고넣기(본문, 광고칸('글중간'))}
   ${광고칸('글끝')}
   <nav class="이전다음" aria-label="이전 글과 다음 글">
