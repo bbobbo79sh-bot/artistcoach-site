@@ -18,7 +18,7 @@ module.exports = ({ 틀, 길, 쓰기, 토스키 = '' }) => {
     { n: 3, s: 'A', q: '그중 심사위원에게 가장 자신 있게 보여줄 작업 하나와 그 이유는 무엇인가요?' },
     { n: 4, s: 'A', q: '내 작업의 핵심 주제나 반복해서 다루는 질문은 무엇인가요?' },
     { n: 5, s: 'A', q: '같은 분야의 다른 예술인과 구별되는 나만의 점은 무엇인가요?' },
-    { n: 6, s: 'A', q: '내 활동을 뒷받침하는 자료는 무엇인가요?', h: '영상·사진·기록·후기·언론 보도·수상·관객 수 등. 영상이나 문서는 주소(링크)를 답변에 적어 주세요.' },
+    { n: 6, s: 'A', q: '내 활동을 뒷받침하는 자료는 무엇인가요?', h: '영상·사진·기록·후기·언론 보도·수상·관객 수 등. 문서와 사진은 아래에서 파일로 올리고, 영상은 주소(링크)를 답변에 적어 주세요.' },
     { n: 7, s: 'B', q: '지금까지 지원사업에 신청한 경험을 모두 적어 주세요.', h: '사업명·연도·결과' },
     { n: 8, s: 'B', q: '선정된 경험이 있다면, 왜 선정되었다고 생각하나요?' },
     { n: 9, s: 'B', q: '탈락한 경험이 있다면, 왜 탈락했다고 생각하나요?' },
@@ -91,6 +91,15 @@ module.exports = ({ 틀, 길, 쓰기, 토스키 = '' }) => {
 .ad-칸,.ad-할일{width:100%;box-sizing:border-box;font:inherit;font-size:16px;padding:10px 12px;border:1px solid var(--선);border-radius:10px;background:var(--면);color:var(--ink);margin-bottom:6px}
 .ad-칸{min-height:120px;resize:vertical;line-height:1.65}
 .cs-내답 .답{white-space:pre-wrap}
+.cs-첨부{margin-top:12px;border-top:1px dashed var(--선);padding-top:10px}
+.cs-첨부 .올린{list-style:none;margin:0 0 8px;padding:0;display:grid;gap:6px}
+.cs-첨부 .올린 li{display:flex;gap:8px;align-items:center;justify-content:space-between;border:1px solid var(--선);border-radius:10px;padding:8px 12px;background:var(--면);font-size:14px}
+.cs-첨부 .올린 li span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cs-첨부 .올린 button{border:0;background:none;color:var(--sub);cursor:pointer;font:inherit;font-size:13px;flex:none;text-decoration:underline}
+.cs-첨부 .파일단추{display:inline-block;border:1.5px solid var(--브랜드);color:var(--브랜드);border-radius:10px;padding:9px 16px;font-weight:700;cursor:pointer;font-size:14px}
+.cs-첨부 .파일단추.끔{opacity:.5;cursor:not-allowed}
+.cs-첨부 small{display:block;color:var(--sub);margin-top:6px;font-size:12.5px}
+.cs-첨부 .올림말{font-size:13px;color:var(--깊음);margin-left:8px}
 @media print{.cs-바닥,header,nav,footer,#cs-인쇄{display:none!important}}
 `;
 
@@ -107,6 +116,7 @@ function 시각(){var d=new Date();return d.getHours()+':'+String(d.getMinutes()
 function 날짜글(s){var m=/^(\\d{4})-(\\d{2})-(\\d{2})$/.exec(s||'');return m?m[1]+'년 '+Number(m[2])+'월 '+Number(m[3])+'일':(s||'')}
 if(!A.tok()){try{sessionStorage.setItem('ac_next','/mentoring/me/')}catch(e){}location.replace(A.base+'/login/');return}
 var 머리='<span class="윗글">멘토링</span><h1>지원사업 멘토링</h1>';
+var 첨부칸=[2,6,7,21,28],첨부데이터={},첨부열림=false;
 function 오류(t){root.innerHTML=머리+'<p>'+esc(t)+'</p>'}
 function 불러오기(){A.api('/consulting/me').then(function(j){if(j._s===401)return;그리기(j)},function(){오류('연결하지 못했어요. 잠시 뒤 다시 해 주세요.')})}
 function 그리기(j){if(바닥){바닥.remove();바닥=null}if(!j.있음){시작화면(j);return}if(j.상태==='작성중'){폼(j);return}제출후(j)}
@@ -128,6 +138,7 @@ function 질문칸(q){var id='q'+q.n,본='';
    +'<div class="cs-하위"><div class="소제목">단체를 설립할 계획이 있나요?</div><div class="cs-줄"><label><input type="radio" name="'+id+'_org" value="있음" data-k="'+id+'_org"> 있음</label><label><input type="radio" name="'+id+'_org" value="없음" data-k="'+id+'_org"> 없음</label><label><input type="radio" name="'+id+'_org" value="고민 중" data-k="'+id+'_org"> 고민 중</label></div>'
    +'<input type="text" data-k="'+id+'_orgnote" maxlength="300" placeholder="계획이 있다면 간단히 적어 주세요 (시기, 형태 등)"></div>'}
  else{본='<textarea id="'+id+'" data-k="'+id+'" maxlength="6000" placeholder="여기에 적어 주세요"></textarea>'}
+ if(첨부칸.indexOf(q.n)>=0)본+='<div class="cs-첨부" data-f="'+id+'"><ul class="올린"></ul><label class="파일단추"><input type="file" multiple hidden accept=".pdf,.png,.jpg,.jpeg,.gif,.webp,.hwp,.hwpx,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.txt">파일 올리기</label><span class="올림말"></span><small>선택 사항이에요. 파일은 하나에 10MB까지, 한 질문에 5개까지 올릴 수 있어요. (pdf·이미지·한글·오피스 문서)</small></div>';
  return'<div class="cs-질문"><label class="제목" for="'+id+'"><span class="번호">'+q.n+'</span>'+esc(q.q)+'</label>'+(q.h?'<span class="힌트">'+esc(q.h)+'</span>':'')+본+'</div>'}
 function 답함(q){if(q.kind==='rank')return q.items.some(function(_,i){return data['q'+q.n+'_'+i]});if(q.kind==='basic')return!!(data.q21_addr||data.q21_biz||data.q21_org);return!!(data['q'+q.n]||'').trim()}
 function 세기(){return Q.filter(답함).length}
@@ -141,7 +152,25 @@ function 저장(빠르게){clearTimeout(timer);if(!dirty)return Promise.resolve(
   if(r._s===409){불러오기();return false}
   상태말('저장하지 못했어요. 잠시 뒤 다시 시도해요.','안됨');return false},function(){상태말('저장하지 못했어요. 연결을 확인해 주세요.','안됨');return false})}
 function 예약(){dirty=true;상태말('저장 중…','');clearTimeout(timer);timer=setTimeout(function(){저장(false)},800);진행()}
-function 폼(j){data=Object.assign({},j.답변||{});dirty=false;
+function 크기글(n){return n>=1048576?(n/1048576).toFixed(1)+'MB':Math.max(1,Math.round(n/1024))+'KB'}
+function 첨부그리기(){root.querySelectorAll('.cs-첨부').forEach(function(박스){var id=박스.getAttribute('data-f');var 목록=박스.querySelector('.올린'),단추=박스.querySelector('.파일단추'),입력=박스.querySelector('input'),말=박스.querySelector('.올림말');
+  var 파일들=첨부데이터[id]||[];
+  목록.innerHTML=파일들.map(function(f){return'<li><span>'+esc(f.이름)+' <small style="display:inline;margin:0">('+크기글(f.크기||0)+')</small></span><button type="button" data-id="'+esc(f.id)+'">지우기</button></li>'}).join('');
+  목록.querySelectorAll('button').forEach(function(b){b.addEventListener('click',function(){if(!confirm('이 파일을 지울까요?'))return;b.disabled=true;
+   A.api('/consulting/me/upload/delete',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({칸:id,id:b.getAttribute('data-id')})}).then(function(r){if(r.지움){첨부데이터=r.첨부||{};첨부그리기()}else{b.disabled=false;alert(r.오류||'지우지 못했어요')}},function(){b.disabled=false;alert('연결하지 못했어요. 잠시 뒤 다시 해 주세요.')})})});
+  if(!첨부열림){단추.classList.add('끔');입력.disabled=true;말.textContent='파일 올리기는 준비 중이에요. 링크를 답변에 적어 주세요.';return}
+  if(파일들.length>=5){단추.classList.add('끔');입력.disabled=true;말.textContent='5개를 모두 올렸어요.';return}
+  입력.onchange=function(){var 고른=[].slice.call(입력.files||[]);입력.value='';if(!고른.length)return;
+   var 남음=5-파일들.length;if(고른.length>남음){alert('이 질문에는 '+남음+'개까지 더 올릴 수 있어요. 앞의 '+남음+'개만 올릴게요.');고른=고른.slice(0,남음)}
+   var 순서=Promise.resolve();
+   고른.forEach(function(파일){순서=순서.then(function(){
+    if(파일.size>10485760){alert('"'+파일.name+'" 파일이 10MB보다 커서 올리지 못했어요.');return}
+    말.textContent='올리는 중… '+파일.name;
+    return A.api('/consulting/me/upload?칸='+id+'&이름='+encodeURIComponent(파일.name),{method:'POST',headers:{'Content-Type':파일.type||'application/octet-stream'},body:파일}).then(function(r){
+     if(r.올림){첨부데이터=r.첨부||{};말.textContent=''}else{말.textContent='';alert('"'+파일.name+'": '+(r.오류||'올리지 못했어요'))}
+    },function(){말.textContent='';alert('연결하지 못했어요. 잠시 뒤 다시 해 주세요.')})})});
+   순서.then(첨부그리기)}})}
+function 폼(j){data=Object.assign({},j.답변||{});dirty=false;첨부데이터=Object.assign({},j.첨부||{});첨부열림=!!j.첨부열림;
  var 본='';SEC.forEach(function(s){본+='<h2 class="cs-구역">'+esc(s.t)+'</h2><p class="cs-구역말">'+esc(s.s)+'</p>';Q.filter(function(q){return q.s===s.id}).forEach(function(q){본+=질문칸(q)})});
  root.innerHTML=머리+'<p>결제해 주셔서 감사합니다. 멘토링은 아래 순서로 진행돼요.</p>'+진행방식
   +'<div class="cs-상자"><h2>작성 안내</h2><p style="margin:0">쭉 내려가며 작성해 주세요. 최대한 자세하게, 친절히 작성해 주세요.<br>작성해 주신 내용을 중심으로 멘토링이 이루어지기 때문에, 자세하게 작성해 주실수록 좋은 답변을 받으실 수 있습니다.</p>'
@@ -154,6 +183,7 @@ function 폼(j){data=Object.assign({},j.답변||{});dirty=false;
  function 입력(e){var el=e.target;if(!el.getAttribute)return;var k=el.getAttribute('data-k');if(!k)return;if(el.type==='radio'){if(!el.checked)return}
   if(el.value===''||el.value==null)delete data[k];else data[k]=el.value;예약()}
  바닥=document.createElement('div');바닥.className='cs-바닥';바닥.innerHTML='<div class="안"><span id="cs-저장" class="cs-저장">자동 저장 켜짐</span><div class="막대"><i id="cs-채움"></i></div><span id="cs-개수">0개 작성</span></div>';document.body.appendChild(바닥);
+ 첨부그리기();
  진행();
  document.getElementById('cs-제출').addEventListener('click',function(){var b=this;
   if(세기()===0){alert('답변을 한 칸 이상 적어 주세요.');return}
@@ -196,7 +226,7 @@ function 추가바인딩(j){var ed=Object.assign({},j.추가답변||{}),t=null,�
   b.disabled=true;저장2().then(function(ok){if(!ok){b.disabled=false;alert('저장하지 못해서 제출하지 않았어요. 잠시 뒤 다시 해 주세요.');return}
    A.api('/consulting/me/extra/submit',{method:'POST'}).then(function(r){if(r.있음){그리기(r);window.scrollTo(0,0)}else{b.disabled=false;alert(r.오류||'제출하지 못했어요')}},function(){b.disabled=false;alert('연결하지 못했어요. 잠시 뒤 다시 해 주세요.')})})})}
 function 제출후(j){var a=j.답변||{},목록='',s=j.상태;
- Q.forEach(function(q){var v=질문값(q,a);if(v)목록+='<details><summary>'+q.n+'. '+esc(q.q)+'</summary><div class="답">'+esc(v)+'</div></details>'});
+ Q.forEach(function(q){var v=질문값(q,a);var 올림=(j.첨부&&j.첨부['q'+q.n])||[];if(올림.length)v=(v?v+NL+NL:'')+'올린 파일: '+올림.map(function(f){return f.이름}).join(', ');if(v)목록+='<details><summary>'+q.n+'. '+esc(q.q)+'</summary><div class="답">'+esc(v)+'</div></details>'});
  var 본='';
  if(s==='제출됨'){본='<div class="cs-상자"><h2>제출하셨어요</h2><p style="margin:0">'+(j.마감?esc(날짜글(j.마감))+'까지 ':'7일 이내에 ')+'영감님의 피드백과 추가 질문이 올라와요. 올라오면 이메일로 알려 드려요.</p></div>'}
  else{
