@@ -100,17 +100,8 @@ function 그리기(j){
    줄2.appendChild(예);줄2.appendChild(아니);상.appendChild(q);상.appendChild(d);상.appendChild(줄2);카드.appendChild(상)});
   카드.appendChild(해지)}
  if(j.상태==='해지예정'){var 되돌리기=document.createElement('button');되돌리기.type='button';되돌리기.className='단추 주';되돌리기.textContent='해지 취소하기';되돌리기.style.cssText='font-size:18px;padding:16px 34px;border-radius:14px;box-shadow:0 8px 20px rgba(31,77,255,.30);align-self:center;min-width:220px';
-  되돌리기.addEventListener('click',function(){if(카드.querySelector('.취소확인'))return;되돌리기.hidden=true;카드.style.flexWrap='wrap';
-   var 상=document.createElement('div');상.className='취소확인';상.setAttribute('style','flex-basis:100%;width:100%;margin-top:14px;padding:16px 18px;border:2px solid #1f4dff;border-radius:14px;background:#f4f7ff;box-sizing:border-box;text-align:left');
-   var q=document.createElement('b');q.textContent='해지를 취소할까요?';q.style.cssText='display:block;font-size:17px';
-   var d=document.createElement('p');d.textContent='이용권이 계속돼요. 다음 결제일은 '+(j.만료||'-')+'이고, 그날 월 10,000원이 자동 결제돼요. 해지는 언제든 다시 할 수 있어요.';d.style.margin='8px 0 14px';
-   var 줄2=document.createElement('div');줄2.style.cssText='display:flex;gap:10px;flex-wrap:wrap';
-   var 예=document.createElement('button');예.type='button';예.className='단추 주';예.textContent='네, 계속 이용할게요';
-   var 아니=document.createElement('button');아니.type='button';아니.className='단추';아니.textContent='아니요';
-   아니.addEventListener('click',function(){상.remove();되돌리기.hidden=false});
-   예.addEventListener('click',function(){예.disabled=true;아니.disabled=true;
-    A.api('/membership/resume',{method:'POST'}).then(function(r){if(r.취소됨){A.api('/membership').then(그리기)}else{예.disabled=false;아니.disabled=false;alert(r.오류||'해지를 취소하지 못했어요. 잠시 뒤 다시 해 주세요')}})});
-   줄2.appendChild(예);줄2.appendChild(아니);상.appendChild(q);상.appendChild(d);상.appendChild(줄2);카드.appendChild(상)});
+  되돌리기.addEventListener('click',function(){되돌리기.disabled=true;되돌리기.textContent='취소하는 중…';
+   A.api('/membership/resume',{method:'POST'}).then(function(r){if(r.취소됨){A.api('/membership').then(그리기)}else{되돌리기.disabled=false;되돌리기.textContent='해지 취소하기';alert(r.오류||'해지를 취소하지 못했어요. 잠시 뒤 다시 해 주세요')}},function(){되돌리기.disabled=false;되돌리기.textContent='해지 취소하기';alert('연결하지 못했어요. 잠시 뒤 다시 해 주세요')})});
   카드.appendChild(되돌리기)}
  B.appendChild(카드);
  var 환불=document.createElement('p');환불.className='작은';환불.style.cssText='margin:6px 2px 0;line-height:1.7';환불.innerHTML='환불이 필요하면 <a href="'+A.base+'/community/#ask">커뮤니티 · 문의하기</a>에서 종류를 <b>환불 요청</b>으로 골라 보내 주세요. 첫 결제 후 7일 이내이고 회원 전용 글을 열기 전이면 전액 환불해요. (<a href="'+A.base+'/refund/">환불 규정</a>)';B.appendChild(환불)}
