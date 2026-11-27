@@ -87,8 +87,17 @@ function 그리기(j){
  B.innerHTML='';var 카드=document.createElement('div');카드.className='내카드';var 안=document.createElement('div');var b=document.createElement('b');b.textContent='코치 크루 (월 10,000원)';var s=document.createElement('small');
  s.textContent=j.상태==='해지예정'?'해지했어요 · '+j.만료+'까지 이용할 수 있어요':'이용 중 · 다음 결제일 '+(j.다음결제||'-')+' · '+(j.만료||'-')+'까지 이용';안.appendChild(b);안.appendChild(s);카드.appendChild(안);
  if(j.상태==='이용중'){var 해지=document.createElement('button');해지.type='button';해지.className='빼기';해지.textContent='해지하기';
-  해지.addEventListener('click',function(){if(!confirm('해지할까요?\\n다음 결제부터 중단되고, 이미 결제한 기간('+(j.만료||'-')+')까지는 계속 볼 수 있어요.'))return;해지.disabled=true;
-   A.api('/membership/cancel',{method:'POST'}).then(function(r){if(r.해지){A.api('/membership').then(그리기)}else{해지.disabled=false;alert(r.오류||'해지하지 못했어요. 잠시 뒤 다시 해 주세요')}})});
+  해지.addEventListener('click',function(){if(카드.querySelector('.해지확인'))return;해지.hidden=true;
+   var 상=document.createElement('div');상.className='해지확인';상.setAttribute('style','flex-basis:100%;width:100%;margin-top:14px;padding:16px 18px;border:2px solid #e5484d;border-radius:14px;background:#fff6f6;box-sizing:border-box');
+   var q=document.createElement('b');q.textContent='정말 해지할까요?';q.style.cssText='display:block;font-size:17px';
+   var d=document.createElement('p');d.textContent='다음 결제부터 중단돼요. 이미 결제한 기간('+(j.만료||'-')+')까지는 계속 볼 수 있어요. 해지한 뒤에는 이 화면에서 되돌릴 수 없어요.';d.style.margin='8px 0 14px';
+   var 줄2=document.createElement('div');줄2.style.cssText='display:flex;gap:10px;flex-wrap:wrap';
+   var 예=document.createElement('button');예.type='button';예.className='빼기';예.textContent='네, 해지할게요';
+   var 아니=document.createElement('button');아니.type='button';아니.className='단추 주';아니.textContent='계속 이용할게요';
+   아니.addEventListener('click',function(){상.remove();해지.hidden=false});
+   예.addEventListener('click',function(){예.disabled=true;아니.disabled=true;
+    A.api('/membership/cancel',{method:'POST'}).then(function(r){if(r.해지){A.api('/membership').then(그리기)}else{예.disabled=false;아니.disabled=false;alert(r.오류||'해지하지 못했어요. 잠시 뒤 다시 해 주세요')}})});
+   줄2.appendChild(예);줄2.appendChild(아니);상.appendChild(q);상.appendChild(d);상.appendChild(줄2);카드.appendChild(상)});
   카드.appendChild(해지)}
  B.appendChild(카드)}
 A.api('/membership').then(function(j){if(j._s===401)return;그리기(j)},function(){줄('이용권 정보를 불러오지 못했어요.')});
