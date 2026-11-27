@@ -203,7 +203,7 @@
     var 글 = h('section', { class: 'cm-폼 cm-글쓰기' });
     글.appendChild(h('h2', { text: '영감에게 문의하기' }));
     글.appendChild(h('div', { class: 'cm-비공개' }, [h('b', { text: '🔒 완전 비공개예요' }), h('span', { text: '제목과 내용 모두 나와 영감만 볼 수 있어요. 답변은 이 화면에서 확인해요.' })]));
-    var 머 = h('select', { 'aria-label': '문의 종류' }, ['신청서 질문', '멘토링·결제 문의', '사이트 건의', '기타'].map(function (x) { return h('option', { value: x, text: x }); }));
+    var 머 = h('select', { 'aria-label': '문의 종류' }, ['신청서 질문', '멘토링·결제 문의', '환불 요청', '사이트 건의', '기타'].map(function (x) { return h('option', { value: x, text: x }); }));
     var 제목 = h('input', { type: 'text', maxlength: '60', placeholder: '제목 (60자까지)', 'aria-label': '제목' });
     var 내용 = h('textarea', { rows: '10', maxlength: '3000', placeholder: '어떤 사업에 지원하는지, 어디서 막혔는지 적어 주시면 더 정확히 답할 수 있어요 (3000자까지)', 'aria-label': '내용' });
     var 오류 = h('p', { class: 'cm-오류 작은', hidden: 'hidden' });
