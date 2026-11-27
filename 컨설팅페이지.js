@@ -197,7 +197,7 @@ document.addEventListener('visibilitychange',function(){if(document.hidden&&dirt
 var 알림=document.getElementById('cs-알림'),버튼=document.getElementById('cs-결제하기');
 function 알려(t){알림.textContent=t;알림.hidden=!t}
 if(!A.tok()){try{sessionStorage.setItem('ac_next','/mentoring/pay/')}catch(e){}location.replace(A.base+'/login/');return}
-A.api('/consulting/me').then(function(j){if(j._s===401)return;if(j.있음){location.replace(A.base+'/mentoring/me/');return}if(j.결제열림===false){버튼.disabled=true;버튼.textContent='결제 준비 중이에요'}});
+A.api('/consulting/me').then(function(j){if(j._s===401)return;if(j.있음&&!j.심사용){location.replace(A.base+'/mentoring/me/');return}if(j.결제열림===false){버튼.disabled=true;버튼.textContent='결제 준비 중이에요'}});
 버튼.addEventListener('click',async function(){
  알려('');
  if(!document.getElementById('cs-동의1').checked||!document.getElementById('cs-동의2').checked){알려('두 가지 동의에 모두 체크해 주세요.');return}
