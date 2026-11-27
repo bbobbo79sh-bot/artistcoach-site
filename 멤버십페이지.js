@@ -32,7 +32,7 @@ module.exports = ({ 틀, 길, 쓰기, 토스키 = '' }) => {
   <div class="ms-값"><b>월 10,000원</b><span>매월 자동 결제 · 언제든 해지</span></div>
   <div id="ms-내상태" class="작은" style="margin-top:14px"></div>
   <div class="ms-줄" style="margin:12px 0 18px"><a class="단추 주 ms-큰단추" id="ms-단추" href="${길('/login/')}">로그인하고 가입하기</a></div>
-  <div class="ms-준비" id="ms-준비"><b>결제는 아직 열리지 않았어요.</b><br>결제대행사 심사가 끝나면 이 화면에서 가입할 수 있어요. 열리면 바로 알려 드릴게요.</div>
+  <div class="ms-준비" id="ms-준비" hidden><b>결제는 아직 열리지 않았어요.</b><br>결제대행사 심사가 끝나면 이 화면에서 가입할 수 있어요. 열리면 바로 알려 드릴게요.</div>
   <div class="ms-상자">
     <h2>결제하기 전에 알아 두세요</h2>
     <ul>
@@ -49,7 +49,7 @@ if(!A.tok())return;
 A.api('/membership').then(function(j){if(j._s===401)return;
  if(j.이용중){단추.textContent='코치 라운지 들어가기';단추.href=A.base+'/membership/library/';
   상태.textContent=j.상태==='해지예정'?'해지했어요. '+j.만료+'까지 이용할 수 있어요.':'이용 중이에요. 다음 결제일은 '+(j.다음결제||'-')+'이에요.';return}
- if(j.결제열림){준비.hidden=true;단추.textContent='코치 크루 가입하기 · 월 10,000원';단추.href=A.base+'/membership/join/'}else{단추.textContent='결제 준비 중';단추.setAttribute('disabled','disabled');단추.removeAttribute('href')}   // 결제가 열리기(토스 정기결제 승인) 전에는 누를 수 없다
+ if(j.결제열림){준비.hidden=true;단추.textContent='코치 크루 가입하기 · 월 10,000원';단추.href=A.base+'/membership/join/'}else{준비.hidden=false;단추.textContent='결제 준비 중';단추.setAttribute('disabled','disabled');단추.removeAttribute('href')}   // 결제가 열리기(토스 정기결제 승인) 전에는 누를 수 없다
 })})();</script>`;
   const 가입본문 = `<section class="일반글 ms-글">
   <span class="윗글">코치 크루</span>
