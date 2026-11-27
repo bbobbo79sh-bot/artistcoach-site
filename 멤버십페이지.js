@@ -113,7 +113,7 @@ A.api('/library').then(function(j){
  if(j._s===401)return;
  if(j._s===403){칸.innerHTML='<div class="ms-상자"><b>코치 크루만 볼 수 있어요.</b><br>가입 전에 가격과 해지 방법을 확인할 수 있어요.</div><p><a class="단추 주" href="'+A.base+'/membership/">코치 크루 안내 보기</a></p>';return}
  if(!j.글||!j.글.length){칸.innerHTML='<div class="ms-상자">아직 올라온 글이 없어요. 곧 올라와요.</div>';return}
- 칸.className='';칸.innerHTML='<ul class="ms-글목록">'+j.글.map(function(g){return'<li><a href="'+A.base+'/membership/library/read/?id='+encodeURIComponent(g.id)+'"><b>'+esc(g.제목)+'</b>'+(g.요약?'<span>'+esc(g.요약)+'</span>':'')+(g.날짜?'<small>'+esc(g.날짜)+'</small>':'')+'</a></li>'}).join('')+'</ul>'},
+ 칸.className='';칸.innerHTML='<p class="건수줄">글 '+j.글.length+'개</p><div class="게시판목록"><div class="행 머리줄"><span class="번호">번호</span><span class="분류">분류</span><span class="제목">제목</span><span class="날짜">날짜</span></div>'+j.글.map(function(g,i){var d=(g.날짜||'').slice(5).replace('-','.');return'<a class="행" href="'+A.base+'/membership/library/read/?id='+encodeURIComponent(g.id)+'"><span class="번호">'+(i+1)+'</span><span class="분류">'+esc(g.분류||g.말머리||'글')+'</span><span class="제목"><b>'+esc(g.제목)+'</b>'+(g.요약?'<small>'+esc(g.요약)+'</small>':'')+'</span><span class="날짜">'+esc(d)+'</span></a>'}).join('')+'</div>'},
  function(){칸.textContent='연결하지 못했어요. 잠시 뒤 다시 해 주세요.'})})();</script>`;
   const 자료읽기본문 = `<section class="일반글 ms-글">
   <span class="윗글">코치 라운지</span>
