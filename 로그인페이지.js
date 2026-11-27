@@ -84,13 +84,13 @@ ${멤버십 ? `<script>(function(){var A=window.AC,B=document.getElementById('�
 function 줄(t){B.innerHTML='';var p=document.createElement('p');p.textContent=t;B.appendChild(p)}
 function 그리기(j){
  if(!j.이용중){B.innerHTML='<p>이용 중인 이용권이 없어요. <a href="'+A.base+'/membership/">코치 크루 알아보기</a></p>';return}
- B.innerHTML='';var 카드=document.createElement('div');카드.className='내카드';var 안=document.createElement('div');var b=document.createElement('b');b.textContent='코치 크루 (월 10,000원)';var s=document.createElement('small');
+ B.innerHTML='';var 카드=document.createElement('div');카드.className='내카드';카드.style.cssText='flex-direction:column;align-items:center;text-align:center;padding:22px 18px;gap:16px';var 안=document.createElement('div');var b=document.createElement('b');b.style.fontSize='18px';b.textContent='코치 크루 (월 10,000원)';var s=document.createElement('small');
  s.textContent=j.상태==='해지예정'?'해지했어요 · '+j.만료+'까지 이용할 수 있어요':'이용 중 · 다음 결제일 '+(j.다음결제||'-')+' · '+(j.만료||'-')+'까지 이용';안.appendChild(b);안.appendChild(s);카드.appendChild(안);
- if(j.상태==='이용중'){var 해지=document.createElement('button');해지.type='button';해지.className='빼기';해지.textContent='해지하기';
+ if(j.상태==='이용중'){var 해지=document.createElement('button');해지.type='button';해지.className='빼기';해지.textContent='해지하기';해지.style.cssText='border:1px solid var(--선);border-radius:12px;background:#fff;color:var(--ink);padding:13px 30px;font-size:15px;font-weight:700;cursor:pointer';
   해지.addEventListener('click',function(){if(카드.querySelector('.해지확인'))return;해지.hidden=true;카드.style.flexWrap='wrap';
-   var 상=document.createElement('div');상.className='해지확인';상.setAttribute('style','flex-basis:100%;width:100%;margin-top:14px;padding:16px 18px;border:2px solid #e5484d;border-radius:14px;background:#fff6f6;box-sizing:border-box');
+   var 상=document.createElement('div');상.className='해지확인';상.setAttribute('style','flex-basis:100%;width:100%;margin-top:14px;padding:16px 18px;border:2px solid #e5484d;border-radius:14px;background:#fff6f6;box-sizing:border-box;text-align:left');
    var q=document.createElement('b');q.textContent='정말 해지할까요?';q.style.cssText='display:block;font-size:17px';
-   var d=document.createElement('p');d.textContent='다음 결제부터 중단돼요. 이미 결제한 기간('+(j.만료||'-')+')까지는 계속 볼 수 있어요. 이용 기간이 끝나기 전에는 [해지 취소하기] 단추로 되돌릴 수 있어요.';d.style.margin='8px 0 14px';
+   var d=document.createElement('p');d.textContent='다음 결제부터 중단돼요. 이미 결제한 기간('+(j.만료||'-')+')까지는 계속 볼 수 있어요. 이용 기간이 끝나기 전에는 [해지 취소하기] 단추로 되돌릴 수 있어요. (환불은 해지와 달라요. 첫 결제 후 7일 이내이고 글을 열기 전이면 문의하기에서 환불 요청을 해 주세요.)';d.style.margin='8px 0 14px';
    var 줄2=document.createElement('div');줄2.style.cssText='display:flex;gap:10px;flex-wrap:wrap';
    var 예=document.createElement('button');예.type='button';예.textContent='네, 해지할게요';예.style.cssText='background:#e5484d;color:#fff;border:0;border-radius:999px;padding:12px 20px;font-weight:700;font-size:15px;cursor:pointer';
    var 아니=document.createElement('button');아니.type='button';아니.className='단추 주';아니.textContent='계속 이용할게요';
@@ -99,9 +99,9 @@ function 그리기(j){
     A.api('/membership/cancel',{method:'POST'}).then(function(r){if(r.해지){A.api('/membership').then(그리기)}else{예.disabled=false;아니.disabled=false;alert(r.오류||'해지하지 못했어요. 잠시 뒤 다시 해 주세요')}})});
    줄2.appendChild(예);줄2.appendChild(아니);상.appendChild(q);상.appendChild(d);상.appendChild(줄2);카드.appendChild(상)});
   카드.appendChild(해지)}
- if(j.상태==='해지예정'){var 되돌리기=document.createElement('button');되돌리기.type='button';되돌리기.className='단추 주';되돌리기.textContent='해지 취소하기';되돌리기.style.cssText='font-size:17px;padding:15px 26px;border-radius:14px;box-shadow:0 8px 20px rgba(31,77,255,.30)';
+ if(j.상태==='해지예정'){var 되돌리기=document.createElement('button');되돌리기.type='button';되돌리기.className='단추 주';되돌리기.textContent='해지 취소하기';되돌리기.style.cssText='font-size:18px;padding:16px 34px;border-radius:14px;box-shadow:0 8px 20px rgba(31,77,255,.30);align-self:center;min-width:220px';
   되돌리기.addEventListener('click',function(){if(카드.querySelector('.취소확인'))return;되돌리기.hidden=true;카드.style.flexWrap='wrap';
-   var 상=document.createElement('div');상.className='취소확인';상.setAttribute('style','flex-basis:100%;width:100%;margin-top:14px;padding:16px 18px;border:2px solid #1f4dff;border-radius:14px;background:#f4f7ff;box-sizing:border-box');
+   var 상=document.createElement('div');상.className='취소확인';상.setAttribute('style','flex-basis:100%;width:100%;margin-top:14px;padding:16px 18px;border:2px solid #1f4dff;border-radius:14px;background:#f4f7ff;box-sizing:border-box;text-align:left');
    var q=document.createElement('b');q.textContent='해지를 취소할까요?';q.style.cssText='display:block;font-size:17px';
    var d=document.createElement('p');d.textContent='이용권이 계속돼요. 다음 결제일은 '+(j.만료||'-')+'이고, 그날 월 10,000원이 자동 결제돼요. 해지는 언제든 다시 할 수 있어요.';d.style.margin='8px 0 14px';
    var 줄2=document.createElement('div');줄2.style.cssText='display:flex;gap:10px;flex-wrap:wrap';
@@ -112,7 +112,8 @@ function 그리기(j){
     A.api('/membership/resume',{method:'POST'}).then(function(r){if(r.취소됨){A.api('/membership').then(그리기)}else{예.disabled=false;아니.disabled=false;alert(r.오류||'해지를 취소하지 못했어요. 잠시 뒤 다시 해 주세요')}})});
    줄2.appendChild(예);줄2.appendChild(아니);상.appendChild(q);상.appendChild(d);상.appendChild(줄2);카드.appendChild(상)});
   카드.appendChild(되돌리기)}
- B.appendChild(카드)}
+ B.appendChild(카드);
+ var 환불=document.createElement('p');환불.className='작은';환불.style.cssText='margin:6px 2px 0;line-height:1.7';환불.innerHTML='환불이 필요하면 <a href="'+A.base+'/community/#ask">커뮤니티 · 문의하기</a>에서 종류를 <b>환불 요청</b>으로 골라 보내 주세요. 첫 결제 후 7일 이내이고 회원 전용 글을 열기 전이면 전액 환불해요. (<a href="'+A.base+'/refund/">환불 규정</a>)';B.appendChild(환불)}
 A.api('/membership').then(function(j){if(j._s===401)return;그리기(j)},function(){줄('이용권 정보를 불러오지 못했어요.')});
 })();</script>` : ''}
 <script type="application/json" id="공고자료">${JSON.stringify(자료).replace(/</g, '\\u003c')}</script>
