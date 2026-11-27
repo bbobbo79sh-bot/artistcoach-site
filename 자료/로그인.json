@@ -1,5 +1,8 @@
 {
   "설명": "로그인 기능 설정. 서버: 로그인 서버(Cloudflare Worker) 주소. 검수 사이트에는 서버가 있으면 보이고, 정식 사이트는 영감이 허락한 뒤 정식공개를 true 로 바꿀 때만 보인다.",
   "서버": "https://artistcoach-auth.yeonggam.workers.dev",
-  "정식공개": true
+  "정식공개": true,
+  "멤버십시험키": "test_ck_c19As0EdVHk7bXeIY2c5hY96hXPBRR70DD",
+  "멤버십라이브키": "live_ck_c19As0Ep5IkWDHcW0Fr0IgtYplP33PLb1c",
+  "컨설팅시험키": "test_ck_c19AyiIgQu34ywkTTnq4fB1MULPKpfCipj"
 }

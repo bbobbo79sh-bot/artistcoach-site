@@ -7,7 +7,12 @@ name: 검수용 사이트 만들어 올리기
 on:
   schedule:
     - cron: '45 22 * * *'     # 매일 한국시간 07:45 (진짜 사이트 07:30 뒤)
-  workflow_dispatch:           # 손으로 돌릴 때(Actions 탭의 Run workflow)
+  workflow_dispatch:           # 손으로 돌릴 때(Actions 탭의 Run workflow). ref 에 브랜치 이름을 적으면 그 브랜치를 검수용으로 만든다(진짜 사이트는 그대로)
+    inputs:
+      ref:
+        description: '검수할 브랜치(비우면 redesign-blue — 정식 공개 때 main 으로 되돌린다)'
+        required: false
+        default: 'redesign-blue'
 
 permissions:
   contents: read
@@ -25,7 +30,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: bbobbo79sh-bot/artistcoach-site
-          ref: main
+          ref: ${{ inputs.ref || 'redesign-blue' }}
       - uses: actions/setup-node@v4
         with:
           node-version: '22'

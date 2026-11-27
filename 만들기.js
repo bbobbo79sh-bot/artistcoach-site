@@ -117,9 +117,11 @@ const 로그인설정 = (() => { try { return JSON.parse(fs.readFileSync(path.jo
 if (process.env.SITE_LOGIN) 로그인설정.서버 = process.env.SITE_LOGIN;   // 시험용: SITE_LOGIN=http://127.0.0.1:8787
 const 로그인켜짐 = !!(로그인설정.서버 && (검수용 || 로그인설정.정식공개 === true));   // 검수 사이트에서만 먼저 보여 준다. 정식 공개는 영감이 허락한 뒤 '정식공개'를 true 로
 const 커뮤니티 = 로그인켜짐 ? require('./커뮤니티페이지.js')({ 틀: (...a) => 틀(...a), 길, 쓰기 }) : null;
-const 멤버십켜짐 = !!(로그인켜짐 && (검수용 || 로그인설정.멤버십공개 === true));   // 고급 정보 이용권(월 구독): 검수 사이트에서만 먼저 보인다. 토스 정기결제 승인 뒤 영감이 허락하면 로그인.json 에 '멤버십공개': true
-const 멤버십 = 멤버십켜짐 ? require('./멤버십페이지.js')({ 틀: (...a) => 틀(...a), 길, 쓰기 }) : null;
-const 로그인 = 로그인켜짐 ? require('./로그인페이지.js')({ 설정: { ...로그인설정, 판매서버: 상품설정.승인확인서버 }, 공고, 틀: (...a) => 틀(...a), 길, 막기, 쓰기, 멤버십: 멤버십켜짐 }) : null;
+const 멤버십켜짐 = !!(로그인켜짐 && (검수용 || 로그인설정.멤버십공개 === true));   // 코치 크루 이용권(월 구독): 검수 사이트에서만 먼저 보인다. 토스 정기결제 승인 뒤 영감이 허락하면 로그인.json 에 '멤버십공개': true
+const 멤버십 = 멤버십켜짐 ? require('./멤버십페이지.js')({ 틀: (...a) => 틀(...a), 길, 쓰기, 토스키: 검수용 ? (로그인설정.멤버십시험키 || '') : (로그인설정.멤버십라이브키 || '') }) : null;   // 정기결제는 빌링 전용 상점(bill_…)의 키를 쓴다. 전자책 키(상품.json)와 섞지 않는다
+const 컨설팅켜짐 = !!(로그인켜짐 && 검수용);   // 지원사업 컨설팅(질문지·피드백): 결제 연결과 영감 승인 전에는 검수 사이트에서만 만든다
+const 컨설팅 = 컨설팅켜짐 ? require('./컨설팅페이지.js')({ 틀: (...a) => 틀(...a), 길, 쓰기, 토스키: 검수용 ? (로그인설정.컨설팅시험키 || '') : (로그인설정.컨설팅라이브키 || '') }) : null;
+const 로그인 = 로그인켜짐 ? require('./로그인페이지.js')({ 설정: { ...로그인설정, 판매서버: 상품설정.승인확인서버 }, 공고, 틀: (...a) => 틀(...a), 길, 막기, 쓰기, 멤버십: 멤버십켜짐, 검수용 }) : null;
 const 검색등록 = JSON.parse(fs.readFileSync(path.join(뿌리, '자료', '검색등록.json'), 'utf8'));
 const 구글확인 = (!검수용 && /^[A-Za-z0-9_-]{20,80}$/.test(검색등록.구글서치콘솔 || '')) ? 검색등록.구글서치콘솔 : '';
 const 광고설정 = JSON.parse(fs.readFileSync(path.join(뿌리, '자료', '광고.json'), 'utf8'));
@@ -139,7 +141,7 @@ const 광고스크립트 = 광고사용 ? '<script async type="text/javascript" 
 
 // ───────── 스타일 ─────────
 const 스타일 = `
-${로그인 ? 로그인.스타일 : ''}${커뮤니티 ? 커뮤니티.스타일 : ''}${멤버십 ? 멤버십.스타일 : ''}
+${로그인 ? 로그인.스타일 : ''}${커뮤니티 ? 커뮤니티.스타일 : ''}${멤버십 ? 멤버십.스타일 : ''}${컨설팅 ? 컨설팅.스타일 : ''}
 :root{--bg:${bg};--면:${면};--ink:${ink};--sub:${sub};--브랜드:${brand};--브랜드글:${브랜드글};--깊음:${깊음};--연함:${연함};--아주연함:${아주연함};--선:${선};--바탕투명:${바탕투명}}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
@@ -478,7 +480,7 @@ ${애드센스 ? `<script async src="https://pagead2.googlesyndication.com/pagea
 <body>
 <header class="머리"><div class="틀">
   <a class="로고줄" href="${길('/')}"><img src="${길('/logo.svg')}" alt="" width="36" height="36"><span class="글자로고">아티스트<mark>코치</mark></span></a>
-  <nav><a href="${길('/notices/')}"${현재 === '공고' ? ' aria-current="page"' : ''}>공고</a>${자료실켜짐 ? `<a href="${길('/notes/')}"${현재 === '코치 노트' ? ' aria-current="page"' : ''}>코치노트</a><a href="${길('/tools/')}"${현재 === '도구함' ? ' aria-current="page"' : ''}>도구함</a>` : ''}${커뮤니티 ? `<span class="메뉴묶음"><a href="${길('/community/')}"${현재 === '커뮤니티' ? ' aria-current="page"' : ''} aria-haspopup="true">커뮤니티</a><span class="드롭"><span class="드롭상자"><a href="${길('/community/#notice')}">📢 공지</a><a href="${길('/community/#free')}">💬 자유게시판</a><a href="${길('/community/#ask')}">🔒 문의하기 <small>비공개</small></a><a href="${길('/community/#review')}">🏆 합격·후기</a></span></span></span>` : ''}${멤버십켜짐 ? `<a href="${길('/membership/library/')}" style="color:var(--깊음)">🔒 코치 라운지</a>` : ''}${스토어켜짐 ? `<a href="${길('/products/')}">스토어</a>` : ''}${로그인 ? 로그인.메뉴 : ''}</nav>
+  <nav><a href="${길('/notices/')}"${현재 === '공고' ? ' aria-current="page"' : ''}>공고</a>${자료실켜짐 ? `<a href="${길('/notes/')}"${현재 === '코치 노트' ? ' aria-current="page"' : ''}>코치노트</a><a href="${길('/tools/')}"${현재 === '도구함' ? ' aria-current="page"' : ''}>도구함</a>` : ''}${커뮤니티 ? `<span class="메뉴묶음"><a href="${길('/community/')}"${현재 === '커뮤니티' ? ' aria-current="page"' : ''} aria-haspopup="true">커뮤니티</a><span class="드롭"><span class="드롭상자"><a href="${길('/community/#notice')}">📢 공지</a><a href="${길('/community/#free')}">💬 자유게시판</a><a href="${길('/community/#ask')}">🔒 문의하기 <small>비공개</small></a><a href="${길('/community/#review')}">🏆 합격·후기</a></span></span></span>` : ''}${멤버십켜짐 ? `<a href="${길('/membership/library/')}" style="color:var(--깊음)">🔒 코치 라운지</a>` : ''}${컨설팅켜짐 ? `<a href="${길('/mentoring/')}"${현재 === '멘토링' ? ' aria-current="page"' : ''}>멘토링</a>` : ''}${스토어켜짐 ? `<a href="${길('/products/')}">스토어</a>` : ''}${로그인 ? 로그인.메뉴 : ''}</nav>
 </div></header>
 ${로그인 ? 로그인.스크립트태그 : ''}
 <main class="틀">
@@ -745,6 +747,7 @@ const 정적폴더 = path.join(뿌리, '자료', '정적');
 if (fs.existsSync(정적폴더)) fs.cpSync(정적폴더, 결과, { recursive: true });
 if (커뮤니티) 커뮤니티.만들기();
 if (멤버십) 멤버십.만들기();
+if (컨설팅) 컨설팅.만들기();
 if (로그인) { 로그인.만들기(); console.log('  로그인 기능  켜짐 (' + 로그인.서버 + ')'); }
 // 짧은 주소: artistcoach.kr/book/ → 전자책 판매 페이지 (카드뉴스 QR·프로필 링크용). 유입 표시(ref=card)가 붙어 방문 통계에서 구분된다.
 if (스토어켜짐 && (상품설정.상품 || [])[0]) {

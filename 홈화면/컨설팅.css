@@ -1,0 +1,89 @@
+.새컨설팅{--sig:var(--브랜드);--line:var(--선);--sub:var(--sub);--soft:#E4ECFB;--ok:#0E9F6E;word-break:keep-all}
+.새컨설팅 a{color:inherit}
+.새컨설팅 .wrap{max-width:1060px;margin:0 auto;padding:40px 20px 120px;display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:34px;align-items:start}
+.새컨설팅 .kick{font-size:13px;font-weight:800;color:var(--sig);letter-spacing:.06em}
+.새컨설팅 h1{font-size:clamp(32px,4.2vw,50px);letter-spacing:-.06em;line-height:1.2;margin:8px 0 14px;font-weight:800}
+.새컨설팅 h1 em{font-style:normal;background:linear-gradient(transparent 62%,rgba(31,77,255,.28) 62%)}
+.새컨설팅 .lead{font-size:18px;color:var(--sub);margin:0 0 18px}
+.새컨설팅 .pills{display:flex;gap:8px;flex-wrap:wrap}
+.새컨설팅 .pills span{background:#fff;border:1px solid var(--line);border-radius:99px;padding:5px 14px;font-size:13.5px;font-weight:700}
+.새컨설팅 section{margin-top:52px}
+.새컨설팅 h2{font-size:26px;letter-spacing:-.05em;margin:0 0 6px;font-weight:800}
+.새컨설팅 .sub{color:var(--sub);margin:0 0 18px}
+.새컨설팅 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.새컨설팅 .card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:20px 22px;box-shadow:0 4px 18px rgba(11,27,58,.06)}
+.새컨설팅 .worry{display:flex;gap:12px;align-items:flex-start;font-weight:700;font-size:16.5px;letter-spacing:-.03em}
+.새컨설팅 .worry i{flex:none;width:28px;height:28px;border-radius:50%;background:var(--soft);color:var(--sig);display:flex;align-items:center;justify-content:center;font-style:normal;font-size:14px}
+.새컨설팅 .area{position:relative}
+.새컨설팅 .area b{display:block;font-size:17px;letter-spacing:-.03em}
+.새컨설팅 .area span{color:var(--sub);font-size:14.5px}
+.새컨설팅 .area .ab{display:inline-flex;width:30px;height:30px;border-radius:10px;background:var(--sig);color:#fff;align-items:center;justify-content:center;font-weight:800;margin-bottom:10px}
+.새컨설팅 .tl{position:relative;display:grid;gap:14px}
+.새컨설팅 .tl:before{content:"";position:absolute;left:17px;top:20px;bottom:20px;width:3px;background:linear-gradient(var(--sig),var(--line))}
+.새컨설팅 .st{position:relative;display:flex;gap:16px;align-items:flex-start}
+.새컨설팅 .st i{flex:none;position:relative;z-index:1;width:36px;height:36px;border-radius:50%;background:var(--sig);color:#fff;font-style:normal;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 5px var(--bg)}
+.새컨설팅 .st div{background:#fff;border:1px solid var(--line);border-radius:18px;padding:12px 18px;flex:1}
+.새컨설팅 .st b{display:block;letter-spacing:-.03em}
+.새컨설팅 .st span{color:var(--sub);font-size:14.5px}
+.새컨설팅 .st small{display:inline-block;margin-top:4px;background:var(--soft);color:var(--sig);font-weight:800;font-size:12.5px;border-radius:99px;padding:2px 10px}
+.새컨설팅 .pp{display:grid;gap:10px}
+.새컨설팅 .pp .who{display:flex;justify-content:space-between;font-weight:800;font-size:14px;color:var(--sub);padding:0 4px}
+.새컨설팅 .pp .who div{display:flex;align-items:center;gap:8px}
+.새컨설팅 .av{flex:none;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-style:normal;font-weight:800;font-size:14px;overflow:hidden}
+.새컨설팅 .av.me{background:var(--sig);color:#fff}
+.새컨설팅 .av.co{background:#fff;border:2px solid var(--sig)}
+.새컨설팅 .av.co img{width:30px;height:30px}
+.새컨설팅 .turn{display:flex;gap:12px;align-items:flex-start}
+.새컨설팅 .turn.r{justify-content:flex-end}
+.새컨설팅 .bub{max-width:80%;background:#fff;border:1px solid var(--line);border-radius:6px 22px 22px 22px;padding:12px 18px;box-shadow:0 4px 18px rgba(11,27,58,.06)}
+.새컨설팅 .bub.co{background:var(--sig);border-color:var(--sig);color:#fff;border-radius:22px 6px 22px 22px}
+.새컨설팅 .bub.co span,.새컨설팅 .bub.co small{color:rgba(255,255,255,.85)}
+.새컨설팅 .bub small{display:block;font-size:12px;font-weight:800;color:var(--sig);letter-spacing:.04em}
+.새컨설팅 .bub b{display:block;letter-spacing:-.03em;font-size:16.5px}
+.새컨설팅 .bub span{color:var(--sub);font-size:14.5px}
+.새컨설팅 .hop{display:flex;flex-direction:column;gap:2px;font-size:13.5px;font-weight:800;color:var(--sig);padding:0 52px}
+.새컨설팅 .hop.r{align-items:flex-end}
+.새컨설팅 .hop.l{align-items:flex-start}
+.새컨설팅 .hop em{font-style:normal;background:var(--soft);border-radius:99px;padding:1px 10px;font-size:12.5px}
+.새컨설팅 .note{color:var(--sub);font-size:13.5px;margin:12px 4px 0}
+.새컨설팅 .fb{display:grid;gap:10px}
+.새컨설팅 .fb div{background:var(--soft);border-radius:16px;padding:12px 16px}
+.새컨설팅 .fb b{color:var(--sig);display:block;font-size:14px}
+.새컨설팅 .coach{display:grid;grid-template-columns:250px 1fr;gap:0;padding:0;overflow:hidden;background:#fff}
+.새컨설팅 .coach .photo{background:linear-gradient(160deg,#cfdcff,#E4ECFB 60%,#fff);align-self:stretch;min-height:300px}
+.새컨설팅 .coach .photo{padding:0;display:block;position:relative}
+.새컨설팅 .coach .photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center bottom;display:block}
+.새컨설팅 .coach .tx{padding:28px 28px 28px 30px;align-self:center}
+.새컨설팅 .coach h3{margin:0;font-size:22px;letter-spacing:-.04em}
+.새컨설팅 .coach .role{color:var(--sub);font-size:14px;margin:6px 0 14px;display:grid;gap:2px}
+.새컨설팅 .coach .role span{display:block}
+.새컨설팅 .coach p{margin:0 0 8px;font-size:15.5px}
+.새컨설팅 table.info{width:100%;border-collapse:collapse;font-size:15px}
+.새컨설팅 table.info th,.새컨설팅 table.info td{padding:14px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.새컨설팅 table.info th{width:120px;color:var(--sub);font-weight:700;white-space:nowrap}
+.새컨설팅 table.info tr:last-child th,.새컨설팅 table.info tr:last-child td{border-bottom:0}
+.새컨설팅 .warn{background:#FFF8DC;border:1px solid #F0DC8A;border-radius:14px;padding:12px 16px;font-size:14.5px;margin-top:14px;color:#6b5200}
+.새컨설팅 details{background:#fff;border:1px solid var(--line);border-radius:16px;margin:10px 0;overflow:hidden}
+.새컨설팅 summary{cursor:pointer;padding:14px 18px;font-weight:700;letter-spacing:-.02em}
+.새컨설팅 details p{margin:0;padding:0 18px 16px;color:var(--sub);font-size:15px}
+.새컨설팅 .btn{display:block;text-align:center;font:inherit;font-weight:800;font-size:17px;border:0;background:var(--sig);color:#fff;padding:15px 24px;border-radius:99px;cursor:pointer;box-shadow:0 10px 22px rgba(31,77,255,.28);text-decoration:none}
+.새컨설팅 .buy{position:sticky;top:76px}
+.새컨설팅 .buy .card{padding:24px}
+.새컨설팅 .buy .price{font-size:36px;font-weight:800;letter-spacing:-.05em}
+.새컨설팅 .buy .price small{font-size:15px;color:var(--sub);font-weight:600;margin-left:6px}
+.새컨설팅 .buy ul{list-style:none;margin:14px 0 18px;padding:0;display:grid;gap:8px;font-size:14.5px}
+.새컨설팅 .buy li:before{content:"✓";color:var(--sig);font-weight:800;margin-right:8px}
+.새컨설팅 .buy .mini{font-size:12.5px;color:var(--sub);margin-top:12px;line-height:1.6}
+.새컨설팅 .buy .mini a{color:var(--sig)}
+.새컨설팅 .cta2{text-align:center;background:linear-gradient(135deg,var(--sig),#6f93ff);color:#fff;border-radius:26px;padding:38px 20px;border:0}
+.새컨설팅 .cta2 h2{color:#fff}
+.새컨설팅 .cta2 p{opacity:.9;margin:0 0 18px}
+.새컨설팅 .cta2 .btn{display:inline-block;background:#fff;color:var(--sig);box-shadow:none}
+.새컨설팅 .mbar{display:none}
+@media(max-width:860px){.새컨설팅 .wrap{grid-template-columns:1fr}
+.새컨설팅 .buy{position:static;order:-1}
+.새컨설팅 .grid2{grid-template-columns:1fr}
+.새컨설팅 .mbar{display:block;position:fixed;left:0;right:0;bottom:0;background:rgba(255,255,255,.95);padding:10px 16px;border-top:1px solid var(--line);z-index:40}}
+main.틀:has(.새컨설팅){max-width:1100px}
+.새컨설팅 .wrap{padding:30px 0 100px}
+.새컨설팅 h1{margin-top:8px}
