@@ -9,6 +9,10 @@ module.exports = ({ 틀, 길, 쓰기, 토스키 = '' }) => {
 .ms-상자 h2{font-size:18px;margin:0 0 8px}.ms-상자 ul{margin:0;padding-left:20px;line-height:1.85}
 .ms-준비{background:color-mix(in srgb,var(--브랜드) 7%,#fff);border:1px solid color-mix(in srgb,var(--브랜드) 22%,#fff);border-radius:14px;padding:13px 16px;margin:14px 0;line-height:1.7}
 .ms-줄{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 6px}
+.ms-큰단추{display:block;width:100%;box-sizing:border-box;text-align:center;font-size:19px;padding:18px 24px;border-radius:16px;box-shadow:0 8px 22px rgba(31,77,255,.28)}
+.ms-큰단추[disabled],.ms-큰단추:not([href]){box-shadow:none}
+.ms-중단추{display:inline-block;font-size:16px;font-weight:800;padding:14px 22px;border-radius:14px;border:2px solid var(--브랜드);color:var(--브랜드);background:var(--면);text-decoration:none}
+.ms-중단추:hover{background:color-mix(in srgb,var(--브랜드) 8%,#fff)}
 .단추[disabled]{opacity:.55;cursor:not-allowed}
 .ms-폼{display:flex;flex-direction:column;gap:10px;margin:18px 0}.ms-폼 label{font-weight:700;font-size:15px}
 .ms-폼 input[type=email]{width:100%;font:inherit;font-size:16px;padding:12px 14px;border:1px solid var(--선);border-radius:12px;background:var(--면);color:var(--ink);box-sizing:border-box}
@@ -26,6 +30,8 @@ module.exports = ({ 틀, 길, 쓰기, 토스키 = '' }) => {
   <h1>코치 크루가 되어 보세요</h1>
   <p>AI를 활용한 지원사업 신청서 작성 요령처럼, 공개 글보다 한 걸음 더 들어간 정보를 회원 전용 게시판에 올립니다.</p>
   <div class="ms-값"><b>월 10,000원</b><span>매월 자동 결제 · 언제든 해지</span></div>
+  <div id="ms-내상태" class="작은" style="margin-top:14px"></div>
+  <div class="ms-줄" style="margin:12px 0 18px"><a class="단추 주 ms-큰단추" id="ms-단추" href="${길('/login/')}">로그인하고 가입하기</a></div>
   <div class="ms-준비" id="ms-준비"><b>결제는 아직 열리지 않았어요.</b><br>결제대행사 심사가 끝나면 이 화면에서 가입할 수 있어요. 열리면 바로 알려 드릴게요.</div>
   <div class="ms-상자">
     <h2>결제하기 전에 알아 두세요</h2>
@@ -37,15 +43,13 @@ module.exports = ({ 틀, 길, 쓰기, 토스키 = '' }) => {
       <li>자세한 내용은 <a href="/terms/">이용약관</a>과 <a href="/refund/">환불 규정</a>에 있어요.</li>
     </ul>
   </div>
-  <div id="ms-내상태" class="작은"></div>
-  <div class="ms-줄"><a class="단추 주" id="ms-단추" href="${길('/login/')}">로그인하고 알아보기</a></div>
 </section>
 <script>(function(){var A=window.AC;if(!A)return;var 단추=document.getElementById('ms-단추'),상태=document.getElementById('ms-내상태'),준비=document.getElementById('ms-준비');
 if(!A.tok())return;
 A.api('/membership').then(function(j){if(j._s===401)return;
  if(j.이용중){단추.textContent='코치 라운지 들어가기';단추.href=A.base+'/membership/library/';
   상태.textContent=j.상태==='해지예정'?'해지했어요. '+j.만료+'까지 이용할 수 있어요.':'이용 중이에요. 다음 결제일은 '+(j.다음결제||'-')+'이에요.';return}
- if(j.결제열림){준비.hidden=true;단추.textContent='가입하기';단추.href=A.base+'/membership/join/'}else{단추.textContent='결제 준비 중';단추.setAttribute('disabled','disabled');단추.removeAttribute('href')}   // 결제가 열리기(토스 정기결제 승인) 전에는 누를 수 없다
+ if(j.결제열림){준비.hidden=true;단추.textContent='코치 크루 가입하기 · 월 10,000원';단추.href=A.base+'/membership/join/'}else{단추.textContent='결제 준비 중';단추.setAttribute('disabled','disabled');단추.removeAttribute('href')}   // 결제가 열리기(토스 정기결제 승인) 전에는 누를 수 없다
 })})();</script>`;
   const 가입본문 = `<section class="일반글 ms-글">
   <span class="윗글">코치 크루</span>
@@ -103,7 +107,7 @@ A.api('/membership/subscribe',{method:'POST',headers:{'Content-Type':'applicatio
   <h1>코치 라운지</h1>
   <p>AI를 활용한 지원사업 신청서 작성 요령처럼, 공개 글보다 한 걸음 더 들어간 정보를 운영자가 직접 써서 올려요. 코치 크루만 볼 수 있어요.</p>
   <div id="ms-자료" class="작은">불러오는 중…</div>
-  <p class="작은" style="margin-top:22px"><a href="${길('/membership/')}">코치 크루 안내로 돌아가기</a></p>
+  <p style="margin-top:26px"><a class="ms-중단추" href="${길('/membership/')}">← 코치 크루 안내로 돌아가기</a></p>
 </section>
 <script>(function(){var A=window.AC;if(!A)return;
 if(!A.tok()){try{sessionStorage.setItem('ac_next','/membership/library/')}catch(e){}location.replace(A.base+'/login/');return}
@@ -111,7 +115,7 @@ function esc(s){return String(s).replace(/[&<>"']/g,function(c){return{'&':'&amp
 var 칸=document.getElementById('ms-자료');
 A.api('/library').then(function(j){
  if(j._s===401)return;
- if(j._s===403){칸.innerHTML='<div class="ms-상자"><b>코치 크루만 볼 수 있어요.</b><br>가입 전에 가격과 해지 방법을 확인할 수 있어요.</div><p><a class="단추 주" href="'+A.base+'/membership/">코치 크루 안내 보기</a></p>';return}
+ if(j._s===403){칸.innerHTML='<div class="ms-상자"><b>코치 크루만 볼 수 있어요.</b><br>월 10,000원 · 매월 자동 결제 · 내 공간에서 단추 한 번으로 해지할 수 있어요.</div><a class="단추 주 ms-큰단추" href="'+A.base+'/membership/join/">코치 크루 가입하기 · 월 10,000원</a><p style="margin-top:14px"><a class="ms-중단추" href="'+A.base+'/membership/">가입 전에 안내 먼저 보기</a></p>';return}
  if(!j.글||!j.글.length){칸.innerHTML='<div class="ms-상자">아직 올라온 글이 없어요. 곧 올라와요.</div>';return}
  칸.className='';칸.innerHTML='<p class="건수줄">글 '+j.글.length+'개</p><div class="게시판목록"><div class="행 머리줄"><span class="번호">번호</span><span class="분류">분류</span><span class="제목">제목</span><span class="날짜">날짜</span></div>'+j.글.map(function(g,i){var d=(g.날짜||'').slice(5).replace('-','.');return'<a class="행" href="'+A.base+'/membership/library/read/?id='+encodeURIComponent(g.id)+'"><span class="번호">'+(i+1)+'</span><span class="분류">'+esc(g.분류||g.말머리||'글')+'</span><span class="제목"><b>'+esc(g.제목)+'</b>'+(g.요약?'<small>'+esc(g.요약)+'</small>':'')+'</span><span class="날짜">'+esc(d)+'</span></a>'}).join('')+'</div>'},
  function(){칸.textContent='연결하지 못했어요. 잠시 뒤 다시 해 주세요.'})})();</script>`;

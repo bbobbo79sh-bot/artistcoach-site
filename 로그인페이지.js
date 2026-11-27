@@ -90,7 +90,7 @@ function 그리기(j){
   해지.addEventListener('click',function(){if(카드.querySelector('.해지확인'))return;해지.hidden=true;카드.style.flexWrap='wrap';
    var 상=document.createElement('div');상.className='해지확인';상.setAttribute('style','flex-basis:100%;width:100%;margin-top:14px;padding:16px 18px;border:2px solid #e5484d;border-radius:14px;background:#fff6f6;box-sizing:border-box');
    var q=document.createElement('b');q.textContent='정말 해지할까요?';q.style.cssText='display:block;font-size:17px';
-   var d=document.createElement('p');d.textContent='다음 결제부터 중단돼요. 이미 결제한 기간('+(j.만료||'-')+')까지는 계속 볼 수 있어요. 이용 기간이 끝나기 전에는 '해지 취소하기'로 되돌릴 수 있어요.';d.style.margin='8px 0 14px';
+   var d=document.createElement('p');d.textContent='다음 결제부터 중단돼요. 이미 결제한 기간('+(j.만료||'-')+')까지는 계속 볼 수 있어요. 이용 기간이 끝나기 전에는 [해지 취소하기] 단추로 되돌릴 수 있어요.';d.style.margin='8px 0 14px';
    var 줄2=document.createElement('div');줄2.style.cssText='display:flex;gap:10px;flex-wrap:wrap';
    var 예=document.createElement('button');예.type='button';예.textContent='네, 해지할게요';예.style.cssText='background:#e5484d;color:#fff;border:0;border-radius:999px;padding:12px 20px;font-weight:700;font-size:15px;cursor:pointer';
    var 아니=document.createElement('button');아니.type='button';아니.className='단추 주';아니.textContent='계속 이용할게요';
